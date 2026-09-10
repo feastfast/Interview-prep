@@ -190,13 +190,16 @@
   }
   .foot a{color:var(--muted)}
 
-  /* ---------- view transition ---------- */
-  .view{animation:slide .2s cubic-bezier(.2,.7,.3,1) both}
-  .view.back{animation-name:slideBack}
+  /* ---------- view transition ----------
+     Modifier is .rev, not .back — .back is the header button's class, and a
+     shared name let the button's inline-flex and accent colour leak onto the
+     whole view when navigating backwards. */
+  .view{display:block;animation:slide .2s cubic-bezier(.2,.7,.3,1) both}
+  .view.rev{animation-name:slideBack}
   @keyframes slide{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:none}}
   @keyframes slideBack{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:none}}
   @media (prefers-reduced-motion: reduce){
-    .view,.view.back{animation:none}
+    .view,.view.rev{animation:none}
   }
 </style>
 </head>
@@ -538,7 +541,7 @@
         '<button type="button" id="retry">Retry</button></p>'
       : "";
     inner += query ? renderSearch() : renderList(path);
-    bodyEl.innerHTML = '<div class="view' + (back ? " back" : "") + '">' + inner + '</div>';
+    bodyEl.innerHTML = '<div class="view' + (back ? " rev" : "") + '">' + inner + '</div>';
 
     var here = path.length ? nodeAt(path) : null;
     document.title = here ? here.label + " · Interview Prep" : "Interview Prep";
