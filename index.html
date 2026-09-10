@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1115">
+<title>Interview Prep</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128218;</text></svg>">
+<style>
+  :root{
+    --bg:#f6f7f9; --panel:#ffffff; --panel-2:#f0f2f5; --line:#e2e5ea;
+    --text:#12151a; --muted:#666e7a; --accent:#2f6df6; --accent-soft:#e8effe;
+    --shadow:0 1px 2px rgba(16,20,28,.06),0 8px 24px rgba(16,20,28,.06);
+    --radius:14px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f1115; --panel:#171a21; --panel-2:#1f232c; --line:#282d38;
+      --text:#e8eaef; --muted:#98a1b0; --accent:#6c9bff; --accent-soft:#1c2740;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.28);
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+
+  header h1{margin:0;font-size:26px;letter-spacing:-.02em}
+  header p{margin:6px 0 0;color:var(--muted);font-size:14px}
+
+  .searchbar{position:sticky;top:0;z-index:5;margin:20px 0 8px;padding:10px 0;background:var(--bg)}
+  .searchbar input{
+    width:100%;padding:14px 16px;font-size:16px;color:var(--text);
+    background:var(--panel);border:1px solid var(--line);border-radius:12px;outline:none;
+    box-shadow:var(--shadow);
+  }
+  .searchbar input:focus{border-color:var(--accent)}
+
+  .stats{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 20px;font-size:13px;color:var(--muted)}
+  .stats span{background:var(--panel-2);border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+
+  .note{
+    margin:0 0 18px;padding:12px 14px;border-radius:12px;font-size:14px;
+    background:var(--accent-soft);border:1px solid var(--line);color:var(--text);
+  }
+  .note[hidden]{display:none}
+  .note button{
+    margin-left:8px;font:inherit;font-size:13px;cursor:pointer;color:var(--accent);
+    background:none;border:1px solid var(--line);border-radius:8px;padding:3px 10px;
+  }
+
+  .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+  .card{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);overflow:hidden;
+  }
+  .card > summary{
+    list-style:none;cursor:pointer;padding:16px;display:flex;align-items:center;gap:12px;
+  }
+  .card > summary::-webkit-details-marker{display:none}
+  .card > summary:hover{background:var(--panel-2)}
+  .icon{font-size:22px;line-height:1;flex:none}
+  .titles{flex:1;min-width:0}
+  .titles b{display:block;font-size:16px;font-weight:600;letter-spacing:-.01em}
+  .titles small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+  .count{
+    flex:none;font-size:12px;font-weight:600;color:var(--accent);
+    background:var(--accent-soft);border-radius:999px;padding:3px 9px;min-width:26px;text-align:center;
+  }
+  .count.zero{color:var(--muted);background:var(--panel-2)}
+  .chev{flex:none;color:var(--muted);transition:transform .15s ease}
+  .card[open] .chev{transform:rotate(90deg)}
+
+  ul.files{list-style:none;margin:0;padding:0 10px 10px}
+  ul.files li{border-top:1px solid var(--line)}
+  ul.files li:first-child{border-top:none}
+  a.file{
+    display:flex;align-items:center;gap:10px;padding:12px 8px;min-height:48px;
+    color:inherit;text-decoration:none;border-radius:10px;
+  }
+  a.file:hover,a.file:focus-visible{background:var(--panel-2)}
+  .ext{
+    flex:none;font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+    padding:3px 6px;border-radius:6px;background:var(--panel-2);color:var(--muted);border:1px solid var(--line);
+  }
+  .ext.pdf{color:#c0392b;background:rgba(192,57,43,.1);border-color:rgba(192,57,43,.25)}
+  .ext.md{color:#2f8f5b;background:rgba(47,143,91,.1);border-color:rgba(47,143,91,.25)}
+  .fname{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14.5px}
+  .fname i{font-style:normal;color:var(--muted)}
+  .fsize{flex:none;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+  .empty{padding:0 18px 18px;color:var(--muted);font-size:13.5px;margin:0}
+
+  footer{margin-top:36px;text-align:center;color:var(--muted);font-size:13px}
+  footer a{color:var(--accent)}
+  .hidden{display:none !important}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>&#128218; Interview Prep</h1>
+    <p>Study material, straight from the repo. Tap a subject to open its notes.</p>
+  </header>
+
+  <div class="searchbar">
+    <input id="q" type="search" placeholder="Search all notes&hellip;" autocomplete="off" spellcheck="false" aria-label="Search all notes">
+  </div>
+
+  <div class="stats" id="stats"></div>
+
+  <p class="note" id="note" hidden></p>
+
+  <div class="grid" id="grid"></div>
+
+  <footer>
+    <a href="https://github.com/feastfast/Interview-prep" target="_blank" rel="noopener">feastfast/Interview-prep</a>
+  </footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var OWNER = "feastfast", REPO = "Interview-prep", BRANCH = "main";
+  var CACHE_KEY = "prep-tree-v1";
+
+  // Subject order, labels and icons. Any repo folder not listed here still
+  // shows up -- it just gets appended at the end with a generic icon.
+  var SUBJECTS = [
+    { dir:"OS",                    label:"Operating Systems",   icon:"🖥️", blurb:"Processes, memory, scheduling" },
+    { dir:"OOPS",                  label:"OOPS",                icon:"🧩", blurb:"Design principles, SOLID" },
+    { dir:"DBMS",                  label:"DBMS",                icon:"🗄️", blurb:"SQL, normalization, transactions" },
+    { dir:"Computer Networks",     label:"Computer Networks",   icon:"🌐", blurb:"OSI, TCP/IP, HTTP" },
+    { dir:"System Design",         label:"System Design",       icon:"🏗️", blurb:"Scaling, caching, trade-offs" },
+    { dir:"Software Engineering",  label:"Software Engineering",icon:"⚙️", blurb:"SDLC, testing, process" },
+    { dir:"Big Data",              label:"Big Data",            icon:"📊", blurb:"Hadoop, Spark, pipelines" },
+    { dir:"LeetCode",              label:"LeetCode / DSA",      icon:"💡", blurb:"Patterns and problem sets" },
+    { dir:"Aptitude",              label:"Aptitude",            icon:"🔢", blurb:"Quant, logical, verbal" },
+    { dir:"Project Notes",         label:"Project Notes",       icon:"📓", blurb:"Your own projects, explained" },
+    { dir:"Tools",                 label:"Tools",               icon:"🛠️", blurb:"APIs, MCP, tooling" }
+  ];
+
+  // Only used if the live file list can't be fetched (offline / rate limited).
+  var SNAPSHOT = [
+    { path:"LeetCode/Greedy/greedy_algorithms_study_guide.pdf", size:0 },
+    { path:"Tools/APIs_and_MCP_Study_Guide.pdf", size:0 }
+  ];
+
+  var SKIP = /^(index\.html|readme(\.md)?|license(\.md)?)$/i;
+
+  var grid  = document.getElementById("grid");
+  var stats = document.getElementById("stats");
+  var note  = document.getElementById("note");
+  var q     = document.getElementById("q");
+
+  function bytes(n){
+    if(!n) return "";
+    if(n < 1024) return n + " B";
+    if(n < 1048576) return Math.round(n / 1024) + " KB";
+    return (n / 1048576).toFixed(1) + " MB";
+  }
+  function href(path){
+    return path.split("/").map(encodeURIComponent).join("/");
+  }
+  function pretty(name){
+    return name.replace(/\.[^.]+$/, "").replace(/[_-]+/g, " ").trim();
+  }
+  function ext(name){
+    var m = /\.([^.]+)$/.exec(name);
+    return m ? m[1].toLowerCase() : "file";
+  }
+  function ago(ts){
+    var s = Math.round((Date.now() - ts) / 1000);
+    if(s < 60) return "just now";
+    if(s < 3600) return Math.round(s / 60) + "m ago";
+    if(s < 86400) return Math.round(s / 3600) + "h ago";
+    return Math.round(s / 86400) + "d ago";
+  }
+  function stamp(text){
+    var el = document.createElement("span");
+    el.textContent = text;
+    stats.appendChild(el);
+  }
+  function say(msg, retry){
+    note.textContent = msg;
+    note.hidden = false;
+    if(retry){
+      var b = document.createElement("button");
+      b.textContent = "Retry";
+      b.onclick = function(){ note.hidden = true; load(true); };
+      note.appendChild(b);
+    }
+  }
+
+  function group(blobs){
+    var map = {};
+    blobs.forEach(function(b){
+      var parts = b.path.split("/");
+      if(parts.length < 2) return;            // loose files sitting at the repo root
+      if(parts[0].charAt(0) === ".") return;  // .git, .github, ...
+      var file = parts[parts.length - 1];
+      if(file.charAt(0) === "." || SKIP.test(file)) return;
+      (map[parts[0]] = map[parts[0]] || []).push({
+        path: b.path,
+        file: file,
+        sub:  parts.slice(1, -1).join(" / "),
+        size: b.size || 0
+      });
+    });
+    return map;
+  }
+
+  function render(blobs){
+    var map = group(blobs);
+    var known = {}, order = SUBJECTS.slice();
+    SUBJECTS.forEach(function(s){ known[s.dir] = true; });
+    Object.keys(map).sort().forEach(function(dir){
+      if(!known[dir]) order.push({ dir:dir, label:dir, icon:"📁", blurb:"" });
+    });
+
+    var totalFiles = 0, totalSize = 0;
+    grid.innerHTML = "";
+
+    order.forEach(function(s){
+      var files = (map[s.dir] || []).sort(function(a, b){
+        return (a.sub + a.file).localeCompare(b.sub + b.file, undefined, { sensitivity:"base" });
+      });
+      totalFiles += files.length;
+      files.forEach(function(f){ totalSize += f.size; });
+
+      var card = document.createElement("details");
+      card.className = "card";
+      card.dataset.subject = (s.label + " " + s.dir).toLowerCase();
+      if(files.length) card.open = true;
+
+      var sum = document.createElement("summary");
+      sum.innerHTML =
+        '<span class="icon"></span>' +
+        '<span class="titles"><b></b><small></small></span>' +
+        '<span class="count' + (files.length ? '' : ' zero') + '"></span>' +
+        '<span class="chev">›</span>';
+      sum.querySelector(".icon").textContent  = s.icon;
+      sum.querySelector("b").textContent      = s.label;
+      sum.querySelector("small").textContent  = s.blurb;
+      sum.querySelector(".count").textContent = files.length;
+      card.appendChild(sum);
+
+      if(files.length){
+        var ul = document.createElement("ul");
+        ul.className = "files";
+        files.forEach(function(f){
+          var li = document.createElement("li");
+          li.dataset.name = (f.sub + " " + f.file).toLowerCase();
+
+          var a = document.createElement("a");
+          a.className = "file";
+          a.href = href(f.path);
+          a.target = "_blank";
+          a.rel = "noopener";
+          a.innerHTML =
+            '<span class="ext"></span>' +
+            '<span class="fname"></span>' +
+            '<span class="fsize"></span>';
+
+          var badge = a.querySelector(".ext");
+          badge.textContent = ext(f.file);
+          badge.classList.add(ext(f.file));
+          a.querySelector(".fsize").textContent = bytes(f.size);
+
+          var nm = a.querySelector(".fname");
+          if(f.sub){
+            var i = document.createElement("i");
+            i.textContent = f.sub + " / ";
+            nm.appendChild(i);
+          }
+          nm.appendChild(document.createTextNode(pretty(f.file)));
+
+          li.appendChild(a);
+          ul.appendChild(li);
+        });
+        card.appendChild(ul);
+      } else {
+        var p = document.createElement("p");
+        p.className = "empty";
+        p.textContent = "Nothing here yet — drop a PDF in " + s.dir + "/ and push.";
+        card.appendChild(p);
+      }
+
+      grid.appendChild(card);
+    });
+
+    stats.innerHTML = "";
+    stamp(totalFiles + (totalFiles === 1 ? " file" : " files"));
+    stamp(order.length + " subjects");
+    if(totalSize) stamp(bytes(totalSize));
+  }
+
+  function filter(){
+    var term  = q.value.trim().toLowerCase();
+    var cards = grid.querySelectorAll(".card");
+    for(var i = 0; i < cards.length; i++){
+      var card  = cards[i];
+      var items = card.querySelectorAll("ul.files li");
+      var subjectHit = !term || card.dataset.subject.indexOf(term) > -1;
+      var shown = 0;
+      for(var j = 0; j < items.length; j++){
+        var hit = !term || subjectHit || items[j].dataset.name.indexOf(term) > -1;
+        items[j].classList.toggle("hidden", !hit);
+        if(hit) shown++;
+      }
+      var keep = term ? shown > 0 : true;
+      card.classList.toggle("hidden", !keep);
+      if(term && keep) card.open = true;
+    }
+  }
+
+  function load(force){
+    var cached = null;
+    try { cached = JSON.parse(localStorage.getItem(CACHE_KEY) || "null"); } catch(e){}
+
+    if(cached && cached.blobs && !force){
+      render(cached.blobs);
+      stamp("synced " + ago(cached.at));
+      filter();
+    }
+
+    var url = "https://api.github.com/repos/" + OWNER + "/" + REPO +
+              "/git/trees/" + BRANCH + "?recursive=1";
+
+    fetch(url, { headers: { "Accept": "application/vnd.github+json" } })
+      .then(function(r){
+        if(!r.ok) throw new Error("GitHub API " + r.status);
+        return r.json();
+      })
+      .then(function(data){
+        var blobs = (data.tree || [])
+          .filter(function(n){ return n.type === "blob"; })
+          .map(function(n){ return { path:n.path, size:n.size }; });
+        try {
+          localStorage.setItem(CACHE_KEY, JSON.stringify({ at: Date.now(), blobs: blobs }));
+        } catch(e){}
+        note.hidden = true;
+        render(blobs);
+        stamp("synced just now");
+        filter();
+      })
+      .catch(function(err){
+        if(cached && cached.blobs){
+          say("Showing the last synced list (" + ago(cached.at) + ") — couldn't reach GitHub.", true);
+          return;
+        }
+        render(SNAPSHOT);
+        stamp("offline snapshot");
+        filter();
+        say("Couldn't load the live file list (" + err.message +
+            "). This is a built-in snapshot and may be out of date.", true);
+      });
+  }
+
+  q.addEventListener("input", filter);
+  load(false);
+})();
+</script>
+</body>
+</html>
