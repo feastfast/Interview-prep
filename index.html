@@ -3,123 +3,211 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0f1115">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b0f14" media="(prefers-color-scheme: dark)">
+<meta name="description" content="Interview prep study material — OS, DBMS, networks, system design and more.">
 <title>Interview Prep</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128218;</text></svg>">
+
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230d6e78'/><path d='M22 34a5 5 0 0 1 5-5h14l6 6h31a5 5 0 0 1 5 5v27a5 5 0 0 1-5 5H27a5 5 0 0 1-5-5z' fill='white'/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230d6e78'/><path d='M22 34a5 5 0 0 1 5-5h14l6 6h31a5 5 0 0 1 5 5v27a5 5 0 0 1-5 5H27a5 5 0 0 1-5-5z' fill='white'/></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
 <style>
   :root{
-    --bg:#f6f7f9; --panel:#ffffff; --panel-2:#f0f2f5; --line:#e2e5ea;
-    --text:#12151a; --muted:#666e7a; --accent:#2f6df6; --accent-soft:#e8effe;
-    --shadow:0 1px 2px rgba(16,20,28,.06),0 8px 24px rgba(16,20,28,.06);
-    --radius:14px;
+    --ground:#eceff3;
+    --surface:#ffffff;
+    --surface-2:#f4f6f9;
+    --ink:#0e151d;
+    --muted:#5a6875;
+    --line:#d5dce3;
+    --line-soft:#e7ecf0;
+    --accent:#0d6e78;
+    --accent-wash:#dceef0;
+    --shadow:0 1px 2px rgba(14,21,29,.05), 0 12px 32px -20px rgba(14,21,29,.35);
+
+    --display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+    --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
   }
   @media (prefers-color-scheme: dark){
     :root{
-      --bg:#0f1115; --panel:#171a21; --panel-2:#1f232c; --line:#282d38;
-      --text:#e8eaef; --muted:#98a1b0; --accent:#6c9bff; --accent-soft:#1c2740;
-      --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.28);
+      --ground:#0b0f14;
+      --surface:#141b23;
+      --surface-2:#1b232c;
+      --ink:#e4ebf2;
+      --muted:#8b98a6;
+      --line:#212b35;
+      --line-soft:#1c242d;
+      --accent:#40c9d6;
+      --accent-wash:#10323a;
+      --shadow:0 1px 2px rgba(0,0,0,.5), 0 12px 32px -20px rgba(0,0,0,.8);
     }
   }
+
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
   body{
-    margin:0; background:var(--bg); color:var(--text);
-    font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-    padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    margin:0;
+    background:var(--ground);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
   }
-  .wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
 
-  header h1{margin:0;font-size:26px;letter-spacing:-.02em}
-  header p{margin:6px 0 0;color:var(--muted);font-size:14px}
-
-  .searchbar{position:sticky;top:0;z-index:5;margin:20px 0 8px;padding:10px 0;background:var(--bg)}
-  .searchbar input{
-    width:100%;padding:14px 16px;font-size:16px;color:var(--text);
-    background:var(--panel);border:1px solid var(--line);border-radius:12px;outline:none;
+  .app{
+    max-width:640px;
+    margin:0 auto;
+    min-height:100vh;
+    background:var(--surface);
     box-shadow:var(--shadow);
+    padding-bottom:calc(40px + env(safe-area-inset-bottom));
   }
-  .searchbar input:focus{border-color:var(--accent)}
-
-  .stats{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 20px;font-size:13px;color:var(--muted)}
-  .stats span{background:var(--panel-2);border:1px solid var(--line);border-radius:999px;padding:4px 10px}
-
-  .note{
-    margin:0 0 18px;padding:12px 14px;border-radius:12px;font-size:14px;
-    background:var(--accent-soft);border:1px solid var(--line);color:var(--text);
-  }
-  .note[hidden]{display:none}
-  .note button{
-    margin-left:8px;font:inherit;font-size:13px;cursor:pointer;color:var(--accent);
-    background:none;border:1px solid var(--line);border-radius:8px;padding:3px 10px;
+  @media (min-width:680px){
+    body{padding:28px 20px}
+    .app{min-height:auto;border-radius:18px;overflow:hidden}
   }
 
-  .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
-  .card{
-    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
-    box-shadow:var(--shadow);overflow:hidden;
+  /* ---------- header ---------- */
+  .top{
+    position:sticky;top:0;z-index:10;
+    background:var(--surface);
+    border-bottom:1px solid var(--line-soft);
+    padding:calc(18px + env(safe-area-inset-top)) 18px 12px;
   }
-  .card > summary{
-    list-style:none;cursor:pointer;padding:16px;display:flex;align-items:center;gap:12px;
+  .back{
+    display:inline-flex;align-items:center;gap:5px;
+    font:inherit;font-size:14.5px;font-weight:500;
+    color:var(--accent);background:none;border:none;cursor:pointer;
+    padding:2px 0;margin:0 0 8px;
   }
-  .card > summary::-webkit-details-marker{display:none}
-  .card > summary:hover{background:var(--panel-2)}
-  .icon{font-size:22px;line-height:1;flex:none}
-  .titles{flex:1;min-width:0}
-  .titles b{display:block;font-size:16px;font-weight:600;letter-spacing:-.01em}
-  .titles small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
-  .count{
-    flex:none;font-size:12px;font-weight:600;color:var(--accent);
-    background:var(--accent-soft);border-radius:999px;padding:3px 9px;min-width:26px;text-align:center;
+  .back svg{width:15px;height:15px}
+  .top h1{
+    font-family:var(--display);font-weight:700;
+    font-size:26px;letter-spacing:-.025em;line-height:1.15;
+    margin:0;text-wrap:balance;
   }
-  .count.zero{color:var(--muted);background:var(--panel-2)}
-  .chev{flex:none;color:var(--muted);transition:transform .15s ease}
-  .card[open] .chev{transform:rotate(90deg)}
+  .top .sub{
+    margin:3px 0 0;
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;
+    color:var(--muted);
+  }
 
-  ul.files{list-style:none;margin:0;padding:0 10px 10px}
-  ul.files li{border-top:1px solid var(--line)}
-  ul.files li:first-child{border-top:none}
-  a.file{
-    display:flex;align-items:center;gap:10px;padding:12px 8px;min-height:48px;
-    color:inherit;text-decoration:none;border-radius:10px;
+  .searchwrap{position:relative;margin-top:14px}
+  .searchwrap svg{
+    position:absolute;left:12px;top:50%;transform:translateY(-50%);
+    width:16px;height:16px;color:var(--muted);pointer-events:none;
   }
-  a.file:hover,a.file:focus-visible{background:var(--panel-2)}
-  .ext{
-    flex:none;font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
-    padding:3px 6px;border-radius:6px;background:var(--panel-2);color:var(--muted);border:1px solid var(--line);
+  #q{
+    width:100%;padding:11px 36px 11px 36px;
+    font:inherit;font-size:16px;color:var(--ink);
+    background:var(--surface-2);
+    border:1px solid transparent;border-radius:11px;outline:none;
   }
-  .ext.pdf{color:#c0392b;background:rgba(192,57,43,.1);border-color:rgba(192,57,43,.25)}
-  .ext.md{color:#2f8f5b;background:rgba(47,143,91,.1);border-color:rgba(47,143,91,.25)}
-  .fname{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14.5px}
-  .fname i{font-style:normal;color:var(--muted)}
-  .fsize{flex:none;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
-  .empty{padding:0 18px 18px;color:var(--muted);font-size:13.5px;margin:0}
+  #q:focus{border-color:var(--accent);background:var(--surface)}
+  #q::-webkit-search-cancel-button{-webkit-appearance:none}
+  .clearq{
+    position:absolute;right:6px;top:50%;transform:translateY(-50%);
+    width:28px;height:28px;border:none;background:none;cursor:pointer;
+    color:var(--muted);font-size:18px;line-height:1;border-radius:50%;
+    display:none;place-items:center;
+  }
+  .clearq.on{display:grid}
+  .clearq:hover{background:var(--surface-2);color:var(--ink)}
 
-  footer{margin-top:36px;text-align:center;color:var(--muted);font-size:13px}
-  footer a{color:var(--accent)}
-  .hidden{display:none !important}
+  /* ---------- rows ---------- */
+  .list{list-style:none;margin:0;padding:8px 10px}
+  .list li + li{margin-top:1px}
+
+  .row{
+    display:flex;align-items:center;gap:12px;width:100%;
+    padding:11px 8px;min-height:54px;
+    border:none;background:none;border-radius:11px;
+    font:inherit;color:inherit;text-align:left;text-decoration:none;
+    cursor:pointer;
+  }
+  .row:hover{background:var(--surface-2)}
+  .row:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+
+  .ico{
+    flex:none;width:34px;height:34px;border-radius:9px;
+    display:grid;place-items:center;
+    background:var(--accent-wash);color:var(--accent);
+  }
+  .ico svg{width:17px;height:17px}
+  .ico.doc{background:var(--surface-2);color:var(--muted)}
+
+  .txt{flex:1;min-width:0}
+  .txt b{
+    display:block;font-weight:600;font-size:15px;letter-spacing:-.01em;
+    line-height:1.3;
+  }
+  .txt small{
+    display:block;color:var(--muted);font-size:12px;line-height:1.4;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  }
+  .meta{
+    flex:none;font-family:var(--mono);font-size:11.5px;color:var(--muted);
+    font-variant-numeric:tabular-nums;
+  }
+  .chev{flex:none;color:var(--muted);display:grid;place-items:center}
+  .chev svg{width:15px;height:15px}
+
+  /* ---------- states ---------- */
+  .state{
+    padding:52px 26px;text-align:center;color:var(--muted);font-size:14px;
+  }
+  .state b{color:var(--ink);font-weight:600}
+  .state code{
+    font-family:var(--mono);font-size:13px;
+    background:var(--surface-2);padding:2px 6px;border-radius:5px;
+  }
+  .state .big{
+    display:block;font-family:var(--display);font-weight:700;font-size:19px;
+    color:var(--ink);letter-spacing:-.02em;margin-bottom:6px;
+  }
+
+  .banner{
+    margin:10px 14px 0;padding:11px 13px;border-radius:11px;
+    background:var(--accent-wash);color:var(--ink);
+    font-size:13px;line-height:1.45;
+  }
+  .banner button{
+    font:inherit;font-size:12.5px;font-weight:500;
+    color:var(--accent);background:none;
+    border:1px solid currentColor;border-radius:7px;
+    padding:2px 9px;margin-left:8px;cursor:pointer;
+  }
+
+  .foot{
+    padding:26px 18px 8px;text-align:center;
+    font-family:var(--mono);font-size:11px;letter-spacing:.05em;
+    color:var(--muted);
+  }
+  .foot a{color:var(--muted)}
+
+  /* ---------- view transition ---------- */
+  .view{animation:slide .2s cubic-bezier(.2,.7,.3,1) both}
+  .view.back{animation-name:slideBack}
+  @keyframes slide{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:none}}
+  @keyframes slideBack{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion: reduce){
+    .view,.view.back{animation:none}
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <header>
-    <h1>&#128218; Interview Prep</h1>
-    <p>Study material, straight from the repo. Tap a subject to open its notes.</p>
-  </header>
-
-  <div class="searchbar">
-    <input id="q" type="search" placeholder="Search all notes&hellip;" autocomplete="off" spellcheck="false" aria-label="Search all notes">
-  </div>
-
-  <div class="stats" id="stats"></div>
-
-  <p class="note" id="note" hidden></p>
-
-  <div class="grid" id="grid"></div>
-
-  <footer>
+<div class="app">
+  <div class="top" id="top"></div>
+  <div id="body"></div>
+  <p class="foot">
     <a href="https://github.com/feastfast/Interview-prep" target="_blank" rel="noopener">feastfast/Interview-prep</a>
-  </footer>
+  </p>
 </div>
 
 <script>
@@ -127,52 +215,70 @@
   "use strict";
 
   var OWNER = "feastfast", REPO = "Interview-prep", BRANCH = "main";
-  var CACHE_KEY = "prep-tree-v1";
+  var CACHE_KEY = "prep-tree-v2";
 
-  // Subject order, labels and icons. Any repo folder not listed here still
-  // shows up -- it just gets appended at the end with a generic icon.
-  var SUBJECTS = [
-    { dir:"OS",                    label:"Operating Systems",   icon:"🖥️", blurb:"Processes, memory, scheduling" },
-    { dir:"OOPS",                  label:"OOPS",                icon:"🧩", blurb:"Design principles, SOLID" },
-    { dir:"DBMS",                  label:"DBMS",                icon:"🗄️", blurb:"SQL, normalization, transactions" },
-    { dir:"Computer Networks",     label:"Computer Networks",   icon:"🌐", blurb:"OSI, TCP/IP, HTTP" },
-    { dir:"System Design",         label:"System Design",       icon:"🏗️", blurb:"Scaling, caching, trade-offs" },
-    { dir:"Software Engineering",  label:"Software Engineering",icon:"⚙️", blurb:"SDLC, testing, process" },
-    { dir:"Big Data",              label:"Big Data",            icon:"📊", blurb:"Hadoop, Spark, pipelines" },
-    { dir:"LeetCode",              label:"LeetCode / DSA",      icon:"💡", blurb:"Patterns and problem sets" },
-    { dir:"Aptitude",              label:"Aptitude",            icon:"🔢", blurb:"Quant, logical, verbal" },
-    { dir:"Project Notes",         label:"Project Notes",       icon:"📓", blurb:"Your own projects, explained" },
-    { dir:"Tools",                 label:"Tools",               icon:"🛠️", blurb:"APIs, MCP, tooling" }
+  /* Subject order, display names and one-line hints. Folders in the repo that
+     aren't listed here still appear — they just get a prettified name and no hint. */
+  var META = [
+    { dir:"OS",                    label:"Operating Systems",    hint:"Processes, memory, scheduling" },
+    { dir:"OOPS",                  label:"OOPS",                 hint:"Design principles, SOLID" },
+    { dir:"DBMS",                  label:"DBMS",                 hint:"SQL, normalisation, transactions" },
+    { dir:"Computer Networks",     label:"Computer Networks",    hint:"OSI, TCP/IP, HTTP" },
+    { dir:"System Design",         label:"System Design",        hint:"Scaling, caching, trade-offs" },
+    { dir:"Software Engineering",  label:"Software Engineering", hint:"SDLC, testing, process" },
+    { dir:"Big Data",              label:"Big Data",             hint:"Hadoop, Spark, pipelines" },
+    { dir:"LeetCode",              label:"LeetCode / DSA",       hint:"Patterns and problem sets" },
+    { dir:"Aptitude",              label:"Aptitude",             hint:"Quant, logical, verbal" },
+    { dir:"Project Notes",         label:"Project Notes",        hint:"Your own projects, explained" },
+    { dir:"Tools",                 label:"Tools",                hint:"APIs, MCP, tooling" },
+    { dir:"Might_be_useful",       label:"Might Be Useful",      hint:"Odds and ends worth keeping" }
   ];
 
-  // Only used if the live file list can't be fetched (offline / rate limited).
+  /* Shown only when the live list can't be fetched and nothing is cached. */
   var SNAPSHOT = [
-    { path:"LeetCode/Greedy/greedy_algorithms_study_guide.pdf", size:0 },
-    { path:"Tools/APIs_and_MCP_Study_Guide.pdf", size:0 }
+    { path:"LeetCode/Greedy/greedy_algorithms_study_guide.pdf", size:90112 },
+    { path:"Might_be_useful/SDE_Interview_Rebuild.pdf",         size:606260 },
+    { path:"Tools/APIs_and_MCP_Study_Guide.pdf",                size:715776 }
   ];
 
   var SKIP = /^(index\.html|readme(\.md)?|license(\.md)?)$/i;
 
-  var grid  = document.getElementById("grid");
-  var stats = document.getElementById("stats");
-  var note  = document.getElementById("note");
-  var q     = document.getElementById("q");
+  var ICO = {
+    folder:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>',
+    doc:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>',
+    chev:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>',
+    left:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>',
+    search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>'
+  };
 
+  var topEl  = document.getElementById("top");
+  var bodyEl = document.getElementById("body");
+
+  var tree = [];        // nested nodes built from the flat blob list
+  var syncNote = "";    // e.g. "synced 4m ago"
+  var problem = null;   // {msg:...} when the live list couldn't be loaded
+  var query = "";
+  var navDepth = 0;     // in-app pushes, so Back can use real history
+
+  /* ---------------- helpers ---------------- */
+
+  function esc(s){
+    return String(s).replace(/[&<>"]/g, function(c){
+      return { "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c];
+    });
+  }
   function bytes(n){
     if(!n) return "";
     if(n < 1024) return n + " B";
     if(n < 1048576) return Math.round(n / 1024) + " KB";
     return (n / 1048576).toFixed(1) + " MB";
   }
-  function href(path){
-    return path.split("/").map(encodeURIComponent).join("/");
+  function titleCase(s){
+    return s.replace(/[_-]+/g, " ").replace(/\s+/g, " ").trim()
+            .replace(/\b\w/g, function(c){ return c.toUpperCase(); });
   }
-  function pretty(name){
+  function prettyFile(name){
     return name.replace(/\.[^.]+$/, "").replace(/[_-]+/g, " ").trim();
-  }
-  function ext(name){
-    var m = /\.([^.]+)$/.exec(name);
-    return m ? m[1].toLowerCase() : "file";
   }
   function ago(ts){
     var s = Math.round((Date.now() - ts) / 1000);
@@ -181,160 +287,316 @@
     if(s < 86400) return Math.round(s / 3600) + "h ago";
     return Math.round(s / 86400) + "d ago";
   }
-  function stamp(text){
-    var el = document.createElement("span");
-    el.textContent = text;
-    stats.appendChild(el);
-  }
-  function say(msg, retry){
-    note.textContent = msg;
-    note.hidden = false;
-    if(retry){
-      var b = document.createElement("button");
-      b.textContent = "Retry";
-      b.onclick = function(){ note.hidden = true; load(true); };
-      note.appendChild(b);
-    }
+  function metaFor(dir){
+    for(var i = 0; i < META.length; i++) if(META[i].dir === dir) return META[i];
+    return null;
   }
 
-  function group(blobs){
-    var map = {};
+  /* ---------------- tree ---------------- */
+
+  function buildTree(blobs){
+    var roots = [], index = {};
+
+    function folder(parts, parentKey, parentList){
+      var key = parentKey ? parentKey + "/" + parts : parts;
+      if(index[key]) return index[key];
+      var m = parentKey ? null : metaFor(parts);
+      var node = {
+        name: parts,
+        label: m ? m.label : titleCase(parts),
+        hint: m ? m.hint : "",
+        dir: true,
+        kids: []
+      };
+      index[key] = node;
+      parentList.push(node);
+      return node;
+    }
+
     blobs.forEach(function(b){
       var parts = b.path.split("/");
-      if(parts.length < 2) return;            // loose files sitting at the repo root
-      if(parts[0].charAt(0) === ".") return;  // .git, .github, ...
+      if(parts.length < 2) return;                // loose files at the repo root
+      if(parts[0].charAt(0) === ".") return;      // .git, .github, ...
       var file = parts[parts.length - 1];
       if(file.charAt(0) === "." || SKIP.test(file)) return;
-      (map[parts[0]] = map[parts[0]] || []).push({
-        path: b.path,
-        file: file,
-        sub:  parts.slice(1, -1).join(" / "),
-        size: b.size || 0
-      });
+
+      var list = roots, key = "";
+      for(var i = 0; i < parts.length - 1; i++){
+        var node = folder(parts[i], key, list);
+        key = key ? key + "/" + parts[i] : parts[i];
+        list = node.kids;
+      }
+      list.push({ name:file, label:prettyFile(file), path:b.path, size:b.size || 0 });
     });
-    return map;
+
+    /* Subjects in META order first, then any extra folders alphabetically. */
+    var ordered = [], seen = {};
+    META.forEach(function(m){
+      var found = null;
+      for(var i = 0; i < roots.length; i++) if(roots[i].name === m.dir){ found = roots[i]; break; }
+      if(!found) found = { name:m.dir, label:m.label, hint:m.hint, dir:true, kids:[] };
+      seen[m.dir] = true;
+      ordered.push(found);
+    });
+    roots.filter(function(n){ return !seen[n.name]; })
+         .sort(function(a,b){ return a.name.localeCompare(b.name); })
+         .forEach(function(n){ ordered.push(n); });
+
+    ordered.forEach(sortKids);
+    return ordered;
   }
 
-  function render(blobs){
-    var map = group(blobs);
-    var known = {}, order = SUBJECTS.slice();
-    SUBJECTS.forEach(function(s){ known[s.dir] = true; });
-    Object.keys(map).sort().forEach(function(dir){
-      if(!known[dir]) order.push({ dir:dir, label:dir, icon:"📁", blurb:"" });
+  function sortKids(node){
+    if(!node.kids) return;
+    node.kids.sort(function(a,b){
+      if(!!a.dir !== !!b.dir) return a.dir ? -1 : 1;      // folders first
+      return a.label.localeCompare(b.label, undefined, { sensitivity:"base" });
     });
-
-    var totalFiles = 0, totalSize = 0;
-    grid.innerHTML = "";
-
-    order.forEach(function(s){
-      var files = (map[s.dir] || []).sort(function(a, b){
-        return (a.sub + a.file).localeCompare(b.sub + b.file, undefined, { sensitivity:"base" });
-      });
-      totalFiles += files.length;
-      files.forEach(function(f){ totalSize += f.size; });
-
-      var card = document.createElement("details");
-      card.className = "card";
-      card.dataset.subject = (s.label + " " + s.dir).toLowerCase();
-      if(files.length) card.open = true;
-
-      var sum = document.createElement("summary");
-      sum.innerHTML =
-        '<span class="icon"></span>' +
-        '<span class="titles"><b></b><small></small></span>' +
-        '<span class="count' + (files.length ? '' : ' zero') + '"></span>' +
-        '<span class="chev">›</span>';
-      sum.querySelector(".icon").textContent  = s.icon;
-      sum.querySelector("b").textContent      = s.label;
-      sum.querySelector("small").textContent  = s.blurb;
-      sum.querySelector(".count").textContent = files.length;
-      card.appendChild(sum);
-
-      if(files.length){
-        var ul = document.createElement("ul");
-        ul.className = "files";
-        files.forEach(function(f){
-          var li = document.createElement("li");
-          li.dataset.name = (f.sub + " " + f.file).toLowerCase();
-
-          var a = document.createElement("a");
-          a.className = "file";
-          a.href = href(f.path);
-          a.target = "_blank";
-          a.rel = "noopener";
-          a.innerHTML =
-            '<span class="ext"></span>' +
-            '<span class="fname"></span>' +
-            '<span class="fsize"></span>';
-
-          var badge = a.querySelector(".ext");
-          badge.textContent = ext(f.file);
-          badge.classList.add(ext(f.file));
-          a.querySelector(".fsize").textContent = bytes(f.size);
-
-          var nm = a.querySelector(".fname");
-          if(f.sub){
-            var i = document.createElement("i");
-            i.textContent = f.sub + " / ";
-            nm.appendChild(i);
-          }
-          nm.appendChild(document.createTextNode(pretty(f.file)));
-
-          li.appendChild(a);
-          ul.appendChild(li);
-        });
-        card.appendChild(ul);
-      } else {
-        var p = document.createElement("p");
-        p.className = "empty";
-        p.textContent = "Nothing here yet — drop a PDF in " + s.dir + "/ and push.";
-        card.appendChild(p);
-      }
-
-      grid.appendChild(card);
-    });
-
-    stats.innerHTML = "";
-    stamp(totalFiles + (totalFiles === 1 ? " file" : " files"));
-    stamp(order.length + " subjects");
-    if(totalSize) stamp(bytes(totalSize));
+    node.kids.forEach(sortKids);
   }
 
-  function filter(){
-    var term  = q.value.trim().toLowerCase();
-    var cards = grid.querySelectorAll(".card");
-    for(var i = 0; i < cards.length; i++){
-      var card  = cards[i];
-      var items = card.querySelectorAll("ul.files li");
-      var subjectHit = !term || card.dataset.subject.indexOf(term) > -1;
-      var shown = 0;
-      for(var j = 0; j < items.length; j++){
-        var hit = !term || subjectHit || items[j].dataset.name.indexOf(term) > -1;
-        items[j].classList.toggle("hidden", !hit);
-        if(hit) shown++;
-      }
-      var keep = term ? shown > 0 : true;
-      card.classList.toggle("hidden", !keep);
-      if(term && keep) card.open = true;
+  function countFiles(node){
+    if(!node.dir) return 1;
+    return node.kids.reduce(function(t,k){ return t + countFiles(k); }, 0);
+  }
+  function totalFiles(){
+    return tree.reduce(function(t,n){ return t + countFiles(n); }, 0);
+  }
+  function nodeAt(path){
+    var list = tree, node = null;
+    for(var i = 0; i < path.length; i++){
+      node = null;
+      for(var j = 0; j < list.length; j++) if(list[j].name === path[i]){ node = list[j]; break; }
+      if(!node) return null;
+      list = node.kids || [];
     }
+    return node;
   }
+  function everyFile(){
+    var out = [];
+    (function walk(list, trail){
+      list.forEach(function(n){
+        if(n.dir) walk(n.kids, trail.concat(n.label));
+        else out.push({ node:n, trail:trail });
+      });
+    })(tree, []);
+    return out;
+  }
+
+  /* ---------------- routing ---------------- */
+
+  function currentPath(){
+    var h = location.hash.replace(/^#\/?/, "");
+    if(!h) return [];
+    return h.split("/").filter(Boolean).map(function(s){
+      try { return decodeURIComponent(s); } catch(e){ return s; }
+    });
+  }
+  function hashFor(path){
+    return "#/" + path.map(encodeURIComponent).join("/");
+  }
+  function go(path){
+    navDepth++;
+    location.hash = hashFor(path);
+  }
+  function goBack(){
+    if(navDepth > 0){ navDepth--; history.back(); }
+    else location.replace(hashFor(currentPath().slice(0, -1)));
+  }
+  function fileHref(path){
+    return path.split("/").map(encodeURIComponent).join("/");
+  }
+
+  /* ---------------- render ---------------- */
+
+  function rowHTML(opts){
+    var tag = opts.href ? "a" : "button";
+    var attrs = opts.href
+      ? 'href="' + esc(opts.href) + '" target="_blank" rel="noopener"'
+      : 'type="button" data-go="' + esc(opts.go) + '"';
+    return '<' + tag + ' class="row" ' + attrs + '>' +
+             '<span class="ico' + (opts.doc ? " doc" : "") + '">' + (opts.doc ? ICO.doc : ICO.folder) + '</span>' +
+             '<span class="txt"><b>' + esc(opts.title) + '</b>' +
+               (opts.sub ? '<small>' + esc(opts.sub) + '</small>' : '') +
+             '</span>' +
+             (opts.meta ? '<span class="meta">' + esc(opts.meta) + '</span>' : '') +
+             (opts.chev ? '<span class="chev">' + ICO.chev + '</span>' : '') +
+           '</' + tag + '>';
+  }
+
+  function searchHits(){
+    var term = query.toLowerCase();
+    return everyFile().filter(function(f){
+      return f.node.label.toLowerCase().indexOf(term) > -1 ||
+             f.trail.join(" ").toLowerCase().indexOf(term) > -1;
+    });
+  }
+
+  /* Title, subtitle and back-label for the current view — searching is its own
+     context, so it replaces the folder heading rather than sitting under it. */
+  function headText(path){
+    if(query){
+      var n = searchHits().length;
+      return {
+        title: "Search",
+        sub: n + (n === 1 ? " match" : " matches") + " across all subjects",
+        back: null
+      };
+    }
+    if(path.length){
+      var parent = path.length > 1 ? nodeAt(path.slice(0, -1)) : null;
+      var here = nodeAt(path);
+      var c = here ? here.kids.length : 0;
+      return {
+        title: here ? here.label : titleCase(path[path.length - 1]),
+        sub: (c ? c + (c === 1 ? " item" : " items") : "empty") + (syncNote ? " · " + syncNote : ""),
+        back: parent ? parent.label : "Subjects"
+      };
+    }
+    return {
+      title: "Interview Prep",
+      sub: tree.length + " subjects · " + totalFiles() + " files" + (syncNote ? " · " + syncNote : ""),
+      back: null
+    };
+  }
+
+  function renderHeader(path){
+    var t = headText(path), h = "";
+    if(t.back){
+      h += '<button class="back" type="button" id="backBtn">' + ICO.left + esc(t.back) + '</button>';
+    }
+    h += '<h1 id="h1">' + esc(t.title) + '</h1>';
+    h += '<p class="sub" id="sub">' + esc(t.sub) + '</p>';
+    h += '<div class="searchwrap">' + ICO.search +
+         '<input id="q" type="search" placeholder="Search all notes" autocomplete="off" ' +
+         'spellcheck="false" aria-label="Search all notes" value="' + esc(query) + '">' +
+         '<button class="clearq' + (query ? " on" : "") + '" id="clearq" type="button" aria-label="Clear search">&times;</button>' +
+         '</div>';
+    return h;
+  }
+
+  function renderSearch(){
+    var hits = searchHits();
+    if(!hits.length){
+      return '<p class="state"><span class="big">No match</span>' +
+             'Nothing here is called &ldquo;' + esc(query) + '&rdquo;.</p>';
+    }
+    return '<ul class="list">' + hits.map(function(f){
+      return '<li>' + rowHTML({
+        href: fileHref(f.node.path),
+        doc: true,
+        title: f.node.label,
+        sub: f.trail.join(" / "),
+        meta: bytes(f.node.size)
+      }) + '</li>';
+    }).join("") + '</ul>';
+  }
+
+  function renderList(path){
+    var here = path.length ? nodeAt(path) : null;
+    var kids = path.length ? (here ? here.kids : []) : tree;
+
+    if(path.length && !here){
+      return '<p class="state"><span class="big">Not found</span>' +
+             'No folder called <code>' + esc(path.join("/")) + '</code>.</p>';
+    }
+    if(!kids.length){
+      return '<p class="state"><span class="big">Nothing here yet</span>' +
+             'Drop a PDF in <code>' + esc(path.join("/")) + '/</code> and push &mdash; ' +
+             'it shows up here on its own.</p>';
+    }
+    return '<ul class="list">' + kids.map(function(n){
+      if(n.dir){
+        var c = countFiles(n);
+        return '<li>' + rowHTML({
+          go: path.concat(n.name).join("/"),
+          title: n.label,
+          sub: n.hint,
+          meta: String(c),
+          chev: true
+        }) + '</li>';
+      }
+      return '<li>' + rowHTML({
+        href: fileHref(n.path),
+        doc: true,
+        title: n.label,
+        meta: bytes(n.size)
+      }) + '</li>';
+    }).join("") + '</ul>';
+  }
+
+  var lastDepth = 0;
+  function draw(){
+    var path = currentPath();
+    var back = path.length < lastDepth;
+    lastDepth = path.length;
+
+    topEl.innerHTML = renderHeader(path);
+
+    var inner = problem
+      ? '<p class="banner">' + esc(problem) +
+        '<button type="button" id="retry">Retry</button></p>'
+      : "";
+    inner += query ? renderSearch() : renderList(path);
+    bodyEl.innerHTML = '<div class="view' + (back ? " back" : "") + '">' + inner + '</div>';
+
+    var here = path.length ? nodeAt(path) : null;
+    document.title = here ? here.label + " · Interview Prep" : "Interview Prep";
+
+    var q = document.getElementById("q");
+    if(query){ q.focus(); q.setSelectionRange(query.length, query.length); }
+    window.scrollTo(0, 0);
+  }
+
+  /* ---------------- events ---------------- */
+
+  document.addEventListener("click", function(e){
+    var goBtn = e.target.closest("[data-go]");
+    if(goBtn){ go(goBtn.dataset.go.split("/")); return; }
+    if(e.target.closest("#backBtn")){ goBack(); return; }
+    if(e.target.closest("#clearq")){ query = ""; draw(); return; }
+    if(e.target.closest("#retry")){ problem = null; draw(); load(true); return; }
+  });
+
+  document.addEventListener("input", function(e){
+    if(e.target.id !== "q") return;
+    var was = !!query;
+    query = e.target.value.trim();
+    if(was && query){
+      /* Redraw the results and the match count only — re-rendering the whole
+         header here would drop focus out of the field mid-word. */
+      bodyEl.innerHTML = '<div class="view">' + renderSearch() + '</div>';
+      var t = headText(currentPath());
+      document.getElementById("h1").textContent = t.title;
+      document.getElementById("sub").textContent = t.sub;
+      document.getElementById("clearq").classList.add("on");
+    } else {
+      draw();
+    }
+  });
+
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape" && query){ query = ""; draw(); }
+  });
+
+  window.addEventListener("hashchange", draw);
+
+  /* ---------------- data ---------------- */
 
   function load(force){
     var cached = null;
     try { cached = JSON.parse(localStorage.getItem(CACHE_KEY) || "null"); } catch(e){}
 
     if(cached && cached.blobs && !force){
-      render(cached.blobs);
-      stamp("synced " + ago(cached.at));
-      filter();
+      tree = buildTree(cached.blobs);
+      syncNote = "synced " + ago(cached.at);
+      draw();
     }
 
-    var url = "https://api.github.com/repos/" + OWNER + "/" + REPO +
-              "/git/trees/" + BRANCH + "?recursive=1";
-
-    fetch(url, { headers: { "Accept": "application/vnd.github+json" } })
+    fetch("https://api.github.com/repos/" + OWNER + "/" + REPO + "/git/trees/" + BRANCH + "?recursive=1",
+          { headers: { "Accept": "application/vnd.github+json" } })
       .then(function(r){
-        if(!r.ok) throw new Error("GitHub API " + r.status);
+        if(!r.ok) throw new Error("GitHub returned " + r.status);
         return r.json();
       })
       .then(function(data){
@@ -342,27 +604,28 @@
           .filter(function(n){ return n.type === "blob"; })
           .map(function(n){ return { path:n.path, size:n.size }; });
         try {
-          localStorage.setItem(CACHE_KEY, JSON.stringify({ at: Date.now(), blobs: blobs }));
+          localStorage.setItem(CACHE_KEY, JSON.stringify({ at:Date.now(), blobs:blobs }));
         } catch(e){}
-        note.hidden = true;
-        render(blobs);
-        stamp("synced just now");
-        filter();
+        tree = buildTree(blobs);
+        syncNote = "synced just now";
+        problem = null;
+        draw();
       })
       .catch(function(err){
         if(cached && cached.blobs){
-          say("Showing the last synced list (" + ago(cached.at) + ") — couldn't reach GitHub.", true);
-          return;
+          problem = "Showing the list from " + ago(cached.at) + " — couldn't reach GitHub.";
+        } else {
+          tree = buildTree(SNAPSHOT);
+          syncNote = "offline copy";
+          problem = "Couldn't load the live list (" + err.message + "). This built-in copy may be out of date.";
         }
-        render(SNAPSHOT);
-        stamp("offline snapshot");
-        filter();
-        say("Couldn't load the live file list (" + err.message +
-            "). This is a built-in snapshot and may be out of date.", true);
+        draw();
       });
   }
 
-  q.addEventListener("input", filter);
+  tree = buildTree([]);
+  lastDepth = currentPath().length;
+  draw();
   load(false);
 })();
 </script>
