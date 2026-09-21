@@ -119,6 +119,14 @@
   .clearq.on{display:grid}
   .clearq:hover{background:var(--surface-2);color:var(--ink)}
 
+  .studylink{
+    display:flex;align-items:center;gap:12px;margin-top:14px;padding:12px 14px;
+    border-radius:12px;background:var(--accent-wash);color:var(--ink);text-decoration:none;
+  }
+  .studylink b{display:block;font-size:15px;letter-spacing:-.01em;line-height:1.3}
+  .studylink small{display:block;color:var(--muted);font-size:12px}
+  .studylink .go{margin-left:auto;color:var(--accent);font-weight:600;font-size:13px;white-space:nowrap}
+
   /* ---------- rows ---------- */
   .list{list-style:none;margin:0;padding:8px 10px}
   .list li + li{margin-top:1px}
@@ -321,6 +329,7 @@
       var parts = b.path.split("/");
       if(parts.length < 2) return;                // loose files at the repo root
       if(parts[0].charAt(0) === ".") return;      // .git, .github, ...
+      if(parts[0] === "study") return;            // the study app (code + data), not study material
       var file = parts[parts.length - 1];
       if(file.charAt(0) === "." || SKIP.test(file)) return;
 
@@ -476,6 +485,9 @@
          'spellcheck="false" aria-label="Search all notes" value="' + esc(query) + '">' +
          '<button class="clearq' + (query ? " on" : "") + '" id="clearq" type="button" aria-label="Clear search">&times;</button>' +
          '</div>';
+    if(!path.length && !query){
+      h += '<a class="studylink" href="study/"><span><b>Study mode</b><small>Flashcards, quizzes and code practice</small></span><span class="go">Open &rarr;</span></a>';
+    }
     return h;
   }
 
