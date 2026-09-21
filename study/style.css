@@ -116,6 +116,7 @@ h3{font-size:15px;margin:16px 0 6px}
 .rate .again{border-color:var(--bad);color:var(--bad)} .rate .hard{border-color:var(--warn);color:var(--warn)}
 .rate .good{border-color:var(--good);color:var(--good)} .rate .easy{border-color:var(--accent);color:var(--accent)}
 .rate button:hover{background:var(--surface-2)}
+.rate.two{grid-template-columns:1fr 1fr} .rate.two button{min-height:52px;font-size:15px}
 .kbd{font-family:var(--mono);font-size:11px;padding:1px 5px;border:1px solid var(--line);border-radius:5px;color:var(--muted)}
 
 /* quiz */

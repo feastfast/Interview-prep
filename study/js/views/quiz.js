@@ -68,6 +68,7 @@ function draw(el, ctx) {
 }
 
 function answer(k, el, ctx) {
+  if (!sess) return;
   const cur = sess.list[sess.i];
   sess.answered = k;
   const ok = k === cur.correct;
@@ -79,7 +80,7 @@ function answer(k, el, ctx) {
   store.bump("quiz");
   draw(el, ctx);
 }
-function next(el, ctx) { sess.i++; sess.answered = -1; draw(el, ctx); if (sess.i < sess.list.length) window.scrollTo(0, 0); }
+function next(el, ctx) { if (!sess) return; sess.i++; sess.answered = -1; draw(el, ctx); window.scrollTo(0, 0); }
 
 function finish(el) {
   const n = sess.list.length, pct = Math.round(100 * sess.right / n);

@@ -2,28 +2,20 @@ import * as store from "../store.js";
 import { esc, plural } from "../util.js";
 import { dayNum, isoDay } from "../srs.js";
 import * as P from "../plan.js";
-import * as T from "./topics.js";
 
 export function render(el, r, ctx) {
-  const { D, counts } = ctx;
-  const c = counts();
+  const { D } = ctx;
   const s = store.get();
   const log = s.log[isoDay()] || { cards: 0, quiz: 0, probs: 0 };
   const streak = store.streak();
   let h = "";
   h += '<div class="grid g3">' +
-    '<div class="tile hl"><b>' + c.due + "</b><span>cards due</span></div>" +
-    '<div class="tile"><b>' + c.newLeft + "</b><span>new today</span></div>" +
-    '<div class="tile"><b>' + streak + "</b><span>day streak</span></div></div>";
-
-  /* cards are reviewed per topic, never mixed: list the topics that have something waiting */
-  const waiting = T.subjects(D).map(sub => ({ sub, st: T.cardStats(D, sub.id) })).filter(x => x.st.due > 0);
-  h += "<h2>Flashcards waiting</h2>";
-  if (waiting.length) h += '<ul class="list">' + waiting.map(({ sub, st }) =>
-    '<li><a class="li" href="#/topics/' + sub.id + '/cards"><div class="t"><b>' + esc(sub.label) + "</b><small>" + plural(st.due, "card") + ' due</small></div><div class="r">Review &rsaquo;</div></a></li>').join("") + "</ul>";
-  else h += '<p class="muted small">No cards are due. Open a topic from the Topics tab to learn new cards or take its quiz.</p>';
+    '<div class="tile hl"><b>' + streak + "</b><span>day streak</span></div>" +
+    '<div class="tile"><b>' + (log.cards || 0) + "</b><span>cards studied</span></div>" +
+    '<div class="tile"><b>' + (log.probs || 0) + "</b><span>problems solved</span></div></div>";
 
   h += planCard(D, s);
+  h += '<p class="small muted" style="margin-top:14px">Want to revise? Open a topic in the <a href="#/topics">Topics</a> tab for its flashcards and quiz.</p>';
   const due = Object.entries(s.probs).filter(([id, p]) => D.known.has(id) && p.st !== "todo" && p.d <= dayNum()).sort((a, b) => a[1].d - b[1].d);
   h += "<h2>Re-solve today</h2>";
   if (!due.length) h += '<p class="muted small">No problems are scheduled for a re-solve yet. Tick a problem off in your plan and it will come back after 1, 3, 7, 14, 30 and 60 days.</p>';

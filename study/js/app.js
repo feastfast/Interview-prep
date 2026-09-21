@@ -1,7 +1,7 @@
 import * as store from "./store.js";
 import * as sync from "./sync.js";
 import { $, $$, esc, fetchJSON, ago } from "./util.js";
-import { dayNum, isDue, isNew } from "./srs.js";
+import { dayNum } from "./srs.js";
 import * as today from "./views/today.js";
 import * as cards from "./views/cards.js";
 import * as quiz from "./views/quiz.js";
@@ -33,19 +33,12 @@ export function toast(msg, ms = 2200) {
   setTimeout(() => t.remove(), ms);
 }
 
-/* Counters for the nav badge and the Today screen. */
+/* Problems whose spaced re-solve is due (drives the Plan tab badge). */
 export function counts() {
   const s = store.get(), t = dayNum();
-  let due = 0, unseen = 0;
-  for (const c of D.cards ? D.cards.cards : []) {
-    const st = s.cards[c.id];
-    if (isNew(st)) unseen++; else if (isDue(st, t)) due++;
-  }
-  const limit = s.settings.newPerDay || 15;
-  const newLeft = Math.max(0, Math.min(unseen, limit - store.newSeenToday()));
   let probsDue = 0;
   for (const [id, p] of Object.entries(s.probs || {})) if (D.known.has(id) && p.st !== "todo" && p.d <= t) probsDue++;
-  return { due, unseen, newLeft, probsDue };
+  return { probsDue };
 }
 
 function drawHeader() {
@@ -60,10 +53,9 @@ function drawHeader() {
 const tabOf = (tab, views) => tab === "cards" || tab === "quiz" ? "topics" : views[tab] ? tab : "today";
 
 function drawNav(active) {
-  const c = D.cards ? counts() : { due: 0, newLeft: 0, probsDue: 0 };
+  const c = D.cards ? counts() : { probsDue: 0 };
   $("#nav").innerHTML = TABS.map(([k, label]) => {
     let badge = "";
-    if (k === "topics" && c.due > 0) badge = '<span class="badge">' + Math.min(99, c.due) + "</span>";
     if (k === "plan" && c.probsDue > 0) badge = '<span class="badge">' + c.probsDue + "</span>";
     return '<a href="#/' + k + '" class="' + (k === active ? "on" : "") + '">' + ICON[k] + label + badge + "</a>";
   }).join("");

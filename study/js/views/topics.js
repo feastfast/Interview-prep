@@ -1,6 +1,6 @@
 import * as store from "../store.js";
 import { esc, md, plural, $, $$ } from "../util.js";
-import { isNew, isDue, isMature, dayNum } from "../srs.js";
+import { cardState, dayNum } from "../srs.js";
 import * as P from "../plan.js";
 import { record, undo } from "./plan.js";
 
@@ -20,12 +20,12 @@ const cardsOf = (D, id) => D.cards.cards.filter(c => c.d === id);
 const questionsOf = (D, id) => D.quiz.questions.filter(q => q.d === id);
 
 export function cardStats(D, id) {
-  const s = store.get(), t = dayNum();
-  const st = { total: 0, fresh: 0, due: 0, mature: 0 };
+  const s = store.get();
+  const st = { total: 0, fresh: 0, known: 0, learning: 0 };
   for (const c of cardsOf(D, id)) {
-    const x = s.cards[c.id];
     st.total++;
-    if (isNew(x)) st.fresh++; else { if (isDue(x, t)) st.due++; if (isMature(x)) st.mature++; }
+    const k = cardState(s.cards[c.id]);
+    if (k === "new") st.fresh++; else if (k === "known") st.known++; else st.learning++;
   }
   return st;
 }
@@ -57,12 +57,12 @@ function overview(el, ctx) {
   const row = sub => {
     const c = cardStats(D, sub.id), q = quizStats(D, sub.id), p = sub.plan ? problemStats(D, sub.id) : null;
     const bits = [];
-    bits.push(c.total ? plural(c.total, "card") : "no cards yet");
+    bits.push(c.total ? plural(c.total, "card") + (c.known ? " (" + c.known + " known)" : "") : "no cards yet");
     bits.push(q.n ? plural(q.n, "question") : "no quiz yet");
     if (p) bits.push(p.solved + "/" + p.total + " problems");
     const empty = !c.total && !q.n;
     return '<li><a class="li" href="#/topics/' + sub.id + '" style="' + (empty ? "opacity:.6" : "") + '"><div class="t"><b>' + esc(sub.label) + "</b><small>" + bits.join(" &middot; ") + '</small></div><div class="r">' +
-      (c.due ? '<span class="tag acc">' + c.due + " due</span>" : "&rsaquo;") + "</div></a></li>";
+      "&rsaquo;</div></a></li>";
   };
   const all = subjects(D);
   let h = '<h2>Topics</h2><p class="muted small">Open a topic to study its flashcards, take its quiz, or work through its problems. Nothing is mixed between topics.</p>';
@@ -112,21 +112,19 @@ function groupBy(list, key) {
 function cardsTab(el, D, sub, c) {
   const list = cardsOf(D, sub.id);
   if (!list.length) { el.innerHTML = emptyBox("flashcards"); return; }
-  const s = store.get(), t = dayNum();
-  const newLeft = Math.max(0, Math.min(c.fresh, (s.settings.newPerDay || 15) - store.newSeenToday()));
-  const todayN = c.due + newLeft;
-  const learned = Math.round(100 * (c.total - c.fresh) / c.total);
-  let h = '<div class="card"><div class="row between"><div><b>' + plural(c.total, "card") + '</b><div class="small muted">' + c.due + " due &middot; " + c.fresh + " new &middot; " + c.mature + " mature</div></div>" +
-    '<div class="small muted">' + learned + '% learned</div></div><div class="bar" style="margin:10px 0 12px"><i style="width:' + learned + '%"></i></div>' +
-    '<div class="row">' +
-    (todayN ? '<a class="btn primary" href="#/cards/session?mode=today&decks=' + sub.id + '">Study today &middot; ' + todayN + "</a>" : '<a class="btn primary" href="#/cards/session?mode=ahead&decks=' + sub.id + '">Nothing due &mdash; study ahead</a>') +
-    '<a class="btn" href="#/cards/session?mode=all&decks=' + sub.id + '">Go through all ' + c.total + "</a></div></div>";
+  const s = store.get();
+  const left = c.total - c.known;
+  const pct = Math.round(100 * c.known / c.total);
+  let h = '<div class="card"><div class="row between"><div><b>' + plural(c.total, "card") + '</b><div class="small muted">' + c.known + " known &middot; " + c.learning + " still learning &middot; " + c.fresh + " new</div></div>" +
+    '<div class="small muted">' + pct + '% known</div></div><div class="bar" style="margin:10px 0 12px"><i style="width:' + pct + '%"></i></div>' +
+    '<div class="row"><a class="btn primary" href="#/cards/session?mode=all&decks=' + sub.id + '">Study all ' + c.total + "</a>" +
+    (left && left < c.total ? '<a class="btn" href="#/cards/session?mode=todo&decks=' + sub.id + '">Only the ' + left + " I don&rsquo;t know yet</a>" : "") + "</div></div>";
   h += search("Search these cards");
   for (const [topic, cards] of groupBy(list, "t")) {
     h += '<div class="igroup"><div class="row between ghead"><b>' + esc(topic) + '</b><a class="small" href="#/cards/session?mode=all&decks=' + sub.id + "&topics=" + encodeURIComponent(topic) + '">Study these ' + cards.length + "</a></div>";
     for (const card of cards) {
-      const x = s.cards[card.id];
-      const chip = isNew(x) ? '<span class="tag">new</span>' : isDue(x, t) ? '<span class="tag acc">due</span>' : '<span class="tag ' + (isMature(x) ? "ok" : "") + '">in ' + Math.max(1, x.d - t) + "d</span>";
+      const k = cardState(s.cards[card.id]);
+      const chip = k === "new" ? '<span class="tag">new</span>' : k === "known" ? '<span class="tag ok">&#10003; known</span>' : '<span class="tag bad">learning</span>';
       h += '<details class="irow"><summary><span class="stext">' + inline(card.f) + "</span>" + chip + '</summary><div class="ibody">' + md(card.b) + "</div></details>";
     }
     h += "</div>";
