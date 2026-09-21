@@ -42,7 +42,7 @@ function overview(el, ctx) {
     const qs = D.quiz.questions.filter(q => q.d === deck.id);
     let qr = 0, qw = 0; qs.forEach(q => { const x = s.quiz[q.id]; if (x) { qr += x.c; qw += x.w; } });
     const acc = qr + qw ? Math.round(100 * qr / (qr + qw)) : null;
-    h += '<div class="card"><div class="row between"><b>' + esc(deck.label) + '</b><span class="small muted">' + due + ' due</span></div>' +
+    h += '<div class="card"><div class="row between"><a href="#/topics/' + deck.id + '" style="font-weight:600;text-decoration:none;color:inherit">' + esc(deck.label) + ' &rsaquo;</a><span class="small muted">' + due + ' due</span></div>' +
       '<div class="small muted" style="margin-top:6px">Cards learned ' + learned + "/" + cs.length + " &middot; mature " + mat + "</div>" +
       '<div class="bar" style="margin-top:4px"><i style="width:' + (cs.length ? Math.round(100 * learned / cs.length) : 0) + '%"></i></div>' +
       '<div class="small muted" style="margin-top:8px">Quiz accuracy ' + (acc == null ? "&mdash;" : acc + "%") + "</div>" +

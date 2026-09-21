@@ -9,7 +9,7 @@ const todayISO = () => P.iso(new Date());
 
 export function render(el, r, ctx) {
   if (r.parts[1] === "setup") return setup(el, ctx);
-  if (r.parts[1] === "topic") return topicPage(el, r.parts[2], ctx);
+  if (r.parts[1] === "topic") { location.replace("#/topics/" + r.parts[2] + "/problems"); return; }
   return overview(el, ctx);
 }
 
@@ -45,7 +45,7 @@ function ensureDay(pc, date, week, state, force = false) {
 const isDone = (state, id, date) => P.doneOn(state.probs[id], date);
 
 /* Mark a problem solved / struggled. The previous record is kept so that "Undo" can restore it exactly. */
-function record(id, outcome) {
+export function record(id, outcome) {
   store.commit(s => {
     const old = s.probs[id];
     const before = old ? Object.assign({}, old) : null;
@@ -54,7 +54,7 @@ function record(id, outcome) {
   });
   store.bump("probs");
 }
-function undo(id) {
+export function undo(id) {
   store.commit(s => {
     const p = s.probs[id];
     if (!p) return;
@@ -124,7 +124,7 @@ function overview(el, ctx) {
     const log = state.log[dd];
     const worked = log && log.probs > 0;
     h += '<div class="wd' + (dd === date ? " now" : "") + (on ? "" : " off") + '"><b>' + DAY_NAMES[d] + (worked ? " &#10003;" : "") + "</b>" +
-      (on ? topics.map(t => '<a href="#/plan/topic/' + t + '">' + esc(shortLabel(D.plan.topics.find(x => x.id === t))) + "</a>").join("") : "<span>rest</span>") + "</div>";
+      (on ? topics.map(t => '<a href="#/topics/' + t + '/problems">' + esc(shortLabel(D.plan.topics.find(x => x.id === t))) + "</a>").join("") : "<span>rest</span>") + "</div>";
   }
   h += "</div>";
 
@@ -134,7 +134,7 @@ function overview(el, ctx) {
   for (const t of D.plan.topics) {
     const s = P.topicStats(pc.pools[t.id], state.probs, now);
     const locked = pc.weekIdx < t.unlock && !(cfg.levels[t.id] > 0);
-    h += '<a class="li" href="#/plan/topic/' + t.id + '" style="' + (locked ? "opacity:.55" : "") + '"><div class="t"><b>' + esc(t.label) + '</b><small>' + s.solved + " of " + s.total + " solved" + (s.due ? " &middot; " + s.due + " due" : "") + (locked ? " &middot; unlocks in week " + (t.unlock + 1) : "") + '</small></div><div style="width:90px"><div class="bar"><i style="width:' + Math.round(100 * s.solved / Math.max(1, s.total)) + '%"></i></div></div></a>';
+    h += '<a class="li" href="#/topics/' + t.id + '/problems" style="' + (locked ? "opacity:.55" : "") + '"><div class="t"><b>' + esc(t.label) + '</b><small>' + s.solved + " of " + s.total + " solved" + (s.due ? " &middot; " + s.due + " due" : "") + (locked ? " &middot; unlocks in week " + (t.unlock + 1) : "") + '</small></div><div style="width:90px"><div class="bar"><i style="width:' + Math.round(100 * s.solved / Math.max(1, s.total)) + '%"></i></div></div></a>';
   }
   el.innerHTML = h;
   bindItems(el, ctx, date);
@@ -181,37 +181,6 @@ function bindItems(el, ctx, date) {
       });
       ctx.rerender();
     }
-  });
-}
-
-/* ------------------------------------------------------------------ topic page */
-function topicPage(el, tid, ctx) {
-  const { D } = ctx;
-  const topic = D.plan.topics.find(t => t.id === tid);
-  if (!topic) { el.innerHTML = '<div class="empty"><b>Unknown topic</b><a class="btn" href="#/plan">Back</a></div>'; return; }
-  const state = store.get();
-  const pc = P.contextFor(D, state, todayISO());
-  const pool = pc.pools[tid];
-  const s = P.topicStats(pool, state.probs, dayNum());
-  let h = '<a class="btn ghost sm" href="#/plan" style="margin-left:-8px">&larr; Plan</a><h2 style="margin-top:6px">' + esc(topic.label) + '</h2><p class="muted small">' + esc(topic.blurb) + "</p>" +
-    '<div class="card soft"><b>' + s.solved + " / " + s.total + ' solved</b> <span class="small muted">&middot; ' + P.LEVELS[pc.cfg.levels[tid] || 0] + '</span><div class="bar" style="margin-top:8px"><i style="width:' + Math.round(100 * s.solved / Math.max(1, s.total)) + '%"></i></div></div><ul class="list">';
-  for (const p of pool) {
-    const st = state.probs[p.id];
-    const solved = st && st.st !== "todo";
-    h += '<li class="trow"><button class="tick' + (solved ? " on" : "") + '" data-tick="' + esc(p.id) + '" data-solved="' + (solved ? 1 : 0) + '" aria-label="' + (solved ? "Mark as not solved" : "Mark as solved") + '">' + (solved ? "&#10003;" : "") + "</button>" +
-      '<a class="ptitle" href="' + esc(p.url) + '" target="_blank" rel="noopener"><b>' + esc(p.title) + ' <span class="ext">&#8599;</span></b><span class="small muted">' + (p.lc ? esc(p.lc) : "") +
-      (solved ? (p.lc ? " &middot; " : "") + (st.st === "revisit" ? "revisit" : "solved " + st.n + "&times;") : "") + (p.premium ? " &middot; Premium" : "") + '</span></a><span class="tag ' + p.diff + '">' + p.diff + "</span></li>";
-  }
-  el.innerHTML = h + "</ul>";
-  $$("[data-tick]", el).forEach(b => b.onclick = () => {
-    if (b.dataset.solved === "1") {
-      // only a completion recorded today can be undone; older ones would lose history, so ask first
-      const p = store.get().probs[b.dataset.tick];
-      if (P.doneOn(p, todayISO())) undo(b.dataset.tick);
-      else if (confirm("Clear this problem's solved status and its re-solve schedule?")) store.commit(s => { s.probs[b.dataset.tick] = { st: "todo", n: 0, d: dayNum(), t: Date.now(), c: 0, tries: 0, note: "" }; });
-      else return;
-    } else { record(b.dataset.tick, "solved"); ctx.toast("Saved."); }
-    ctx.rerender();
   });
 }
 

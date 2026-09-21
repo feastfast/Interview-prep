@@ -2,6 +2,7 @@ import * as store from "../store.js";
 import { esc, plural } from "../util.js";
 import { dayNum, isoDay } from "../srs.js";
 import * as P from "../plan.js";
+import * as T from "./topics.js";
 
 export function render(el, r, ctx) {
   const { D, counts } = ctx;
@@ -9,31 +10,20 @@ export function render(el, r, ctx) {
   const s = store.get();
   const log = s.log[isoDay()] || { cards: 0, quiz: 0, probs: 0 };
   const streak = store.streak();
-  const mistakes = D.quiz.questions.filter(q => s.quiz[q.id] && s.quiz[q.id].last === 0).length;
-  const total = c.due + c.newLeft;
-
   let h = "";
   h += '<div class="grid g3">' +
     '<div class="tile hl"><b>' + c.due + "</b><span>cards due</span></div>" +
     '<div class="tile"><b>' + c.newLeft + "</b><span>new today</span></div>" +
     '<div class="tile"><b>' + streak + "</b><span>day streak</span></div></div>";
 
-  h += '<div class="card" style="margin-top:14px">';
-  if (total > 0) {
-    h += "<h3 style=\"margin-top:0\">Your review is ready</h3><p class=\"muted small\">" + plural(c.due, "card") + " due" + (c.newLeft ? " and " + c.newLeft + " new" : "") +
-      ". Cards from different topics are mixed together on purpose &mdash; interleaving is harder now and sticks better later.</p>" +
-      '<a class="btn primary block" href="#/cards/session?mode=today">Start review</a>';
-  } else {
-    h += "<h3 style=\"margin-top:0\">You're all caught up</h3><p class=\"muted small\">Nothing is due. You can still study ahead, or test yourself with a quiz.</p>" +
-      '<a class="btn block" href="#/cards/session?mode=ahead">Study 15 cards ahead of schedule</a>';
-  }
-  h += "</div>";
+  /* cards are reviewed per topic, never mixed: list the topics that have something waiting */
+  const waiting = T.subjects(D).map(sub => ({ sub, st: T.cardStats(D, sub.id) })).filter(x => x.st.due > 0);
+  h += "<h2>Flashcards waiting</h2>";
+  if (waiting.length) h += '<ul class="list">' + waiting.map(({ sub, st }) =>
+    '<li><a class="li" href="#/topics/' + sub.id + '/cards"><div class="t"><b>' + esc(sub.label) + "</b><small>" + plural(st.due, "card") + ' due</small></div><div class="r">Review &rsaquo;</div></a></li>').join("") + "</ul>";
+  else h += '<p class="muted small">No cards are due. Open a topic from the Topics tab to learn new cards or take its quiz.</p>';
 
   h += planCard(D, s);
-  h += "<h2>Test yourself</h2><div class=\"grid g2\">" +
-    '<a class="btn" href="#/quiz/session?n=10&decks=all">Mixed quiz &middot; 10 questions</a>' +
-    '<a class="btn" href="#/quiz/session?n=10&mode=mistakes"' + (mistakes ? "" : ' style="opacity:.5;pointer-events:none"') + ">Review mistakes" + (mistakes ? " (" + mistakes + ")" : "") + "</a></div>";
-
   const due = Object.entries(s.probs).filter(([id, p]) => D.known.has(id) && p.st !== "todo" && p.d <= dayNum()).sort((a, b) => a[1].d - b[1].d);
   h += "<h2>Re-solve today</h2>";
   if (!due.length) h += '<p class="muted small">No problems are scheduled for a re-solve yet. Tick a problem off in your plan and it will come back after 1, 3, 7, 14, 30 and 60 days.</p>';

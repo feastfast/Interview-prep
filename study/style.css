@@ -160,3 +160,20 @@ h3{font-size:15px;margin:16px 0 6px}
 .wd.now{border-color:var(--accent);background:var(--surface)}
 .wd.off{opacity:.55} .wd span{color:var(--muted);font-size:10.5px}
 @media (max-width:420px){.wd a{font-size:9.5px;padding:2px 3px}.wd b{font-size:10.5px}}
+
+/* topic page: cards / quizzes / problems */
+.seg{display:flex;gap:4px;margin:12px 0 14px;padding:4px;background:var(--surface-2);border-radius:12px;border:1px solid var(--line-soft)}
+.seg a{flex:1;text-align:center;padding:9px 6px;border-radius:9px;text-decoration:none;color:var(--muted);font-weight:500;font-size:14px}
+.seg a small{font-family:var(--mono);font-size:11px;opacity:.8}
+.seg a.on{background:var(--surface);color:var(--accent);box-shadow:var(--shadow)}
+.find{width:100%;margin:14px 0 6px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.igroup{margin-top:14px} .igroup[hidden],.irow[hidden]{display:none}
+.ghead{padding:0 2px 6px;font-size:14px}
+.irow{border:1px solid var(--line-soft);border-radius:10px;background:var(--surface);margin-bottom:6px}
+.irow summary{display:flex;align-items:center;gap:10px;padding:10px 12px;cursor:pointer;list-style:none}
+.irow summary::-webkit-details-marker{display:none}
+.irow .stext{flex:1;min-width:0;font-size:14.5px;line-height:1.4}
+.irow[open]{border-color:var(--accent)}
+.ibody{padding:2px 14px 12px;border-top:1px solid var(--line-soft);font-size:14.5px}
+.opts{list-style:none;margin:10px 0;padding:0} .opts li{padding:7px 10px;border-radius:8px;margin-bottom:4px;background:var(--surface-2)}
+.opts li.right{background:var(--good-wash);color:var(--good);font-weight:500}
