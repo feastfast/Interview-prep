@@ -2,7 +2,7 @@
    reviews done on the phone and on the laptop both survive. */
 
 export function emptyState() {
-  return { v: 1, cards: {}, quiz: {}, probs: {}, log: {}, settings: { newPerDay: 15, t: 0 }, daily: { date: "", newSeen: 0 } };
+  return { v: 1, cards: {}, quiz: {}, probs: {}, log: {}, settings: { newPerDay: 15, t: 0 }, daily: { date: "", newSeen: 0 }, plan: { t: 0 }, weeks: {}, days: {} };
 }
 
 function mergeTimed(a = {}, b = {}) {
@@ -33,6 +33,9 @@ export function mergeStates(a, b) {
     log,
     settings: (sb.t || 0) > (sa.t || 0) ? sb : sa,
     daily,
+    plan: ((b.plan && b.plan.t) || 0) > ((a.plan && a.plan.t) || 0) ? b.plan : (a.plan || { t: 0 }),
+    weeks: mergeTimed(a.weeks, b.weeks),
+    days: mergeTimed(a.days, b.days),
   };
 }
 

@@ -7,17 +7,19 @@ import * as cards from "./views/cards.js";
 import * as quiz from "./views/quiz.js";
 import * as practice from "./views/practice.js";
 import * as progress from "./views/progress.js";
+import * as plan from "./views/plan.js";
 
-export const D = { cards: null, quiz: null, py: null, sql: null };
+export const D = { cards: null, quiz: null, py: null, sql: null, plan: null };
 
 const ICON = {
+  plan: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"/><path d="m3 6 1.5 1.5L7 5M3 12l1.5 1.5L7 11M3 18l1.5 1.5L7 17"/></svg>',
   today: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>',
   cards: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="15" height="12" rx="2.5"/><path d="M7 7V6a2.5 2.5 0 0 1 2.5-2.5H19A2.5 2.5 0 0 1 21.5 6v8a2.5 2.5 0 0 1-2.5 2.5H18"/></svg>',
   quiz: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6M12 17h.01"/></svg>',
   practice: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"/></svg>',
   progress: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>',
 };
-const TABS = [["today", "Today"], ["cards", "Cards"], ["quiz", "Quiz"], ["practice", "Practice"], ["progress", "Progress"]];
+const TABS = [["today", "Today"], ["plan", "Plan"], ["cards", "Cards"], ["quiz", "Quiz"], ["practice", "Practice"], ["progress", "Progress"]];
 
 export function route() {
   const h = location.hash.replace(/^#\/?/, "");
@@ -69,7 +71,7 @@ let current = null;
 export function render() {
   const r = route();
   const tab = r.parts[0] || "today";
-  const views = { today, cards, quiz, practice, progress };
+  const views = { today, plan, cards, quiz, practice, progress };
   const view = views[tab] || today;
   drawHeader(); drawNav(views[tab] ? tab : "today");
   document.body.classList.toggle("wide", tab === "practice" && r.parts.length > 1);
@@ -99,9 +101,9 @@ async function boot() {
   $("#main").innerHTML = '<div class="view"><p class="empty"><span class="spinner"></span>Loading your decks…</p></div>';
   drawHeader();
   try {
-    const [c, q, py, sql] = await Promise.all([
-      fetchJSON("data/cards.json"), fetchJSON("data/quiz.json"), fetchJSON("data/problems_py.json"), fetchJSON("data/problems_sql.json")]);
-    D.cards = c; D.quiz = q; D.py = py; D.sql = sql;
+    const [c, q, py, sql, pl] = await Promise.all([
+      fetchJSON("data/cards.json"), fetchJSON("data/quiz.json"), fetchJSON("data/problems_py.json"), fetchJSON("data/problems_sql.json"), fetchJSON("data/plan.json")]);
+    D.cards = c; D.quiz = q; D.py = py; D.sql = sql; D.plan = pl;
   } catch (e) {
     $("#main").innerHTML = '<div class="view"><p class="empty"><b>Could not load the study data</b>' + esc(e.message) + "</p></div>";
     return;
