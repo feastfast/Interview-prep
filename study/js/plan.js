@@ -30,9 +30,13 @@ export const slug = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").rep
 const ALIASES = { "arrays-hashing": "arrays", "arrays": "arrays", "heap-priority-queue": "heap", "priority-queue": "heap", "dp": "dynamic-programming" };
 export const topicIdFor = label => { const s = slug(label); return ALIASES[s] || s; };
 
-export const lcUrl = p => "https://leetcode.com/problems/" + p.slug + "/";
+export const lcUrl = p => p.url || "https://leetcode.com/problems/" + p.slug + "/";
+const lcNum = t => { const m = /(\d+)/.exec(String(t || "")); return m ? +m[1] : 0; };
 
-/* Pool of problems per topic: curated external ones + every in-app problem whose topicLabel maps to the topic.
+/* A problem counts as done on `date` when it was completed (c, else last update t) on or after that day's start. */
+export const doneOn = (p, dateISO) => !!p && p.st !== "todo" && (p.c !== undefined ? p.c : p.t || 0) >= parse(dateISO).setHours(0, 0, 0, 0);
+
+/* Pool of problems per topic: curated external ones + every problem in problems.json whose topicLabel maps to the topic.
    Sorted easy -> hard, keeping the authored order inside a difficulty (so curated order is the learning order). */
 export function buildPools(plan, pyProblems) {
   const byApp = Object.fromEntries(pyProblems.map(p => [p.id, p]));
@@ -45,12 +49,16 @@ export function buildPools(plan, pyProblems) {
     if (s.has(item.id)) return;
     s.add(item.id); pools[tid].push(Object.assign({ idx: pools[tid].length }, item));
   };
-  const appItem = p => ({ id: p.id, kind: "app", title: p.title, diff: p.diff, lc: p.lc || "", ref: p });
+  const own = p => ({ id: p.id, kind: "lc", title: p.title, diff: p.diff, lc: p.lc || "", url: lcUrl(p), premium: !!p.premium });
   for (const t of plan.topics) for (const e of plan.lists[t.id] || []) {
-    if (e.app) { if (byApp[e.app]) add(t.id, appItem(byApp[e.app])); }
+    if (e.app) { if (byApp[e.app]) add(t.id, own(byApp[e.app])); }
     else add(t.id, { id: "lc-" + e.lc, kind: "lc", title: e.title, diff: e.diff, lc: "LC " + e.lc, url: lcUrl(e) });
   }
-  for (const p of pyProblems) add(topicIdFor(p.topicLabel || p.topic), appItem(p));
+  for (const p of pyProblems) add(topicIdFor(p.topicLabel || p.topic), own(p));
+  for (const tid of Object.keys(pools)) {                 // the same LeetCode number listed twice in one topic: keep the own entry
+    const nums = new Set(pools[tid].filter(x => !x.id.startsWith("lc-")).map(x => lcNum(x.lc)).filter(Boolean));
+    pools[tid] = pools[tid].filter(x => !(x.id.startsWith("lc-") && nums.has(lcNum(x.lc))));
+  }
   for (const tid of Object.keys(pools)) pools[tid].sort((a, b) => (DIFF_RANK[a.diff] - DIFF_RANK[b.diff]) || (a.idx - b.idx));
   return pools;
 }
@@ -117,7 +125,7 @@ export function genWeek({ weekKey, weekIdx, plan, cfg, pools, probs, today, prev
 /* ---------------------------------------------------------------- one day's problem list */
 const isSolved = (probs, id) => { const s = probs[id]; return !!s && s.st !== "todo"; };
 
-/* items: [{ id, kind: 'app'|'lc', topic, title, diff, lc, url, mins, slot: 'resolve'|'main'|'secondary'|'carry' }] */
+/* items: [{ id, kind: 'lc', topic, title, diff, lc, url, mins, slot: 'resolve'|'main'|'secondary'|'carry' }] */
 export function genDay({ date, topics, cfg, pools, probs, carry = [], skipped = [], excludeIds = [] }) {
   const today = diffDays("1970-01-01", date);
   const budget = cfg.minutes || 90;
@@ -125,7 +133,7 @@ export function genDay({ date, topics, cfg, pools, probs, carry = [], skipped = 
   const take = new Set(excludeIds);
   const byId = {};
   for (const tid of Object.keys(pools)) for (const p of pools[tid]) if (!byId[p.id]) byId[p.id] = Object.assign({ topic: tid }, p);
-  const mk = (p, slot, mins) => Object.assign({}, p, { slot, mins, ref: undefined });
+  const mk = (p, slot, mins) => Object.assign({}, p, { slot, mins });
   let spent = 0;
   // 1) carried-over unfinished items
   for (const id of carry.slice(0, 1)) {
@@ -183,7 +191,7 @@ export function nextFor(pools, probs, tid, excluded) {
 /* Everything the UI needs to know about the plan for a date. */
 export function contextFor(D, state, date) {
   const cfg = Object.assign(defaultPlan(date), state.plan && state.plan.t ? state.plan : {});
-  const pools = buildPools(D.plan, D.py.problems);
+  const pools = buildPools(D.plan, D.problems.problems);
   const byId = {};
   for (const tid of Object.keys(pools)) for (const p of pools[tid]) if (!byId[p.id]) byId[p.id] = Object.assign({ topic: tid }, p);
   const monday = mondayOf(date);

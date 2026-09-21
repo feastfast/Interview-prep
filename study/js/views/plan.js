@@ -6,7 +6,6 @@ import * as P from "../plan.js";
 const DAY_NAMES = ["", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const SLOT_LABEL = { resolve: "Re-solve", main: "Main topic", secondary: "Second topic", carry: "Carried over" };
 const todayISO = () => P.iso(new Date());
-const startOfDayMs = date => P.parse(date).setHours(0, 0, 0, 0);
 
 export function render(el, r, ctx) {
   if (r.parts[1] === "setup") return setup(el, ctx);
@@ -43,14 +42,27 @@ function ensureDay(pc, date, week, state, force = false) {
   return rec;
 }
 
-const isDone = (state, id, date) => { const p = state.probs[id]; return !!p && p.st !== "todo" && (p.t || 0) >= startOfDayMs(date); };
+const isDone = (state, id, date) => P.doneOn(state.probs[id], date);
 
-function record(pcProb, outcome) {
+/* Mark a problem solved / struggled. The previous record is kept so that "Undo" can restore it exactly. */
+function record(id, outcome) {
   store.commit(s => {
-    const old = s.probs[pcProb];
-    s.probs[pcProb] = Object.assign(nextProblem(old, outcome), { note: (old || {}).note || "", tries: ((old || {}).tries || 0) + 1 });
+    const old = s.probs[id];
+    const before = old ? Object.assign({}, old) : null;
+    if (before) delete before.prev;
+    s.probs[id] = Object.assign(nextProblem(old, outcome), { note: (old || {}).note || "", tries: ((old || {}).tries || 0) + 1, prev: before });
   });
   store.bump("probs");
+}
+function undo(id) {
+  store.commit(s => {
+    const p = s.probs[id];
+    if (!p) return;
+    const now = Date.now(), back = p.prev;
+    // a fresh t (not an older one) so the undo also wins when devices sync
+    s.probs[id] = back ? Object.assign({}, back, { t: now, c: back.c !== undefined ? back.c : back.t || 0 }) : { st: "todo", n: 0, d: dayNum(), t: now, c: 0, tries: 0, note: "" };
+  });
+  store.bump("probs", -1);
 }
 
 export function rebuildWeek(D, date) {
@@ -69,8 +81,8 @@ function overview(el, ctx) {
   const date = todayISO();
   const pc = P.contextFor(D, state, date);
   if (!pc.configured) {
-    el.innerHTML = '<h2>Weekly plan</h2><div class="card"><p>Your LeetCode practice, rotated for you. Tell the planner when your interview is and how you feel about each topic, and it builds a fresh weekly schedule &mdash; two topics a day, mixed every week, plus a spaced re-solve of older problems.</p>' +
-      '<ul class="small muted"><li>Weekdays, ~90 minutes per day (adjustable)</li><li>Problems come from the curated lists <b>and</b> your in-app practice problems</li><li>New topics unlock week by week; the last two weeks switch to review mode</li></ul>' +
+    el.innerHTML = '<h2>Weekly plan</h2><div class="card"><p>Your LeetCode practice, rotated for you. Tap a problem to open it on LeetCode, then tick it off here. Tell the planner when your interview is and how you feel about each topic, and it builds a fresh weekly schedule &mdash; two topics a day, mixed every week, plus a spaced re-solve of older problems.</p>' +
+      '<ul class="small muted"><li>Weekdays, ~90 minutes per day (adjustable)</li><li>Problems come from the curated lists <b>and</b> the problems in your study guides</li><li>New topics unlock week by week; the last two weeks switch to review mode</li></ul>' +
       '<a class="btn primary block" href="#/plan/setup">Set up my plan</a></div>';
     return;
   }
@@ -92,7 +104,7 @@ function overview(el, ctx) {
   const rec = studyDay || state.days[date] ? ensureDay(pc, date, week, state) : null;
   if (rec) {
     const st = store.get();
-    const items = rec.items.map(i => Object.assign({}, pc.byId[i.id] || { id: i.id, title: i.id, diff: "medium", kind: "lc" }, { slot: i.slot, mins: i.mins }));
+    const items = rec.items.map(i => Object.assign({}, pc.byId[i.id] || { id: i.id, title: i.id, diff: "medium", kind: "lc", url: "https://leetcode.com/problemset/?search=" + encodeURIComponent(i.id) }, { slot: i.slot, mins: i.mins }));
     const doneCount = items.filter(i => isDone(st, i.id, date)).length;
     const totalMin = items.reduce((a, b) => a + b.mins, 0);
     h += '<div class="row between small muted" style="margin-bottom:8px"><span>' + doneCount + " of " + items.length + " done &middot; about " + totalMin + " min</span><span>topics: " +
@@ -140,24 +152,21 @@ function overview(el, ctx) {
 function shortLabel(t) { return t ? (t.short || t.label) : "?"; }
 
 function itemHTML(i, done, st) {
-  const app = i.kind === "app";
   const tag = '<span class="tag ' + i.diff + '">' + i.diff + "</span>";
-  let h = '<div class="pitem' + (done ? " done" : "") + '" data-id="' + esc(i.id) + '" data-kind="' + i.kind + '"><div class="row between"><div style="min-width:0"><b>' + esc(i.title) + '</b><div class="small muted">' +
-    (i.lc ? esc(i.lc) + " &middot; " : "") + esc(SLOT_LABEL[i.slot] || "") + " &middot; ~" + i.mins + " min" + (app ? " &middot; in-app" : "") + "</div></div><div>" + tag + "</div></div>";
-  if (done) h += '<div class="small" style="color:var(--good);margin-top:6px">&#10003; Done' + (st && st.d ? " &middot; back in " + Math.max(0, st.d - dayNum()) + "d" : "") + "</div>";
-  else {
-    h += '<div class="row" style="margin-top:8px">';
-    if (app) h += '<a class="btn primary sm" href="#/practice/py/' + esc(i.id) + '">Solve in app</a>';
-    else h += '<a class="btn primary sm" href="' + esc(i.url) + '" target="_blank" rel="noopener">Open on LeetCode &#8599;</a><button class="btn sm" data-act="clean">Solved</button><button class="btn sm" data-act="hard">Struggled</button>';
-    h += '<button class="btn sm ghost" data-act="skip">Skip</button></div>';
-  }
+  const meta = (i.lc ? esc(i.lc) + " &middot; " : "") + esc(SLOT_LABEL[i.slot] || "") + " &middot; ~" + i.mins + " min" + (i.premium ? " &middot; LeetCode Premium" : "");
+  let h = '<div class="pitem' + (done ? " done" : "") + '" data-id="' + esc(i.id) + '">' +
+    '<div class="prow"><button class="tick' + (done ? " on" : "") + '" data-act="' + (done ? "undo" : "clean") + '" aria-label="' + (done ? "Mark as not done" : "Mark as done") + '" title="' + (done ? "Undo" : "Mark done") + '">' + (done ? "&#10003;" : "") + "</button>" +
+    '<a class="ptitle" href="' + esc(i.url) + '" target="_blank" rel="noopener"><b>' + esc(i.title) + ' <span class="ext">&#8599;</span></b><span class="small muted">' + meta + "</span></a>" + tag + "</div>";
+  if (done) h += '<div class="small pdone">&#10003; Done' + (st && st.st === "revisit" ? " &middot; marked to revisit tomorrow" : st && st.d ? " &middot; comes back in " + Math.max(0, st.d - dayNum()) + " days" : "") + "</div>";
+  else h += '<div class="row pact"><button class="btn sm ghost" data-act="hard">Struggled</button><button class="btn sm ghost" data-act="skip">Skip</button></div>';
   return h + "</div>";
 }
 
 function bindItems(el, ctx, date) {
   $$(".pitem [data-act]", el).forEach(b => b.onclick = () => {
     const box = b.closest(".pitem"), id = box.dataset.id, act = b.dataset.act;
-    if (act === "clean" || act === "hard") { record(id, act === "clean" ? "solved" : "struggled"); ctx.toast(act === "clean" ? "Nice. It will come back for a re-solve." : "Marked to revisit tomorrow."); ctx.rerender(); }
+    if (act === "clean" || act === "hard") { record(id, act === "clean" ? "solved" : "struggled"); ctx.toast(act === "clean" ? "Marked done. It will come back for a re-solve." : "Marked to revisit tomorrow."); ctx.rerender(); }
+    else if (act === "undo") { undo(id); ctx.rerender(); }
     else if (act === "skip") {
       const state = store.get(), pc = P.contextFor(ctx.D, state, date);
       store.commit(s => {
@@ -189,12 +198,21 @@ function topicPage(el, tid, ctx) {
   for (const p of pool) {
     const st = state.probs[p.id];
     const solved = st && st.st !== "todo";
-    h += '<li><div class="li" style="cursor:default"><div class="t"><b>' + esc(p.title) + '</b><small>' + (p.lc ? esc(p.lc) + " &middot; " : "") + (p.kind === "app" ? "in-app" : "LeetCode") + '</small></div><div class="r"><span class="tag ' + p.diff + '">' + p.diff + "</span> " +
-      (solved ? '<span class="tag ' + (st.st === "revisit" ? "bad" : "ok") + '">' + (st.st === "revisit" ? "revisit" : "&#10003; ×" + st.n) + "</span>" : "") + "</div>" +
-      (p.kind === "app" ? '<a class="btn sm" href="#/practice/py/' + esc(p.id) + '">Open</a>' : '<a class="btn sm" href="' + esc(p.url) + '" target="_blank" rel="noopener">Open &#8599;</a>' + '<button class="btn sm ghost" data-mark="' + esc(p.id) + '">' + (solved ? "Solved again" : "Mark solved") + "</button>") + "</div></li>";
+    h += '<li class="trow"><button class="tick' + (solved ? " on" : "") + '" data-tick="' + esc(p.id) + '" data-solved="' + (solved ? 1 : 0) + '" aria-label="' + (solved ? "Mark as not solved" : "Mark as solved") + '">' + (solved ? "&#10003;" : "") + "</button>" +
+      '<a class="ptitle" href="' + esc(p.url) + '" target="_blank" rel="noopener"><b>' + esc(p.title) + ' <span class="ext">&#8599;</span></b><span class="small muted">' + (p.lc ? esc(p.lc) : "") +
+      (solved ? (p.lc ? " &middot; " : "") + (st.st === "revisit" ? "revisit" : "solved " + st.n + "&times;") : "") + (p.premium ? " &middot; Premium" : "") + '</span></a><span class="tag ' + p.diff + '">' + p.diff + "</span></li>";
   }
   el.innerHTML = h + "</ul>";
-  $$("[data-mark]", el).forEach(b => b.onclick = () => { record(b.dataset.mark, "solved"); ctx.toast("Saved."); ctx.rerender(); });
+  $$("[data-tick]", el).forEach(b => b.onclick = () => {
+    if (b.dataset.solved === "1") {
+      // only a completion recorded today can be undone; older ones would lose history, so ask first
+      const p = store.get().probs[b.dataset.tick];
+      if (P.doneOn(p, todayISO())) undo(b.dataset.tick);
+      else if (confirm("Clear this problem's solved status and its re-solve schedule?")) store.commit(s => { s.probs[b.dataset.tick] = { st: "todo", n: 0, d: dayNum(), t: Date.now(), c: 0, tries: 0, note: "" }; });
+      else return;
+    } else { record(b.dataset.tick, "solved"); ctx.toast("Saved."); }
+    ctx.rerender();
+  });
 }
 
 /* ------------------------------------------------------------------ setup */

@@ -1,0 +1,467 @@
+{
+ "problems": [
+  {
+   "id": "kth-largest",
+   "title": "Kth Largest Element",
+   "topic": "heap",
+   "topicLabel": "Heap",
+   "pattern": "Top K",
+   "diff": "medium",
+   "lc": "LC 215",
+   "slug": "kth-largest-element-in-an-array"
+  },
+  {
+   "id": "k-closest",
+   "title": "K Closest Points to Origin",
+   "topic": "heap",
+   "topicLabel": "Heap",
+   "pattern": "Top K",
+   "diff": "medium",
+   "lc": "LC 973",
+   "slug": "k-closest-points-to-origin"
+  },
+  {
+   "id": "top-k-frequent",
+   "title": "Top K Frequent Elements",
+   "topic": "heap",
+   "topicLabel": "Heap",
+   "pattern": "Hash map + Heap",
+   "diff": "medium",
+   "lc": "LC 347",
+   "slug": "top-k-frequent-elements"
+  },
+  {
+   "id": "median-finder",
+   "title": "Find Median from Data Stream",
+   "topic": "heap",
+   "topicLabel": "Heap",
+   "pattern": "Two heaps",
+   "diff": "hard",
+   "lc": "LC 295",
+   "slug": "find-median-from-data-stream"
+  },
+  {
+   "id": "connect-ropes",
+   "title": "Connect Ropes (Minimum Cost)",
+   "topic": "heap",
+   "topicLabel": "Heap",
+   "pattern": "Repeatedly process min",
+   "diff": "medium",
+   "lc": "LC 1167",
+   "slug": "minimum-cost-to-connect-sticks",
+   "premium": true
+  },
+  {
+   "id": "last-stone",
+   "title": "Last Stone Weight",
+   "topic": "heap",
+   "topicLabel": "Heap",
+   "pattern": "Repeatedly process max",
+   "diff": "easy",
+   "lc": "LC 1046",
+   "slug": "last-stone-weight"
+  },
+  {
+   "id": "merge-k-sorted",
+   "title": "Merge K Sorted Arrays",
+   "topic": "heap",
+   "topicLabel": "Heap",
+   "pattern": "K-way merge",
+   "diff": "medium",
+   "lc": "LC 23 (arrays)",
+   "slug": "merge-k-sorted-lists"
+  },
+  {
+   "id": "meeting-rooms",
+   "title": "Meeting Rooms II",
+   "topic": "heap",
+   "topicLabel": "Heap",
+   "pattern": "Sort + Heap",
+   "diff": "medium",
+   "lc": "LC 253",
+   "slug": "meeting-rooms-ii",
+   "premium": true
+  },
+  {
+   "id": "ipo",
+   "title": "IPO (Maximum Capital)",
+   "topic": "heap",
+   "topicLabel": "Heap",
+   "pattern": "Heap + Greedy",
+   "diff": "hard",
+   "lc": "LC 502",
+   "slug": "ipo"
+  },
+  {
+   "id": "least-interval",
+   "title": "Task Scheduler",
+   "topic": "heap",
+   "topicLabel": "Heap",
+   "pattern": "Hash map + Heap",
+   "diff": "medium",
+   "lc": "LC 621",
+   "slug": "task-scheduler"
+  },
+  {
+   "id": "furthest-building",
+   "title": "Furthest Building You Can Reach",
+   "topic": "heap",
+   "topicLabel": "Heap",
+   "pattern": "Repeatedly process (greedy)",
+   "diff": "medium",
+   "lc": "LC 1642",
+   "slug": "furthest-building-you-can-reach"
+  },
+  {
+   "id": "k-smallest-pairs",
+   "title": "K Pairs with Smallest Sums",
+   "topic": "heap",
+   "topicLabel": "Heap",
+   "pattern": "K-way merge + Top K",
+   "diff": "medium",
+   "lc": "LC 373",
+   "slug": "find-k-pairs-with-smallest-sums"
+  },
+  {
+   "id": "kth-smallest-matrix",
+   "title": "Kth Smallest in a Sorted Matrix",
+   "topic": "heap",
+   "topicLabel": "Heap",
+   "pattern": "K-way merge",
+   "diff": "medium",
+   "lc": "LC 378",
+   "slug": "kth-smallest-element-in-a-sorted-matrix"
+  },
+  {
+   "id": "min-refuel-stops",
+   "title": "Minimum Number of Refueling Stops",
+   "topic": "heap",
+   "topicLabel": "Heap",
+   "pattern": "Heap + Greedy",
+   "diff": "hard",
+   "lc": "LC 871",
+   "slug": "minimum-number-of-refueling-stops"
+  },
+  {
+   "id": "max-performance",
+   "title": "Maximum Performance of a Team",
+   "topic": "heap",
+   "topicLabel": "Heap",
+   "pattern": "Heap + Greedy",
+   "diff": "hard",
+   "lc": "LC 1383",
+   "slug": "maximum-performance-of-a-team"
+  },
+  {
+   "id": "smallest-range",
+   "title": "Smallest Range Covering K Lists",
+   "topic": "heap",
+   "topicLabel": "Heap",
+   "pattern": "K-way merge",
+   "diff": "hard",
+   "lc": "LC 632",
+   "slug": "smallest-range-covering-elements-from-k-lists"
+  },
+  {
+   "id": "min-cost-hire",
+   "title": "Minimum Cost to Hire K Workers",
+   "topic": "heap",
+   "topicLabel": "Heap",
+   "pattern": "Repeatedly process (greedy)",
+   "diff": "hard",
+   "lc": "LC 857",
+   "slug": "minimum-cost-to-hire-k-workers"
+  },
+  {
+   "id": "cpu-scheduler",
+   "title": "Single-Threaded CPU",
+   "topic": "heap",
+   "topicLabel": "Heap",
+   "pattern": "Sort + Heap",
+   "diff": "medium",
+   "lc": "LC 1834",
+   "slug": "single-threaded-cpu"
+  },
+  {
+   "id": "valid-parentheses",
+   "title": "Valid Parentheses",
+   "topic": "stack",
+   "topicLabel": "Stack",
+   "pattern": "Matching",
+   "diff": "easy",
+   "lc": "LC 20",
+   "slug": "valid-parentheses"
+  },
+  {
+   "id": "longest-valid-parens",
+   "title": "Longest Valid Parentheses",
+   "topic": "stack",
+   "topicLabel": "Stack",
+   "pattern": "Matching",
+   "diff": "hard",
+   "lc": "LC 32",
+   "slug": "longest-valid-parentheses"
+  },
+  {
+   "id": "min-add-valid",
+   "title": "Minimum Add to Make Parentheses Valid",
+   "topic": "stack",
+   "topicLabel": "Stack",
+   "pattern": "Matching",
+   "diff": "medium",
+   "lc": "LC 921",
+   "slug": "minimum-add-to-make-parentheses-valid"
+  },
+  {
+   "id": "remove-adjacent-dups",
+   "title": "Remove All Adjacent Duplicates",
+   "topic": "stack",
+   "topicLabel": "Stack",
+   "pattern": "Cancelling",
+   "diff": "easy",
+   "lc": "LC 1047",
+   "slug": "remove-all-adjacent-duplicates-in-string"
+  },
+  {
+   "id": "backspace-compare",
+   "title": "Backspace String Compare",
+   "topic": "stack",
+   "topicLabel": "Stack",
+   "pattern": "Cancelling",
+   "diff": "easy",
+   "lc": "LC 844",
+   "slug": "backspace-string-compare"
+  },
+  {
+   "id": "asteroids",
+   "title": "Asteroid Collision",
+   "topic": "stack",
+   "topicLabel": "Stack",
+   "pattern": "Cancelling",
+   "diff": "medium",
+   "lc": "LC 735",
+   "slug": "asteroid-collision"
+  },
+  {
+   "id": "eval-rpn",
+   "title": "Evaluate Reverse Polish Notation",
+   "topic": "stack",
+   "topicLabel": "Stack",
+   "pattern": "Expressions",
+   "diff": "medium",
+   "lc": "LC 150",
+   "slug": "evaluate-reverse-polish-notation"
+  },
+  {
+   "id": "calculator-ii",
+   "title": "Basic Calculator II",
+   "topic": "stack",
+   "topicLabel": "Stack",
+   "pattern": "Expressions",
+   "diff": "medium",
+   "lc": "LC 227",
+   "slug": "basic-calculator-ii"
+  },
+  {
+   "id": "calculator",
+   "title": "Basic Calculator",
+   "topic": "stack",
+   "topicLabel": "Stack",
+   "pattern": "Expressions",
+   "diff": "hard",
+   "lc": "LC 224",
+   "slug": "basic-calculator"
+  },
+  {
+   "id": "decode-string",
+   "title": "Decode String",
+   "topic": "stack",
+   "topicLabel": "Stack",
+   "pattern": "Expressions",
+   "diff": "medium",
+   "lc": "LC 394",
+   "slug": "decode-string"
+  },
+  {
+   "id": "simplify-path",
+   "title": "Simplify Path",
+   "topic": "stack",
+   "topicLabel": "Stack",
+   "pattern": "Expressions",
+   "diff": "medium",
+   "lc": "LC 71",
+   "slug": "simplify-path"
+  },
+  {
+   "id": "min-stack",
+   "title": "Min Stack",
+   "topic": "stack",
+   "topicLabel": "Stack",
+   "pattern": "Design",
+   "diff": "medium",
+   "lc": "LC 155",
+   "slug": "min-stack"
+  },
+  {
+   "id": "queue-two-stacks",
+   "title": "Queue Using Stacks",
+   "topic": "stack",
+   "topicLabel": "Stack",
+   "pattern": "Design",
+   "diff": "easy",
+   "lc": "LC 232",
+   "slug": "implement-queue-using-stacks"
+  },
+  {
+   "id": "next-greater",
+   "title": "Next Greater Element",
+   "topic": "stack",
+   "topicLabel": "Stack",
+   "pattern": "Monotonic stack",
+   "diff": "medium",
+   "lc": "Classic",
+   "slug": "next-greater-element-i"
+  },
+  {
+   "id": "daily-temperatures",
+   "title": "Daily Temperatures",
+   "topic": "stack",
+   "topicLabel": "Stack",
+   "pattern": "Monotonic stack",
+   "diff": "medium",
+   "lc": "LC 739",
+   "slug": "daily-temperatures"
+  },
+  {
+   "id": "next-greater-circular",
+   "title": "Next Greater Element II (Circular)",
+   "topic": "stack",
+   "topicLabel": "Stack",
+   "pattern": "Monotonic stack",
+   "diff": "medium",
+   "lc": "LC 503",
+   "slug": "next-greater-element-ii"
+  },
+  {
+   "id": "stock-spanner",
+   "title": "Online Stock Span",
+   "topic": "stack",
+   "topicLabel": "Stack",
+   "pattern": "Monotonic stack",
+   "diff": "medium",
+   "lc": "LC 901",
+   "slug": "online-stock-span"
+  },
+  {
+   "id": "remove-k-digits",
+   "title": "Remove K Digits",
+   "topic": "stack",
+   "topicLabel": "Stack",
+   "pattern": "Monotonic stack (greedy)",
+   "diff": "medium",
+   "lc": "LC 402",
+   "slug": "remove-k-digits"
+  },
+  {
+   "id": "remove-duplicate-letters",
+   "title": "Remove Duplicate Letters",
+   "topic": "stack",
+   "topicLabel": "Stack",
+   "pattern": "Monotonic stack (greedy)",
+   "diff": "hard",
+   "lc": "LC 316",
+   "slug": "remove-duplicate-letters"
+  },
+  {
+   "id": "largest-rectangle",
+   "title": "Largest Rectangle in Histogram",
+   "topic": "stack",
+   "topicLabel": "Stack",
+   "pattern": "Monotonic stack (areas)",
+   "diff": "hard",
+   "lc": "LC 84",
+   "slug": "largest-rectangle-in-histogram"
+  },
+  {
+   "id": "trapping-rain-water",
+   "title": "Trapping Rain Water",
+   "topic": "stack",
+   "topicLabel": "Stack",
+   "pattern": "Monotonic stack (areas)",
+   "diff": "hard",
+   "lc": "LC 42",
+   "slug": "trapping-rain-water"
+  },
+  {
+   "id": "sum-subarray-mins",
+   "title": "Sum of Subarray Minimums",
+   "topic": "stack",
+   "topicLabel": "Stack",
+   "pattern": "Monotonic stack (contribution)",
+   "diff": "hard",
+   "lc": "LC 907",
+   "slug": "sum-of-subarray-minimums"
+  },
+  {
+   "id": "car-fleet",
+   "title": "Car Fleet",
+   "topic": "stack",
+   "topicLabel": "Stack",
+   "pattern": "Stack of groups",
+   "diff": "medium",
+   "lc": "LC 853",
+   "slug": "car-fleet"
+  },
+  {
+   "id": "score-of-parentheses",
+   "title": "Score of Parentheses",
+   "topic": "stack",
+   "topicLabel": "Stack",
+   "pattern": "Matching",
+   "diff": "medium",
+   "lc": "LC 856",
+   "slug": "score-of-parentheses"
+  },
+  {
+   "id": "validate-stack-sequences",
+   "title": "Validate Stack Sequences",
+   "topic": "stack",
+   "topicLabel": "Stack",
+   "pattern": "Design / simulation",
+   "diff": "medium",
+   "lc": "LC 946",
+   "slug": "validate-stack-sequences"
+  },
+  {
+   "id": "sliding-window-max",
+   "title": "Sliding Window Maximum",
+   "topic": "stack",
+   "topicLabel": "Stack",
+   "pattern": "Monotonic deque",
+   "diff": "hard",
+   "lc": "LC 239",
+   "slug": "sliding-window-maximum"
+  },
+  {
+   "id": "previous-smaller",
+   "title": "Previous Smaller Element",
+   "topic": "stack",
+   "topicLabel": "Stack",
+   "pattern": "Monotonic stack",
+   "diff": "medium",
+   "lc": "Classic",
+   "url": "https://leetcode.com/problems/next-greater-element-i/",
+   "note": "Classic pattern (no single LeetCode problem); Next Greater Element I is the closest match."
+  },
+  {
+   "id": "maximal-rectangle",
+   "title": "Maximal Rectangle",
+   "topic": "stack",
+   "topicLabel": "Stack",
+   "pattern": "Monotonic stack (areas)",
+   "diff": "hard",
+   "lc": "LC 85",
+   "slug": "maximal-rectangle"
+  }
+ ]
+}

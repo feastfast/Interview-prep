@@ -54,6 +54,6 @@ export function nextProblem(prev, outcome, today = dayNum(), now = Date.now()) {
   const p = Object.assign({ st: "todo", n: 0, d: today, t: 0, tries: 0, note: "" }, prev || {});
   if (outcome === "struggled") { p.n = Math.max(0, p.n - 1); p.st = "revisit"; p.d = today + 1; }
   else { p.n = Math.min(PROBLEM_STEPS.length, p.n + 1); p.st = "solved"; p.d = today + PROBLEM_STEPS[p.n - 1]; }
-  p.t = now;
+  p.t = now; p.c = now;                                 // t = last change (sync), c = when it was completed
   return p;
 }

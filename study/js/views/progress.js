@@ -16,8 +16,8 @@ function overview(el, ctx) {
   const mature = D.cards.cards.filter(c => isMature(s.cards[c.id])).length;
   const qAtt = Object.values(s.quiz);
   const right = qAtt.reduce((a, x) => a + x.c, 0), wrong = qAtt.reduce((a, x) => a + x.w, 0);
-  const solved = Object.values(s.probs).filter(p => p.st !== "todo").length;
-  const totalProbs = D.py.problems.length + D.sql.problems.length;
+  const solved = Object.entries(s.probs).filter(([id, p]) => D.known.has(id) && p.st !== "todo").length;
+  const totalProbs = D.known.size;
   h += '<div class="grid g3"><div class="tile hl"><b>' + store.streak() + "</b><span>day streak</span></div>" +
     '<div class="tile"><b>' + seen + "<small class=\"muted\" style=\"font-size:14px\">/" + D.cards.cards.length + "</small></b><span>cards learned</span></div>" +
     '<div class="tile"><b>' + mature + "</b><span>mature (21d+)</span></div></div>";

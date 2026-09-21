@@ -42,11 +42,11 @@ export function exportJSON() { return JSON.stringify(state, null, 1); }
 export function resetAll() { state = emptyState(); persist(); subs.forEach(fn => fn("reset")); }
 
 /* Today's counters for streaks and the activity heat-map. */
-export function bump(kind) {
+export function bump(kind, by = 1) {
   commit(s => {
     const k = isoDay();
     const e = s.log[k] || (s.log[k] = { cards: 0, quiz: 0, probs: 0, new: 0 });
-    e[kind] = (e[kind] || 0) + 1;
+    e[kind] = Math.max(0, (e[kind] || 0) + by);
   });
 }
 export function newSeenToday() {

@@ -34,15 +34,14 @@ export function render(el, r, ctx) {
     '<a class="btn" href="#/quiz/session?n=10&decks=all">Mixed quiz &middot; 10 questions</a>' +
     '<a class="btn" href="#/quiz/session?n=10&mode=mistakes"' + (mistakes ? "" : ' style="opacity:.5;pointer-events:none"') + ">Review mistakes" + (mistakes ? " (" + mistakes + ")" : "") + "</a></div>";
 
-  const due = Object.entries(s.probs).filter(([, p]) => p.st !== "todo" && p.d <= dayNum()).sort((a, b) => a[1].d - b[1].d);
+  const due = Object.entries(s.probs).filter(([id, p]) => D.known.has(id) && p.st !== "todo" && p.d <= dayNum()).sort((a, b) => a[1].d - b[1].d);
   h += "<h2>Re-solve today</h2>";
-  if (!due.length) h += '<p class="muted small">No problems are scheduled for a re-solve yet. Solve one in Practice and it will come back after 1, 3, 7, 14, 30 and 60 days.</p>';
+  if (!due.length) h += '<p class="muted small">No problems are scheduled for a re-solve yet. Tick a problem off in your plan and it will come back after 1, 3, 7, 14, 30 and 60 days.</p>';
   else {
     h += '<ul class="list">' + due.slice(0, 6).map(([id, p]) => {
       const meta = findProblem(D, id);
       if (!meta) return "";
-      const href = meta.kind === "lc" ? meta.url : "#/practice/" + meta.kind + "/" + id;
-      return '<li><a class="li" href="' + esc(href) + '"' + (meta.kind === "lc" ? ' target="_blank" rel="noopener"' : "") + '><div class="t"><b>' + esc(meta.title) + "</b><small>" + esc(meta.topicLabel || meta.topic) + " &middot; " + (p.st === "revisit" ? "struggled last time" : "solved " + p.n + "&times;") + '</small></div><div class="r">open</div></a></li>';
+      return '<li><a class="li" href="' + esc(meta.url) + '" target="_blank" rel="noopener"><div class="t"><b>' + esc(meta.title) + "</b><small>" + esc(meta.topicLabel || meta.topic) + " &middot; " + (p.st === "revisit" ? "struggled last time" : "solved " + p.n + "&times;") + '</small></div><div class="r">open &#8599;</div></a></li>';
     }).join("") + "</ul>";
   }
 
@@ -57,8 +56,7 @@ function planCard(D, s) {
   if (!pc.configured) return '<h2>Weekly plan</h2><div class="card"><p class="small muted" style="margin:0 0 10px">Get a rotating LeetCode schedule built around your interview date.</p><a class="btn primary block" href="#/plan/setup">Set up my plan</a></div>';
   const rec = s.days[date];
   if (!rec) return '<h2>Weekly plan</h2><div class="card"><a class="btn primary block" href="#/plan">Open today&rsquo;s plan</a></div>';
-  const start = P.parse(date).setHours(0, 0, 0, 0);
-  const done = rec.items.filter(i => { const p = s.probs[i.id]; return p && p.st !== "todo" && (p.t || 0) >= start; }).length;
+  const done = rec.items.filter(i => P.doneOn(s.probs[i.id], date)).length;
   const mins = rec.items.reduce((a, b) => a + b.mins, 0);
   return '<h2>LeetCode today</h2><div class="card"><div class="row between"><div><b>' + done + " of " + rec.items.length + " problems done</b><div class=\"small muted\">about " + mins + " min &middot; " +
     rec.topics.map(t => esc((D.plan.topics.find(x => x.id === t) || { label: t }).label)).join(" + ") + '</div></div><a class="btn primary sm" href="#/plan">Open</a></div>' +
@@ -66,14 +64,10 @@ function planCard(D, s) {
 }
 
 export function findProblem(D, id) {
-  if (id.startsWith("lc-")) {
-    const pools = P.buildPools(D.plan, D.py.problems);
-    for (const tid of Object.keys(pools)) { const p = pools[tid].find(x => x.id === id); if (p) return { kind: "lc", title: p.title, topic: tid, topicLabel: (D.plan.topics.find(t => t.id === tid) || {}).label, url: p.url }; }
-    return null;
+  const pools = P.buildPools(D.plan, D.problems.problems);
+  for (const tid of Object.keys(pools)) {
+    const p = pools[tid].find(x => x.id === id);
+    if (p) return { title: p.title, topic: tid, topicLabel: (D.plan.topics.find(t => t.id === tid) || {}).label, url: p.url };
   }
-  const a = D.py.problems.find(p => p.id === id);
-  if (a) return { kind: "py", title: a.title, topic: a.topic, topicLabel: a.topicLabel };
-  const b = D.sql.problems.find(p => p.id === id);
-  if (b) return { kind: "sql", title: b.title, topic: b.topic, topicLabel: b.topicLabel };
   return null;
 }
