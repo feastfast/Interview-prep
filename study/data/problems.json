@@ -462,6 +462,433 @@
    "diff": "hard",
    "lc": "LC 85",
    "slug": "maximal-rectangle"
+  },
+  {
+   "id": "lc-933",
+   "title": "Number of Recent Calls",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "FIFO simulation",
+   "diff": "easy",
+   "lc": "LC 933",
+   "slug": "number-of-recent-calls"
+  },
+  {
+   "id": "lc-346",
+   "title": "Moving Average from Data Stream",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "FIFO simulation",
+   "diff": "easy",
+   "lc": "LC 346",
+   "slug": "moving-average-from-data-stream",
+   "premium": true
+  },
+  {
+   "id": "lc-1700",
+   "title": "Number of Students Unable to Eat Lunch",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "FIFO simulation",
+   "diff": "easy",
+   "lc": "LC 1700",
+   "slug": "number-of-students-unable-to-eat-lunch"
+  },
+  {
+   "id": "lc-2073",
+   "title": "Time Needed to Buy Tickets",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "FIFO simulation",
+   "diff": "easy",
+   "lc": "LC 2073",
+   "slug": "time-needed-to-buy-tickets"
+  },
+  {
+   "id": "lc-622",
+   "title": "Design Circular Queue",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "Design",
+   "diff": "medium",
+   "lc": "LC 622",
+   "slug": "design-circular-queue"
+  },
+  {
+   "id": "lc-362",
+   "title": "Design Hit Counter",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "FIFO simulation",
+   "diff": "medium",
+   "lc": "LC 362",
+   "slug": "design-hit-counter",
+   "premium": true
+  },
+  {
+   "id": "lc-225",
+   "title": "Implement Stack using Queues",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "Design",
+   "diff": "easy",
+   "lc": "LC 225",
+   "slug": "implement-stack-using-queues"
+  },
+  {
+   "id": "lc-649",
+   "title": "Dota2 Senate",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "FIFO simulation",
+   "diff": "medium",
+   "lc": "LC 649",
+   "slug": "dota2-senate"
+  },
+  {
+   "id": "lc-950",
+   "title": "Reveal Cards In Increasing Order",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "FIFO simulation",
+   "diff": "medium",
+   "lc": "LC 950",
+   "slug": "reveal-cards-in-increasing-order"
+  },
+  {
+   "id": "lc-102",
+   "title": "Binary Tree Level Order Traversal",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "BFS",
+   "diff": "medium",
+   "lc": "LC 102",
+   "slug": "binary-tree-level-order-traversal"
+  },
+  {
+   "id": "lc-103",
+   "title": "Binary Tree Zigzag Level Order Traversal",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "BFS",
+   "diff": "medium",
+   "lc": "LC 103",
+   "slug": "binary-tree-zigzag-level-order-traversal"
+  },
+  {
+   "id": "lc-199",
+   "title": "Binary Tree Right Side View",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "BFS",
+   "diff": "medium",
+   "lc": "LC 199",
+   "slug": "binary-tree-right-side-view"
+  },
+  {
+   "id": "lc-637",
+   "title": "Average of Levels in Binary Tree",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "BFS",
+   "diff": "easy",
+   "lc": "LC 637",
+   "slug": "average-of-levels-in-binary-tree"
+  },
+  {
+   "id": "lc-111",
+   "title": "Minimum Depth of Binary Tree",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "BFS",
+   "diff": "easy",
+   "lc": "LC 111",
+   "slug": "minimum-depth-of-binary-tree"
+  },
+  {
+   "id": "lc-127",
+   "title": "Word Ladder",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "BFS",
+   "diff": "hard",
+   "lc": "LC 127",
+   "slug": "word-ladder"
+  },
+  {
+   "id": "lc-752",
+   "title": "Open the Lock",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "BFS",
+   "diff": "medium",
+   "lc": "LC 752",
+   "slug": "open-the-lock"
+  },
+  {
+   "id": "lc-433",
+   "title": "Minimum Genetic Mutation",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "BFS",
+   "diff": "medium",
+   "lc": "LC 433",
+   "slug": "minimum-genetic-mutation"
+  },
+  {
+   "id": "lc-279",
+   "title": "Perfect Squares",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "BFS",
+   "diff": "medium",
+   "lc": "LC 279",
+   "slug": "perfect-squares"
+  },
+  {
+   "id": "lc-909",
+   "title": "Snakes and Ladders",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "BFS",
+   "diff": "medium",
+   "lc": "LC 909",
+   "slug": "snakes-and-ladders"
+  },
+  {
+   "id": "lc-994",
+   "title": "Rotting Oranges",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "Multi-source BFS",
+   "diff": "medium",
+   "lc": "LC 994",
+   "slug": "rotting-oranges"
+  },
+  {
+   "id": "lc-542",
+   "title": "01 Matrix",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "Multi-source BFS",
+   "diff": "medium",
+   "lc": "LC 542",
+   "slug": "01-matrix"
+  },
+  {
+   "id": "lc-286",
+   "title": "Walls and Gates",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "Multi-source BFS",
+   "diff": "medium",
+   "lc": "LC 286",
+   "slug": "walls-and-gates",
+   "premium": true
+  },
+  {
+   "id": "lc-1162",
+   "title": "As Far from Land as Possible",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "Multi-source BFS",
+   "diff": "medium",
+   "lc": "LC 1162",
+   "slug": "as-far-from-land-as-possible"
+  },
+  {
+   "id": "lc-1293",
+   "title": "Shortest Path in a Grid with Obstacles Elimination",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "BFS + state",
+   "diff": "hard",
+   "lc": "LC 1293",
+   "slug": "shortest-path-in-a-grid-with-obstacles-elimination"
+  },
+  {
+   "id": "lc-864",
+   "title": "Shortest Path to Get All Keys",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "BFS + state",
+   "diff": "hard",
+   "lc": "LC 864",
+   "slug": "shortest-path-to-get-all-keys"
+  },
+  {
+   "id": "lc-1197",
+   "title": "Minimum Knight Moves",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "BFS + state",
+   "diff": "medium",
+   "lc": "LC 1197",
+   "slug": "minimum-knight-moves",
+   "premium": true
+  },
+  {
+   "id": "lc-1091",
+   "title": "Shortest Path in Binary Matrix",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "Grid BFS",
+   "diff": "medium",
+   "lc": "LC 1091",
+   "slug": "shortest-path-in-binary-matrix"
+  },
+  {
+   "id": "lc-1926",
+   "title": "Nearest Exit from Entrance in Maze",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "Grid BFS",
+   "diff": "medium",
+   "lc": "LC 1926",
+   "slug": "nearest-exit-from-entrance-in-maze"
+  },
+  {
+   "id": "lc-200",
+   "title": "Number of Islands",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "Grid BFS",
+   "diff": "medium",
+   "lc": "LC 200",
+   "slug": "number-of-islands"
+  },
+  {
+   "id": "lc-1036",
+   "title": "Escape a Large Maze",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "Grid BFS",
+   "diff": "hard",
+   "lc": "LC 1036",
+   "slug": "escape-a-large-maze"
+  },
+  {
+   "id": "lc-862",
+   "title": "Shortest Subarray with Sum at Least K",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "Monotonic deque",
+   "diff": "hard",
+   "lc": "LC 862",
+   "slug": "shortest-subarray-with-sum-at-least-k"
+  },
+  {
+   "id": "lc-1425",
+   "title": "Constrained Subsequence Sum",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "Monotonic deque",
+   "diff": "hard",
+   "lc": "LC 1425",
+   "slug": "constrained-subsequence-sum"
+  },
+  {
+   "id": "lc-1438",
+   "title": "Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "Monotonic deque",
+   "diff": "medium",
+   "lc": "LC 1438",
+   "slug": "longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit"
+  },
+  {
+   "id": "lc-1696",
+   "title": "Jump Game VI",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "Monotonic deque",
+   "diff": "medium",
+   "lc": "LC 1696",
+   "slug": "jump-game-vi"
+  },
+  {
+   "id": "lc-387",
+   "title": "First Unique Character in a String",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "Queue + hash map",
+   "diff": "easy",
+   "lc": "LC 387",
+   "slug": "first-unique-character-in-a-string"
+  },
+  {
+   "id": "lc-1429",
+   "title": "First Unique Number",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "Queue + hash map",
+   "diff": "medium",
+   "lc": "LC 1429",
+   "slug": "first-unique-number",
+   "premium": true
+  },
+  {
+   "id": "lc-207",
+   "title": "Course Schedule",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "Topological sort",
+   "diff": "medium",
+   "lc": "LC 207",
+   "slug": "course-schedule"
+  },
+  {
+   "id": "lc-210",
+   "title": "Course Schedule II",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "Topological sort",
+   "diff": "medium",
+   "lc": "LC 210",
+   "slug": "course-schedule-ii"
+  },
+  {
+   "id": "lc-269",
+   "title": "Alien Dictionary",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "Topological sort",
+   "diff": "hard",
+   "lc": "LC 269",
+   "slug": "alien-dictionary",
+   "premium": true
+  },
+  {
+   "id": "lc-1136",
+   "title": "Parallel Courses",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "Topological sort",
+   "diff": "medium",
+   "lc": "LC 1136",
+   "slug": "parallel-courses",
+   "premium": true
+  },
+  {
+   "id": "lc-1368",
+   "title": "Minimum Cost to Make at Least One Valid Path in a Grid",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "0-1 BFS",
+   "diff": "hard",
+   "lc": "LC 1368",
+   "slug": "minimum-cost-to-make-at-least-one-valid-path-in-a-grid"
+  },
+  {
+   "id": "lc-2290",
+   "title": "Minimum Obstacle Removal to Reach Corner",
+   "topic": "queue",
+   "topicLabel": "Queue",
+   "pattern": "0-1 BFS",
+   "diff": "hard",
+   "lc": "LC 2290",
+   "slug": "minimum-obstacle-removal-to-reach-corner"
   }
  ]
 }
