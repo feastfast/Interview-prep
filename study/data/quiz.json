@@ -35,6 +35,10 @@
   {
    "id": "binary-search",
    "label": "Binary Search"
+  },
+  {
+   "id": "linked-list",
+   "label": "Linked List"
   }
  ],
  "questions": [
@@ -5231,6 +5235,664 @@
    ],
    "a": 0,
    "x": "The recognition test starts with identifying the search space and checking for monotonicity -- not surface-level keyword matching."
+  },
+  {
+   "id": "ql-91092ad8",
+   "d": "linked-list",
+   "t": "Fundamentals",
+   "q": "What does a node's `next` field actually contain?",
+   "o": [
+    "A reference to the next node object",
+    "A copy of the next node's value",
+    "The index of the next node",
+    "The memory size of the list"
+   ],
+   "a": 0,
+   "x": "`next` holds a reference to another node object. Following it means \"go to that object,\" not \"read a stored value.\""
+  },
+  {
+   "id": "ql-d522fc24",
+   "d": "linked-list",
+   "t": "Fundamentals",
+   "q": "After executing `curr = curr.next`, what has changed about the list itself?",
+   "o": [
+    "Nothing -- only the curr reference moved",
+    "The node curr was pointing to is deleted",
+    "The list's length decreases by one",
+    "The next node's value is overwritten"
+   ],
+   "a": 0,
+   "x": "Moving a reference never touches any node's `.next` field. The list's structure is completely unchanged; only your \"view\" into it moved."
+  },
+  {
+   "id": "ql-8e98a89b",
+   "d": "linked-list",
+   "t": "Fundamentals",
+   "q": "Given `prev` and `curr` where curr is the node to delete, which line deletes it?",
+   "o": [
+    "prev.next = curr.next",
+    "curr.next = prev.next",
+    "curr = prev.next",
+    "prev = curr.next"
+   ],
+   "a": 0,
+   "x": "This makes prev skip over curr, so curr becomes unreachable from head -- that's what deletion means in a linked list."
+  },
+  {
+   "id": "ql-86ae89d4",
+   "d": "linked-list",
+   "t": "Fundamentals",
+   "q": "Why can't you delete the head node with `prev.next = curr.next`?",
+   "o": [
+    "There is no prev for the head",
+    "The head node has no next pointer",
+    "Python doesn't allow modifying head",
+    "The head is always None"
+   ],
+   "a": 0,
+   "x": "The head has no predecessor by definition. You'd instead do `head = head.next` -- or use a dummy node to avoid the special case entirely."
+  },
+  {
+   "id": "ql-9f61fdd2",
+   "d": "linked-list",
+   "t": "Fundamentals",
+   "q": "What problem does a dummy node solve?",
+   "o": [
+    "It gives the head an artificial predecessor",
+    "It marks the end of the list",
+    "It stores the list's length",
+    "It prevents cycles from forming"
+   ],
+   "a": 0,
+   "x": "With a dummy node before head, every node -- including the original head -- has a predecessor, so deletion/insertion code needs no special case for the first node."
+  },
+  {
+   "id": "ql-cb93bf67",
+   "d": "linked-list",
+   "t": "Fundamentals",
+   "q": "What is the time complexity of accessing the kth element of a linked list by index?",
+   "o": [
+    "O(n)",
+    "O(1)",
+    "O(log n)",
+    "O(k^2)"
+   ],
+   "a": 0,
+   "x": "There's no direct index lookup in a linked list -- you must walk from head through each preceding node, giving O(n)."
+  },
+  {
+   "id": "ql-af06e48b",
+   "d": "linked-list",
+   "t": "Reversal",
+   "q": "In the standard iterative reversal loop, what must happen before `curr.next = prev`?",
+   "o": [
+    "Save curr.next into a temporary variable",
+    "Set prev to None",
+    "Delete the current node",
+    "Move curr to curr.next"
+   ],
+   "a": 0,
+   "x": "`curr.next = prev` overwrites your only path forward. You must save the old `curr.next` first or you'll lose the rest of the list."
+  },
+  {
+   "id": "ql-93f4db87",
+   "d": "linked-list",
+   "t": "Reversal",
+   "q": "What is the reversal invariant maintained throughout the loop?",
+   "o": [
+    "Everything before curr has already been reversed; curr is the first unprocessed node",
+    "curr always points to the middle of the list",
+    "prev is always None until the last iteration",
+    "The list is sorted at every step"
+   ],
+   "a": 0,
+   "x": "This invariant is the mental model to hold onto -- it lets you re-derive the loop for any starting point, including reverse-between-positions variants."
+  },
+  {
+   "id": "ql-8279c767",
+   "d": "linked-list",
+   "t": "Reversal",
+   "q": "When the reversal loop `while curr:` terminates, which pointer holds the new head?",
+   "o": [
+    "prev",
+    "curr",
+    "next_node",
+    "head (unchanged)"
+   ],
+   "a": 0,
+   "x": "When curr becomes None, by the invariant everything has been reversed, and prev is sitting on the last node processed -- the new head."
+  },
+  {
+   "id": "ql-07e740a7",
+   "d": "linked-list",
+   "t": "Reversal",
+   "q": "What general rule should guide every link-rewriting step in a linked list problem?",
+   "o": [
+    "Before changing a link, ask if you still need its old value, and save it first if so",
+    "Always process nodes in reverse order",
+    "Never use more than two pointers",
+    "Convert the list to an array first"
+   ],
+   "a": 0,
+   "x": "This is the core discipline behind reversal, reordering, and flattening alike -- losing an unsaved reference is the most common linked-list bug."
+  },
+  {
+   "id": "ql-62e3aee2",
+   "d": "linked-list",
+   "t": "Fast & Slow Pointers",
+   "q": "Why does a fast pointer moving 2x speed find the list's middle when it reaches the end?",
+   "o": [
+    "It covers exactly twice the distance of the slow pointer in the same time",
+    "It always stops exactly at length/2 by definition",
+    "The list is guaranteed to have even length",
+    "Fast and slow pointers move at the same actual speed"
+   ],
+   "a": 0,
+   "x": "Since fast travels twice as far as slow in the same number of rounds, when fast finishes the whole list, slow has covered about half."
+  },
+  {
+   "id": "ql-ab2e7f60",
+   "d": "linked-list",
+   "t": "Fast & Slow Pointers",
+   "q": "With `slow = fast = head` and loop condition `while fast and fast.next`, which middle does an even-length list land on?",
+   "o": [
+    "The second middle",
+    "The first middle",
+    "A random middle",
+    "The list must have odd length for this to work"
+   ],
+   "a": 0,
+   "x": "For [1,2,3,4,5,6] this setup lands slow on 4, the second middle. Starting fast one node ahead instead gives the first middle (3)."
+  },
+  {
+   "id": "ql-ea18d10c",
+   "d": "linked-list",
+   "t": "Fast & Slow Pointers",
+   "q": "Why does cycle detection check `while fast and fast.next` rather than just `while fast`?",
+   "o": [
+    "To avoid evaluating fast.next.next when fast.next is None",
+    "To make the loop run faster",
+    "Because slow also needs the same check",
+    "It's purely a style preference"
+   ],
+   "a": 0,
+   "x": "If fast is on the last node, fast.next is None; computing fast.next.next next would crash. The combined check guarantees the two-step advance is always safe."
+  },
+  {
+   "id": "ql-8f803a46",
+   "d": "linked-list",
+   "t": "Fast & Slow Pointers",
+   "q": "In Floyd's algorithm, what does `slow is fast` becoming true indicate?",
+   "o": [
+    "A cycle exists in the list",
+    "The list is empty",
+    "The middle node has been found",
+    "An error occurred"
+   ],
+   "a": 0,
+   "x": "If a cycle exists, the faster pointer eventually laps the slower one and they land on the same node -- that collision is the cycle signal."
+  },
+  {
+   "id": "ql-32d7fbd5",
+   "d": "linked-list",
+   "t": "Fast & Slow Pointers",
+   "q": "After Floyd's phase 1 finds a collision point inside a cycle, is that node the cycle's entry?",
+   "o": [
+    "Not necessarily -- it's just some node inside the cycle",
+    "Yes, always",
+    "Only if the list has odd length",
+    "Only if slow started at the entry"
+   ],
+   "a": 0,
+   "x": "The collision point can be anywhere in the cycle. Finding the actual entry requires phase 2: reset one pointer to head and advance both one step at a time."
+  },
+  {
+   "id": "ql-238da35e",
+   "d": "linked-list",
+   "t": "Fast & Slow Pointers",
+   "q": "What is the precise relationship between distance(head->entry) and distance(meeting->entry)?",
+   "o": [
+    "They are congruent modulo the cycle length L",
+    "They are always exactly equal",
+    "distance(head->entry) is always larger",
+    "There is no fixed relationship"
+   ],
+   "a": 0,
+   "x": "The derivation shows a + x = kL, which gives a ≡ -x ≡ L - x (mod L) -- congruent modulo L, not simply equal, unless k happens to be 0."
+  },
+  {
+   "id": "ql-4f40568d",
+   "d": "linked-list",
+   "t": "Fast & Slow Pointers",
+   "q": "How do you find the kth node from the end without first computing the list's length?",
+   "o": [
+    "Advance a fast pointer k steps ahead of slow, then move both together until fast is None",
+    "Reverse the list first, then take the kth node from the front",
+    "Use recursion to count from the tail backward",
+    "This is impossible without knowing the length"
+   ],
+   "a": 0,
+   "x": "Creating a fixed gap of k between two pointers and moving both together makes slow land exactly k nodes from the end when fast runs out."
+  },
+  {
+   "id": "ql-36f1ce2b",
+   "d": "linked-list",
+   "t": "Deletion & Merge Patterns",
+   "q": "To DELETE the nth node from the end (not just find it), what gap should be used between the two pointers?",
+   "o": [
+    "n + 1",
+    "n",
+    "n - 1",
+    "2n"
+   ],
+   "a": 0,
+   "x": "Deletion needs the node's predecessor, not the node itself, so the gap is one larger than for simply finding the nth-from-end node."
+  },
+  {
+   "id": "ql-32c4a519",
+   "d": "linked-list",
+   "t": "Deletion & Merge Patterns",
+   "q": "In mergeTwoLists, what invariant holds at every point during the merge loop?",
+   "o": [
+    "dummy.next through tail is already a correctly merged, sorted list",
+    "list1 and list2 always have equal length",
+    "tail always points at list1's current node",
+    "The merge only works if both lists are the same length"
+   ],
+   "a": 0,
+   "x": "Everything already placed (dummy.next..tail) is sorted and complete; list1/list2 hold only what's left to merge in."
+  },
+  {
+   "id": "ql-78ce1b82",
+   "d": "linked-list",
+   "t": "Deletion & Merge Patterns",
+   "q": "Once one list is exhausted while merging two sorted lists, why can you just attach the rest of the other list directly?",
+   "o": [
+    "The remaining list is already sorted and all its values are >= everything already placed",
+    "The remaining list must be re-sorted first",
+    "It's a shortcut that sacrifices correctness for speed",
+    "Because both lists always empty at the same time"
+   ],
+   "a": 0,
+   "x": "Since both inputs are sorted, whatever's left in the non-empty list is already in order and already at least as large as everything already merged in."
+  },
+  {
+   "id": "ql-5023cf35",
+   "d": "linked-list",
+   "t": "Deletion & Merge Patterns",
+   "q": "Reorder List decomposes into which three already-known patterns?",
+   "o": [
+    "Find middle, reverse second half, interleave",
+    "Sort, reverse, merge",
+    "Find middle, delete duplicates, reverse",
+    "Detect cycle, reverse, compare"
+   ],
+   "a": 0,
+   "x": "This is the key interview insight for Reorder List -- recognizing the decomposition rather than inventing a new algorithm."
+  },
+  {
+   "id": "ql-02c116d1",
+   "d": "linked-list",
+   "t": "Deletion & Merge Patterns",
+   "q": "When interleaving two list halves, why is `first.next = second; second.next = first.next` unsafe?",
+   "o": [
+    "By the second line, first.next has already been overwritten",
+    "Python doesn't allow chained assignment like this",
+    "second.next must always be None at this point",
+    "It works fine; there's no issue"
+   ],
+   "a": 0,
+   "x": "The first line already destroyed the original first.next, so the second line reads the WRONG value unless you saved first_next beforehand."
+  },
+  {
+   "id": "ql-035e72a0",
+   "d": "linked-list",
+   "t": "Deletion & Merge Patterns",
+   "q": "What three steps does the Palindrome Linked List check use?",
+   "o": [
+    "Find middle, reverse second half, compare",
+    "Reverse the whole list, then compare to the original",
+    "Copy the list into an array and use two pointers",
+    "Sort both halves and compare"
+   ],
+   "a": 0,
+   "x": "This mirrors Reorder List's decomposition but ends in a comparison instead of an interleave."
+  },
+  {
+   "id": "ql-61fbc437",
+   "d": "linked-list",
+   "t": "Cross-Structure Patterns",
+   "q": "Why does naively walking two lists in lockstep fail to find their intersection?",
+   "o": [
+    "Different unique-prefix lengths mean the pointers never land on the shared node simultaneously",
+    "Linked lists cannot be compared node by node",
+    "The lists must be sorted first",
+    "Python doesn't support pointer comparison"
+   ],
+   "a": 0,
+   "x": "If list A's unique prefix is longer than B's, plain lockstep walking overshoots the shared node before both pointers align."
+  },
+  {
+   "id": "ql-1bc9a8ff",
+   "d": "linked-list",
+   "t": "Cross-Structure Patterns",
+   "q": "What trick makes two pointers meet exactly at the intersection node?",
+   "o": [
+    "Redirect each pointer to the other list's head when it reaches its own list's end",
+    "Reverse both lists first",
+    "Use a hashset of all nodes in list A",
+    "Sort both lists by node value"
+   ],
+   "a": 0,
+   "x": "This equalizes total distance traveled by both pointers (A-only + shared + B-only, in some order), so they arrive at the shared portion together."
+  },
+  {
+   "id": "ql-97128271",
+   "d": "linked-list",
+   "t": "Cross-Structure Patterns",
+   "q": "What invariant must always hold in a correctly-formed doubly linked list?",
+   "o": [
+    "For every adjacent pair A<->B: A.next == B and B.prev == A",
+    "Every node's prev and next must be non-None",
+    "The list must have an even number of nodes",
+    "prev must always point to a node with a smaller value"
+   ],
+   "a": 0,
+   "x": "Updating only one side of an adjacent pair (e.g. only A.next) without the other (B.prev) leaves the list direction-inconsistent -- a common bug."
+  },
+  {
+   "id": "ql-05faa95f",
+   "d": "linked-list",
+   "t": "Cross-Structure Patterns",
+   "q": "Why does a doubly linked list allow O(1) removal of an arbitrary, already-known node?",
+   "o": [
+    "The node already knows both of its neighbors directly",
+    "Doubly linked lists are always shorter than singly linked ones",
+    "It doesn't -- removal is still O(n)",
+    "Because doubly linked lists are always sorted"
+   ],
+   "a": 0,
+   "x": "With direct prev and next references on the node itself, no separate O(n) search for the predecessor is needed."
+  },
+  {
+   "id": "ql-bd30a3ad",
+   "d": "linked-list",
+   "t": "Cross-Structure Patterns",
+   "q": "Why does an LRU cache need both a hashmap and a doubly linked list?",
+   "o": [
+    "The hashmap gives O(1) lookup; the doubly linked list gives O(1) ordered reordering/removal",
+    "The hashmap stores order; the linked list stores values",
+    "Using two structures is only for readability, not complexity",
+    "A doubly linked list alone would already be O(1) for lookup"
+   ],
+   "a": 0,
+   "x": "Neither structure alone provides both O(1) lookup and O(1) reordering; combined, key->node hashmap lookup plus linked-list splicing gives both."
+  },
+  {
+   "id": "ql-b0e27e81",
+   "d": "linked-list",
+   "t": "Cross-Structure Patterns",
+   "q": "In an LRU cache, what does the `get(key)` operation do to the accessed node?",
+   "o": [
+    "Moves it to the most-recently-used position in the doubly linked list",
+    "Deletes it from the cache",
+    "Leaves its position unchanged",
+    "Moves it to the least-recently-used position"
+   ],
+   "a": 0,
+   "x": "Accessing a key marks it as most-recently-used, so it's unlinked and reinserted just before the tail sentinel."
+  },
+  {
+   "id": "ql-03ea9255",
+   "d": "linked-list",
+   "t": "Advanced Patterns",
+   "q": "What is the actual hard part of Reverse Nodes in k-Group, given that you already know single-list reversal?",
+   "o": [
+    "Correctly finding each group's boundaries and reconnecting groups to each other",
+    "Reversing a group of nodes, which is a brand-new algorithm",
+    "Handling lists with fewer than 2 nodes",
+    "Converting the list to an array first"
+   ],
+   "a": 0,
+   "x": "The reversal step itself is the loop you already know; the real work is tracking group_prev/group_start/group_end/group_next correctly."
+  },
+  {
+   "id": "ql-9f8e4760",
+   "d": "linked-list",
+   "t": "Advanced Patterns",
+   "q": "Why use a min-heap to merge k sorted linked lists instead of repeated pairwise merging?",
+   "o": [
+    "It gives the smallest current node among all k lists directly in O(log k) per operation",
+    "A min-heap uses less memory than any other approach",
+    "Pairwise merging is not correct for more than 2 lists",
+    "Heaps are required by the problem statement"
+   ],
+   "a": 0,
+   "x": "A min-heap holding each list's current head lets you repeatedly extract the global smallest in O(log k), avoiding wasteful repeated full merges."
+  },
+  {
+   "id": "ql-633d2e62",
+   "d": "linked-list",
+   "t": "Advanced Patterns",
+   "q": "In `mergeKLists`, why does the heap store a `(val, counter, node)` tuple instead of `(val, node)`?",
+   "o": [
+    "To break ties without ever comparing ListNode objects directly",
+    "To track how many lists remain",
+    "Because heapq requires exactly 3-element tuples",
+    "To sort by node memory address"
+   ],
+   "a": 0,
+   "x": "If two nodes have equal val, Python would try to compare ListNode objects next, which raises an error; the counter guarantees a well-defined tie-break."
+  },
+  {
+   "id": "ql-6cc1ee81",
+   "d": "linked-list",
+   "t": "Advanced Patterns",
+   "q": "Why is merge sort the natural choice for sorting a linked list, rather than e.g. quicksort?",
+   "o": [
+    "Splitting (fast/slow) and merging are both operations linked lists do natively, without random access",
+    "Merge sort is always faster than quicksort in every case",
+    "Quicksort cannot be implemented recursively",
+    "Linked lists cannot be split into two halves"
+   ],
+   "a": 0,
+   "x": "Quicksort-style partitioning benefits from random access, which linked lists lack; merge sort's split-then-merge structure fits linked lists perfectly."
+  },
+  {
+   "id": "ql-0bb28353",
+   "d": "linked-list",
+   "t": "More Classics",
+   "q": "What's the core difficulty in Copy List with Random Pointer?",
+   "o": [
+    "A node's random pointer may target a node that hasn't been copied yet",
+    "The list may contain a cycle",
+    "Random pointers cannot be represented in Python",
+    "The list must be sorted by random pointer target first"
+   ],
+   "a": 0,
+   "x": "Because random pointers can point anywhere, a single forward pass can't guarantee the target node already has a corresponding copy -- hence the two-phase approach."
+  },
+  {
+   "id": "ql-80037cba",
+   "d": "linked-list",
+   "t": "More Classics",
+   "q": "How does `copyRandomList` guarantee every `.random` link is wired correctly?",
+   "o": [
+    "It builds a complete old-to-new mapping in phase 1, then uses it to set every link in phase 2",
+    "It processes nodes in reverse order only",
+    "It copies random pointers before next pointers",
+    "It requires the list to have no cycles in random pointers"
+   ],
+   "a": 0,
+   "x": "With the full mapping built first, phase 2's lookups succeed regardless of whether the target node appears earlier or later in the list."
+  },
+  {
+   "id": "ql-cdc1d9be",
+   "d": "linked-list",
+   "t": "More Classics",
+   "q": "In Add Two Numbers, why does the loop continue as `while l1 or l2 or carry`?",
+   "o": [
+    "A leftover carry can require one more output digit even after both inputs are exhausted",
+    "It's simpler to write, with no correctness reason",
+    "l1 and l2 always have the same length",
+    "carry is only used for negative numbers"
+   ],
+   "a": 0,
+   "x": "E.g. 5 + 5 = 10 needs a new final digit for the carry, even though both single-digit input lists are already exhausted."
+  },
+  {
+   "id": "ql-aeb98026",
+   "d": "linked-list",
+   "t": "More Classics",
+   "q": "How does Rotate List avoid moving the last node to the front k separate times?",
+   "o": [
+    "It makes the list temporarily circular, then breaks it at the new tail position",
+    "It reverses the whole list twice",
+    "It always rebuilds the list from scratch",
+    "It only works when k equals the list length"
+   ],
+   "a": 0,
+   "x": "Connecting tail to head forms a temporary cycle; walking to the new tail's position and breaking the cycle there does the rotation in one pass."
+  },
+  {
+   "id": "ql-1804745e",
+   "d": "linked-list",
+   "t": "More Classics",
+   "q": "Why is `k %= length` important before computing Rotate List's new tail position?",
+   "o": [
+    "Rotating by a multiple of the list length returns the original list, and skipping the modulo wastes or breaks the walk",
+    "It prevents integer overflow in Python",
+    "It's required to detect an empty list",
+    "k must always be less than 0 for the algorithm to work"
+   ],
+   "a": 0,
+   "x": "Without reducing k mod length, a large k either makes the walk to the new tail needlessly long or, in a naive implementation, incorrect."
+  },
+  {
+   "id": "ql-d9f91edc",
+   "d": "linked-list",
+   "t": "Extension Problems",
+   "q": "How does Partition List (LC 86) preserve relative order while grouping values around x?",
+   "o": [
+    "It builds two separate chains in one pass, then splices the second onto the first",
+    "It sorts the whole list first",
+    "It swaps node values in place until partitioned",
+    "It requires two full passes over the list"
+   ],
+   "a": 0,
+   "x": "Every node is routed into a \"less than x\" chain or a \"greater/equal\" chain as the list is walked once; concatenating the chains preserves each group's original order."
+  },
+  {
+   "id": "ql-80d521c8",
+   "d": "linked-list",
+   "t": "Extension Problems",
+   "q": "Why can Remove Duplicates from Sorted List II (LC 82) be solved in one linear pass?",
+   "o": [
+    "Because the list is sorted, every duplicate of a value is contiguous",
+    "Because the list has at most 2 duplicates per value",
+    "Because deletion in a linked list is always O(1) regardless of order",
+    "It actually requires two passes, not one"
+   ],
+   "a": 0,
+   "x": "Sortedness guarantees all copies of a value sit next to each other, so a single scan can detect and skip an entire duplicate run."
+  },
+  {
+   "id": "ql-ba5eba0d",
+   "d": "linked-list",
+   "t": "Extension Problems",
+   "q": "What pattern does Reverse Linked List II (reverse between positions, LC 92) reuse from full-list reversal?",
+   "o": [
+    "The exact save/reverse/advance loop, applied to a sub-window instead of the whole list",
+    "A completely different two-pointer technique",
+    "Sorting the sub-window before reversing it",
+    "Recursion with no iterative equivalent"
+   ],
+   "a": 0,
+   "x": "The core loop is identical; only the starting point (found by walking left-1 steps) and iteration count change."
+  },
+  {
+   "id": "ql-1ef99644",
+   "d": "linked-list",
+   "t": "Extension Problems",
+   "q": "How does Odd Even Linked List (LC 328) regroup nodes without allocating new nodes?",
+   "o": [
+    "It maintains two running chains (odd and even positions) in a single pass, then splices them together",
+    "It creates a new list from scratch",
+    "It sorts nodes by value first",
+    "It requires converting to an array"
+   ],
+   "a": 0,
+   "x": "Both chains are built simultaneously by advancing two pointers through the original list, then the even chain is attached after the odd chain."
+  },
+  {
+   "id": "ql-0ea3688b",
+   "d": "linked-list",
+   "t": "Extension Problems",
+   "q": "What existing rule from reversal directly applies to Flatten a Multilevel Doubly Linked List (LC 430)?",
+   "o": [
+    "Save the link you still need before you overwrite it (here, node.next before diving into node.child)",
+    "Always process nodes in sorted order",
+    "Use a dummy node for the child pointer",
+    "Reverse the child list before flattening it"
+   ],
+   "a": 0,
+   "x": "Detouring into node.child would lose the path back to node.next unless it's saved first -- the same principle as saving next_node during ordinary reversal."
+  },
+  {
+   "id": "ql-691707e3",
+   "d": "linked-list",
+   "t": "Recognition & Framework",
+   "q": "A problem asks to \"reverse every k nodes.\" What's the recognition pattern?",
+   "o": [
+    "Find group boundaries, reverse just that group, reconnect, repeat",
+    "Reverse the whole list, then split it into groups",
+    "Use a min-heap to reorder groups",
+    "This requires converting to an array"
+   ],
+   "a": 0,
+   "x": "This matches Reverse Nodes in k-Group's structure -- locate the group, reverse it, and stitch it back into the surrounding list."
+  },
+  {
+   "id": "ql-ef636563",
+   "d": "linked-list",
+   "t": "Recognition & Framework",
+   "q": "A problem needs O(1) lookup AND O(1) ordered removal/reordering by key. What's the pattern?",
+   "o": [
+    "HashMap + Doubly Linked List",
+    "Two separate arrays, sorted differently",
+    "A single hashmap with sorted keys",
+    "A min-heap alone"
+   ],
+   "a": 0,
+   "x": "This is exactly the LRU cache combination -- neither structure alone provides both properties."
+  },
+  {
+   "id": "ql-470bbcde",
+   "d": "linked-list",
+   "t": "Recognition & Framework",
+   "q": "A problem needs the smallest element among many independently-sorted streams, repeatedly. What's the pattern?",
+   "o": [
+    "A min-heap holding each stream's current head",
+    "A single pass merge of all streams at once",
+    "Sorting all elements from all streams together first",
+    "A stack of stream pointers"
+   ],
+   "a": 0,
+   "x": "This is the merge-k-sorted-lists pattern -- a min-heap gives repeated access to the smallest current candidate in O(log k)."
+  },
+  {
+   "id": "ql-eb089023",
+   "d": "linked-list",
+   "t": "Recognition & Framework",
+   "q": "A linked-list problem looks like one complicated, unfamiliar algorithm. What should you try first?",
+   "o": [
+    "Decompose it into patterns you already know",
+    "Assume it requires a brand-new algorithm you haven't learned",
+    "Convert the entire problem to work on arrays instead",
+    "Give up on an O(n) solution and default to O(n^2)"
+   ],
+   "a": 0,
+   "x": "Reorder List is the canonical example -- what looks new is often \"find middle + reverse + interleave,\" patterns you already have."
   }
  ]
 }

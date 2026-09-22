@@ -35,6 +35,10 @@
   {
    "id": "binary-search",
    "label": "Binary Search"
+  },
+  {
+   "id": "linked-list",
+   "label": "Linked List"
   }
  ],
  "cards": [
@@ -4412,6 +4416,440 @@
    "t": "Median of two sorted arrays and recognition",
    "f": "In the row+col sorted matrix staircase search, what specific mistake is easy to make about eliminating a column?",
    "b": "Assuming \"move left eliminates the whole current column\" -- it only eliminates the cells BELOW the current cell in that column (proven larger); cells above the current position are untouched, not eliminated."
+  },
+  {
+   "id": "cl-3cf3320b",
+   "d": "linked-list",
+   "t": "Fundamentals",
+   "f": "What does a node's `next` field actually store?",
+   "b": "A reference to the next node OBJECT itself, not the next node's value. Following `.next` means \"go find that object.\""
+  },
+  {
+   "id": "cl-a8630d07",
+   "d": "linked-list",
+   "t": "Fundamentals",
+   "f": "What does `curr = curr.next` change about the list?",
+   "b": "Nothing. It only moves the `curr` reference to point at a different node. No node's `.next` field was written, so the list's structure is completely unchanged."
+  },
+  {
+   "id": "cl-abea1cc0",
+   "d": "linked-list",
+   "t": "Fundamentals",
+   "f": "What does `curr.next = something` change?",
+   "b": "The actual structure of the list — this is the only kind of statement that rewires which node follows which."
+  },
+  {
+   "id": "cl-a26df572",
+   "d": "linked-list",
+   "t": "Fundamentals",
+   "f": "How do you delete a node given `prev` (its predecessor) and `curr` (the node to delete)?",
+   "b": "`prev.next = curr.next` — this skips `curr`, making it unreachable from `head`."
+  },
+  {
+   "id": "cl-e57218fc",
+   "d": "linked-list",
+   "t": "Fundamentals",
+   "f": "Why can't you delete the head node with `prev.next = curr.next`?",
+   "b": "There is no `prev` for the head — nothing points to it. Instead you do `head = head.next`."
+  },
+  {
+   "id": "cl-45b3b305",
+   "d": "linked-list",
+   "t": "Fundamentals",
+   "f": "What problem does a dummy node solve?",
+   "b": "It gives the head a predecessor, so deletion/insertion code can treat the head the same as any other node instead of special-casing it."
+  },
+  {
+   "id": "cl-1d5021ce",
+   "d": "linked-list",
+   "t": "Fundamentals",
+   "f": "After building a result list with a dummy node, what do you return?",
+   "b": "`dummy.next`, never `dummy` itself — the dummy was never part of the real list."
+  },
+  {
+   "id": "cl-1ac22b6d",
+   "d": "linked-list",
+   "t": "Fundamentals",
+   "f": "What is the time complexity of random access (`list[i]`) in a linked list, and why?",
+   "b": "O(n) — there is no direct index lookup; you must walk from `head` through each node in order."
+  },
+  {
+   "id": "cl-a3809bc3",
+   "d": "linked-list",
+   "t": "Fundamentals",
+   "f": "What is the core trade-off of linked lists vs. arrays?",
+   "b": "Linked lists trade fast random access (O(n) instead of O(1)) for potentially cheap structural changes (no shifting of other elements) — though finding the insertion point can still be O(n)."
+  },
+  {
+   "id": "cl-b7a0f348",
+   "d": "linked-list",
+   "t": "Reversal",
+   "f": "What are the four lines of the standard iterative reversal loop, in order?",
+   "b": "`next_node = curr.next` (save), `curr.next = prev` (reverse), `prev = curr` (advance prev), `curr = next_node` (advance curr)."
+  },
+  {
+   "id": "cl-3ff3600a",
+   "d": "linked-list",
+   "t": "Reversal",
+   "f": "Why must you save `curr.next` before writing `curr.next = prev`?",
+   "b": "Because writing `curr.next = prev` overwrites your only path forward; without saving it first you'd lose the rest of the list."
+  },
+  {
+   "id": "cl-aa05be1b",
+   "d": "linked-list",
+   "t": "Reversal",
+   "f": "What is the reversal invariant, stated in one sentence?",
+   "b": "Everything before `curr` has already been reversed; `curr` is the first node that hasn't been processed yet."
+  },
+  {
+   "id": "cl-c53e324f",
+   "d": "linked-list",
+   "t": "Reversal",
+   "f": "When the reversal loop `while curr:` ends, which pointer is the new head, and why?",
+   "b": "`prev` — because by the invariant, once `curr` is `None` everything has been reversed, and `prev` is sitting on the last node processed."
+  },
+  {
+   "id": "cl-8bbacb54",
+   "d": "linked-list",
+   "t": "Reversal",
+   "f": "What general rule should you apply before changing any link in a linked list?",
+   "b": "Ask \"do I still need the old value of this link?\" If yes, save it in a local variable first."
+  },
+  {
+   "id": "cl-5046a69d",
+   "d": "linked-list",
+   "t": "Fast & Slow Pointers",
+   "f": "Why does moving `fast` twice as fast as `slow` let you find the middle?",
+   "b": "Fast covers exactly twice the distance slow does in the same number of rounds, so when fast has traversed the whole list, slow has traversed about half of it."
+  },
+  {
+   "id": "cl-8ce9dc34",
+   "d": "linked-list",
+   "t": "Fast & Slow Pointers",
+   "f": "With `slow = fast = head` and `while fast and fast.next`, which middle does an even-length list land on?",
+   "b": "The second middle (e.g. for `[1,2,3,4,5,6]`, slow ends at `4`)."
+  },
+  {
+   "id": "cl-e0d2e682",
+   "d": "linked-list",
+   "t": "Fast & Slow Pointers",
+   "f": "How do you make `slow` land on the FIRST middle instead of the second, for an even-length list?",
+   "b": "Start `fast` one node ahead (`fast = head.next`) instead of at `head`."
+  },
+  {
+   "id": "cl-3b9324d4",
+   "d": "linked-list",
+   "t": "Fast & Slow Pointers",
+   "f": "Why does the cycle-detection loop check `while fast and fast.next`, not just `while fast`?",
+   "b": "If `fast` is on the last node, `fast.next` is `None`; evaluating `fast.next.next` afterward would crash on `None.next`."
+  },
+  {
+   "id": "cl-ef17e177",
+   "d": "linked-list",
+   "t": "Fast & Slow Pointers",
+   "f": "In Floyd's algorithm, what does it mean when `slow is fast`?",
+   "b": "A cycle exists — the faster pointer has lapped the slower one inside the cycle."
+  },
+  {
+   "id": "cl-1f5925c7",
+   "d": "linked-list",
+   "t": "Fast & Slow Pointers",
+   "f": "In Floyd's algorithm, what does it mean when `fast` (or `fast.next`) becomes `None`?",
+   "b": "There is no cycle — fast reached the true end of the list."
+  },
+  {
+   "id": "cl-0b3ee5b2",
+   "d": "linked-list",
+   "t": "Fast & Slow Pointers",
+   "f": "Once `slow` and `fast` collide inside a cycle, is that collision node the cycle's entry point?",
+   "b": "Not necessarily — it's some node inside the cycle, but generally not the entry."
+  },
+  {
+   "id": "cl-c89b3749",
+   "d": "linked-list",
+   "t": "Fast & Slow Pointers",
+   "f": "How do you find the actual cycle entry point after Floyd's phase 1 detects a collision?",
+   "b": "Reset one pointer to `head`, keep the other at the meeting point, then advance both one step at a time; where they meet again is the entry."
+  },
+  {
+   "id": "cl-35092fb1",
+   "d": "linked-list",
+   "t": "Fast & Slow Pointers",
+   "f": "What is the precise mathematical relationship between distance(head→entry) and distance(meeting→entry)?",
+   "b": "They are congruent modulo the cycle length L — `distance(head→entry) ≡ distance(meeting→entry) (mod L)` — not simply equal."
+  },
+  {
+   "id": "cl-23ba861f",
+   "d": "linked-list",
+   "t": "Fast & Slow Pointers",
+   "f": "If `a` = head-to-entry distance, `x` = entry-to-meeting distance, and `L` = cycle length, what equation relates them at the first meeting?",
+   "b": "`a + x = kL` for some integer k ≥ 0, derived from `2S = a + x + kL` and `S = a + x`."
+  },
+  {
+   "id": "cl-15e85cf7",
+   "d": "linked-list",
+   "t": "Fast & Slow Pointers",
+   "f": "How do you find the kth node from the end of a list without first computing its length?",
+   "b": "Advance a `fast` pointer k steps ahead of `slow`, then move both together until `fast` falls off the end — `slow` is then k-th from the end."
+  },
+  {
+   "id": "cl-3f3367d9",
+   "d": "linked-list",
+   "t": "Deletion & Merge Patterns",
+   "f": "To DELETE the kth node from the end (not just find it), how does the pointer gap change?",
+   "b": "The gap becomes `k + 1` instead of `k`, because deletion needs the node's PREDECESSOR, and a dummy node is used so even the head can be removed uniformly."
+  },
+  {
+   "id": "cl-6b033afa",
+   "d": "linked-list",
+   "t": "Deletion & Merge Patterns",
+   "f": "In `mergeTwoLists`, what invariant holds at every step of the loop?",
+   "b": "Everything from `dummy.next` through `tail` is already a correctly merged, sorted list; `list1`/`list2` hold whatever hasn't been placed yet."
+  },
+  {
+   "id": "cl-3ceea4a9",
+   "d": "linked-list",
+   "t": "Deletion & Merge Patterns",
+   "f": "Once one list is exhausted in a merge, why can you just do `tail.next = list1 or list2` without further comparisons?",
+   "b": "The remaining list is already sorted internally and every value in it is already ≥ everything placed so far."
+  },
+  {
+   "id": "cl-aff016f4",
+   "d": "linked-list",
+   "t": "Deletion & Merge Patterns",
+   "f": "What three already-known patterns does Reorder List decompose into?",
+   "b": "Find the middle (fast/slow) → reverse the second half (reversal) → interleave the two halves."
+  },
+  {
+   "id": "cl-2baf4647",
+   "d": "linked-list",
+   "t": "Deletion & Merge Patterns",
+   "f": "When interleaving two halves in Reorder List, why can't you write `first.next = second; second.next = first.next` directly?",
+   "b": "By the second line, `first.next` has already been overwritten by the first line, so you'd lose the original next node — save both `first_next` and `second_next` first."
+  },
+  {
+   "id": "cl-8895fd7a",
+   "d": "linked-list",
+   "t": "Deletion & Merge Patterns",
+   "f": "What three steps does the Palindrome Linked List check decompose into?",
+   "b": "Find the middle → reverse the second half → compare the first half against the reversed second half node by node."
+  },
+  {
+   "id": "cl-75e04eb2",
+   "d": "linked-list",
+   "t": "Deletion & Merge Patterns",
+   "f": "In an odd-length palindrome check, what happens to the true middle node?",
+   "b": "It's skipped — it never needs a partner to compare against."
+  },
+  {
+   "id": "cl-b6b80f8c",
+   "d": "linked-list",
+   "t": "Cross-Structure Patterns",
+   "f": "Why does the naive lockstep walk fail to find the intersection of two linked lists of different lengths?",
+   "b": "The pointers never land on the shared node at the same time if the unique prefixes before the shared portion have different lengths."
+  },
+  {
+   "id": "cl-1aa01ce8",
+   "d": "linked-list",
+   "t": "Cross-Structure Patterns",
+   "f": "What's the trick that makes two pointers meet exactly at the intersection node?",
+   "b": "When a pointer reaches the end of its own list, redirect it to the head of the OTHER list — this equalizes total distance traveled."
+  },
+  {
+   "id": "cl-59e1ee10",
+   "d": "linked-list",
+   "t": "Cross-Structure Patterns",
+   "f": "In the intersection algorithm, what happens if the two lists don't actually intersect?",
+   "b": "Both pointers become `None` at exactly the same step (having each walked A-only + B-only total), and the loop correctly returns `None`."
+  },
+  {
+   "id": "cl-c6147be0",
+   "d": "linked-list",
+   "t": "Cross-Structure Patterns",
+   "f": "What invariant must always hold in a doubly linked list?",
+   "b": "For every adjacent pair A <-> B: `A.next == B` AND `B.prev == A`. Updating only one side corrupts the list."
+  },
+  {
+   "id": "cl-c4f380d7",
+   "d": "linked-list",
+   "t": "Cross-Structure Patterns",
+   "f": "Why does a doubly linked list allow O(1) removal of an arbitrary already-known node, unlike a singly linked list?",
+   "b": "The node already knows both its neighbors (`prev` and `next`), so no separate predecessor search is needed."
+  },
+  {
+   "id": "cl-773ed66b",
+   "d": "linked-list",
+   "t": "Cross-Structure Patterns",
+   "f": "Why does an LRU cache need BOTH a hashmap and a doubly linked list?",
+   "b": "A hashmap alone gives O(1) lookup but no ordering info; a linked list alone gives ordering but O(n) lookup by key. Combined, you get O(1) for both."
+  },
+  {
+   "id": "cl-8a51aca6",
+   "d": "linked-list",
+   "t": "Cross-Structure Patterns",
+   "f": "In an LRU cache, what happens on `get(key)`?",
+   "b": "The node is found via the hashmap (O(1)), unlinked from its current position, and reinserted just before the tail sentinel (marking it most-recently-used)."
+  },
+  {
+   "id": "cl-417a25e0",
+   "d": "linked-list",
+   "t": "Cross-Structure Patterns",
+   "f": "In an LRU cache, what gets evicted when capacity is exceeded on `put`?",
+   "b": "`head.next` — the actual least-recently-used node — which is removed from both the linked list and the hashmap."
+  },
+  {
+   "id": "cl-0cbc8d87",
+   "d": "linked-list",
+   "t": "Advanced Patterns",
+   "f": "What is the real challenge in Reverse Nodes in k-Group, given that you already know how to reverse a list?",
+   "b": "Correctly locating each group's boundaries and reconnecting each reversed group back into the surrounding list (tracking group_prev, group_start, group_end, group_next)."
+  },
+  {
+   "id": "cl-fb940a99",
+   "d": "linked-list",
+   "t": "Advanced Patterns",
+   "f": "Why use a min-heap instead of repeatedly calling `mergeTwoLists` pairwise to merge k sorted lists?",
+   "b": "A min-heap gives you the smallest current node among all k lists directly, in O(log k) per pop, instead of doing wasteful repeated pairwise merges."
+  },
+  {
+   "id": "cl-f5418d83",
+   "d": "linked-list",
+   "t": "Advanced Patterns",
+   "f": "In `mergeKLists`, why does the heap store `(val, counter, node)` tuples instead of just `(val, node)`?",
+   "b": "If two values are equal, Python would try to compare the `ListNode` objects directly (which raises an error); the counter breaks ties without ever comparing nodes."
+  },
+  {
+   "id": "cl-8c2ecf2e",
+   "d": "linked-list",
+   "t": "Advanced Patterns",
+   "f": "Why is merge sort the natural sorting algorithm for a linked list, rather than e.g. quicksort?",
+   "b": "Merge sort's two operations — splitting via fast/slow and merging via mergeTwoLists — are both things linked lists do natively, without needing random access."
+  },
+  {
+   "id": "cl-7024ddc0",
+   "d": "linked-list",
+   "t": "Advanced Patterns",
+   "f": "What is the time and space complexity of sorting a linked list with merge sort?",
+   "b": "O(n log n) time, O(log n) space for the recursion stack (no auxiliary array needed — nodes are relinked in place)."
+  },
+  {
+   "id": "cl-bbf4aaab",
+   "d": "linked-list",
+   "t": "More Classics",
+   "f": "What's the core difficulty in Copy List with Random Pointer?",
+   "b": "While copying a node, you may not yet know which NEW node corresponds to the OLD node that its `random` pointer targets, since that target might not be copied yet."
+  },
+  {
+   "id": "cl-07db9789",
+   "d": "linked-list",
+   "t": "More Classics",
+   "f": "How does `copyRandomList` solve the \"random pointer might target an uncopied node\" problem?",
+   "b": "Two passes: phase 1 builds a complete old→new node mapping (values only, no links); phase 2 uses that mapping to wire up every `.next` and `.random`."
+  },
+  {
+   "id": "cl-ca2ed0cb",
+   "d": "linked-list",
+   "t": "More Classics",
+   "f": "In Add Two Numbers, why does the loop continue with `while l1 or l2 or carry` instead of stopping once both lists are exhausted?",
+   "b": "A carry can outlive both inputs — e.g. `5 + 5 = 10` needs one more output digit even after both single-digit inputs run out."
+  },
+  {
+   "id": "cl-e011a8f7",
+   "d": "linked-list",
+   "t": "More Classics",
+   "f": "How does Rotate List avoid repeatedly moving the last node to the front?",
+   "b": "It finds the length and tail, temporarily connects tail to head (making a cycle), walks to the new tail's position, and breaks the cycle there — all in one pass."
+  },
+  {
+   "id": "cl-9270024e",
+   "d": "linked-list",
+   "t": "More Classics",
+   "f": "Why is `k %= length` important in Rotate List before finding the new tail?",
+   "b": "Rotating by a multiple of the list's length returns the original list; skipping the modulo makes the \"walk to new tail\" step needlessly (or incorrectly) long for large k."
+  },
+  {
+   "id": "cl-dfd33f98",
+   "d": "linked-list",
+   "t": "Extension Problems",
+   "f": "How does Partition List (LC 86) preserve relative order while separating values around x?",
+   "b": "Build two separate chains (less-than-x and greater-or-equal) with their own dummy heads in a single pass, then splice the second chain onto the end of the first."
+  },
+  {
+   "id": "cl-1f86ab40",
+   "d": "linked-list",
+   "t": "Extension Problems",
+   "f": "Why can duplicates be removed in one pass for Remove Duplicates from Sorted List II (LC 82)?",
+   "b": "Because the list is sorted, every duplicate of a value is contiguous — you can detect and skip an entire run of a duplicated value in one linear scan."
+  },
+  {
+   "id": "cl-e42c01c4",
+   "d": "linked-list",
+   "t": "Extension Problems",
+   "f": "What pattern does Swap Nodes in Pairs (LC 24) reuse from Reverse Nodes in k-Group?",
+   "b": "The dummy + group_prev pattern, just with the group size fixed at k=2 instead of general k."
+  },
+  {
+   "id": "cl-56a626ad",
+   "d": "linked-list",
+   "t": "Extension Problems",
+   "f": "In Reverse Linked List II (reverse between positions, LC 92), what must you reconnect after reversing the `[left, right]` window?",
+   "b": "The OLD start of the window (now the reversed segment's tail) must connect to `curr` (the first node past the window), and `group_prev.next` must point to `prev` (the new head of the reversed segment)."
+  },
+  {
+   "id": "cl-ccee582d",
+   "d": "linked-list",
+   "t": "Extension Problems",
+   "f": "How does Odd Even Linked List (LC 328) regroup nodes without allocating new nodes?",
+   "b": "It maintains two running chains (odd-position and even-position) simultaneously in one pass, then splices the even chain onto the end of the odd chain."
+  },
+  {
+   "id": "cl-2781c1ab",
+   "d": "linked-list",
+   "t": "Extension Problems",
+   "f": "What rule from reversal applies to Flatten a Multilevel Doubly Linked List (LC 430)?",
+   "b": "\"Save the link before you overwrite it\" — before detouring into `node.child`, you must save `node.next` (e.g. on a stack) so you can resume that level later."
+  },
+  {
+   "id": "cl-451701a0",
+   "d": "linked-list",
+   "t": "Extension Problems",
+   "f": "In Flatten a Multilevel Doubly Linked List, what must happen to `node.child` after it's been used?",
+   "b": "It must be set to `None` — the final flattened structure is required to have no `child` pointers left, only `prev`/`next`."
+  },
+  {
+   "id": "cl-99fb7a68",
+   "d": "linked-list",
+   "t": "Recognition & Framework",
+   "f": "A problem says \"reverse every k nodes.\" What's the pattern?",
+   "b": "Find group boundaries → reverse just that group → reconnect → repeat."
+  },
+  {
+   "id": "cl-39d0ec5b",
+   "d": "linked-list",
+   "t": "Recognition & Framework",
+   "f": "A problem needs O(1) lookup AND O(1) ordered removal/reordering. What's the pattern?",
+   "b": "HashMap + Doubly Linked List (the LRU cache combination)."
+  },
+  {
+   "id": "cl-a8470492",
+   "d": "linked-list",
+   "t": "Recognition & Framework",
+   "f": "A problem involves many sorted streams and repeatedly needs the current smallest element. What's the pattern?",
+   "b": "A min-heap holding each stream's current head."
+  },
+  {
+   "id": "cl-5530c74f",
+   "d": "linked-list",
+   "t": "Recognition & Framework",
+   "f": "A problem looks like one complicated new algorithm you've never seen. What should you try first?",
+   "b": "Decompose it into patterns you already know — e.g. Reorder List is just \"find middle + reverse + interleave,\" not a new algorithm."
+  },
+  {
+   "id": "cl-0d11e83e",
+   "d": "linked-list",
+   "t": "Recognition & Framework",
+   "f": "What are the five pointer rules to internalize instead of memorizing individual solutions?",
+   "b": "(1) Before changing a link, ask if you still need the old value. (2) If yes, save it first. (3) If deleting, think about the predecessor. (4) If the head is a special case, use a dummy node. (5) If positions from both ends matter, think two pointers."
   }
  ]
 }

@@ -1825,6 +1825,196 @@
    "diff": "medium",
    "lc": "LC 1300",
    "slug": "sum-of-mutated-array-closest-to-target"
+  },
+  {
+   "id": "lc-24",
+   "title": "Swap Nodes in Pairs",
+   "topic": "linked-list",
+   "topicLabel": "Linked List",
+   "pattern": "Dummy + group reversal (k=2)",
+   "diff": "medium",
+   "lc": "LC 24",
+   "slug": "swap-nodes-in-pairs"
+  },
+  {
+   "id": "lc-61",
+   "title": "Rotate List",
+   "topic": "linked-list",
+   "topicLabel": "Linked List",
+   "pattern": "Make circular, break at new tail",
+   "diff": "medium",
+   "lc": "LC 61",
+   "slug": "rotate-list"
+  },
+  {
+   "id": "lc-82",
+   "title": "Remove Duplicates from Sorted List II",
+   "topic": "linked-list",
+   "topicLabel": "Linked List",
+   "pattern": "Dummy + skip entire duplicate run",
+   "diff": "medium",
+   "lc": "LC 82",
+   "slug": "remove-duplicates-from-sorted-list-ii"
+  },
+  {
+   "id": "lc-86",
+   "title": "Partition List",
+   "topic": "linked-list",
+   "topicLabel": "Linked List",
+   "pattern": "Two dummy-headed chains",
+   "diff": "medium",
+   "lc": "LC 86",
+   "slug": "partition-list"
+  },
+  {
+   "id": "lc-92",
+   "title": "Reverse Linked List II",
+   "topic": "linked-list",
+   "topicLabel": "Linked List",
+   "pattern": "Reversal loop on a sub-window",
+   "diff": "medium",
+   "lc": "LC 92",
+   "slug": "reverse-linked-list-ii"
+  },
+  {
+   "id": "lc-148",
+   "title": "Sort List",
+   "topic": "linked-list",
+   "topicLabel": "Linked List",
+   "pattern": "Merge sort (fast/slow split + merge)",
+   "diff": "medium",
+   "lc": "LC 148",
+   "slug": "sort-list"
+  },
+  {
+   "id": "lc-203",
+   "title": "Remove Linked List Elements",
+   "topic": "linked-list",
+   "topicLabel": "Linked List",
+   "pattern": "Dummy + predecessor skip",
+   "diff": "easy",
+   "lc": "LC 203",
+   "slug": "remove-linked-list-elements"
+  },
+  {
+   "id": "lc-328",
+   "title": "Odd Even Linked List",
+   "topic": "linked-list",
+   "topicLabel": "Linked List",
+   "pattern": "Two parallel chains by parity",
+   "diff": "medium",
+   "lc": "LC 328",
+   "slug": "odd-even-linked-list"
+  },
+  {
+   "id": "lc-430",
+   "title": "Flatten a Multilevel Doubly Linked List",
+   "topic": "linked-list",
+   "topicLabel": "Linked List",
+   "pattern": "Stack of resume pointers",
+   "diff": "medium",
+   "lc": "LC 430",
+   "slug": "flatten-a-multilevel-doubly-linked-list"
+  },
+  {
+   "id": "lc-817",
+   "title": "Linked List Components",
+   "topic": "linked-list",
+   "topicLabel": "Linked List",
+   "pattern": "Traversal + set membership",
+   "diff": "medium",
+   "lc": "LC 817",
+   "slug": "linked-list-components"
+  },
+  {
+   "id": "lc-1019",
+   "title": "Next Greater Node In Linked List",
+   "topic": "linked-list",
+   "topicLabel": "Linked List",
+   "pattern": "Traversal + monotonic stack",
+   "diff": "medium",
+   "lc": "LC 1019",
+   "slug": "next-greater-node-in-linked-list"
+  },
+  {
+   "id": "lc-1290",
+   "title": "Convert Binary Number in a Linked List to Integer",
+   "topic": "linked-list",
+   "topicLabel": "Linked List",
+   "pattern": "Basic traversal",
+   "diff": "easy",
+   "lc": "LC 1290",
+   "slug": "convert-binary-number-in-a-linked-list-to-integer"
+  },
+  {
+   "id": "lc-1721",
+   "title": "Swapping Nodes in a Linked List",
+   "topic": "linked-list",
+   "topicLabel": "Linked List",
+   "pattern": "Fixed gap (kth from each end)",
+   "diff": "medium",
+   "lc": "LC 1721",
+   "slug": "swapping-nodes-in-a-linked-list"
+  },
+  {
+   "id": "lc-2130",
+   "title": "Maximum Twin Sum of a Linked List",
+   "topic": "linked-list",
+   "topicLabel": "Linked List",
+   "pattern": "Find middle + reverse second half",
+   "diff": "medium",
+   "lc": "LC 2130",
+   "slug": "maximum-twin-sum-of-a-linked-list"
+  },
+  {
+   "id": "lc-725",
+   "title": "Split Linked List in Parts",
+   "topic": "linked-list",
+   "topicLabel": "Linked List",
+   "pattern": "Length count + chunked traversal",
+   "diff": "medium",
+   "lc": "LC 725",
+   "slug": "split-linked-list-in-parts"
+  },
+  {
+   "id": "lc-2074",
+   "title": "Reverse Nodes in Even Length Groups",
+   "topic": "linked-list",
+   "topicLabel": "Linked List",
+   "pattern": "Group reversal with variable group size",
+   "diff": "medium",
+   "lc": "LC 2074",
+   "slug": "reverse-nodes-in-even-length-groups"
+  },
+  {
+   "id": "lc-1367",
+   "title": "Linked List in Binary Tree",
+   "topic": "linked-list",
+   "topicLabel": "Linked List",
+   "pattern": "Traversal + DFS matching",
+   "diff": "medium",
+   "lc": "LC 1367",
+   "slug": "linked-list-in-binary-tree"
+  },
+  {
+   "id": "lc-1171",
+   "title": "Remove Zero Sum Consecutive Nodes from Linked List",
+   "topic": "linked-list",
+   "topicLabel": "Linked List",
+   "pattern": "Dummy + prefix-sum hashmap",
+   "diff": "medium",
+   "lc": "LC 1171",
+   "slug": "remove-zero-sum-consecutive-nodes-from-linked-list"
+  },
+  {
+   "id": "lc-2181",
+   "title": "Merge Nodes in Between Zeros",
+   "topic": "linked-list",
+   "topicLabel": "Linked List",
+   "pattern": "Traversal + running sum",
+   "diff": "medium",
+   "lc": "LC 2181",
+   "slug": "merge-nodes-in-between-zeros"
   }
  ]
 }
