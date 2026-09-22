@@ -1211,6 +1211,437 @@
    "diff": "medium",
    "lc": "LC 1423",
    "slug": "maximum-points-you-can-obtain-from-cards"
+  },
+  {
+   "id": "lc-115",
+   "title": "Distinct Subsequences",
+   "topic": "dynamic-programming",
+   "topicLabel": "Dynamic Programming",
+   "pattern": "Two-Sequence DP",
+   "diff": "hard",
+   "lc": "LC 115",
+   "slug": "distinct-subsequences"
+  },
+  {
+   "id": "lc-97",
+   "title": "Interleaving String",
+   "topic": "dynamic-programming",
+   "topicLabel": "Dynamic Programming",
+   "pattern": "Two-Sequence DP",
+   "diff": "medium",
+   "lc": "LC 97",
+   "slug": "interleaving-string"
+  },
+  {
+   "id": "lc-516",
+   "title": "Longest Palindromic Subsequence",
+   "topic": "dynamic-programming",
+   "topicLabel": "Dynamic Programming",
+   "pattern": "Interval DP (shrinking)",
+   "diff": "medium",
+   "lc": "LC 516",
+   "slug": "longest-palindromic-subsequence"
+  },
+  {
+   "id": "lc-132",
+   "title": "Palindrome Partitioning II",
+   "topic": "dynamic-programming",
+   "topicLabel": "Dynamic Programming",
+   "pattern": "Interval DP (partition)",
+   "diff": "hard",
+   "lc": "LC 132",
+   "slug": "palindrome-partitioning-ii"
+  },
+  {
+   "id": "lc-1000",
+   "title": "Minimum Cost to Merge Stones",
+   "topic": "dynamic-programming",
+   "topicLabel": "Dynamic Programming",
+   "pattern": "Interval DP (partition)",
+   "diff": "hard",
+   "lc": "LC 1000",
+   "slug": "minimum-cost-to-merge-stones"
+  },
+  {
+   "id": "lc-64",
+   "title": "Minimum Path Sum",
+   "topic": "dynamic-programming",
+   "topicLabel": "Dynamic Programming",
+   "pattern": "Grid DP",
+   "diff": "medium",
+   "lc": "LC 64",
+   "slug": "minimum-path-sum"
+  },
+  {
+   "id": "lc-63",
+   "title": "Unique Paths II",
+   "topic": "dynamic-programming",
+   "topicLabel": "Dynamic Programming",
+   "pattern": "Grid DP",
+   "diff": "medium",
+   "lc": "LC 63",
+   "slug": "unique-paths-ii"
+  },
+  {
+   "id": "lc-221",
+   "title": "Maximal Square",
+   "topic": "dynamic-programming",
+   "topicLabel": "Dynamic Programming",
+   "pattern": "Grid DP",
+   "diff": "medium",
+   "lc": "LC 221",
+   "slug": "maximal-square"
+  },
+  {
+   "id": "lc-174",
+   "title": "Dungeon Game",
+   "topic": "dynamic-programming",
+   "topicLabel": "Dynamic Programming",
+   "pattern": "Grid DP (reverse)",
+   "diff": "hard",
+   "lc": "LC 174",
+   "slug": "dungeon-game"
+  },
+  {
+   "id": "lc-474",
+   "title": "Ones and Zeroes",
+   "topic": "dynamic-programming",
+   "topicLabel": "Dynamic Programming",
+   "pattern": "Knapsack DP (2D)",
+   "diff": "medium",
+   "lc": "LC 474",
+   "slug": "ones-and-zeroes"
+  },
+  {
+   "id": "lc-1049",
+   "title": "Last Stone Weight II",
+   "topic": "dynamic-programming",
+   "topicLabel": "Dynamic Programming",
+   "pattern": "Knapsack DP (subset sum)",
+   "diff": "medium",
+   "lc": "LC 1049",
+   "slug": "last-stone-weight-ii"
+  },
+  {
+   "id": "lc-698",
+   "title": "Partition to K Equal Sum Subsets",
+   "topic": "dynamic-programming",
+   "topicLabel": "Dynamic Programming",
+   "pattern": "Bitmask DP",
+   "diff": "medium",
+   "lc": "LC 698",
+   "slug": "partition-to-k-equal-sum-subsets"
+  },
+  {
+   "id": "lc-464",
+   "title": "Can I Win",
+   "topic": "dynamic-programming",
+   "topicLabel": "Dynamic Programming",
+   "pattern": "Bitmask DP",
+   "diff": "medium",
+   "lc": "LC 464",
+   "slug": "can-i-win"
+  },
+  {
+   "id": "lc-847",
+   "title": "Shortest Path Visiting All Nodes",
+   "topic": "dynamic-programming",
+   "topicLabel": "Dynamic Programming",
+   "pattern": "Bitmask DP (TSP)",
+   "diff": "hard",
+   "lc": "LC 847",
+   "slug": "shortest-path-visiting-all-nodes"
+  },
+  {
+   "id": "lc-123",
+   "title": "Best Time to Buy and Sell Stock III",
+   "topic": "dynamic-programming",
+   "topicLabel": "Dynamic Programming",
+   "pattern": "Prefix DP (state machine)",
+   "diff": "hard",
+   "lc": "LC 123",
+   "slug": "best-time-to-buy-and-sell-stock-iii"
+  },
+  {
+   "id": "lc-188",
+   "title": "Best Time to Buy and Sell Stock IV",
+   "topic": "dynamic-programming",
+   "topicLabel": "Dynamic Programming",
+   "pattern": "Prefix DP (state machine)",
+   "diff": "hard",
+   "lc": "LC 188",
+   "slug": "best-time-to-buy-and-sell-stock-iv"
+  },
+  {
+   "id": "lc-983",
+   "title": "Minimum Cost For Tickets",
+   "topic": "dynamic-programming",
+   "topicLabel": "Dynamic Programming",
+   "pattern": "Prefix DP",
+   "diff": "medium",
+   "lc": "LC 983",
+   "slug": "minimum-cost-for-tickets"
+  },
+  {
+   "id": "lc-664",
+   "title": "Strange Printer",
+   "topic": "dynamic-programming",
+   "topicLabel": "Dynamic Programming",
+   "pattern": "Interval DP (partition)",
+   "diff": "hard",
+   "lc": "LC 664",
+   "slug": "strange-printer"
+  },
+  {
+   "id": "lc-877",
+   "title": "Stone Game",
+   "topic": "dynamic-programming",
+   "topicLabel": "Dynamic Programming",
+   "pattern": "Interval DP",
+   "diff": "medium",
+   "lc": "LC 877",
+   "slug": "stone-game"
+  },
+  {
+   "id": "lc-120",
+   "title": "Triangle",
+   "topic": "dynamic-programming",
+   "topicLabel": "Dynamic Programming",
+   "pattern": "Grid DP",
+   "diff": "medium",
+   "lc": "LC 120",
+   "slug": "triangle"
+  },
+  {
+   "id": "lc-740",
+   "title": "Delete and Earn",
+   "topic": "dynamic-programming",
+   "topicLabel": "Dynamic Programming",
+   "pattern": "Prefix DP",
+   "diff": "medium",
+   "lc": "LC 740",
+   "slug": "delete-and-earn"
+  },
+  {
+   "id": "lc-377",
+   "title": "Combination Sum IV",
+   "topic": "dynamic-programming",
+   "topicLabel": "Dynamic Programming",
+   "pattern": "Prefix DP (counting)",
+   "diff": "medium",
+   "lc": "LC 377",
+   "slug": "combination-sum-iv"
+  },
+  {
+   "id": "lc-343",
+   "title": "Integer Break",
+   "topic": "dynamic-programming",
+   "topicLabel": "Dynamic Programming",
+   "pattern": "Prefix DP",
+   "diff": "medium",
+   "lc": "LC 343",
+   "slug": "integer-break"
+  },
+  {
+   "id": "lc-252",
+   "title": "Meeting Rooms",
+   "topic": "greedy",
+   "topicLabel": "Greedy",
+   "pattern": "Preserve capacity (interval scheduling)",
+   "diff": "easy",
+   "lc": "LC 252",
+   "slug": "meeting-rooms",
+   "premium": true
+  },
+  {
+   "id": "lc-409",
+   "title": "Longest Palindrome",
+   "topic": "greedy",
+   "topicLabel": "Greedy",
+   "pattern": "Exchange (character counts)",
+   "diff": "easy",
+   "lc": "LC 409",
+   "slug": "longest-palindrome"
+  },
+  {
+   "id": "lc-561",
+   "title": "Array Partition",
+   "topic": "greedy",
+   "topicLabel": "Greedy",
+   "pattern": "Adjacent pairing",
+   "diff": "easy",
+   "lc": "LC 561",
+   "slug": "array-partition"
+  },
+  {
+   "id": "lc-942",
+   "title": "DI String Match",
+   "topic": "greedy",
+   "topicLabel": "Greedy",
+   "pattern": "Flexible resource (two pointer)",
+   "diff": "easy",
+   "lc": "LC 942",
+   "slug": "di-string-match"
+  },
+  {
+   "id": "lc-680",
+   "title": "Valid Palindrome II",
+   "topic": "greedy",
+   "topicLabel": "Greedy",
+   "pattern": "Structural / forced",
+   "diff": "easy",
+   "lc": "LC 680",
+   "slug": "valid-palindrome-ii"
+  },
+  {
+   "id": "lc-976",
+   "title": "Largest Perimeter Triangle",
+   "topic": "greedy",
+   "topicLabel": "Greedy",
+   "pattern": "Dominance (sort)",
+   "diff": "easy",
+   "lc": "LC 976",
+   "slug": "largest-perimeter-triangle"
+  },
+  {
+   "id": "lc-135",
+   "title": "Candy",
+   "topic": "greedy",
+   "topicLabel": "Greedy",
+   "pattern": "Exchange (two-sided)",
+   "diff": "hard",
+   "lc": "LC 135",
+   "slug": "candy"
+  },
+  {
+   "id": "lc-11",
+   "title": "Container With Most Water",
+   "topic": "greedy",
+   "topicLabel": "Greedy",
+   "pattern": "Eliminate dominated choices",
+   "diff": "medium",
+   "lc": "LC 11",
+   "slug": "container-with-most-water"
+  },
+  {
+   "id": "lc-1029",
+   "title": "Two City Scheduling",
+   "topic": "greedy",
+   "topicLabel": "Greedy",
+   "pattern": "Sort by difference",
+   "diff": "medium",
+   "lc": "LC 1029",
+   "slug": "two-city-scheduling"
+  },
+  {
+   "id": "lc-881",
+   "title": "Boats to Save People",
+   "topic": "greedy",
+   "topicLabel": "Greedy",
+   "pattern": "Two-pointer greedy",
+   "diff": "medium",
+   "lc": "LC 881",
+   "slug": "boats-to-save-people"
+  },
+  {
+   "id": "lc-1710",
+   "title": "Maximum Units on a Truck",
+   "topic": "greedy",
+   "topicLabel": "Greedy",
+   "pattern": "Sort by ratio",
+   "diff": "easy",
+   "lc": "LC 1710",
+   "slug": "maximum-units-on-a-truck"
+  },
+  {
+   "id": "lc-1647",
+   "title": "Minimum Deletions to Make Character Frequencies Unique",
+   "topic": "greedy",
+   "topicLabel": "Greedy",
+   "pattern": "Sort + greedy",
+   "diff": "medium",
+   "lc": "LC 1647",
+   "slug": "minimum-deletions-to-make-character-frequencies-unique"
+  },
+  {
+   "id": "lc-665",
+   "title": "Non-decreasing Array",
+   "topic": "greedy",
+   "topicLabel": "Greedy",
+   "pattern": "Local greedy fix",
+   "diff": "medium",
+   "lc": "LC 665",
+   "slug": "non-decreasing-array"
+  },
+  {
+   "id": "lc-1221",
+   "title": "Split a String in Balanced Strings",
+   "topic": "greedy",
+   "topicLabel": "Greedy",
+   "pattern": "Greedy scan",
+   "diff": "easy",
+   "lc": "LC 1221",
+   "slug": "split-a-string-in-balanced-strings"
+  },
+  {
+   "id": "lc-1094",
+   "title": "Car Pooling",
+   "topic": "greedy",
+   "topicLabel": "Greedy",
+   "pattern": "Interval / greedy simulation",
+   "diff": "medium",
+   "lc": "LC 1094",
+   "slug": "car-pooling"
+  },
+  {
+   "id": "lc-1353",
+   "title": "Maximum Number of Events That Can Be Attended",
+   "topic": "greedy",
+   "topicLabel": "Greedy",
+   "pattern": "Greedy + heap",
+   "diff": "medium",
+   "lc": "LC 1353",
+   "slug": "maximum-number-of-events-that-can-be-attended"
+  },
+  {
+   "id": "lc-376",
+   "title": "Wiggle Subsequence",
+   "topic": "greedy",
+   "topicLabel": "Greedy",
+   "pattern": "Greedy scan",
+   "diff": "medium",
+   "lc": "LC 376",
+   "slug": "wiggle-subsequence"
+  },
+  {
+   "id": "lc-1326",
+   "title": "Minimum Number of Taps to Open to Water a Garden",
+   "topic": "greedy",
+   "topicLabel": "Greedy",
+   "pattern": "Jump-game-style greedy",
+   "diff": "hard",
+   "lc": "LC 1326",
+   "slug": "minimum-number-of-taps-to-open-to-water-a-garden"
+  },
+  {
+   "id": "lc-630",
+   "title": "Course Schedule III",
+   "topic": "greedy",
+   "topicLabel": "Greedy",
+   "pattern": "Greedy + heap",
+   "diff": "hard",
+   "lc": "LC 630",
+   "slug": "course-schedule-iii"
+  },
+  {
+   "id": "lc-406",
+   "title": "Queue Reconstruction by Height",
+   "topic": "greedy",
+   "topicLabel": "Greedy",
+   "pattern": "Sort + insert greedy",
+   "diff": "medium",
+   "lc": "LC 406",
+   "slug": "queue-reconstruction-by-height"
   }
  ]
 }
