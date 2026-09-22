@@ -889,6 +889,248 @@
    "diff": "hard",
    "lc": "LC 2290",
    "slug": "minimum-obstacle-removal-to-reach-corner"
+  },
+  {
+   "id": "lc-144",
+   "title": "Binary Tree Preorder Traversal",
+   "topic": "trees",
+   "topicLabel": "Trees",
+   "pattern": "Traversals",
+   "diff": "easy",
+   "lc": "LC 144",
+   "slug": "binary-tree-preorder-traversal"
+  },
+  {
+   "id": "lc-94",
+   "title": "Binary Tree Inorder Traversal",
+   "topic": "trees",
+   "topicLabel": "Trees",
+   "pattern": "Traversals",
+   "diff": "easy",
+   "lc": "LC 94",
+   "slug": "binary-tree-inorder-traversal"
+  },
+  {
+   "id": "lc-145",
+   "title": "Binary Tree Postorder Traversal",
+   "topic": "trees",
+   "topicLabel": "Trees",
+   "pattern": "Traversals",
+   "diff": "easy",
+   "lc": "LC 145",
+   "slug": "binary-tree-postorder-traversal"
+  },
+  {
+   "id": "lc-662",
+   "title": "Maximum Width of Binary Tree",
+   "topic": "trees",
+   "topicLabel": "Trees",
+   "pattern": "BFS / level order",
+   "diff": "medium",
+   "lc": "LC 662",
+   "slug": "maximum-width-of-binary-tree"
+  },
+  {
+   "id": "lc-112",
+   "title": "Path Sum",
+   "topic": "trees",
+   "topicLabel": "Trees",
+   "pattern": "Top-down DFS",
+   "diff": "easy",
+   "lc": "LC 112",
+   "slug": "path-sum"
+  },
+  {
+   "id": "lc-113",
+   "title": "Path Sum II",
+   "topic": "trees",
+   "topicLabel": "Trees",
+   "pattern": "Top-down DFS",
+   "diff": "medium",
+   "lc": "LC 113",
+   "slug": "path-sum-ii"
+  },
+  {
+   "id": "lc-129",
+   "title": "Sum Root to Leaf Numbers",
+   "topic": "trees",
+   "topicLabel": "Trees",
+   "pattern": "Top-down DFS",
+   "diff": "medium",
+   "lc": "LC 129",
+   "slug": "sum-root-to-leaf-numbers"
+  },
+  {
+   "id": "lc-687",
+   "title": "Longest Univalue Path",
+   "topic": "trees",
+   "topicLabel": "Trees",
+   "pattern": "Bottom-up DFS",
+   "diff": "medium",
+   "lc": "LC 687",
+   "slug": "longest-univalue-path"
+  },
+  {
+   "id": "lc-700",
+   "title": "Search in a Binary Search Tree",
+   "topic": "trees",
+   "topicLabel": "Trees",
+   "pattern": "BST",
+   "diff": "easy",
+   "lc": "LC 700",
+   "slug": "search-in-a-binary-search-tree"
+  },
+  {
+   "id": "lc-701",
+   "title": "Insert into a Binary Search Tree",
+   "topic": "trees",
+   "topicLabel": "Trees",
+   "pattern": "BST",
+   "diff": "medium",
+   "lc": "LC 701",
+   "slug": "insert-into-a-binary-search-tree"
+  },
+  {
+   "id": "lc-450",
+   "title": "Delete Node in a BST",
+   "topic": "trees",
+   "topicLabel": "Trees",
+   "pattern": "BST",
+   "diff": "medium",
+   "lc": "LC 450",
+   "slug": "delete-node-in-a-bst"
+  },
+  {
+   "id": "lc-653",
+   "title": "Two Sum IV - Input is a BST",
+   "topic": "trees",
+   "topicLabel": "Trees",
+   "pattern": "BST",
+   "diff": "easy",
+   "lc": "LC 653",
+   "slug": "two-sum-iv-input-is-a-bst"
+  },
+  {
+   "id": "lc-669",
+   "title": "Trim a Binary Search Tree",
+   "topic": "trees",
+   "topicLabel": "Trees",
+   "pattern": "BST",
+   "diff": "medium",
+   "lc": "LC 669",
+   "slug": "trim-a-binary-search-tree"
+  },
+  {
+   "id": "lc-1382",
+   "title": "Balance a Binary Search Tree",
+   "topic": "trees",
+   "topicLabel": "Trees",
+   "pattern": "BST",
+   "diff": "medium",
+   "lc": "LC 1382",
+   "slug": "balance-a-binary-search-tree"
+  },
+  {
+   "id": "lc-108",
+   "title": "Convert Sorted Array to Binary Search Tree",
+   "topic": "trees",
+   "topicLabel": "Trees",
+   "pattern": "BST",
+   "diff": "easy",
+   "lc": "LC 108",
+   "slug": "convert-sorted-array-to-binary-search-tree"
+  },
+  {
+   "id": "lc-1650",
+   "title": "Lowest Common Ancestor of a Binary Tree III",
+   "topic": "trees",
+   "topicLabel": "Trees",
+   "pattern": "LCA",
+   "diff": "medium",
+   "lc": "LC 1650",
+   "slug": "lowest-common-ancestor-of-a-binary-tree-iii",
+   "premium": true
+  },
+  {
+   "id": "lc-1123",
+   "title": "Lowest Common Ancestor of Deepest Leaves",
+   "topic": "trees",
+   "topicLabel": "Trees",
+   "pattern": "LCA",
+   "diff": "medium",
+   "lc": "LC 1123",
+   "slug": "lowest-common-ancestor-of-deepest-leaves"
+  },
+  {
+   "id": "lc-106",
+   "title": "Construct Binary Tree from Inorder and Postorder Traversal",
+   "topic": "trees",
+   "topicLabel": "Trees",
+   "pattern": "Construction",
+   "diff": "medium",
+   "lc": "LC 106",
+   "slug": "construct-binary-tree-from-inorder-and-postorder-traversal"
+  },
+  {
+   "id": "lc-889",
+   "title": "Construct Binary Tree from Preorder and Postorder Traversal",
+   "topic": "trees",
+   "topicLabel": "Trees",
+   "pattern": "Construction",
+   "diff": "medium",
+   "lc": "LC 889",
+   "slug": "construct-binary-tree-from-preorder-and-postorder-traversal"
+  },
+  {
+   "id": "lc-337",
+   "title": "House Robber III",
+   "topic": "trees",
+   "topicLabel": "Trees",
+   "pattern": "Tree DP",
+   "diff": "medium",
+   "lc": "LC 337",
+   "slug": "house-robber-iii"
+  },
+  {
+   "id": "lc-968",
+   "title": "Binary Tree Cameras",
+   "topic": "trees",
+   "topicLabel": "Trees",
+   "pattern": "Tree DP",
+   "diff": "hard",
+   "lc": "LC 968",
+   "slug": "binary-tree-cameras"
+  },
+  {
+   "id": "lc-437",
+   "title": "Path Sum III",
+   "topic": "trees",
+   "topicLabel": "Trees",
+   "pattern": "Mixed",
+   "diff": "medium",
+   "lc": "LC 437",
+   "slug": "path-sum-iii"
+  },
+  {
+   "id": "lc-987",
+   "title": "Vertical Order Traversal of a Binary Tree",
+   "topic": "trees",
+   "topicLabel": "Trees",
+   "pattern": "Mixed",
+   "diff": "hard",
+   "lc": "LC 987",
+   "slug": "vertical-order-traversal-of-a-binary-tree"
+  },
+  {
+   "id": "lc-545",
+   "title": "Boundary of Binary Tree",
+   "topic": "trees",
+   "topicLabel": "Trees",
+   "pattern": "Mixed",
+   "diff": "medium",
+   "lc": "LC 545",
+   "slug": "boundary-of-binary-tree",
+   "premium": true
   }
  ]
 }

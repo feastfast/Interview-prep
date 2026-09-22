@@ -684,6 +684,15 @@
     "title": "Serialize and Deserialize Binary Tree",
     "diff": "hard",
     "slug": "serialize-and-deserialize-binary-tree"
+   },
+   {
+    "app": "lc-103"
+   },
+   {
+    "app": "lc-637"
+   },
+   {
+    "app": "lc-111"
    }
   ],
   "heap": [
