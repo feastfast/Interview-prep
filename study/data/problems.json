@@ -1642,6 +1642,189 @@
    "diff": "medium",
    "lc": "LC 406",
    "slug": "queue-reconstruction-by-height"
+  },
+  {
+   "id": "lc-278",
+   "title": "First Bad Version",
+   "topic": "binary-search",
+   "topicLabel": "Binary Search",
+   "pattern": "First True boundary",
+   "diff": "easy",
+   "lc": "LC 278",
+   "slug": "first-bad-version"
+  },
+  {
+   "id": "lc-744",
+   "title": "Find Smallest Letter Greater Than Target",
+   "topic": "binary-search",
+   "topicLabel": "Binary Search",
+   "pattern": "Upper bound",
+   "diff": "easy",
+   "lc": "LC 744",
+   "slug": "find-smallest-letter-greater-than-target"
+  },
+  {
+   "id": "lc-540",
+   "title": "Single Element in a Sorted Array",
+   "topic": "binary-search",
+   "topicLabel": "Binary Search",
+   "pattern": "Parity boundary search",
+   "diff": "medium",
+   "lc": "LC 540",
+   "slug": "single-element-in-a-sorted-array"
+  },
+  {
+   "id": "lc-287",
+   "title": "Find the Duplicate Number",
+   "topic": "binary-search",
+   "topicLabel": "Binary Search",
+   "pattern": "Binary search on value range",
+   "diff": "medium",
+   "lc": "LC 287",
+   "slug": "find-the-duplicate-number"
+  },
+  {
+   "id": "lc-1552",
+   "title": "Magnetic Force Between Two Balls",
+   "topic": "binary-search",
+   "topicLabel": "Binary Search",
+   "pattern": "Max feasible (Last True)",
+   "diff": "medium",
+   "lc": "LC 1552",
+   "slug": "magnetic-force-between-two-balls"
+  },
+  {
+   "id": "lc-81",
+   "title": "Search in Rotated Sorted Array II",
+   "topic": "binary-search",
+   "topicLabel": "Binary Search",
+   "pattern": "Rotated array with duplicates",
+   "diff": "medium",
+   "lc": "LC 81",
+   "slug": "search-in-rotated-sorted-array-ii"
+  },
+  {
+   "id": "lc-852",
+   "title": "Peak Index in a Mountain Array",
+   "topic": "binary-search",
+   "topicLabel": "Binary Search",
+   "pattern": "Peak / local structure",
+   "diff": "medium",
+   "lc": "LC 852",
+   "slug": "peak-index-in-a-mountain-array"
+  },
+  {
+   "id": "lc-240",
+   "title": "Search a 2D Matrix II",
+   "topic": "binary-search",
+   "topicLabel": "Binary Search",
+   "pattern": "Staircase search",
+   "diff": "medium",
+   "lc": "LC 240",
+   "slug": "search-a-2d-matrix-ii"
+  },
+  {
+   "id": "lc-1539",
+   "title": "Kth Missing Positive Number",
+   "topic": "binary-search",
+   "topicLabel": "Binary Search",
+   "pattern": "First True boundary",
+   "diff": "easy",
+   "lc": "LC 1539",
+   "slug": "kth-missing-positive-number"
+  },
+  {
+   "id": "lc-528",
+   "title": "Random Pick with Weight",
+   "topic": "binary-search",
+   "topicLabel": "Binary Search",
+   "pattern": "Prefix sum + lower bound",
+   "diff": "medium",
+   "lc": "LC 528",
+   "slug": "random-pick-with-weight"
+  },
+  {
+   "id": "lc-1283",
+   "title": "Find the Smallest Divisor Given a Threshold",
+   "topic": "binary-search",
+   "topicLabel": "Binary Search",
+   "pattern": "Min feasible (First True)",
+   "diff": "medium",
+   "lc": "LC 1283",
+   "slug": "find-the-smallest-divisor-given-a-threshold"
+  },
+  {
+   "id": "lc-410",
+   "title": "Split Array Largest Sum",
+   "topic": "binary-search",
+   "topicLabel": "Binary Search",
+   "pattern": "Min feasible (First True)",
+   "diff": "hard",
+   "lc": "LC 410",
+   "slug": "split-array-largest-sum"
+  },
+  {
+   "id": "lc-1482",
+   "title": "Minimum Number of Days to Make m Bouquets",
+   "topic": "binary-search",
+   "topicLabel": "Binary Search",
+   "pattern": "Min feasible (First True)",
+   "diff": "medium",
+   "lc": "LC 1482",
+   "slug": "minimum-number-of-days-to-make-m-bouquets"
+  },
+  {
+   "id": "lc-1231",
+   "title": "Divide Chocolate",
+   "topic": "binary-search",
+   "topicLabel": "Binary Search",
+   "pattern": "Max feasible (Last True)",
+   "diff": "hard",
+   "lc": "LC 1231",
+   "slug": "divide-chocolate",
+   "premium": true
+  },
+  {
+   "id": "lc-1385",
+   "title": "Find the Distance Value Between Two Arrays",
+   "topic": "binary-search",
+   "topicLabel": "Binary Search",
+   "pattern": "Binary search per element",
+   "diff": "easy",
+   "lc": "LC 1385",
+   "slug": "find-the-distance-value-between-two-arrays"
+  },
+  {
+   "id": "lc-1095",
+   "title": "Find in Mountain Array",
+   "topic": "binary-search",
+   "topicLabel": "Binary Search",
+   "pattern": "Peak + boundary search",
+   "diff": "hard",
+   "lc": "LC 1095",
+   "slug": "find-in-mountain-array",
+   "premium": true
+  },
+  {
+   "id": "lc-1150",
+   "title": "Check If a Number Is Majority Element in a Sorted Array",
+   "topic": "binary-search",
+   "topicLabel": "Binary Search",
+   "pattern": "Lower/upper bound count",
+   "diff": "easy",
+   "lc": "LC 1150",
+   "slug": "check-if-a-number-is-majority-element-in-a-sorted-array",
+   "premium": true
+  },
+  {
+   "id": "lc-1300",
+   "title": "Sum of Mutated Array Closest to Target",
+   "topic": "binary-search",
+   "topicLabel": "Binary Search",
+   "pattern": "Min feasible (First True)",
+   "diff": "medium",
+   "lc": "LC 1300",
+   "slug": "sum-of-mutated-array-closest-to-target"
   }
  ]
 }
