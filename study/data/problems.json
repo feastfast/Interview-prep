@@ -1131,6 +1131,86 @@
    "lc": "LC 545",
    "slug": "boundary-of-binary-tree",
    "premium": true
+  },
+  {
+   "id": "lc-1248",
+   "title": "Count Number of Nice Subarrays",
+   "topic": "sliding-window",
+   "topicLabel": "Sliding Window",
+   "pattern": "At-most K to exactly K",
+   "diff": "medium",
+   "lc": "LC 1248",
+   "slug": "count-number-of-nice-subarrays"
+  },
+  {
+   "id": "lc-992",
+   "title": "Subarrays with K Different Integers",
+   "topic": "sliding-window",
+   "topicLabel": "Sliding Window",
+   "pattern": "At-most K to exactly K",
+   "diff": "hard",
+   "lc": "LC 992",
+   "slug": "subarrays-with-k-different-integers"
+  },
+  {
+   "id": "lc-2461",
+   "title": "Maximum Sum of Distinct Subarrays With Length K",
+   "topic": "sliding-window",
+   "topicLabel": "Sliding Window",
+   "pattern": "Fixed-size window",
+   "diff": "medium",
+   "lc": "LC 2461",
+   "slug": "maximum-sum-of-distinct-subarrays-with-length-k"
+  },
+  {
+   "id": "lc-1052",
+   "title": "Grumpy Bookstore Owner",
+   "topic": "sliding-window",
+   "topicLabel": "Sliding Window",
+   "pattern": "Fixed-size window",
+   "diff": "medium",
+   "lc": "LC 1052",
+   "slug": "grumpy-bookstore-owner"
+  },
+  {
+   "id": "lc-1838",
+   "title": "Frequency of the Most Frequent Element",
+   "topic": "sliding-window",
+   "topicLabel": "Sliding Window",
+   "pattern": "Longest valid window",
+   "diff": "medium",
+   "lc": "LC 1838",
+   "slug": "frequency-of-the-most-frequent-element"
+  },
+  {
+   "id": "lc-1493",
+   "title": "Longest Subarray of 1's After Deleting One Element",
+   "topic": "sliding-window",
+   "topicLabel": "Sliding Window",
+   "pattern": "Longest valid window",
+   "diff": "medium",
+   "lc": "LC 1493",
+   "slug": "longest-subarray-of-1s-after-deleting-one-element"
+  },
+  {
+   "id": "lc-2024",
+   "title": "Maximize the Confusion of a Student",
+   "topic": "sliding-window",
+   "topicLabel": "Sliding Window",
+   "pattern": "Longest valid window",
+   "diff": "medium",
+   "lc": "LC 2024",
+   "slug": "maximize-the-confusion-of-a-student"
+  },
+  {
+   "id": "lc-1423",
+   "title": "Maximum Points You Can Obtain from Cards",
+   "topic": "sliding-window",
+   "topicLabel": "Sliding Window",
+   "pattern": "Fixed-size window",
+   "diff": "medium",
+   "lc": "LC 1423",
+   "slug": "maximum-points-you-can-obtain-from-cards"
   }
  ]
 }
