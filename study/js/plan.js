@@ -185,13 +185,19 @@ export const defaultPlan = (todayISO) => ({
 });
 
 /* ---------------------------------------------------------------- schedule cursor (day-queue shifting) */
-/* A day's schedule is "complete" once every item in it is solved or explicitly skipped -- stashed items
-   never entered rec.items in the first place, so they don't block completion. */
-export function dayComplete(rec, probs) {
+/* Completions count toward a list from the earlier of its slot date and today: a catch-up list accepts work
+   done since its (past) slot, a pulled-forward list accepts work done today. Using the slot date alone would
+   ignore today's work on an ahead-of-schedule list; ignoring dates would count re-solve items (already solved
+   once) as done before they were actually re-solved. */
+export const listSince = (cursor, todayISO) => (cursor < todayISO ? cursor : todayISO);
+
+/* A day's schedule is "complete" once every item in it is done since `since`, or explicitly skipped --
+   stashed items never entered rec.items in the first place, so they don't block completion. */
+export function dayComplete(rec, probs, since) {
   if (!rec) return false;
   if (!rec.items.length) return true;
   const skipped = new Set(rec.skipped || []);
-  return rec.items.every(i => skipped.has(i.id) || (probs[i.id] && probs[i.id].st !== "todo"));
+  return rec.items.every(i => skipped.has(i.id) || doneOn(probs[i.id], since));
 }
 
 /* First unsolved problem of a topic that is not already used (used for "skip / swap"). */

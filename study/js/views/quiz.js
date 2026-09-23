@@ -1,7 +1,9 @@
 import * as store from "../store.js";
 import { esc, md, shuffle, plural, $, $$ } from "../util.js";
+import { icon, ring, settle, confetti } from "../ui.js";
 
 let sess = null;
+const inline = s => md(s).replace(/^<p>|<\/p>$/g, "");
 
 export function render(el, r, ctx) {
   if (r.parts[1] === "session") return session(el, r, ctx);
@@ -31,13 +33,15 @@ function session(el, r, ctx) {
     const order = shuffle(q.o.map((_, i) => i));
     return { q, order, correct: order.indexOf(q.a) };
   });
-  if (!qs.length) { el.innerHTML = '<div class="empty"><b>No questions to show</b>Nothing matches this selection yet.<p style="margin-top:14px"><a class="btn" href="' + home + '/quiz">Back</a></p></div>'; return; }
-  sess = { home, decksParam: r.q.get("decks") || "", list: qs, i: 0, right: 0, wrong: [], answered: -1, t0: Date.now() };
+  if (!qs.length) { el.innerHTML = '<div class="empty">' + icon("quiz", 28) + '<b>No questions to show</b>Nothing matches this selection yet.<p style="margin-top:16px"><a class="btn" href="' + home + '/quiz">Back</a></p></div>'; return; }
+  sess = { home, decksParam: r.q.get("decks") || "", list: qs, i: 0, right: 0, wrong: [], answered: -1, t0: Date.now(), prev: 0 };
   draw(el, ctx);
   const onKey = e => {
-    if (!sess || !document.getElementById("qz")) return;
+    if (!sess || !document.getElementById("qz") || e.metaKey || e.ctrlKey) return;
     const k = "abcdefgh".indexOf(e.key.toLowerCase());
-    if (sess.answered < 0 && k >= 0 && k < sess.list[sess.i].order.length) answer(k, el, ctx);
+    const k2 = "12345678".indexOf(e.key);
+    const idx = k >= 0 ? k : k2;
+    if (sess.answered < 0 && idx >= 0 && idx < sess.list[sess.i].order.length) answer(idx, el, ctx);
     else if (sess.answered >= 0 && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); next(el, ctx); }
   };
   document.addEventListener("keydown", onKey);
@@ -49,20 +53,23 @@ function draw(el, ctx) {
   const cur = sess.list[sess.i];
   const q = cur.q;
   const pct = Math.round(100 * sess.i / sess.list.length);
-  let h = '<div class="session-head"><a class="btn ghost sm" href="' + sess.home + '/quiz">&larr; Exit</a><div class="bar"><i style="width:' + pct + '%"></i></div><span class="small muted mono">' + (sess.i + 1) + "/" + sess.list.length + "</span></div>";
-  h += '<div id="qz"><div class="row" style="margin-bottom:8px"><span class="tag acc">' + esc(q.t) + "</span></div><div style=\"font-size:17.5px;font-weight:500;margin-bottom:14px\">" + md(q.q) + "</div>";
+  let h = '<div class="sess-h"><a class="iconbtn" href="' + sess.home + '/quiz" aria-label="Exit quiz">' + icon("close", 18) + '</a><div class="bar"><i style="width:' + sess.prev + '%" data-to="' + pct + '%"></i></div><span class="sess-n">' + (sess.i + 1) + " / " + sess.list.length + "</span></div>";
+  sess.prev = pct;
+  h += '<div class="qz" id="qz"' + (sess.answered < 0 ? ' data-new="1"' : "") + '><div class="row"><span class="tag acc">' + esc(q.t) + '</span><span class="small muted">Question ' + (sess.i + 1) + '</span></div><div class="qz-q">' + md(q.q) + "</div>";
   cur.order.forEach((oi, k) => {
     let cls = "opt";
     if (sess.answered >= 0) { cls += " locked"; if (k === cur.correct) cls += " right"; else if (k === sess.answered) cls += " wrong"; }
-    h += '<button class="' + cls + '" data-k="' + k + '"><span class="k">' + "ABCDEFGH"[k] + "</span><span>" + md(q.o[oi]).replace(/^<p>|<\/p>$/g, "") + "</span></button>";
+    const mark = sess.answered >= 0 && k === cur.correct ? icon("check", 14) : sess.answered === k ? icon("close", 14) : "ABCDEFGH"[k];
+    h += '<button class="' + cls + '" data-k="' + k + '"><span class="k">' + mark + "</span><span>" + inline(q.o[oi]) + "</span></button>";
   });
   if (sess.answered >= 0) {
     const ok = sess.answered === cur.correct;
-    h += '<div class="explain"><b>' + (ok ? "Correct" : "Not quite") + ".</b> " + md(q.x) + "</div>" +
-      '<button class="btn primary block" id="next">' + (sess.i + 1 === sess.list.length ? "See results" : "Next question") + "</button>";
-  }
+    h += '<div class="explain ' + (ok ? "ok" : "no") + '">' + icon(ok ? "check" : "alert", 18) + "<div><b>" + (ok ? "Correct." : "Not quite.") + "</b> " + md(q.x) + "</div></div>" +
+      '<button class="btn primary block lg" id="next">' + (sess.i + 1 === sess.list.length ? "See results" : "Next question") + " <kbd>enter</kbd></button>";
+  } else h += '<p class="hintline">Press <kbd>A</kbd>&ndash;<kbd>' + "ABCDEFGH"[cur.order.length - 1] + "</kbd> or <kbd>1</kbd>&ndash;<kbd>" + cur.order.length + "</kbd> to answer.</p>";
   h += "</div>";
   el.innerHTML = h;
+  settle(el);
   $$(".opt", el).forEach(b => b.onclick = () => { if (sess.answered < 0) answer(+b.dataset.k, el, ctx); });
   const nx = $("#next", el); if (nx) nx.onclick = () => next(el, ctx);
 }
@@ -80,21 +87,24 @@ function answer(k, el, ctx) {
   store.bump("quiz");
   draw(el, ctx);
 }
-function next(el, ctx) { if (!sess) return; sess.i++; sess.answered = -1; draw(el, ctx); window.scrollTo(0, 0); }
+function next(el, ctx) { if (!sess) return; sess.i++; sess.answered = -1; draw(el, ctx); window.scrollTo({ top: 0, behavior: "smooth" }); }
 
 function finish(el) {
   const n = sess.list.length, pct = Math.round(100 * sess.right / n);
   const secs = Math.round((Date.now() - sess.t0) / 1000);
-  let h = '<div class="card" style="text-align:center;padding:24px 16px"><div style="font-size:40px">' + (pct >= 80 ? "&#127942;" : pct >= 50 ? "&#128077;" : "&#128170;") + '</div><h2 style="margin:6px 0">' + sess.right + " / " + n + " correct</h2>" +
-    '<p class="muted">' + pct + "% &middot; " + Math.floor(secs / 60) + "m " + (secs % 60) + "s</p></div>";
+  const verdict = pct >= 80 ? "Excellent work" : pct >= 50 ? "Solid progress" : "Good practice";
+  let h = '<div class="result">' + ring(sess.right / n, { size: 132, stroke: 12, label: pct + "%", sub: sess.right + " of " + n }) +
+    "<h1>" + verdict + '</h1><p class="muted">' + plural(n, "question") + " · " + Math.floor(secs / 60) + "m " + (secs % 60) + "s</p>" +
+    '<div class="row" style="justify-content:center;margin-top:18px"><a class="btn primary lg" href="#/quiz/session?n=' + (sess.wrong.length ? "all&mode=mistakes" : "10") + "&decks=" + encodeURIComponent(sess.decksParam) + "&r=" + Date.now() + '">' +
+    icon(sess.wrong.length ? "sync" : "bolt", 16) + (sess.wrong.length ? "Retry mistakes" : "Another quiz") + '</a><a class="btn lg" href="' + sess.home + '/quiz">Back to topic</a></div></div>';
   if (sess.wrong.length) {
-    h += "<h2>Review what you missed</h2>";
+    h += '<div class="sec-h"><h2>Review what you missed</h2><span class="tag bad">' + sess.wrong.length + "</span></div>";
     for (const q of sess.wrong) {
-      h += '<div class="card"><span class="tag">' + esc(q.t) + "</span><div style=\"margin:6px 0;font-weight:500\">" + md(q.q) + '</div><div class="small"><b>Answer:</b> ' + md(q.o[q.a]).replace(/^<p>|<\/p>$/g, "") + '</div><div class="explain" style="margin-bottom:0">' + md(q.x) + "</div></div>";
+      h += '<div class="card miss"><span class="tag">' + esc(q.t) + '</span><div class="miss-q">' + md(q.q) + '</div><div class="miss-a">' + icon("check", 14) + "<span>" + inline(q.o[q.a]) + '</span></div><div class="explain" style="margin-bottom:0">' + icon("sparkle", 16) + "<div>" + md(q.x) + "</div></div></div>";
     }
-    h += '<p class="small muted">These are now in your <b>Review mistakes</b> set and will come up first next time.</p>';
+    h += '<p class="small muted">These are now in your mistakes set and come up first next time.</p>';
   }
-  h += '<div class="row"><a class="btn primary" href="#/quiz/session?n=' + (sess.wrong.length ? "all&mode=mistakes" : "10") + "&decks=" + encodeURIComponent(sess.decksParam) + "&r=" + Date.now() + '">' + (sess.wrong.length ? "Retry mistakes" : "Another quiz") + '</a><a class="btn" href="' + sess.home + '/quiz">Back to topic</a></div>';
   el.innerHTML = h;
+  if (pct >= 80) confetti();
   sess = null;
 }
