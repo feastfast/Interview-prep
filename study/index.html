@@ -2,34 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#f6f6f4">
-<title>Study · Interview Prep</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%236d5ef7'/><stop offset='1' stop-color='%23d946ef'/></linearGradient></defs><rect width='100' height='100' rx='26' fill='url(%23g)'/><path d='M50 20c2 21 9 29 30 32-21 3-28 11-30 32-2-21-9-29-30-32 21-3 28-11 30-32Z' fill='white'/></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
-<script>try{var t=localStorage.getItem("study-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
-<link rel="stylesheet" href="style.css?v=7">
-<!-- bump v on every deploy so browsers never mix old and new modules -->
-<script type="importmap">{"imports":{
-  "./js/app.js":"./js/app.js?v=7","./js/merge.js":"./js/merge.js?v=7","./js/plan.js":"./js/plan.js?v=7","./js/srs.js":"./js/srs.js?v=7",
-  "./js/store.js":"./js/store.js?v=7","./js/sync.js":"./js/sync.js?v=7","./js/util.js":"./js/util.js?v=7","./js/ui.js":"./js/ui.js?v=7",
-  "./js/views/cards.js":"./js/views/cards.js?v=7","./js/views/plan.js":"./js/views/plan.js?v=7","./js/views/progress.js":"./js/views/progress.js?v=7",
-  "./js/views/quiz.js":"./js/views/quiz.js?v=7","./js/views/today.js":"./js/views/today.js?v=7","./js/views/topics.js":"./js/views/topics.js?v=7"
-}}</script>
+<title>Interview Prep</title>
+<!-- the app now lives at the site root; keep old /study/ links working -->
+<script>location.replace("../" + location.hash);</script>
+<meta http-equiv="refresh" content="0; url=../">
 </head>
-<body>
-<div class="shell">
-  <aside class="side" id="side"></aside>
-  <div class="stage">
-    <header class="top" id="top"></header>
-    <main id="main"></main>
-  </div>
-</div>
-<nav class="dock" id="nav" aria-label="Main"></nav>
-<div id="toasts" aria-live="polite"></div>
-<script type="module" src="js/app.js?v=7"></script>
-<noscript><p style="padding:24px">This page needs JavaScript.</p></noscript>
-</body>
+<body><p><a href="../">Interview Prep has moved &rarr;</a></p></body>
 </html>
