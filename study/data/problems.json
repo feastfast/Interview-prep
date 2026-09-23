@@ -1,2193 +1,2377 @@
 {
- "problems": [
-  {
-   "id": "kth-largest",
-   "title": "Kth Largest Element",
-   "topic": "heap",
-   "topicLabel": "Heap",
-   "pattern": "Top K",
-   "diff": "medium",
-   "lc": "LC 215",
-   "slug": "kth-largest-element-in-an-array"
-  },
-  {
-   "id": "k-closest",
-   "title": "K Closest Points to Origin",
-   "topic": "heap",
-   "topicLabel": "Heap",
-   "pattern": "Top K",
-   "diff": "medium",
-   "lc": "LC 973",
-   "slug": "k-closest-points-to-origin"
-  },
-  {
-   "id": "top-k-frequent",
-   "title": "Top K Frequent Elements",
-   "topic": "heap",
-   "topicLabel": "Heap",
-   "pattern": "Hash map + Heap",
-   "diff": "medium",
-   "lc": "LC 347",
-   "slug": "top-k-frequent-elements"
-  },
-  {
-   "id": "median-finder",
-   "title": "Find Median from Data Stream",
-   "topic": "heap",
-   "topicLabel": "Heap",
-   "pattern": "Two heaps",
-   "diff": "hard",
-   "lc": "LC 295",
-   "slug": "find-median-from-data-stream"
-  },
-  {
-   "id": "connect-ropes",
-   "title": "Connect Ropes (Minimum Cost)",
-   "topic": "heap",
-   "topicLabel": "Heap",
-   "pattern": "Repeatedly process min",
-   "diff": "medium",
-   "lc": "LC 1167",
-   "slug": "minimum-cost-to-connect-sticks",
-   "premium": true
-  },
-  {
-   "id": "last-stone",
-   "title": "Last Stone Weight",
-   "topic": "heap",
-   "topicLabel": "Heap",
-   "pattern": "Repeatedly process max",
-   "diff": "easy",
-   "lc": "LC 1046",
-   "slug": "last-stone-weight"
-  },
-  {
-   "id": "merge-k-sorted",
-   "title": "Merge K Sorted Arrays",
-   "topic": "heap",
-   "topicLabel": "Heap",
-   "pattern": "K-way merge",
-   "diff": "medium",
-   "lc": "LC 23 (arrays)",
-   "slug": "merge-k-sorted-lists"
-  },
-  {
-   "id": "meeting-rooms",
-   "title": "Meeting Rooms II",
-   "topic": "heap",
-   "topicLabel": "Heap",
-   "pattern": "Sort + Heap",
-   "diff": "medium",
-   "lc": "LC 253",
-   "slug": "meeting-rooms-ii",
-   "premium": true
-  },
-  {
-   "id": "ipo",
-   "title": "IPO (Maximum Capital)",
-   "topic": "heap",
-   "topicLabel": "Heap",
-   "pattern": "Heap + Greedy",
-   "diff": "hard",
-   "lc": "LC 502",
-   "slug": "ipo"
-  },
-  {
-   "id": "least-interval",
-   "title": "Task Scheduler",
-   "topic": "heap",
-   "topicLabel": "Heap",
-   "pattern": "Hash map + Heap",
-   "diff": "medium",
-   "lc": "LC 621",
-   "slug": "task-scheduler"
-  },
-  {
-   "id": "furthest-building",
-   "title": "Furthest Building You Can Reach",
-   "topic": "heap",
-   "topicLabel": "Heap",
-   "pattern": "Repeatedly process (greedy)",
-   "diff": "medium",
-   "lc": "LC 1642",
-   "slug": "furthest-building-you-can-reach"
-  },
-  {
-   "id": "k-smallest-pairs",
-   "title": "K Pairs with Smallest Sums",
-   "topic": "heap",
-   "topicLabel": "Heap",
-   "pattern": "K-way merge + Top K",
-   "diff": "medium",
-   "lc": "LC 373",
-   "slug": "find-k-pairs-with-smallest-sums"
-  },
-  {
-   "id": "kth-smallest-matrix",
-   "title": "Kth Smallest in a Sorted Matrix",
-   "topic": "heap",
-   "topicLabel": "Heap",
-   "pattern": "K-way merge",
-   "diff": "medium",
-   "lc": "LC 378",
-   "slug": "kth-smallest-element-in-a-sorted-matrix"
-  },
-  {
-   "id": "min-refuel-stops",
-   "title": "Minimum Number of Refueling Stops",
-   "topic": "heap",
-   "topicLabel": "Heap",
-   "pattern": "Heap + Greedy",
-   "diff": "hard",
-   "lc": "LC 871",
-   "slug": "minimum-number-of-refueling-stops"
-  },
-  {
-   "id": "max-performance",
-   "title": "Maximum Performance of a Team",
-   "topic": "heap",
-   "topicLabel": "Heap",
-   "pattern": "Heap + Greedy",
-   "diff": "hard",
-   "lc": "LC 1383",
-   "slug": "maximum-performance-of-a-team"
-  },
-  {
-   "id": "smallest-range",
-   "title": "Smallest Range Covering K Lists",
-   "topic": "heap",
-   "topicLabel": "Heap",
-   "pattern": "K-way merge",
-   "diff": "hard",
-   "lc": "LC 632",
-   "slug": "smallest-range-covering-elements-from-k-lists"
-  },
-  {
-   "id": "min-cost-hire",
-   "title": "Minimum Cost to Hire K Workers",
-   "topic": "heap",
-   "topicLabel": "Heap",
-   "pattern": "Repeatedly process (greedy)",
-   "diff": "hard",
-   "lc": "LC 857",
-   "slug": "minimum-cost-to-hire-k-workers"
-  },
-  {
-   "id": "cpu-scheduler",
-   "title": "Single-Threaded CPU",
-   "topic": "heap",
-   "topicLabel": "Heap",
-   "pattern": "Sort + Heap",
-   "diff": "medium",
-   "lc": "LC 1834",
-   "slug": "single-threaded-cpu"
-  },
-  {
-   "id": "valid-parentheses",
-   "title": "Valid Parentheses",
-   "topic": "stack",
-   "topicLabel": "Stack",
-   "pattern": "Matching",
-   "diff": "easy",
-   "lc": "LC 20",
-   "slug": "valid-parentheses"
-  },
-  {
-   "id": "longest-valid-parens",
-   "title": "Longest Valid Parentheses",
-   "topic": "stack",
-   "topicLabel": "Stack",
-   "pattern": "Matching",
-   "diff": "hard",
-   "lc": "LC 32",
-   "slug": "longest-valid-parentheses"
-  },
-  {
-   "id": "min-add-valid",
-   "title": "Minimum Add to Make Parentheses Valid",
-   "topic": "stack",
-   "topicLabel": "Stack",
-   "pattern": "Matching",
-   "diff": "medium",
-   "lc": "LC 921",
-   "slug": "minimum-add-to-make-parentheses-valid"
-  },
-  {
-   "id": "remove-adjacent-dups",
-   "title": "Remove All Adjacent Duplicates",
-   "topic": "stack",
-   "topicLabel": "Stack",
-   "pattern": "Cancelling",
-   "diff": "easy",
-   "lc": "LC 1047",
-   "slug": "remove-all-adjacent-duplicates-in-string"
-  },
-  {
-   "id": "backspace-compare",
-   "title": "Backspace String Compare",
-   "topic": "stack",
-   "topicLabel": "Stack",
-   "pattern": "Cancelling",
-   "diff": "easy",
-   "lc": "LC 844",
-   "slug": "backspace-string-compare"
-  },
-  {
-   "id": "asteroids",
-   "title": "Asteroid Collision",
-   "topic": "stack",
-   "topicLabel": "Stack",
-   "pattern": "Cancelling",
-   "diff": "medium",
-   "lc": "LC 735",
-   "slug": "asteroid-collision"
-  },
-  {
-   "id": "eval-rpn",
-   "title": "Evaluate Reverse Polish Notation",
-   "topic": "stack",
-   "topicLabel": "Stack",
-   "pattern": "Expressions",
-   "diff": "medium",
-   "lc": "LC 150",
-   "slug": "evaluate-reverse-polish-notation"
-  },
-  {
-   "id": "calculator-ii",
-   "title": "Basic Calculator II",
-   "topic": "stack",
-   "topicLabel": "Stack",
-   "pattern": "Expressions",
-   "diff": "medium",
-   "lc": "LC 227",
-   "slug": "basic-calculator-ii"
-  },
-  {
-   "id": "calculator",
-   "title": "Basic Calculator",
-   "topic": "stack",
-   "topicLabel": "Stack",
-   "pattern": "Expressions",
-   "diff": "hard",
-   "lc": "LC 224",
-   "slug": "basic-calculator"
-  },
-  {
-   "id": "decode-string",
-   "title": "Decode String",
-   "topic": "stack",
-   "topicLabel": "Stack",
-   "pattern": "Expressions",
-   "diff": "medium",
-   "lc": "LC 394",
-   "slug": "decode-string"
-  },
-  {
-   "id": "simplify-path",
-   "title": "Simplify Path",
-   "topic": "stack",
-   "topicLabel": "Stack",
-   "pattern": "Expressions",
-   "diff": "medium",
-   "lc": "LC 71",
-   "slug": "simplify-path"
-  },
-  {
-   "id": "min-stack",
-   "title": "Min Stack",
-   "topic": "stack",
-   "topicLabel": "Stack",
-   "pattern": "Design",
-   "diff": "medium",
-   "lc": "LC 155",
-   "slug": "min-stack"
-  },
-  {
-   "id": "queue-two-stacks",
-   "title": "Queue Using Stacks",
-   "topic": "stack",
-   "topicLabel": "Stack",
-   "pattern": "Design",
-   "diff": "easy",
-   "lc": "LC 232",
-   "slug": "implement-queue-using-stacks"
-  },
-  {
-   "id": "next-greater",
-   "title": "Next Greater Element",
-   "topic": "stack",
-   "topicLabel": "Stack",
-   "pattern": "Monotonic stack",
-   "diff": "medium",
-   "lc": "Classic",
-   "slug": "next-greater-element-i"
-  },
-  {
-   "id": "daily-temperatures",
-   "title": "Daily Temperatures",
-   "topic": "stack",
-   "topicLabel": "Stack",
-   "pattern": "Monotonic stack",
-   "diff": "medium",
-   "lc": "LC 739",
-   "slug": "daily-temperatures"
-  },
-  {
-   "id": "next-greater-circular",
-   "title": "Next Greater Element II (Circular)",
-   "topic": "stack",
-   "topicLabel": "Stack",
-   "pattern": "Monotonic stack",
-   "diff": "medium",
-   "lc": "LC 503",
-   "slug": "next-greater-element-ii"
-  },
-  {
-   "id": "stock-spanner",
-   "title": "Online Stock Span",
-   "topic": "stack",
-   "topicLabel": "Stack",
-   "pattern": "Monotonic stack",
-   "diff": "medium",
-   "lc": "LC 901",
-   "slug": "online-stock-span"
-  },
-  {
-   "id": "remove-k-digits",
-   "title": "Remove K Digits",
-   "topic": "stack",
-   "topicLabel": "Stack",
-   "pattern": "Monotonic stack (greedy)",
-   "diff": "medium",
-   "lc": "LC 402",
-   "slug": "remove-k-digits"
-  },
-  {
-   "id": "remove-duplicate-letters",
-   "title": "Remove Duplicate Letters",
-   "topic": "stack",
-   "topicLabel": "Stack",
-   "pattern": "Monotonic stack (greedy)",
-   "diff": "hard",
-   "lc": "LC 316",
-   "slug": "remove-duplicate-letters"
-  },
-  {
-   "id": "largest-rectangle",
-   "title": "Largest Rectangle in Histogram",
-   "topic": "stack",
-   "topicLabel": "Stack",
-   "pattern": "Monotonic stack (areas)",
-   "diff": "hard",
-   "lc": "LC 84",
-   "slug": "largest-rectangle-in-histogram"
-  },
-  {
-   "id": "trapping-rain-water",
-   "title": "Trapping Rain Water",
-   "topic": "stack",
-   "topicLabel": "Stack",
-   "pattern": "Monotonic stack (areas)",
-   "diff": "hard",
-   "lc": "LC 42",
-   "slug": "trapping-rain-water"
-  },
-  {
-   "id": "sum-subarray-mins",
-   "title": "Sum of Subarray Minimums",
-   "topic": "stack",
-   "topicLabel": "Stack",
-   "pattern": "Monotonic stack (contribution)",
-   "diff": "hard",
-   "lc": "LC 907",
-   "slug": "sum-of-subarray-minimums"
-  },
-  {
-   "id": "car-fleet",
-   "title": "Car Fleet",
-   "topic": "stack",
-   "topicLabel": "Stack",
-   "pattern": "Stack of groups",
-   "diff": "medium",
-   "lc": "LC 853",
-   "slug": "car-fleet"
-  },
-  {
-   "id": "score-of-parentheses",
-   "title": "Score of Parentheses",
-   "topic": "stack",
-   "topicLabel": "Stack",
-   "pattern": "Matching",
-   "diff": "medium",
-   "lc": "LC 856",
-   "slug": "score-of-parentheses"
-  },
-  {
-   "id": "validate-stack-sequences",
-   "title": "Validate Stack Sequences",
-   "topic": "stack",
-   "topicLabel": "Stack",
-   "pattern": "Design / simulation",
-   "diff": "medium",
-   "lc": "LC 946",
-   "slug": "validate-stack-sequences"
-  },
-  {
-   "id": "sliding-window-max",
-   "title": "Sliding Window Maximum",
-   "topic": "stack",
-   "topicLabel": "Stack",
-   "pattern": "Monotonic deque",
-   "diff": "hard",
-   "lc": "LC 239",
-   "slug": "sliding-window-maximum"
-  },
-  {
-   "id": "previous-smaller",
-   "title": "Previous Smaller Element",
-   "topic": "stack",
-   "topicLabel": "Stack",
-   "pattern": "Monotonic stack",
-   "diff": "medium",
-   "lc": "Classic",
-   "url": "https://leetcode.com/problems/next-greater-element-i/",
-   "note": "Classic pattern (no single LeetCode problem); Next Greater Element I is the closest match."
-  },
-  {
-   "id": "maximal-rectangle",
-   "title": "Maximal Rectangle",
-   "topic": "stack",
-   "topicLabel": "Stack",
-   "pattern": "Monotonic stack (areas)",
-   "diff": "hard",
-   "lc": "LC 85",
-   "slug": "maximal-rectangle"
-  },
-  {
-   "id": "lc-933",
-   "title": "Number of Recent Calls",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "FIFO simulation",
-   "diff": "easy",
-   "lc": "LC 933",
-   "slug": "number-of-recent-calls"
-  },
-  {
-   "id": "lc-346",
-   "title": "Moving Average from Data Stream",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "FIFO simulation",
-   "diff": "easy",
-   "lc": "LC 346",
-   "slug": "moving-average-from-data-stream",
-   "premium": true
-  },
-  {
-   "id": "lc-1700",
-   "title": "Number of Students Unable to Eat Lunch",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "FIFO simulation",
-   "diff": "easy",
-   "lc": "LC 1700",
-   "slug": "number-of-students-unable-to-eat-lunch"
-  },
-  {
-   "id": "lc-2073",
-   "title": "Time Needed to Buy Tickets",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "FIFO simulation",
-   "diff": "easy",
-   "lc": "LC 2073",
-   "slug": "time-needed-to-buy-tickets"
-  },
-  {
-   "id": "lc-622",
-   "title": "Design Circular Queue",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "Design",
-   "diff": "medium",
-   "lc": "LC 622",
-   "slug": "design-circular-queue"
-  },
-  {
-   "id": "lc-362",
-   "title": "Design Hit Counter",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "FIFO simulation",
-   "diff": "medium",
-   "lc": "LC 362",
-   "slug": "design-hit-counter",
-   "premium": true
-  },
-  {
-   "id": "lc-225",
-   "title": "Implement Stack using Queues",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "Design",
-   "diff": "easy",
-   "lc": "LC 225",
-   "slug": "implement-stack-using-queues"
-  },
-  {
-   "id": "lc-649",
-   "title": "Dota2 Senate",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "FIFO simulation",
-   "diff": "medium",
-   "lc": "LC 649",
-   "slug": "dota2-senate"
-  },
-  {
-   "id": "lc-950",
-   "title": "Reveal Cards In Increasing Order",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "FIFO simulation",
-   "diff": "medium",
-   "lc": "LC 950",
-   "slug": "reveal-cards-in-increasing-order"
-  },
-  {
-   "id": "lc-102",
-   "title": "Binary Tree Level Order Traversal",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "BFS",
-   "diff": "medium",
-   "lc": "LC 102",
-   "slug": "binary-tree-level-order-traversal"
-  },
-  {
-   "id": "lc-103",
-   "title": "Binary Tree Zigzag Level Order Traversal",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "BFS",
-   "diff": "medium",
-   "lc": "LC 103",
-   "slug": "binary-tree-zigzag-level-order-traversal"
-  },
-  {
-   "id": "lc-199",
-   "title": "Binary Tree Right Side View",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "BFS",
-   "diff": "medium",
-   "lc": "LC 199",
-   "slug": "binary-tree-right-side-view"
-  },
-  {
-   "id": "lc-637",
-   "title": "Average of Levels in Binary Tree",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "BFS",
-   "diff": "easy",
-   "lc": "LC 637",
-   "slug": "average-of-levels-in-binary-tree"
-  },
-  {
-   "id": "lc-111",
-   "title": "Minimum Depth of Binary Tree",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "BFS",
-   "diff": "easy",
-   "lc": "LC 111",
-   "slug": "minimum-depth-of-binary-tree"
-  },
-  {
-   "id": "lc-127",
-   "title": "Word Ladder",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "BFS",
-   "diff": "hard",
-   "lc": "LC 127",
-   "slug": "word-ladder"
-  },
-  {
-   "id": "lc-752",
-   "title": "Open the Lock",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "BFS",
-   "diff": "medium",
-   "lc": "LC 752",
-   "slug": "open-the-lock"
-  },
-  {
-   "id": "lc-433",
-   "title": "Minimum Genetic Mutation",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "BFS",
-   "diff": "medium",
-   "lc": "LC 433",
-   "slug": "minimum-genetic-mutation"
-  },
-  {
-   "id": "lc-279",
-   "title": "Perfect Squares",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "BFS",
-   "diff": "medium",
-   "lc": "LC 279",
-   "slug": "perfect-squares"
-  },
-  {
-   "id": "lc-909",
-   "title": "Snakes and Ladders",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "BFS",
-   "diff": "medium",
-   "lc": "LC 909",
-   "slug": "snakes-and-ladders"
-  },
-  {
-   "id": "lc-994",
-   "title": "Rotting Oranges",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "Multi-source BFS",
-   "diff": "medium",
-   "lc": "LC 994",
-   "slug": "rotting-oranges"
-  },
-  {
-   "id": "lc-542",
-   "title": "01 Matrix",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "Multi-source BFS",
-   "diff": "medium",
-   "lc": "LC 542",
-   "slug": "01-matrix"
-  },
-  {
-   "id": "lc-286",
-   "title": "Walls and Gates",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "Multi-source BFS",
-   "diff": "medium",
-   "lc": "LC 286",
-   "slug": "walls-and-gates",
-   "premium": true
-  },
-  {
-   "id": "lc-1162",
-   "title": "As Far from Land as Possible",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "Multi-source BFS",
-   "diff": "medium",
-   "lc": "LC 1162",
-   "slug": "as-far-from-land-as-possible"
-  },
-  {
-   "id": "lc-1293",
-   "title": "Shortest Path in a Grid with Obstacles Elimination",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "BFS + state",
-   "diff": "hard",
-   "lc": "LC 1293",
-   "slug": "shortest-path-in-a-grid-with-obstacles-elimination"
-  },
-  {
-   "id": "lc-864",
-   "title": "Shortest Path to Get All Keys",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "BFS + state",
-   "diff": "hard",
-   "lc": "LC 864",
-   "slug": "shortest-path-to-get-all-keys"
-  },
-  {
-   "id": "lc-1197",
-   "title": "Minimum Knight Moves",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "BFS + state",
-   "diff": "medium",
-   "lc": "LC 1197",
-   "slug": "minimum-knight-moves",
-   "premium": true
-  },
-  {
-   "id": "lc-1091",
-   "title": "Shortest Path in Binary Matrix",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "Grid BFS",
-   "diff": "medium",
-   "lc": "LC 1091",
-   "slug": "shortest-path-in-binary-matrix"
-  },
-  {
-   "id": "lc-1926",
-   "title": "Nearest Exit from Entrance in Maze",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "Grid BFS",
-   "diff": "medium",
-   "lc": "LC 1926",
-   "slug": "nearest-exit-from-entrance-in-maze"
-  },
-  {
-   "id": "lc-200",
-   "title": "Number of Islands",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "Grid BFS",
-   "diff": "medium",
-   "lc": "LC 200",
-   "slug": "number-of-islands"
-  },
-  {
-   "id": "lc-1036",
-   "title": "Escape a Large Maze",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "Grid BFS",
-   "diff": "hard",
-   "lc": "LC 1036",
-   "slug": "escape-a-large-maze"
-  },
-  {
-   "id": "lc-862",
-   "title": "Shortest Subarray with Sum at Least K",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "Monotonic deque",
-   "diff": "hard",
-   "lc": "LC 862",
-   "slug": "shortest-subarray-with-sum-at-least-k"
-  },
-  {
-   "id": "lc-1425",
-   "title": "Constrained Subsequence Sum",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "Monotonic deque",
-   "diff": "hard",
-   "lc": "LC 1425",
-   "slug": "constrained-subsequence-sum"
-  },
-  {
-   "id": "lc-1438",
-   "title": "Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "Monotonic deque",
-   "diff": "medium",
-   "lc": "LC 1438",
-   "slug": "longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit"
-  },
-  {
-   "id": "lc-1696",
-   "title": "Jump Game VI",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "Monotonic deque",
-   "diff": "medium",
-   "lc": "LC 1696",
-   "slug": "jump-game-vi"
-  },
-  {
-   "id": "lc-387",
-   "title": "First Unique Character in a String",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "Queue + hash map",
-   "diff": "easy",
-   "lc": "LC 387",
-   "slug": "first-unique-character-in-a-string"
-  },
-  {
-   "id": "lc-1429",
-   "title": "First Unique Number",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "Queue + hash map",
-   "diff": "medium",
-   "lc": "LC 1429",
-   "slug": "first-unique-number",
-   "premium": true
-  },
-  {
-   "id": "lc-207",
-   "title": "Course Schedule",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "Topological sort",
-   "diff": "medium",
-   "lc": "LC 207",
-   "slug": "course-schedule"
-  },
-  {
-   "id": "lc-210",
-   "title": "Course Schedule II",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "Topological sort",
-   "diff": "medium",
-   "lc": "LC 210",
-   "slug": "course-schedule-ii"
-  },
-  {
-   "id": "lc-269",
-   "title": "Alien Dictionary",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "Topological sort",
-   "diff": "hard",
-   "lc": "LC 269",
-   "slug": "alien-dictionary",
-   "premium": true
-  },
-  {
-   "id": "lc-1136",
-   "title": "Parallel Courses",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "Topological sort",
-   "diff": "medium",
-   "lc": "LC 1136",
-   "slug": "parallel-courses",
-   "premium": true
-  },
-  {
-   "id": "lc-1368",
-   "title": "Minimum Cost to Make at Least One Valid Path in a Grid",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "0-1 BFS",
-   "diff": "hard",
-   "lc": "LC 1368",
-   "slug": "minimum-cost-to-make-at-least-one-valid-path-in-a-grid"
-  },
-  {
-   "id": "lc-2290",
-   "title": "Minimum Obstacle Removal to Reach Corner",
-   "topic": "queue",
-   "topicLabel": "Queue",
-   "pattern": "0-1 BFS",
-   "diff": "hard",
-   "lc": "LC 2290",
-   "slug": "minimum-obstacle-removal-to-reach-corner"
-  },
-  {
-   "id": "lc-144",
-   "title": "Binary Tree Preorder Traversal",
-   "topic": "trees",
-   "topicLabel": "Trees",
-   "pattern": "Traversals",
-   "diff": "easy",
-   "lc": "LC 144",
-   "slug": "binary-tree-preorder-traversal"
-  },
-  {
-   "id": "lc-94",
-   "title": "Binary Tree Inorder Traversal",
-   "topic": "trees",
-   "topicLabel": "Trees",
-   "pattern": "Traversals",
-   "diff": "easy",
-   "lc": "LC 94",
-   "slug": "binary-tree-inorder-traversal"
-  },
-  {
-   "id": "lc-145",
-   "title": "Binary Tree Postorder Traversal",
-   "topic": "trees",
-   "topicLabel": "Trees",
-   "pattern": "Traversals",
-   "diff": "easy",
-   "lc": "LC 145",
-   "slug": "binary-tree-postorder-traversal"
-  },
-  {
-   "id": "lc-662",
-   "title": "Maximum Width of Binary Tree",
-   "topic": "trees",
-   "topicLabel": "Trees",
-   "pattern": "BFS / level order",
-   "diff": "medium",
-   "lc": "LC 662",
-   "slug": "maximum-width-of-binary-tree"
-  },
-  {
-   "id": "lc-112",
-   "title": "Path Sum",
-   "topic": "trees",
-   "topicLabel": "Trees",
-   "pattern": "Top-down DFS",
-   "diff": "easy",
-   "lc": "LC 112",
-   "slug": "path-sum"
-  },
-  {
-   "id": "lc-113",
-   "title": "Path Sum II",
-   "topic": "trees",
-   "topicLabel": "Trees",
-   "pattern": "Top-down DFS",
-   "diff": "medium",
-   "lc": "LC 113",
-   "slug": "path-sum-ii"
-  },
-  {
-   "id": "lc-129",
-   "title": "Sum Root to Leaf Numbers",
-   "topic": "trees",
-   "topicLabel": "Trees",
-   "pattern": "Top-down DFS",
-   "diff": "medium",
-   "lc": "LC 129",
-   "slug": "sum-root-to-leaf-numbers"
-  },
-  {
-   "id": "lc-687",
-   "title": "Longest Univalue Path",
-   "topic": "trees",
-   "topicLabel": "Trees",
-   "pattern": "Bottom-up DFS",
-   "diff": "medium",
-   "lc": "LC 687",
-   "slug": "longest-univalue-path"
-  },
-  {
-   "id": "lc-700",
-   "title": "Search in a Binary Search Tree",
-   "topic": "trees",
-   "topicLabel": "Trees",
-   "pattern": "BST",
-   "diff": "easy",
-   "lc": "LC 700",
-   "slug": "search-in-a-binary-search-tree"
-  },
-  {
-   "id": "lc-701",
-   "title": "Insert into a Binary Search Tree",
-   "topic": "trees",
-   "topicLabel": "Trees",
-   "pattern": "BST",
-   "diff": "medium",
-   "lc": "LC 701",
-   "slug": "insert-into-a-binary-search-tree"
-  },
-  {
-   "id": "lc-450",
-   "title": "Delete Node in a BST",
-   "topic": "trees",
-   "topicLabel": "Trees",
-   "pattern": "BST",
-   "diff": "medium",
-   "lc": "LC 450",
-   "slug": "delete-node-in-a-bst"
-  },
-  {
-   "id": "lc-653",
-   "title": "Two Sum IV - Input is a BST",
-   "topic": "trees",
-   "topicLabel": "Trees",
-   "pattern": "BST",
-   "diff": "easy",
-   "lc": "LC 653",
-   "slug": "two-sum-iv-input-is-a-bst"
-  },
-  {
-   "id": "lc-669",
-   "title": "Trim a Binary Search Tree",
-   "topic": "trees",
-   "topicLabel": "Trees",
-   "pattern": "BST",
-   "diff": "medium",
-   "lc": "LC 669",
-   "slug": "trim-a-binary-search-tree"
-  },
-  {
-   "id": "lc-1382",
-   "title": "Balance a Binary Search Tree",
-   "topic": "trees",
-   "topicLabel": "Trees",
-   "pattern": "BST",
-   "diff": "medium",
-   "lc": "LC 1382",
-   "slug": "balance-a-binary-search-tree"
-  },
-  {
-   "id": "lc-108",
-   "title": "Convert Sorted Array to Binary Search Tree",
-   "topic": "trees",
-   "topicLabel": "Trees",
-   "pattern": "BST",
-   "diff": "easy",
-   "lc": "LC 108",
-   "slug": "convert-sorted-array-to-binary-search-tree"
-  },
-  {
-   "id": "lc-1650",
-   "title": "Lowest Common Ancestor of a Binary Tree III",
-   "topic": "trees",
-   "topicLabel": "Trees",
-   "pattern": "LCA",
-   "diff": "medium",
-   "lc": "LC 1650",
-   "slug": "lowest-common-ancestor-of-a-binary-tree-iii",
-   "premium": true
-  },
-  {
-   "id": "lc-1123",
-   "title": "Lowest Common Ancestor of Deepest Leaves",
-   "topic": "trees",
-   "topicLabel": "Trees",
-   "pattern": "LCA",
-   "diff": "medium",
-   "lc": "LC 1123",
-   "slug": "lowest-common-ancestor-of-deepest-leaves"
-  },
-  {
-   "id": "lc-106",
-   "title": "Construct Binary Tree from Inorder and Postorder Traversal",
-   "topic": "trees",
-   "topicLabel": "Trees",
-   "pattern": "Construction",
-   "diff": "medium",
-   "lc": "LC 106",
-   "slug": "construct-binary-tree-from-inorder-and-postorder-traversal"
-  },
-  {
-   "id": "lc-889",
-   "title": "Construct Binary Tree from Preorder and Postorder Traversal",
-   "topic": "trees",
-   "topicLabel": "Trees",
-   "pattern": "Construction",
-   "diff": "medium",
-   "lc": "LC 889",
-   "slug": "construct-binary-tree-from-preorder-and-postorder-traversal"
-  },
-  {
-   "id": "lc-337",
-   "title": "House Robber III",
-   "topic": "trees",
-   "topicLabel": "Trees",
-   "pattern": "Tree DP",
-   "diff": "medium",
-   "lc": "LC 337",
-   "slug": "house-robber-iii"
-  },
-  {
-   "id": "lc-968",
-   "title": "Binary Tree Cameras",
-   "topic": "trees",
-   "topicLabel": "Trees",
-   "pattern": "Tree DP",
-   "diff": "hard",
-   "lc": "LC 968",
-   "slug": "binary-tree-cameras"
-  },
-  {
-   "id": "lc-437",
-   "title": "Path Sum III",
-   "topic": "trees",
-   "topicLabel": "Trees",
-   "pattern": "Mixed",
-   "diff": "medium",
-   "lc": "LC 437",
-   "slug": "path-sum-iii"
-  },
-  {
-   "id": "lc-987",
-   "title": "Vertical Order Traversal of a Binary Tree",
-   "topic": "trees",
-   "topicLabel": "Trees",
-   "pattern": "Mixed",
-   "diff": "hard",
-   "lc": "LC 987",
-   "slug": "vertical-order-traversal-of-a-binary-tree"
-  },
-  {
-   "id": "lc-545",
-   "title": "Boundary of Binary Tree",
-   "topic": "trees",
-   "topicLabel": "Trees",
-   "pattern": "Mixed",
-   "diff": "medium",
-   "lc": "LC 545",
-   "slug": "boundary-of-binary-tree",
-   "premium": true
-  },
-  {
-   "id": "lc-1248",
-   "title": "Count Number of Nice Subarrays",
-   "topic": "sliding-window",
-   "topicLabel": "Sliding Window",
-   "pattern": "At-most K to exactly K",
-   "diff": "medium",
-   "lc": "LC 1248",
-   "slug": "count-number-of-nice-subarrays"
-  },
-  {
-   "id": "lc-992",
-   "title": "Subarrays with K Different Integers",
-   "topic": "sliding-window",
-   "topicLabel": "Sliding Window",
-   "pattern": "At-most K to exactly K",
-   "diff": "hard",
-   "lc": "LC 992",
-   "slug": "subarrays-with-k-different-integers"
-  },
-  {
-   "id": "lc-2461",
-   "title": "Maximum Sum of Distinct Subarrays With Length K",
-   "topic": "sliding-window",
-   "topicLabel": "Sliding Window",
-   "pattern": "Fixed-size window",
-   "diff": "medium",
-   "lc": "LC 2461",
-   "slug": "maximum-sum-of-distinct-subarrays-with-length-k"
-  },
-  {
-   "id": "lc-1052",
-   "title": "Grumpy Bookstore Owner",
-   "topic": "sliding-window",
-   "topicLabel": "Sliding Window",
-   "pattern": "Fixed-size window",
-   "diff": "medium",
-   "lc": "LC 1052",
-   "slug": "grumpy-bookstore-owner"
-  },
-  {
-   "id": "lc-1838",
-   "title": "Frequency of the Most Frequent Element",
-   "topic": "sliding-window",
-   "topicLabel": "Sliding Window",
-   "pattern": "Longest valid window",
-   "diff": "medium",
-   "lc": "LC 1838",
-   "slug": "frequency-of-the-most-frequent-element"
-  },
-  {
-   "id": "lc-1493",
-   "title": "Longest Subarray of 1's After Deleting One Element",
-   "topic": "sliding-window",
-   "topicLabel": "Sliding Window",
-   "pattern": "Longest valid window",
-   "diff": "medium",
-   "lc": "LC 1493",
-   "slug": "longest-subarray-of-1s-after-deleting-one-element"
-  },
-  {
-   "id": "lc-2024",
-   "title": "Maximize the Confusion of a Student",
-   "topic": "sliding-window",
-   "topicLabel": "Sliding Window",
-   "pattern": "Longest valid window",
-   "diff": "medium",
-   "lc": "LC 2024",
-   "slug": "maximize-the-confusion-of-a-student"
-  },
-  {
-   "id": "lc-1423",
-   "title": "Maximum Points You Can Obtain from Cards",
-   "topic": "sliding-window",
-   "topicLabel": "Sliding Window",
-   "pattern": "Fixed-size window",
-   "diff": "medium",
-   "lc": "LC 1423",
-   "slug": "maximum-points-you-can-obtain-from-cards"
-  },
-  {
-   "id": "lc-115",
-   "title": "Distinct Subsequences",
-   "topic": "dynamic-programming",
-   "topicLabel": "Dynamic Programming",
-   "pattern": "Two-Sequence DP",
-   "diff": "hard",
-   "lc": "LC 115",
-   "slug": "distinct-subsequences"
-  },
-  {
-   "id": "lc-97",
-   "title": "Interleaving String",
-   "topic": "dynamic-programming",
-   "topicLabel": "Dynamic Programming",
-   "pattern": "Two-Sequence DP",
-   "diff": "medium",
-   "lc": "LC 97",
-   "slug": "interleaving-string"
-  },
-  {
-   "id": "lc-516",
-   "title": "Longest Palindromic Subsequence",
-   "topic": "dynamic-programming",
-   "topicLabel": "Dynamic Programming",
-   "pattern": "Interval DP (shrinking)",
-   "diff": "medium",
-   "lc": "LC 516",
-   "slug": "longest-palindromic-subsequence"
-  },
-  {
-   "id": "lc-132",
-   "title": "Palindrome Partitioning II",
-   "topic": "dynamic-programming",
-   "topicLabel": "Dynamic Programming",
-   "pattern": "Interval DP (partition)",
-   "diff": "hard",
-   "lc": "LC 132",
-   "slug": "palindrome-partitioning-ii"
-  },
-  {
-   "id": "lc-1000",
-   "title": "Minimum Cost to Merge Stones",
-   "topic": "dynamic-programming",
-   "topicLabel": "Dynamic Programming",
-   "pattern": "Interval DP (partition)",
-   "diff": "hard",
-   "lc": "LC 1000",
-   "slug": "minimum-cost-to-merge-stones"
-  },
-  {
-   "id": "lc-64",
-   "title": "Minimum Path Sum",
-   "topic": "dynamic-programming",
-   "topicLabel": "Dynamic Programming",
-   "pattern": "Grid DP",
-   "diff": "medium",
-   "lc": "LC 64",
-   "slug": "minimum-path-sum"
-  },
-  {
-   "id": "lc-63",
-   "title": "Unique Paths II",
-   "topic": "dynamic-programming",
-   "topicLabel": "Dynamic Programming",
-   "pattern": "Grid DP",
-   "diff": "medium",
-   "lc": "LC 63",
-   "slug": "unique-paths-ii"
-  },
-  {
-   "id": "lc-221",
-   "title": "Maximal Square",
-   "topic": "dynamic-programming",
-   "topicLabel": "Dynamic Programming",
-   "pattern": "Grid DP",
-   "diff": "medium",
-   "lc": "LC 221",
-   "slug": "maximal-square"
-  },
-  {
-   "id": "lc-174",
-   "title": "Dungeon Game",
-   "topic": "dynamic-programming",
-   "topicLabel": "Dynamic Programming",
-   "pattern": "Grid DP (reverse)",
-   "diff": "hard",
-   "lc": "LC 174",
-   "slug": "dungeon-game"
-  },
-  {
-   "id": "lc-474",
-   "title": "Ones and Zeroes",
-   "topic": "dynamic-programming",
-   "topicLabel": "Dynamic Programming",
-   "pattern": "Knapsack DP (2D)",
-   "diff": "medium",
-   "lc": "LC 474",
-   "slug": "ones-and-zeroes"
-  },
-  {
-   "id": "lc-1049",
-   "title": "Last Stone Weight II",
-   "topic": "dynamic-programming",
-   "topicLabel": "Dynamic Programming",
-   "pattern": "Knapsack DP (subset sum)",
-   "diff": "medium",
-   "lc": "LC 1049",
-   "slug": "last-stone-weight-ii"
-  },
-  {
-   "id": "lc-698",
-   "title": "Partition to K Equal Sum Subsets",
-   "topic": "dynamic-programming",
-   "topicLabel": "Dynamic Programming",
-   "pattern": "Bitmask DP",
-   "diff": "medium",
-   "lc": "LC 698",
-   "slug": "partition-to-k-equal-sum-subsets"
-  },
-  {
-   "id": "lc-464",
-   "title": "Can I Win",
-   "topic": "dynamic-programming",
-   "topicLabel": "Dynamic Programming",
-   "pattern": "Bitmask DP",
-   "diff": "medium",
-   "lc": "LC 464",
-   "slug": "can-i-win"
-  },
-  {
-   "id": "lc-847",
-   "title": "Shortest Path Visiting All Nodes",
-   "topic": "dynamic-programming",
-   "topicLabel": "Dynamic Programming",
-   "pattern": "Bitmask DP (TSP)",
-   "diff": "hard",
-   "lc": "LC 847",
-   "slug": "shortest-path-visiting-all-nodes"
-  },
-  {
-   "id": "lc-123",
-   "title": "Best Time to Buy and Sell Stock III",
-   "topic": "dynamic-programming",
-   "topicLabel": "Dynamic Programming",
-   "pattern": "Prefix DP (state machine)",
-   "diff": "hard",
-   "lc": "LC 123",
-   "slug": "best-time-to-buy-and-sell-stock-iii"
-  },
-  {
-   "id": "lc-188",
-   "title": "Best Time to Buy and Sell Stock IV",
-   "topic": "dynamic-programming",
-   "topicLabel": "Dynamic Programming",
-   "pattern": "Prefix DP (state machine)",
-   "diff": "hard",
-   "lc": "LC 188",
-   "slug": "best-time-to-buy-and-sell-stock-iv"
-  },
-  {
-   "id": "lc-983",
-   "title": "Minimum Cost For Tickets",
-   "topic": "dynamic-programming",
-   "topicLabel": "Dynamic Programming",
-   "pattern": "Prefix DP",
-   "diff": "medium",
-   "lc": "LC 983",
-   "slug": "minimum-cost-for-tickets"
-  },
-  {
-   "id": "lc-664",
-   "title": "Strange Printer",
-   "topic": "dynamic-programming",
-   "topicLabel": "Dynamic Programming",
-   "pattern": "Interval DP (partition)",
-   "diff": "hard",
-   "lc": "LC 664",
-   "slug": "strange-printer"
-  },
-  {
-   "id": "lc-877",
-   "title": "Stone Game",
-   "topic": "dynamic-programming",
-   "topicLabel": "Dynamic Programming",
-   "pattern": "Interval DP",
-   "diff": "medium",
-   "lc": "LC 877",
-   "slug": "stone-game"
-  },
-  {
-   "id": "lc-120",
-   "title": "Triangle",
-   "topic": "dynamic-programming",
-   "topicLabel": "Dynamic Programming",
-   "pattern": "Grid DP",
-   "diff": "medium",
-   "lc": "LC 120",
-   "slug": "triangle"
-  },
-  {
-   "id": "lc-740",
-   "title": "Delete and Earn",
-   "topic": "dynamic-programming",
-   "topicLabel": "Dynamic Programming",
-   "pattern": "Prefix DP",
-   "diff": "medium",
-   "lc": "LC 740",
-   "slug": "delete-and-earn"
-  },
-  {
-   "id": "lc-377",
-   "title": "Combination Sum IV",
-   "topic": "dynamic-programming",
-   "topicLabel": "Dynamic Programming",
-   "pattern": "Prefix DP (counting)",
-   "diff": "medium",
-   "lc": "LC 377",
-   "slug": "combination-sum-iv"
-  },
-  {
-   "id": "lc-343",
-   "title": "Integer Break",
-   "topic": "dynamic-programming",
-   "topicLabel": "Dynamic Programming",
-   "pattern": "Prefix DP",
-   "diff": "medium",
-   "lc": "LC 343",
-   "slug": "integer-break"
-  },
-  {
-   "id": "lc-252",
-   "title": "Meeting Rooms",
-   "topic": "greedy",
-   "topicLabel": "Greedy",
-   "pattern": "Preserve capacity (interval scheduling)",
-   "diff": "easy",
-   "lc": "LC 252",
-   "slug": "meeting-rooms",
-   "premium": true
-  },
-  {
-   "id": "lc-409",
-   "title": "Longest Palindrome",
-   "topic": "greedy",
-   "topicLabel": "Greedy",
-   "pattern": "Exchange (character counts)",
-   "diff": "easy",
-   "lc": "LC 409",
-   "slug": "longest-palindrome"
-  },
-  {
-   "id": "lc-561",
-   "title": "Array Partition",
-   "topic": "greedy",
-   "topicLabel": "Greedy",
-   "pattern": "Adjacent pairing",
-   "diff": "easy",
-   "lc": "LC 561",
-   "slug": "array-partition"
-  },
-  {
-   "id": "lc-942",
-   "title": "DI String Match",
-   "topic": "greedy",
-   "topicLabel": "Greedy",
-   "pattern": "Flexible resource (two pointer)",
-   "diff": "easy",
-   "lc": "LC 942",
-   "slug": "di-string-match"
-  },
-  {
-   "id": "lc-680",
-   "title": "Valid Palindrome II",
-   "topic": "greedy",
-   "topicLabel": "Greedy",
-   "pattern": "Structural / forced",
-   "diff": "easy",
-   "lc": "LC 680",
-   "slug": "valid-palindrome-ii"
-  },
-  {
-   "id": "lc-976",
-   "title": "Largest Perimeter Triangle",
-   "topic": "greedy",
-   "topicLabel": "Greedy",
-   "pattern": "Dominance (sort)",
-   "diff": "easy",
-   "lc": "LC 976",
-   "slug": "largest-perimeter-triangle"
-  },
-  {
-   "id": "lc-135",
-   "title": "Candy",
-   "topic": "greedy",
-   "topicLabel": "Greedy",
-   "pattern": "Exchange (two-sided)",
-   "diff": "hard",
-   "lc": "LC 135",
-   "slug": "candy"
-  },
-  {
-   "id": "lc-11",
-   "title": "Container With Most Water",
-   "topic": "greedy",
-   "topicLabel": "Greedy",
-   "pattern": "Eliminate dominated choices",
-   "diff": "medium",
-   "lc": "LC 11",
-   "slug": "container-with-most-water"
-  },
-  {
-   "id": "lc-1029",
-   "title": "Two City Scheduling",
-   "topic": "greedy",
-   "topicLabel": "Greedy",
-   "pattern": "Sort by difference",
-   "diff": "medium",
-   "lc": "LC 1029",
-   "slug": "two-city-scheduling"
-  },
-  {
-   "id": "lc-881",
-   "title": "Boats to Save People",
-   "topic": "greedy",
-   "topicLabel": "Greedy",
-   "pattern": "Two-pointer greedy",
-   "diff": "medium",
-   "lc": "LC 881",
-   "slug": "boats-to-save-people"
-  },
-  {
-   "id": "lc-1710",
-   "title": "Maximum Units on a Truck",
-   "topic": "greedy",
-   "topicLabel": "Greedy",
-   "pattern": "Sort by ratio",
-   "diff": "easy",
-   "lc": "LC 1710",
-   "slug": "maximum-units-on-a-truck"
-  },
-  {
-   "id": "lc-1647",
-   "title": "Minimum Deletions to Make Character Frequencies Unique",
-   "topic": "greedy",
-   "topicLabel": "Greedy",
-   "pattern": "Sort + greedy",
-   "diff": "medium",
-   "lc": "LC 1647",
-   "slug": "minimum-deletions-to-make-character-frequencies-unique"
-  },
-  {
-   "id": "lc-665",
-   "title": "Non-decreasing Array",
-   "topic": "greedy",
-   "topicLabel": "Greedy",
-   "pattern": "Local greedy fix",
-   "diff": "medium",
-   "lc": "LC 665",
-   "slug": "non-decreasing-array"
-  },
-  {
-   "id": "lc-1221",
-   "title": "Split a String in Balanced Strings",
-   "topic": "greedy",
-   "topicLabel": "Greedy",
-   "pattern": "Greedy scan",
-   "diff": "easy",
-   "lc": "LC 1221",
-   "slug": "split-a-string-in-balanced-strings"
-  },
-  {
-   "id": "lc-1094",
-   "title": "Car Pooling",
-   "topic": "greedy",
-   "topicLabel": "Greedy",
-   "pattern": "Interval / greedy simulation",
-   "diff": "medium",
-   "lc": "LC 1094",
-   "slug": "car-pooling"
-  },
-  {
-   "id": "lc-1353",
-   "title": "Maximum Number of Events That Can Be Attended",
-   "topic": "greedy",
-   "topicLabel": "Greedy",
-   "pattern": "Greedy + heap",
-   "diff": "medium",
-   "lc": "LC 1353",
-   "slug": "maximum-number-of-events-that-can-be-attended"
-  },
-  {
-   "id": "lc-376",
-   "title": "Wiggle Subsequence",
-   "topic": "greedy",
-   "topicLabel": "Greedy",
-   "pattern": "Greedy scan",
-   "diff": "medium",
-   "lc": "LC 376",
-   "slug": "wiggle-subsequence"
-  },
-  {
-   "id": "lc-1326",
-   "title": "Minimum Number of Taps to Open to Water a Garden",
-   "topic": "greedy",
-   "topicLabel": "Greedy",
-   "pattern": "Jump-game-style greedy",
-   "diff": "hard",
-   "lc": "LC 1326",
-   "slug": "minimum-number-of-taps-to-open-to-water-a-garden"
-  },
-  {
-   "id": "lc-630",
-   "title": "Course Schedule III",
-   "topic": "greedy",
-   "topicLabel": "Greedy",
-   "pattern": "Greedy + heap",
-   "diff": "hard",
-   "lc": "LC 630",
-   "slug": "course-schedule-iii"
-  },
-  {
-   "id": "lc-406",
-   "title": "Queue Reconstruction by Height",
-   "topic": "greedy",
-   "topicLabel": "Greedy",
-   "pattern": "Sort + insert greedy",
-   "diff": "medium",
-   "lc": "LC 406",
-   "slug": "queue-reconstruction-by-height"
-  },
-  {
-   "id": "lc-278",
-   "title": "First Bad Version",
-   "topic": "binary-search",
-   "topicLabel": "Binary Search",
-   "pattern": "First True boundary",
-   "diff": "easy",
-   "lc": "LC 278",
-   "slug": "first-bad-version"
-  },
-  {
-   "id": "lc-744",
-   "title": "Find Smallest Letter Greater Than Target",
-   "topic": "binary-search",
-   "topicLabel": "Binary Search",
-   "pattern": "Upper bound",
-   "diff": "easy",
-   "lc": "LC 744",
-   "slug": "find-smallest-letter-greater-than-target"
-  },
-  {
-   "id": "lc-540",
-   "title": "Single Element in a Sorted Array",
-   "topic": "binary-search",
-   "topicLabel": "Binary Search",
-   "pattern": "Parity boundary search",
-   "diff": "medium",
-   "lc": "LC 540",
-   "slug": "single-element-in-a-sorted-array"
-  },
-  {
-   "id": "lc-287",
-   "title": "Find the Duplicate Number",
-   "topic": "binary-search",
-   "topicLabel": "Binary Search",
-   "pattern": "Binary search on value range",
-   "diff": "medium",
-   "lc": "LC 287",
-   "slug": "find-the-duplicate-number"
-  },
-  {
-   "id": "lc-1552",
-   "title": "Magnetic Force Between Two Balls",
-   "topic": "binary-search",
-   "topicLabel": "Binary Search",
-   "pattern": "Max feasible (Last True)",
-   "diff": "medium",
-   "lc": "LC 1552",
-   "slug": "magnetic-force-between-two-balls"
-  },
-  {
-   "id": "lc-81",
-   "title": "Search in Rotated Sorted Array II",
-   "topic": "binary-search",
-   "topicLabel": "Binary Search",
-   "pattern": "Rotated array with duplicates",
-   "diff": "medium",
-   "lc": "LC 81",
-   "slug": "search-in-rotated-sorted-array-ii"
-  },
-  {
-   "id": "lc-852",
-   "title": "Peak Index in a Mountain Array",
-   "topic": "binary-search",
-   "topicLabel": "Binary Search",
-   "pattern": "Peak / local structure",
-   "diff": "medium",
-   "lc": "LC 852",
-   "slug": "peak-index-in-a-mountain-array"
-  },
-  {
-   "id": "lc-240",
-   "title": "Search a 2D Matrix II",
-   "topic": "binary-search",
-   "topicLabel": "Binary Search",
-   "pattern": "Staircase search",
-   "diff": "medium",
-   "lc": "LC 240",
-   "slug": "search-a-2d-matrix-ii"
-  },
-  {
-   "id": "lc-1539",
-   "title": "Kth Missing Positive Number",
-   "topic": "binary-search",
-   "topicLabel": "Binary Search",
-   "pattern": "First True boundary",
-   "diff": "easy",
-   "lc": "LC 1539",
-   "slug": "kth-missing-positive-number"
-  },
-  {
-   "id": "lc-528",
-   "title": "Random Pick with Weight",
-   "topic": "binary-search",
-   "topicLabel": "Binary Search",
-   "pattern": "Prefix sum + lower bound",
-   "diff": "medium",
-   "lc": "LC 528",
-   "slug": "random-pick-with-weight"
-  },
-  {
-   "id": "lc-1283",
-   "title": "Find the Smallest Divisor Given a Threshold",
-   "topic": "binary-search",
-   "topicLabel": "Binary Search",
-   "pattern": "Min feasible (First True)",
-   "diff": "medium",
-   "lc": "LC 1283",
-   "slug": "find-the-smallest-divisor-given-a-threshold"
-  },
-  {
-   "id": "lc-410",
-   "title": "Split Array Largest Sum",
-   "topic": "binary-search",
-   "topicLabel": "Binary Search",
-   "pattern": "Min feasible (First True)",
-   "diff": "hard",
-   "lc": "LC 410",
-   "slug": "split-array-largest-sum"
-  },
-  {
-   "id": "lc-1482",
-   "title": "Minimum Number of Days to Make m Bouquets",
-   "topic": "binary-search",
-   "topicLabel": "Binary Search",
-   "pattern": "Min feasible (First True)",
-   "diff": "medium",
-   "lc": "LC 1482",
-   "slug": "minimum-number-of-days-to-make-m-bouquets"
-  },
-  {
-   "id": "lc-1231",
-   "title": "Divide Chocolate",
-   "topic": "binary-search",
-   "topicLabel": "Binary Search",
-   "pattern": "Max feasible (Last True)",
-   "diff": "hard",
-   "lc": "LC 1231",
-   "slug": "divide-chocolate",
-   "premium": true
-  },
-  {
-   "id": "lc-1385",
-   "title": "Find the Distance Value Between Two Arrays",
-   "topic": "binary-search",
-   "topicLabel": "Binary Search",
-   "pattern": "Binary search per element",
-   "diff": "easy",
-   "lc": "LC 1385",
-   "slug": "find-the-distance-value-between-two-arrays"
-  },
-  {
-   "id": "lc-1095",
-   "title": "Find in Mountain Array",
-   "topic": "binary-search",
-   "topicLabel": "Binary Search",
-   "pattern": "Peak + boundary search",
-   "diff": "hard",
-   "lc": "LC 1095",
-   "slug": "find-in-mountain-array",
-   "premium": true
-  },
-  {
-   "id": "lc-1150",
-   "title": "Check If a Number Is Majority Element in a Sorted Array",
-   "topic": "binary-search",
-   "topicLabel": "Binary Search",
-   "pattern": "Lower/upper bound count",
-   "diff": "easy",
-   "lc": "LC 1150",
-   "slug": "check-if-a-number-is-majority-element-in-a-sorted-array",
-   "premium": true
-  },
-  {
-   "id": "lc-1300",
-   "title": "Sum of Mutated Array Closest to Target",
-   "topic": "binary-search",
-   "topicLabel": "Binary Search",
-   "pattern": "Min feasible (First True)",
-   "diff": "medium",
-   "lc": "LC 1300",
-   "slug": "sum-of-mutated-array-closest-to-target"
-  },
-  {
-   "id": "lc-24",
-   "title": "Swap Nodes in Pairs",
-   "topic": "linked-list",
-   "topicLabel": "Linked List",
-   "pattern": "Dummy + group reversal (k=2)",
-   "diff": "medium",
-   "lc": "LC 24",
-   "slug": "swap-nodes-in-pairs"
-  },
-  {
-   "id": "lc-61",
-   "title": "Rotate List",
-   "topic": "linked-list",
-   "topicLabel": "Linked List",
-   "pattern": "Make circular, break at new tail",
-   "diff": "medium",
-   "lc": "LC 61",
-   "slug": "rotate-list"
-  },
-  {
-   "id": "lc-82",
-   "title": "Remove Duplicates from Sorted List II",
-   "topic": "linked-list",
-   "topicLabel": "Linked List",
-   "pattern": "Dummy + skip entire duplicate run",
-   "diff": "medium",
-   "lc": "LC 82",
-   "slug": "remove-duplicates-from-sorted-list-ii"
-  },
-  {
-   "id": "lc-86",
-   "title": "Partition List",
-   "topic": "linked-list",
-   "topicLabel": "Linked List",
-   "pattern": "Two dummy-headed chains",
-   "diff": "medium",
-   "lc": "LC 86",
-   "slug": "partition-list"
-  },
-  {
-   "id": "lc-92",
-   "title": "Reverse Linked List II",
-   "topic": "linked-list",
-   "topicLabel": "Linked List",
-   "pattern": "Reversal loop on a sub-window",
-   "diff": "medium",
-   "lc": "LC 92",
-   "slug": "reverse-linked-list-ii"
-  },
-  {
-   "id": "lc-148",
-   "title": "Sort List",
-   "topic": "linked-list",
-   "topicLabel": "Linked List",
-   "pattern": "Merge sort (fast/slow split + merge)",
-   "diff": "medium",
-   "lc": "LC 148",
-   "slug": "sort-list"
-  },
-  {
-   "id": "lc-203",
-   "title": "Remove Linked List Elements",
-   "topic": "linked-list",
-   "topicLabel": "Linked List",
-   "pattern": "Dummy + predecessor skip",
-   "diff": "easy",
-   "lc": "LC 203",
-   "slug": "remove-linked-list-elements"
-  },
-  {
-   "id": "lc-328",
-   "title": "Odd Even Linked List",
-   "topic": "linked-list",
-   "topicLabel": "Linked List",
-   "pattern": "Two parallel chains by parity",
-   "diff": "medium",
-   "lc": "LC 328",
-   "slug": "odd-even-linked-list"
-  },
-  {
-   "id": "lc-430",
-   "title": "Flatten a Multilevel Doubly Linked List",
-   "topic": "linked-list",
-   "topicLabel": "Linked List",
-   "pattern": "Stack of resume pointers",
-   "diff": "medium",
-   "lc": "LC 430",
-   "slug": "flatten-a-multilevel-doubly-linked-list"
-  },
-  {
-   "id": "lc-817",
-   "title": "Linked List Components",
-   "topic": "linked-list",
-   "topicLabel": "Linked List",
-   "pattern": "Traversal + set membership",
-   "diff": "medium",
-   "lc": "LC 817",
-   "slug": "linked-list-components"
-  },
-  {
-   "id": "lc-1019",
-   "title": "Next Greater Node In Linked List",
-   "topic": "linked-list",
-   "topicLabel": "Linked List",
-   "pattern": "Traversal + monotonic stack",
-   "diff": "medium",
-   "lc": "LC 1019",
-   "slug": "next-greater-node-in-linked-list"
-  },
-  {
-   "id": "lc-1290",
-   "title": "Convert Binary Number in a Linked List to Integer",
-   "topic": "linked-list",
-   "topicLabel": "Linked List",
-   "pattern": "Basic traversal",
-   "diff": "easy",
-   "lc": "LC 1290",
-   "slug": "convert-binary-number-in-a-linked-list-to-integer"
-  },
-  {
-   "id": "lc-1721",
-   "title": "Swapping Nodes in a Linked List",
-   "topic": "linked-list",
-   "topicLabel": "Linked List",
-   "pattern": "Fixed gap (kth from each end)",
-   "diff": "medium",
-   "lc": "LC 1721",
-   "slug": "swapping-nodes-in-a-linked-list"
-  },
-  {
-   "id": "lc-2130",
-   "title": "Maximum Twin Sum of a Linked List",
-   "topic": "linked-list",
-   "topicLabel": "Linked List",
-   "pattern": "Find middle + reverse second half",
-   "diff": "medium",
-   "lc": "LC 2130",
-   "slug": "maximum-twin-sum-of-a-linked-list"
-  },
-  {
-   "id": "lc-725",
-   "title": "Split Linked List in Parts",
-   "topic": "linked-list",
-   "topicLabel": "Linked List",
-   "pattern": "Length count + chunked traversal",
-   "diff": "medium",
-   "lc": "LC 725",
-   "slug": "split-linked-list-in-parts"
-  },
-  {
-   "id": "lc-2074",
-   "title": "Reverse Nodes in Even Length Groups",
-   "topic": "linked-list",
-   "topicLabel": "Linked List",
-   "pattern": "Group reversal with variable group size",
-   "diff": "medium",
-   "lc": "LC 2074",
-   "slug": "reverse-nodes-in-even-length-groups"
-  },
-  {
-   "id": "lc-1367",
-   "title": "Linked List in Binary Tree",
-   "topic": "linked-list",
-   "topicLabel": "Linked List",
-   "pattern": "Traversal + DFS matching",
-   "diff": "medium",
-   "lc": "LC 1367",
-   "slug": "linked-list-in-binary-tree"
-  },
-  {
-   "id": "lc-1171",
-   "title": "Remove Zero Sum Consecutive Nodes from Linked List",
-   "topic": "linked-list",
-   "topicLabel": "Linked List",
-   "pattern": "Dummy + prefix-sum hashmap",
-   "diff": "medium",
-   "lc": "LC 1171",
-   "slug": "remove-zero-sum-consecutive-nodes-from-linked-list"
-  },
-  {
-   "id": "lc-2181",
-   "title": "Merge Nodes in Between Zeros",
-   "topic": "linked-list",
-   "topicLabel": "Linked List",
-   "pattern": "Traversal + running sum",
-   "diff": "medium",
-   "lc": "LC 2181",
-   "slug": "merge-nodes-in-between-zeros"
-  },
-  {
-   "id": "lc-216",
-   "title": "Combination Sum III",
-   "topic": "backtracking",
-   "topicLabel": "Backtracking",
-   "pattern": "Combinations + Target",
-   "diff": "medium",
-   "lc": "LC 216",
-   "slug": "combination-sum-iii"
-  },
-  {
-   "id": "lc-52",
-   "title": "N-Queens II",
-   "topic": "backtracking",
-   "topicLabel": "Backtracking",
-   "pattern": "Constraint Backtracking",
-   "diff": "hard",
-   "lc": "LC 52",
-   "slug": "n-queens-ii"
-  },
-  {
-   "id": "lc-212",
-   "title": "Word Search II",
-   "topic": "backtracking",
-   "topicLabel": "Backtracking",
-   "pattern": "Trie + Grid DFS",
-   "diff": "hard",
-   "lc": "LC 212",
-   "slug": "word-search-ii"
-  },
-  {
-   "id": "lc-494",
-   "title": "Target Sum",
-   "topic": "backtracking",
-   "topicLabel": "Backtracking",
-   "pattern": "Binary Decision",
-   "diff": "medium",
-   "lc": "LC 494",
-   "slug": "target-sum"
-  },
-  {
-   "id": "lc-291",
-   "title": "Word Pattern II",
-   "topic": "backtracking",
-   "topicLabel": "Backtracking",
-   "pattern": "Bijective Mapping",
-   "diff": "medium",
-   "lc": "LC 291",
-   "slug": "word-pattern-ii",
-   "premium": true
-  },
-  {
-   "id": "lc-320",
-   "title": "Generalized Abbreviation",
-   "topic": "backtracking",
-   "topicLabel": "Backtracking",
-   "pattern": "Binary Decision",
-   "diff": "medium",
-   "lc": "LC 320",
-   "slug": "generalized-abbreviation",
-   "premium": true
-  },
-  {
-   "id": "lc-526",
-   "title": "Beautiful Arrangement",
-   "topic": "backtracking",
-   "topicLabel": "Backtracking",
-   "pattern": "Permutations + Constraint",
-   "diff": "medium",
-   "lc": "LC 526",
-   "slug": "beautiful-arrangement"
-  },
-  {
-   "id": "lc-140",
-   "title": "Word Break II",
-   "topic": "backtracking",
-   "topicLabel": "Backtracking",
-   "pattern": "Partition Backtracking",
-   "diff": "hard",
-   "lc": "LC 140",
-   "slug": "word-break-ii"
-  },
-  {
-   "id": "lc-1079",
-   "title": "Letter Tile Possibilities",
-   "topic": "backtracking",
-   "topicLabel": "Backtracking",
-   "pattern": "Duplicate-Aware Permutation",
-   "diff": "medium",
-   "lc": "LC 1079",
-   "slug": "letter-tile-possibilities"
-  },
-  {
-   "id": "lc-267",
-   "title": "Palindrome Permutation II",
-   "topic": "backtracking",
-   "topicLabel": "Backtracking",
-   "pattern": "Duplicate-Aware Permutation",
-   "diff": "medium",
-   "lc": "LC 267",
-   "slug": "palindrome-permutation-ii",
-   "premium": true
-  },
-  {
-   "id": "lc-401",
-   "title": "Binary Watch",
-   "topic": "backtracking",
-   "topicLabel": "Backtracking",
-   "pattern": "Combinatorial Enumeration",
-   "diff": "easy",
-   "lc": "LC 401",
-   "slug": "binary-watch"
-  },
-  {
-   "id": "lc-967",
-   "title": "Numbers With Same Consecutive Differences",
-   "topic": "backtracking",
-   "topicLabel": "Backtracking",
-   "pattern": "Digit Backtracking",
-   "diff": "medium",
-   "lc": "LC 967",
-   "slug": "numbers-with-same-consecutive-differences"
-  },
-  {
-   "id": "lc-1980",
-   "title": "Find Unique Binary String",
-   "topic": "backtracking",
-   "topicLabel": "Backtracking",
-   "pattern": "Binary Decision",
-   "diff": "medium",
-   "lc": "LC 1980",
-   "slug": "find-unique-binary-string"
-  },
-  {
-   "id": "lc-1219",
-   "title": "Path with Maximum Gold",
-   "topic": "backtracking",
-   "topicLabel": "Backtracking",
-   "pattern": "Grid Backtracking",
-   "diff": "medium",
-   "lc": "LC 1219",
-   "slug": "path-with-maximum-gold"
-  },
-  {
-   "id": "lc-1291",
-   "title": "Sequential Digits",
-   "topic": "backtracking",
-   "topicLabel": "Backtracking",
-   "pattern": "Digit Backtracking",
-   "diff": "medium",
-   "lc": "LC 1291",
-   "slug": "sequential-digits"
-  },
-  {
-   "id": "lc-473",
-   "title": "Matchsticks to Square",
-   "topic": "backtracking",
-   "topicLabel": "Backtracking",
-   "pattern": "Partition Backtracking",
-   "diff": "medium",
-   "lc": "LC 473",
-   "slug": "matchsticks-to-square"
-  },
-  {
-   "id": "lc-1863",
-   "title": "Sum of All Subset XOR Totals",
-   "topic": "backtracking",
-   "topicLabel": "Backtracking",
-   "pattern": "Binary Decision",
-   "diff": "easy",
-   "lc": "LC 1863",
-   "slug": "sum-of-all-subset-xor-totals"
-  }
- ]
+  "problems": [
+    {
+      "id": "kth-largest",
+      "title": "Kth Largest Element",
+      "topic": "heap",
+      "topicLabel": "Heap",
+      "pattern": "Top K",
+      "diff": "medium",
+      "lc": "LC 215",
+      "slug": "kth-largest-element-in-an-array"
+    },
+    {
+      "id": "k-closest",
+      "title": "K Closest Points to Origin",
+      "topic": "heap",
+      "topicLabel": "Heap",
+      "pattern": "Top K",
+      "diff": "medium",
+      "lc": "LC 973",
+      "slug": "k-closest-points-to-origin"
+    },
+    {
+      "id": "top-k-frequent",
+      "title": "Top K Frequent Elements",
+      "topic": "heap",
+      "topicLabel": "Heap",
+      "pattern": "Hash map + Heap",
+      "diff": "medium",
+      "lc": "LC 347",
+      "slug": "top-k-frequent-elements"
+    },
+    {
+      "id": "median-finder",
+      "title": "Find Median from Data Stream",
+      "topic": "heap",
+      "topicLabel": "Heap",
+      "pattern": "Two heaps",
+      "diff": "hard",
+      "lc": "LC 295",
+      "slug": "find-median-from-data-stream"
+    },
+    {
+      "id": "connect-ropes",
+      "title": "Connect Ropes (Minimum Cost)",
+      "topic": "heap",
+      "topicLabel": "Heap",
+      "pattern": "Repeatedly process min",
+      "diff": "medium",
+      "lc": "LC 1167",
+      "slug": "minimum-cost-to-connect-sticks",
+      "premium": true
+    },
+    {
+      "id": "last-stone",
+      "title": "Last Stone Weight",
+      "topic": "heap",
+      "topicLabel": "Heap",
+      "pattern": "Repeatedly process max",
+      "diff": "easy",
+      "lc": "LC 1046",
+      "slug": "last-stone-weight"
+    },
+    {
+      "id": "merge-k-sorted",
+      "title": "Merge K Sorted Arrays",
+      "topic": "heap",
+      "topicLabel": "Heap",
+      "pattern": "K-way merge",
+      "diff": "medium",
+      "lc": "LC 23 (arrays)",
+      "slug": "merge-k-sorted-lists"
+    },
+    {
+      "id": "meeting-rooms",
+      "title": "Meeting Rooms II",
+      "topic": "heap",
+      "topicLabel": "Heap",
+      "pattern": "Sort + Heap",
+      "diff": "medium",
+      "lc": "LC 253",
+      "slug": "meeting-rooms-ii",
+      "premium": true
+    },
+    {
+      "id": "ipo",
+      "title": "IPO (Maximum Capital)",
+      "topic": "heap",
+      "topicLabel": "Heap",
+      "pattern": "Heap + Greedy",
+      "diff": "hard",
+      "lc": "LC 502",
+      "slug": "ipo"
+    },
+    {
+      "id": "least-interval",
+      "title": "Task Scheduler",
+      "topic": "heap",
+      "topicLabel": "Heap",
+      "pattern": "Hash map + Heap",
+      "diff": "medium",
+      "lc": "LC 621",
+      "slug": "task-scheduler"
+    },
+    {
+      "id": "furthest-building",
+      "title": "Furthest Building You Can Reach",
+      "topic": "heap",
+      "topicLabel": "Heap",
+      "pattern": "Repeatedly process (greedy)",
+      "diff": "medium",
+      "lc": "LC 1642",
+      "slug": "furthest-building-you-can-reach"
+    },
+    {
+      "id": "k-smallest-pairs",
+      "title": "K Pairs with Smallest Sums",
+      "topic": "heap",
+      "topicLabel": "Heap",
+      "pattern": "K-way merge + Top K",
+      "diff": "medium",
+      "lc": "LC 373",
+      "slug": "find-k-pairs-with-smallest-sums"
+    },
+    {
+      "id": "kth-smallest-matrix",
+      "title": "Kth Smallest in a Sorted Matrix",
+      "topic": "heap",
+      "topicLabel": "Heap",
+      "pattern": "K-way merge",
+      "diff": "medium",
+      "lc": "LC 378",
+      "slug": "kth-smallest-element-in-a-sorted-matrix"
+    },
+    {
+      "id": "min-refuel-stops",
+      "title": "Minimum Number of Refueling Stops",
+      "topic": "heap",
+      "topicLabel": "Heap",
+      "pattern": "Heap + Greedy",
+      "diff": "hard",
+      "lc": "LC 871",
+      "slug": "minimum-number-of-refueling-stops"
+    },
+    {
+      "id": "max-performance",
+      "title": "Maximum Performance of a Team",
+      "topic": "heap",
+      "topicLabel": "Heap",
+      "pattern": "Heap + Greedy",
+      "diff": "hard",
+      "lc": "LC 1383",
+      "slug": "maximum-performance-of-a-team"
+    },
+    {
+      "id": "smallest-range",
+      "title": "Smallest Range Covering K Lists",
+      "topic": "heap",
+      "topicLabel": "Heap",
+      "pattern": "K-way merge",
+      "diff": "hard",
+      "lc": "LC 632",
+      "slug": "smallest-range-covering-elements-from-k-lists"
+    },
+    {
+      "id": "min-cost-hire",
+      "title": "Minimum Cost to Hire K Workers",
+      "topic": "heap",
+      "topicLabel": "Heap",
+      "pattern": "Repeatedly process (greedy)",
+      "diff": "hard",
+      "lc": "LC 857",
+      "slug": "minimum-cost-to-hire-k-workers"
+    },
+    {
+      "id": "cpu-scheduler",
+      "title": "Single-Threaded CPU",
+      "topic": "heap",
+      "topicLabel": "Heap",
+      "pattern": "Sort + Heap",
+      "diff": "medium",
+      "lc": "LC 1834",
+      "slug": "single-threaded-cpu"
+    },
+    {
+      "id": "valid-parentheses",
+      "title": "Valid Parentheses",
+      "topic": "stack",
+      "topicLabel": "Stack",
+      "pattern": "Matching",
+      "diff": "easy",
+      "lc": "LC 20",
+      "slug": "valid-parentheses"
+    },
+    {
+      "id": "longest-valid-parens",
+      "title": "Longest Valid Parentheses",
+      "topic": "stack",
+      "topicLabel": "Stack",
+      "pattern": "Matching",
+      "diff": "hard",
+      "lc": "LC 32",
+      "slug": "longest-valid-parentheses"
+    },
+    {
+      "id": "min-add-valid",
+      "title": "Minimum Add to Make Parentheses Valid",
+      "topic": "stack",
+      "topicLabel": "Stack",
+      "pattern": "Matching",
+      "diff": "medium",
+      "lc": "LC 921",
+      "slug": "minimum-add-to-make-parentheses-valid"
+    },
+    {
+      "id": "remove-adjacent-dups",
+      "title": "Remove All Adjacent Duplicates",
+      "topic": "stack",
+      "topicLabel": "Stack",
+      "pattern": "Cancelling",
+      "diff": "easy",
+      "lc": "LC 1047",
+      "slug": "remove-all-adjacent-duplicates-in-string"
+    },
+    {
+      "id": "backspace-compare",
+      "title": "Backspace String Compare",
+      "topic": "stack",
+      "topicLabel": "Stack",
+      "pattern": "Cancelling",
+      "diff": "easy",
+      "lc": "LC 844",
+      "slug": "backspace-string-compare"
+    },
+    {
+      "id": "asteroids",
+      "title": "Asteroid Collision",
+      "topic": "stack",
+      "topicLabel": "Stack",
+      "pattern": "Cancelling",
+      "diff": "medium",
+      "lc": "LC 735",
+      "slug": "asteroid-collision"
+    },
+    {
+      "id": "eval-rpn",
+      "title": "Evaluate Reverse Polish Notation",
+      "topic": "stack",
+      "topicLabel": "Stack",
+      "pattern": "Expressions",
+      "diff": "medium",
+      "lc": "LC 150",
+      "slug": "evaluate-reverse-polish-notation"
+    },
+    {
+      "id": "calculator-ii",
+      "title": "Basic Calculator II",
+      "topic": "stack",
+      "topicLabel": "Stack",
+      "pattern": "Expressions",
+      "diff": "medium",
+      "lc": "LC 227",
+      "slug": "basic-calculator-ii"
+    },
+    {
+      "id": "calculator",
+      "title": "Basic Calculator",
+      "topic": "stack",
+      "topicLabel": "Stack",
+      "pattern": "Expressions",
+      "diff": "hard",
+      "lc": "LC 224",
+      "slug": "basic-calculator"
+    },
+    {
+      "id": "decode-string",
+      "title": "Decode String",
+      "topic": "stack",
+      "topicLabel": "Stack",
+      "pattern": "Expressions",
+      "diff": "medium",
+      "lc": "LC 394",
+      "slug": "decode-string"
+    },
+    {
+      "id": "simplify-path",
+      "title": "Simplify Path",
+      "topic": "stack",
+      "topicLabel": "Stack",
+      "pattern": "Expressions",
+      "diff": "medium",
+      "lc": "LC 71",
+      "slug": "simplify-path"
+    },
+    {
+      "id": "min-stack",
+      "title": "Min Stack",
+      "topic": "stack",
+      "topicLabel": "Stack",
+      "pattern": "Design",
+      "diff": "medium",
+      "lc": "LC 155",
+      "slug": "min-stack"
+    },
+    {
+      "id": "queue-two-stacks",
+      "title": "Queue Using Stacks",
+      "topic": "stack",
+      "topicLabel": "Stack",
+      "pattern": "Design",
+      "diff": "easy",
+      "lc": "LC 232",
+      "slug": "implement-queue-using-stacks"
+    },
+    {
+      "id": "next-greater",
+      "title": "Next Greater Element",
+      "topic": "stack",
+      "topicLabel": "Stack",
+      "pattern": "Monotonic stack",
+      "diff": "medium",
+      "lc": "Classic",
+      "slug": "next-greater-element-i"
+    },
+    {
+      "id": "daily-temperatures",
+      "title": "Daily Temperatures",
+      "topic": "stack",
+      "topicLabel": "Stack",
+      "pattern": "Monotonic stack",
+      "diff": "medium",
+      "lc": "LC 739",
+      "slug": "daily-temperatures"
+    },
+    {
+      "id": "next-greater-circular",
+      "title": "Next Greater Element II (Circular)",
+      "topic": "stack",
+      "topicLabel": "Stack",
+      "pattern": "Monotonic stack",
+      "diff": "medium",
+      "lc": "LC 503",
+      "slug": "next-greater-element-ii"
+    },
+    {
+      "id": "stock-spanner",
+      "title": "Online Stock Span",
+      "topic": "stack",
+      "topicLabel": "Stack",
+      "pattern": "Monotonic stack",
+      "diff": "medium",
+      "lc": "LC 901",
+      "slug": "online-stock-span"
+    },
+    {
+      "id": "remove-k-digits",
+      "title": "Remove K Digits",
+      "topic": "stack",
+      "topicLabel": "Stack",
+      "pattern": "Monotonic stack (greedy)",
+      "diff": "medium",
+      "lc": "LC 402",
+      "slug": "remove-k-digits"
+    },
+    {
+      "id": "remove-duplicate-letters",
+      "title": "Remove Duplicate Letters",
+      "topic": "stack",
+      "topicLabel": "Stack",
+      "pattern": "Monotonic stack (greedy)",
+      "diff": "hard",
+      "lc": "LC 316",
+      "slug": "remove-duplicate-letters"
+    },
+    {
+      "id": "largest-rectangle",
+      "title": "Largest Rectangle in Histogram",
+      "topic": "stack",
+      "topicLabel": "Stack",
+      "pattern": "Monotonic stack (areas)",
+      "diff": "hard",
+      "lc": "LC 84",
+      "slug": "largest-rectangle-in-histogram"
+    },
+    {
+      "id": "trapping-rain-water",
+      "title": "Trapping Rain Water",
+      "topic": "stack",
+      "topicLabel": "Stack",
+      "pattern": "Monotonic stack (areas)",
+      "diff": "hard",
+      "lc": "LC 42",
+      "slug": "trapping-rain-water"
+    },
+    {
+      "id": "sum-subarray-mins",
+      "title": "Sum of Subarray Minimums",
+      "topic": "stack",
+      "topicLabel": "Stack",
+      "pattern": "Monotonic stack (contribution)",
+      "diff": "hard",
+      "lc": "LC 907",
+      "slug": "sum-of-subarray-minimums"
+    },
+    {
+      "id": "car-fleet",
+      "title": "Car Fleet",
+      "topic": "stack",
+      "topicLabel": "Stack",
+      "pattern": "Stack of groups",
+      "diff": "medium",
+      "lc": "LC 853",
+      "slug": "car-fleet"
+    },
+    {
+      "id": "score-of-parentheses",
+      "title": "Score of Parentheses",
+      "topic": "stack",
+      "topicLabel": "Stack",
+      "pattern": "Matching",
+      "diff": "medium",
+      "lc": "LC 856",
+      "slug": "score-of-parentheses"
+    },
+    {
+      "id": "validate-stack-sequences",
+      "title": "Validate Stack Sequences",
+      "topic": "stack",
+      "topicLabel": "Stack",
+      "pattern": "Design / simulation",
+      "diff": "medium",
+      "lc": "LC 946",
+      "slug": "validate-stack-sequences"
+    },
+    {
+      "id": "sliding-window-max",
+      "title": "Sliding Window Maximum",
+      "topic": "stack",
+      "topicLabel": "Stack",
+      "pattern": "Monotonic deque",
+      "diff": "hard",
+      "lc": "LC 239",
+      "slug": "sliding-window-maximum"
+    },
+    {
+      "id": "previous-smaller",
+      "title": "Previous Smaller Element",
+      "topic": "stack",
+      "topicLabel": "Stack",
+      "pattern": "Monotonic stack",
+      "diff": "medium",
+      "lc": "Classic",
+      "url": "https://leetcode.com/problems/next-greater-element-i/",
+      "note": "Classic pattern (no single LeetCode problem); Next Greater Element I is the closest match."
+    },
+    {
+      "id": "maximal-rectangle",
+      "title": "Maximal Rectangle",
+      "topic": "stack",
+      "topicLabel": "Stack",
+      "pattern": "Monotonic stack (areas)",
+      "diff": "hard",
+      "lc": "LC 85",
+      "slug": "maximal-rectangle"
+    },
+    {
+      "id": "lc-933",
+      "title": "Number of Recent Calls",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "FIFO simulation",
+      "diff": "easy",
+      "lc": "LC 933",
+      "slug": "number-of-recent-calls"
+    },
+    {
+      "id": "lc-346",
+      "title": "Moving Average from Data Stream",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "FIFO simulation",
+      "diff": "easy",
+      "lc": "LC 346",
+      "slug": "moving-average-from-data-stream",
+      "premium": true
+    },
+    {
+      "id": "lc-1700",
+      "title": "Number of Students Unable to Eat Lunch",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "FIFO simulation",
+      "diff": "easy",
+      "lc": "LC 1700",
+      "slug": "number-of-students-unable-to-eat-lunch"
+    },
+    {
+      "id": "lc-2073",
+      "title": "Time Needed to Buy Tickets",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "FIFO simulation",
+      "diff": "easy",
+      "lc": "LC 2073",
+      "slug": "time-needed-to-buy-tickets"
+    },
+    {
+      "id": "lc-622",
+      "title": "Design Circular Queue",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "Design",
+      "diff": "medium",
+      "lc": "LC 622",
+      "slug": "design-circular-queue"
+    },
+    {
+      "id": "lc-362",
+      "title": "Design Hit Counter",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "FIFO simulation",
+      "diff": "medium",
+      "lc": "LC 362",
+      "slug": "design-hit-counter",
+      "premium": true
+    },
+    {
+      "id": "lc-225",
+      "title": "Implement Stack using Queues",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "Design",
+      "diff": "easy",
+      "lc": "LC 225",
+      "slug": "implement-stack-using-queues"
+    },
+    {
+      "id": "lc-649",
+      "title": "Dota2 Senate",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "FIFO simulation",
+      "diff": "medium",
+      "lc": "LC 649",
+      "slug": "dota2-senate"
+    },
+    {
+      "id": "lc-950",
+      "title": "Reveal Cards In Increasing Order",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "FIFO simulation",
+      "diff": "medium",
+      "lc": "LC 950",
+      "slug": "reveal-cards-in-increasing-order"
+    },
+    {
+      "id": "lc-102",
+      "title": "Binary Tree Level Order Traversal",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "BFS",
+      "diff": "medium",
+      "lc": "LC 102",
+      "slug": "binary-tree-level-order-traversal"
+    },
+    {
+      "id": "lc-103",
+      "title": "Binary Tree Zigzag Level Order Traversal",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "BFS",
+      "diff": "medium",
+      "lc": "LC 103",
+      "slug": "binary-tree-zigzag-level-order-traversal"
+    },
+    {
+      "id": "lc-199",
+      "title": "Binary Tree Right Side View",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "BFS",
+      "diff": "medium",
+      "lc": "LC 199",
+      "slug": "binary-tree-right-side-view"
+    },
+    {
+      "id": "lc-637",
+      "title": "Average of Levels in Binary Tree",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "BFS",
+      "diff": "easy",
+      "lc": "LC 637",
+      "slug": "average-of-levels-in-binary-tree"
+    },
+    {
+      "id": "lc-111",
+      "title": "Minimum Depth of Binary Tree",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "BFS",
+      "diff": "easy",
+      "lc": "LC 111",
+      "slug": "minimum-depth-of-binary-tree"
+    },
+    {
+      "id": "lc-127",
+      "title": "Word Ladder",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "BFS",
+      "diff": "hard",
+      "lc": "LC 127",
+      "slug": "word-ladder"
+    },
+    {
+      "id": "lc-752",
+      "title": "Open the Lock",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "BFS",
+      "diff": "medium",
+      "lc": "LC 752",
+      "slug": "open-the-lock"
+    },
+    {
+      "id": "lc-433",
+      "title": "Minimum Genetic Mutation",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "BFS",
+      "diff": "medium",
+      "lc": "LC 433",
+      "slug": "minimum-genetic-mutation"
+    },
+    {
+      "id": "lc-279",
+      "title": "Perfect Squares",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "BFS",
+      "diff": "medium",
+      "lc": "LC 279",
+      "slug": "perfect-squares"
+    },
+    {
+      "id": "lc-909",
+      "title": "Snakes and Ladders",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "BFS",
+      "diff": "medium",
+      "lc": "LC 909",
+      "slug": "snakes-and-ladders"
+    },
+    {
+      "id": "lc-994",
+      "title": "Rotting Oranges",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "Multi-source BFS",
+      "diff": "medium",
+      "lc": "LC 994",
+      "slug": "rotting-oranges"
+    },
+    {
+      "id": "lc-542",
+      "title": "01 Matrix",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "Multi-source BFS",
+      "diff": "medium",
+      "lc": "LC 542",
+      "slug": "01-matrix"
+    },
+    {
+      "id": "lc-286",
+      "title": "Walls and Gates",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "Multi-source BFS",
+      "diff": "medium",
+      "lc": "LC 286",
+      "slug": "walls-and-gates",
+      "premium": true
+    },
+    {
+      "id": "lc-1162",
+      "title": "As Far from Land as Possible",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "Multi-source BFS",
+      "diff": "medium",
+      "lc": "LC 1162",
+      "slug": "as-far-from-land-as-possible"
+    },
+    {
+      "id": "lc-1293",
+      "title": "Shortest Path in a Grid with Obstacles Elimination",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "BFS + state",
+      "diff": "hard",
+      "lc": "LC 1293",
+      "slug": "shortest-path-in-a-grid-with-obstacles-elimination"
+    },
+    {
+      "id": "lc-864",
+      "title": "Shortest Path to Get All Keys",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "BFS + state",
+      "diff": "hard",
+      "lc": "LC 864",
+      "slug": "shortest-path-to-get-all-keys"
+    },
+    {
+      "id": "lc-1197",
+      "title": "Minimum Knight Moves",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "BFS + state",
+      "diff": "medium",
+      "lc": "LC 1197",
+      "slug": "minimum-knight-moves",
+      "premium": true
+    },
+    {
+      "id": "lc-1091",
+      "title": "Shortest Path in Binary Matrix",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "Grid BFS",
+      "diff": "medium",
+      "lc": "LC 1091",
+      "slug": "shortest-path-in-binary-matrix"
+    },
+    {
+      "id": "lc-1926",
+      "title": "Nearest Exit from Entrance in Maze",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "Grid BFS",
+      "diff": "medium",
+      "lc": "LC 1926",
+      "slug": "nearest-exit-from-entrance-in-maze"
+    },
+    {
+      "id": "lc-200",
+      "title": "Number of Islands",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "Grid BFS",
+      "diff": "medium",
+      "lc": "LC 200",
+      "slug": "number-of-islands"
+    },
+    {
+      "id": "lc-1036",
+      "title": "Escape a Large Maze",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "Grid BFS",
+      "diff": "hard",
+      "lc": "LC 1036",
+      "slug": "escape-a-large-maze"
+    },
+    {
+      "id": "lc-862",
+      "title": "Shortest Subarray with Sum at Least K",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "Monotonic deque",
+      "diff": "hard",
+      "lc": "LC 862",
+      "slug": "shortest-subarray-with-sum-at-least-k"
+    },
+    {
+      "id": "lc-1425",
+      "title": "Constrained Subsequence Sum",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "Monotonic deque",
+      "diff": "hard",
+      "lc": "LC 1425",
+      "slug": "constrained-subsequence-sum"
+    },
+    {
+      "id": "lc-1438",
+      "title": "Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "Monotonic deque",
+      "diff": "medium",
+      "lc": "LC 1438",
+      "slug": "longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit"
+    },
+    {
+      "id": "lc-1696",
+      "title": "Jump Game VI",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "Monotonic deque",
+      "diff": "medium",
+      "lc": "LC 1696",
+      "slug": "jump-game-vi"
+    },
+    {
+      "id": "lc-387",
+      "title": "First Unique Character in a String",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "Queue + hash map",
+      "diff": "easy",
+      "lc": "LC 387",
+      "slug": "first-unique-character-in-a-string"
+    },
+    {
+      "id": "lc-1429",
+      "title": "First Unique Number",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "Queue + hash map",
+      "diff": "medium",
+      "lc": "LC 1429",
+      "slug": "first-unique-number",
+      "premium": true
+    },
+    {
+      "id": "lc-207",
+      "title": "Course Schedule",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "Topological sort",
+      "diff": "medium",
+      "lc": "LC 207",
+      "slug": "course-schedule"
+    },
+    {
+      "id": "lc-210",
+      "title": "Course Schedule II",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "Topological sort",
+      "diff": "medium",
+      "lc": "LC 210",
+      "slug": "course-schedule-ii"
+    },
+    {
+      "id": "lc-269",
+      "title": "Alien Dictionary",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "Topological sort",
+      "diff": "hard",
+      "lc": "LC 269",
+      "slug": "alien-dictionary",
+      "premium": true
+    },
+    {
+      "id": "lc-1136",
+      "title": "Parallel Courses",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "Topological sort",
+      "diff": "medium",
+      "lc": "LC 1136",
+      "slug": "parallel-courses",
+      "premium": true
+    },
+    {
+      "id": "lc-1368",
+      "title": "Minimum Cost to Make at Least One Valid Path in a Grid",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "0-1 BFS",
+      "diff": "hard",
+      "lc": "LC 1368",
+      "slug": "minimum-cost-to-make-at-least-one-valid-path-in-a-grid"
+    },
+    {
+      "id": "lc-2290",
+      "title": "Minimum Obstacle Removal to Reach Corner",
+      "topic": "queue",
+      "topicLabel": "Queue",
+      "pattern": "0-1 BFS",
+      "diff": "hard",
+      "lc": "LC 2290",
+      "slug": "minimum-obstacle-removal-to-reach-corner"
+    },
+    {
+      "id": "lc-144",
+      "title": "Binary Tree Preorder Traversal",
+      "topic": "trees",
+      "topicLabel": "Trees",
+      "pattern": "Traversals",
+      "diff": "easy",
+      "lc": "LC 144",
+      "slug": "binary-tree-preorder-traversal"
+    },
+    {
+      "id": "lc-94",
+      "title": "Binary Tree Inorder Traversal",
+      "topic": "trees",
+      "topicLabel": "Trees",
+      "pattern": "Traversals",
+      "diff": "easy",
+      "lc": "LC 94",
+      "slug": "binary-tree-inorder-traversal"
+    },
+    {
+      "id": "lc-145",
+      "title": "Binary Tree Postorder Traversal",
+      "topic": "trees",
+      "topicLabel": "Trees",
+      "pattern": "Traversals",
+      "diff": "easy",
+      "lc": "LC 145",
+      "slug": "binary-tree-postorder-traversal"
+    },
+    {
+      "id": "lc-662",
+      "title": "Maximum Width of Binary Tree",
+      "topic": "trees",
+      "topicLabel": "Trees",
+      "pattern": "BFS / level order",
+      "diff": "medium",
+      "lc": "LC 662",
+      "slug": "maximum-width-of-binary-tree"
+    },
+    {
+      "id": "lc-112",
+      "title": "Path Sum",
+      "topic": "trees",
+      "topicLabel": "Trees",
+      "pattern": "Top-down DFS",
+      "diff": "easy",
+      "lc": "LC 112",
+      "slug": "path-sum"
+    },
+    {
+      "id": "lc-113",
+      "title": "Path Sum II",
+      "topic": "trees",
+      "topicLabel": "Trees",
+      "pattern": "Top-down DFS",
+      "diff": "medium",
+      "lc": "LC 113",
+      "slug": "path-sum-ii"
+    },
+    {
+      "id": "lc-129",
+      "title": "Sum Root to Leaf Numbers",
+      "topic": "trees",
+      "topicLabel": "Trees",
+      "pattern": "Top-down DFS",
+      "diff": "medium",
+      "lc": "LC 129",
+      "slug": "sum-root-to-leaf-numbers"
+    },
+    {
+      "id": "lc-687",
+      "title": "Longest Univalue Path",
+      "topic": "trees",
+      "topicLabel": "Trees",
+      "pattern": "Bottom-up DFS",
+      "diff": "medium",
+      "lc": "LC 687",
+      "slug": "longest-univalue-path"
+    },
+    {
+      "id": "lc-700",
+      "title": "Search in a Binary Search Tree",
+      "topic": "trees",
+      "topicLabel": "Trees",
+      "pattern": "BST",
+      "diff": "easy",
+      "lc": "LC 700",
+      "slug": "search-in-a-binary-search-tree"
+    },
+    {
+      "id": "lc-701",
+      "title": "Insert into a Binary Search Tree",
+      "topic": "trees",
+      "topicLabel": "Trees",
+      "pattern": "BST",
+      "diff": "medium",
+      "lc": "LC 701",
+      "slug": "insert-into-a-binary-search-tree"
+    },
+    {
+      "id": "lc-450",
+      "title": "Delete Node in a BST",
+      "topic": "trees",
+      "topicLabel": "Trees",
+      "pattern": "BST",
+      "diff": "medium",
+      "lc": "LC 450",
+      "slug": "delete-node-in-a-bst"
+    },
+    {
+      "id": "lc-653",
+      "title": "Two Sum IV - Input is a BST",
+      "topic": "trees",
+      "topicLabel": "Trees",
+      "pattern": "BST",
+      "diff": "easy",
+      "lc": "LC 653",
+      "slug": "two-sum-iv-input-is-a-bst"
+    },
+    {
+      "id": "lc-669",
+      "title": "Trim a Binary Search Tree",
+      "topic": "trees",
+      "topicLabel": "Trees",
+      "pattern": "BST",
+      "diff": "medium",
+      "lc": "LC 669",
+      "slug": "trim-a-binary-search-tree"
+    },
+    {
+      "id": "lc-1382",
+      "title": "Balance a Binary Search Tree",
+      "topic": "trees",
+      "topicLabel": "Trees",
+      "pattern": "BST",
+      "diff": "medium",
+      "lc": "LC 1382",
+      "slug": "balance-a-binary-search-tree"
+    },
+    {
+      "id": "lc-108",
+      "title": "Convert Sorted Array to Binary Search Tree",
+      "topic": "trees",
+      "topicLabel": "Trees",
+      "pattern": "BST",
+      "diff": "easy",
+      "lc": "LC 108",
+      "slug": "convert-sorted-array-to-binary-search-tree"
+    },
+    {
+      "id": "lc-1650",
+      "title": "Lowest Common Ancestor of a Binary Tree III",
+      "topic": "trees",
+      "topicLabel": "Trees",
+      "pattern": "LCA",
+      "diff": "medium",
+      "lc": "LC 1650",
+      "slug": "lowest-common-ancestor-of-a-binary-tree-iii",
+      "premium": true
+    },
+    {
+      "id": "lc-1123",
+      "title": "Lowest Common Ancestor of Deepest Leaves",
+      "topic": "trees",
+      "topicLabel": "Trees",
+      "pattern": "LCA",
+      "diff": "medium",
+      "lc": "LC 1123",
+      "slug": "lowest-common-ancestor-of-deepest-leaves"
+    },
+    {
+      "id": "lc-106",
+      "title": "Construct Binary Tree from Inorder and Postorder Traversal",
+      "topic": "trees",
+      "topicLabel": "Trees",
+      "pattern": "Construction",
+      "diff": "medium",
+      "lc": "LC 106",
+      "slug": "construct-binary-tree-from-inorder-and-postorder-traversal"
+    },
+    {
+      "id": "lc-889",
+      "title": "Construct Binary Tree from Preorder and Postorder Traversal",
+      "topic": "trees",
+      "topicLabel": "Trees",
+      "pattern": "Construction",
+      "diff": "medium",
+      "lc": "LC 889",
+      "slug": "construct-binary-tree-from-preorder-and-postorder-traversal"
+    },
+    {
+      "id": "lc-337",
+      "title": "House Robber III",
+      "topic": "trees",
+      "topicLabel": "Trees",
+      "pattern": "Tree DP",
+      "diff": "medium",
+      "lc": "LC 337",
+      "slug": "house-robber-iii"
+    },
+    {
+      "id": "lc-968",
+      "title": "Binary Tree Cameras",
+      "topic": "trees",
+      "topicLabel": "Trees",
+      "pattern": "Tree DP",
+      "diff": "hard",
+      "lc": "LC 968",
+      "slug": "binary-tree-cameras"
+    },
+    {
+      "id": "lc-437",
+      "title": "Path Sum III",
+      "topic": "trees",
+      "topicLabel": "Trees",
+      "pattern": "Mixed",
+      "diff": "medium",
+      "lc": "LC 437",
+      "slug": "path-sum-iii"
+    },
+    {
+      "id": "lc-987",
+      "title": "Vertical Order Traversal of a Binary Tree",
+      "topic": "trees",
+      "topicLabel": "Trees",
+      "pattern": "Mixed",
+      "diff": "hard",
+      "lc": "LC 987",
+      "slug": "vertical-order-traversal-of-a-binary-tree"
+    },
+    {
+      "id": "lc-545",
+      "title": "Boundary of Binary Tree",
+      "topic": "trees",
+      "topicLabel": "Trees",
+      "pattern": "Mixed",
+      "diff": "medium",
+      "lc": "LC 545",
+      "slug": "boundary-of-binary-tree",
+      "premium": true
+    },
+    {
+      "id": "lc-1248",
+      "title": "Count Number of Nice Subarrays",
+      "topic": "sliding-window",
+      "topicLabel": "Sliding Window",
+      "pattern": "At-most K to exactly K",
+      "diff": "medium",
+      "lc": "LC 1248",
+      "slug": "count-number-of-nice-subarrays"
+    },
+    {
+      "id": "lc-992",
+      "title": "Subarrays with K Different Integers",
+      "topic": "sliding-window",
+      "topicLabel": "Sliding Window",
+      "pattern": "At-most K to exactly K",
+      "diff": "hard",
+      "lc": "LC 992",
+      "slug": "subarrays-with-k-different-integers"
+    },
+    {
+      "id": "lc-2461",
+      "title": "Maximum Sum of Distinct Subarrays With Length K",
+      "topic": "sliding-window",
+      "topicLabel": "Sliding Window",
+      "pattern": "Fixed-size window",
+      "diff": "medium",
+      "lc": "LC 2461",
+      "slug": "maximum-sum-of-distinct-subarrays-with-length-k"
+    },
+    {
+      "id": "lc-1052",
+      "title": "Grumpy Bookstore Owner",
+      "topic": "sliding-window",
+      "topicLabel": "Sliding Window",
+      "pattern": "Fixed-size window",
+      "diff": "medium",
+      "lc": "LC 1052",
+      "slug": "grumpy-bookstore-owner"
+    },
+    {
+      "id": "lc-1838",
+      "title": "Frequency of the Most Frequent Element",
+      "topic": "sliding-window",
+      "topicLabel": "Sliding Window",
+      "pattern": "Longest valid window",
+      "diff": "medium",
+      "lc": "LC 1838",
+      "slug": "frequency-of-the-most-frequent-element"
+    },
+    {
+      "id": "lc-1493",
+      "title": "Longest Subarray of 1's After Deleting One Element",
+      "topic": "sliding-window",
+      "topicLabel": "Sliding Window",
+      "pattern": "Longest valid window",
+      "diff": "medium",
+      "lc": "LC 1493",
+      "slug": "longest-subarray-of-1s-after-deleting-one-element"
+    },
+    {
+      "id": "lc-2024",
+      "title": "Maximize the Confusion of a Student",
+      "topic": "sliding-window",
+      "topicLabel": "Sliding Window",
+      "pattern": "Longest valid window",
+      "diff": "medium",
+      "lc": "LC 2024",
+      "slug": "maximize-the-confusion-of-a-student"
+    },
+    {
+      "id": "lc-1423",
+      "title": "Maximum Points You Can Obtain from Cards",
+      "topic": "sliding-window",
+      "topicLabel": "Sliding Window",
+      "pattern": "Fixed-size window",
+      "diff": "medium",
+      "lc": "LC 1423",
+      "slug": "maximum-points-you-can-obtain-from-cards"
+    },
+    {
+      "id": "lc-115",
+      "title": "Distinct Subsequences",
+      "topic": "dynamic-programming",
+      "topicLabel": "Dynamic Programming",
+      "pattern": "Two-Sequence DP",
+      "diff": "hard",
+      "lc": "LC 115",
+      "slug": "distinct-subsequences"
+    },
+    {
+      "id": "lc-97",
+      "title": "Interleaving String",
+      "topic": "dynamic-programming",
+      "topicLabel": "Dynamic Programming",
+      "pattern": "Two-Sequence DP",
+      "diff": "medium",
+      "lc": "LC 97",
+      "slug": "interleaving-string"
+    },
+    {
+      "id": "lc-516",
+      "title": "Longest Palindromic Subsequence",
+      "topic": "dynamic-programming",
+      "topicLabel": "Dynamic Programming",
+      "pattern": "Interval DP (shrinking)",
+      "diff": "medium",
+      "lc": "LC 516",
+      "slug": "longest-palindromic-subsequence"
+    },
+    {
+      "id": "lc-132",
+      "title": "Palindrome Partitioning II",
+      "topic": "dynamic-programming",
+      "topicLabel": "Dynamic Programming",
+      "pattern": "Interval DP (partition)",
+      "diff": "hard",
+      "lc": "LC 132",
+      "slug": "palindrome-partitioning-ii"
+    },
+    {
+      "id": "lc-1000",
+      "title": "Minimum Cost to Merge Stones",
+      "topic": "dynamic-programming",
+      "topicLabel": "Dynamic Programming",
+      "pattern": "Interval DP (partition)",
+      "diff": "hard",
+      "lc": "LC 1000",
+      "slug": "minimum-cost-to-merge-stones"
+    },
+    {
+      "id": "lc-64",
+      "title": "Minimum Path Sum",
+      "topic": "dynamic-programming",
+      "topicLabel": "Dynamic Programming",
+      "pattern": "Grid DP",
+      "diff": "medium",
+      "lc": "LC 64",
+      "slug": "minimum-path-sum"
+    },
+    {
+      "id": "lc-63",
+      "title": "Unique Paths II",
+      "topic": "dynamic-programming",
+      "topicLabel": "Dynamic Programming",
+      "pattern": "Grid DP",
+      "diff": "medium",
+      "lc": "LC 63",
+      "slug": "unique-paths-ii"
+    },
+    {
+      "id": "lc-221",
+      "title": "Maximal Square",
+      "topic": "dynamic-programming",
+      "topicLabel": "Dynamic Programming",
+      "pattern": "Grid DP",
+      "diff": "medium",
+      "lc": "LC 221",
+      "slug": "maximal-square"
+    },
+    {
+      "id": "lc-174",
+      "title": "Dungeon Game",
+      "topic": "dynamic-programming",
+      "topicLabel": "Dynamic Programming",
+      "pattern": "Grid DP (reverse)",
+      "diff": "hard",
+      "lc": "LC 174",
+      "slug": "dungeon-game"
+    },
+    {
+      "id": "lc-474",
+      "title": "Ones and Zeroes",
+      "topic": "dynamic-programming",
+      "topicLabel": "Dynamic Programming",
+      "pattern": "Knapsack DP (2D)",
+      "diff": "medium",
+      "lc": "LC 474",
+      "slug": "ones-and-zeroes"
+    },
+    {
+      "id": "lc-1049",
+      "title": "Last Stone Weight II",
+      "topic": "dynamic-programming",
+      "topicLabel": "Dynamic Programming",
+      "pattern": "Knapsack DP (subset sum)",
+      "diff": "medium",
+      "lc": "LC 1049",
+      "slug": "last-stone-weight-ii"
+    },
+    {
+      "id": "lc-698",
+      "title": "Partition to K Equal Sum Subsets",
+      "topic": "dynamic-programming",
+      "topicLabel": "Dynamic Programming",
+      "pattern": "Bitmask DP",
+      "diff": "medium",
+      "lc": "LC 698",
+      "slug": "partition-to-k-equal-sum-subsets"
+    },
+    {
+      "id": "lc-464",
+      "title": "Can I Win",
+      "topic": "dynamic-programming",
+      "topicLabel": "Dynamic Programming",
+      "pattern": "Bitmask DP",
+      "diff": "medium",
+      "lc": "LC 464",
+      "slug": "can-i-win"
+    },
+    {
+      "id": "lc-847",
+      "title": "Shortest Path Visiting All Nodes",
+      "topic": "dynamic-programming",
+      "topicLabel": "Dynamic Programming",
+      "pattern": "Bitmask DP (TSP)",
+      "diff": "hard",
+      "lc": "LC 847",
+      "slug": "shortest-path-visiting-all-nodes"
+    },
+    {
+      "id": "lc-123",
+      "title": "Best Time to Buy and Sell Stock III",
+      "topic": "dynamic-programming",
+      "topicLabel": "Dynamic Programming",
+      "pattern": "Prefix DP (state machine)",
+      "diff": "hard",
+      "lc": "LC 123",
+      "slug": "best-time-to-buy-and-sell-stock-iii"
+    },
+    {
+      "id": "lc-188",
+      "title": "Best Time to Buy and Sell Stock IV",
+      "topic": "dynamic-programming",
+      "topicLabel": "Dynamic Programming",
+      "pattern": "Prefix DP (state machine)",
+      "diff": "hard",
+      "lc": "LC 188",
+      "slug": "best-time-to-buy-and-sell-stock-iv"
+    },
+    {
+      "id": "lc-983",
+      "title": "Minimum Cost For Tickets",
+      "topic": "dynamic-programming",
+      "topicLabel": "Dynamic Programming",
+      "pattern": "Prefix DP",
+      "diff": "medium",
+      "lc": "LC 983",
+      "slug": "minimum-cost-for-tickets"
+    },
+    {
+      "id": "lc-664",
+      "title": "Strange Printer",
+      "topic": "dynamic-programming",
+      "topicLabel": "Dynamic Programming",
+      "pattern": "Interval DP (partition)",
+      "diff": "hard",
+      "lc": "LC 664",
+      "slug": "strange-printer"
+    },
+    {
+      "id": "lc-877",
+      "title": "Stone Game",
+      "topic": "dynamic-programming",
+      "topicLabel": "Dynamic Programming",
+      "pattern": "Interval DP",
+      "diff": "medium",
+      "lc": "LC 877",
+      "slug": "stone-game"
+    },
+    {
+      "id": "lc-120",
+      "title": "Triangle",
+      "topic": "dynamic-programming",
+      "topicLabel": "Dynamic Programming",
+      "pattern": "Grid DP",
+      "diff": "medium",
+      "lc": "LC 120",
+      "slug": "triangle"
+    },
+    {
+      "id": "lc-740",
+      "title": "Delete and Earn",
+      "topic": "dynamic-programming",
+      "topicLabel": "Dynamic Programming",
+      "pattern": "Prefix DP",
+      "diff": "medium",
+      "lc": "LC 740",
+      "slug": "delete-and-earn"
+    },
+    {
+      "id": "lc-377",
+      "title": "Combination Sum IV",
+      "topic": "dynamic-programming",
+      "topicLabel": "Dynamic Programming",
+      "pattern": "Prefix DP (counting)",
+      "diff": "medium",
+      "lc": "LC 377",
+      "slug": "combination-sum-iv"
+    },
+    {
+      "id": "lc-343",
+      "title": "Integer Break",
+      "topic": "dynamic-programming",
+      "topicLabel": "Dynamic Programming",
+      "pattern": "Prefix DP",
+      "diff": "medium",
+      "lc": "LC 343",
+      "slug": "integer-break"
+    },
+    {
+      "id": "lc-252",
+      "title": "Meeting Rooms",
+      "topic": "greedy",
+      "topicLabel": "Greedy",
+      "pattern": "Preserve capacity (interval scheduling)",
+      "diff": "easy",
+      "lc": "LC 252",
+      "slug": "meeting-rooms",
+      "premium": true
+    },
+    {
+      "id": "lc-409",
+      "title": "Longest Palindrome",
+      "topic": "greedy",
+      "topicLabel": "Greedy",
+      "pattern": "Exchange (character counts)",
+      "diff": "easy",
+      "lc": "LC 409",
+      "slug": "longest-palindrome"
+    },
+    {
+      "id": "lc-561",
+      "title": "Array Partition",
+      "topic": "greedy",
+      "topicLabel": "Greedy",
+      "pattern": "Adjacent pairing",
+      "diff": "easy",
+      "lc": "LC 561",
+      "slug": "array-partition"
+    },
+    {
+      "id": "lc-942",
+      "title": "DI String Match",
+      "topic": "greedy",
+      "topicLabel": "Greedy",
+      "pattern": "Flexible resource (two pointer)",
+      "diff": "easy",
+      "lc": "LC 942",
+      "slug": "di-string-match"
+    },
+    {
+      "id": "lc-680",
+      "title": "Valid Palindrome II",
+      "topic": "greedy",
+      "topicLabel": "Greedy",
+      "pattern": "Structural / forced",
+      "diff": "easy",
+      "lc": "LC 680",
+      "slug": "valid-palindrome-ii"
+    },
+    {
+      "id": "lc-976",
+      "title": "Largest Perimeter Triangle",
+      "topic": "greedy",
+      "topicLabel": "Greedy",
+      "pattern": "Dominance (sort)",
+      "diff": "easy",
+      "lc": "LC 976",
+      "slug": "largest-perimeter-triangle"
+    },
+    {
+      "id": "lc-135",
+      "title": "Candy",
+      "topic": "greedy",
+      "topicLabel": "Greedy",
+      "pattern": "Exchange (two-sided)",
+      "diff": "hard",
+      "lc": "LC 135",
+      "slug": "candy"
+    },
+    {
+      "id": "lc-11",
+      "title": "Container With Most Water",
+      "topic": "greedy",
+      "topicLabel": "Greedy",
+      "pattern": "Eliminate dominated choices",
+      "diff": "medium",
+      "lc": "LC 11",
+      "slug": "container-with-most-water"
+    },
+    {
+      "id": "lc-1029",
+      "title": "Two City Scheduling",
+      "topic": "greedy",
+      "topicLabel": "Greedy",
+      "pattern": "Sort by difference",
+      "diff": "medium",
+      "lc": "LC 1029",
+      "slug": "two-city-scheduling"
+    },
+    {
+      "id": "lc-881",
+      "title": "Boats to Save People",
+      "topic": "greedy",
+      "topicLabel": "Greedy",
+      "pattern": "Two-pointer greedy",
+      "diff": "medium",
+      "lc": "LC 881",
+      "slug": "boats-to-save-people"
+    },
+    {
+      "id": "lc-1710",
+      "title": "Maximum Units on a Truck",
+      "topic": "greedy",
+      "topicLabel": "Greedy",
+      "pattern": "Sort by ratio",
+      "diff": "easy",
+      "lc": "LC 1710",
+      "slug": "maximum-units-on-a-truck"
+    },
+    {
+      "id": "lc-1647",
+      "title": "Minimum Deletions to Make Character Frequencies Unique",
+      "topic": "greedy",
+      "topicLabel": "Greedy",
+      "pattern": "Sort + greedy",
+      "diff": "medium",
+      "lc": "LC 1647",
+      "slug": "minimum-deletions-to-make-character-frequencies-unique"
+    },
+    {
+      "id": "lc-665",
+      "title": "Non-decreasing Array",
+      "topic": "greedy",
+      "topicLabel": "Greedy",
+      "pattern": "Local greedy fix",
+      "diff": "medium",
+      "lc": "LC 665",
+      "slug": "non-decreasing-array"
+    },
+    {
+      "id": "lc-1221",
+      "title": "Split a String in Balanced Strings",
+      "topic": "greedy",
+      "topicLabel": "Greedy",
+      "pattern": "Greedy scan",
+      "diff": "easy",
+      "lc": "LC 1221",
+      "slug": "split-a-string-in-balanced-strings"
+    },
+    {
+      "id": "lc-1094",
+      "title": "Car Pooling",
+      "topic": "greedy",
+      "topicLabel": "Greedy",
+      "pattern": "Interval / greedy simulation",
+      "diff": "medium",
+      "lc": "LC 1094",
+      "slug": "car-pooling"
+    },
+    {
+      "id": "lc-1353",
+      "title": "Maximum Number of Events That Can Be Attended",
+      "topic": "greedy",
+      "topicLabel": "Greedy",
+      "pattern": "Greedy + heap",
+      "diff": "medium",
+      "lc": "LC 1353",
+      "slug": "maximum-number-of-events-that-can-be-attended"
+    },
+    {
+      "id": "lc-376",
+      "title": "Wiggle Subsequence",
+      "topic": "greedy",
+      "topicLabel": "Greedy",
+      "pattern": "Greedy scan",
+      "diff": "medium",
+      "lc": "LC 376",
+      "slug": "wiggle-subsequence"
+    },
+    {
+      "id": "lc-1326",
+      "title": "Minimum Number of Taps to Open to Water a Garden",
+      "topic": "greedy",
+      "topicLabel": "Greedy",
+      "pattern": "Jump-game-style greedy",
+      "diff": "hard",
+      "lc": "LC 1326",
+      "slug": "minimum-number-of-taps-to-open-to-water-a-garden"
+    },
+    {
+      "id": "lc-630",
+      "title": "Course Schedule III",
+      "topic": "greedy",
+      "topicLabel": "Greedy",
+      "pattern": "Greedy + heap",
+      "diff": "hard",
+      "lc": "LC 630",
+      "slug": "course-schedule-iii"
+    },
+    {
+      "id": "lc-406",
+      "title": "Queue Reconstruction by Height",
+      "topic": "greedy",
+      "topicLabel": "Greedy",
+      "pattern": "Sort + insert greedy",
+      "diff": "medium",
+      "lc": "LC 406",
+      "slug": "queue-reconstruction-by-height"
+    },
+    {
+      "id": "lc-278",
+      "title": "First Bad Version",
+      "topic": "binary-search",
+      "topicLabel": "Binary Search",
+      "pattern": "First True boundary",
+      "diff": "easy",
+      "lc": "LC 278",
+      "slug": "first-bad-version"
+    },
+    {
+      "id": "lc-744",
+      "title": "Find Smallest Letter Greater Than Target",
+      "topic": "binary-search",
+      "topicLabel": "Binary Search",
+      "pattern": "Upper bound",
+      "diff": "easy",
+      "lc": "LC 744",
+      "slug": "find-smallest-letter-greater-than-target"
+    },
+    {
+      "id": "lc-540",
+      "title": "Single Element in a Sorted Array",
+      "topic": "binary-search",
+      "topicLabel": "Binary Search",
+      "pattern": "Parity boundary search",
+      "diff": "medium",
+      "lc": "LC 540",
+      "slug": "single-element-in-a-sorted-array"
+    },
+    {
+      "id": "lc-287",
+      "title": "Find the Duplicate Number",
+      "topic": "binary-search",
+      "topicLabel": "Binary Search",
+      "pattern": "Binary search on value range",
+      "diff": "medium",
+      "lc": "LC 287",
+      "slug": "find-the-duplicate-number"
+    },
+    {
+      "id": "lc-1552",
+      "title": "Magnetic Force Between Two Balls",
+      "topic": "binary-search",
+      "topicLabel": "Binary Search",
+      "pattern": "Max feasible (Last True)",
+      "diff": "medium",
+      "lc": "LC 1552",
+      "slug": "magnetic-force-between-two-balls"
+    },
+    {
+      "id": "lc-81",
+      "title": "Search in Rotated Sorted Array II",
+      "topic": "binary-search",
+      "topicLabel": "Binary Search",
+      "pattern": "Rotated array with duplicates",
+      "diff": "medium",
+      "lc": "LC 81",
+      "slug": "search-in-rotated-sorted-array-ii"
+    },
+    {
+      "id": "lc-852",
+      "title": "Peak Index in a Mountain Array",
+      "topic": "binary-search",
+      "topicLabel": "Binary Search",
+      "pattern": "Peak / local structure",
+      "diff": "medium",
+      "lc": "LC 852",
+      "slug": "peak-index-in-a-mountain-array"
+    },
+    {
+      "id": "lc-240",
+      "title": "Search a 2D Matrix II",
+      "topic": "binary-search",
+      "topicLabel": "Binary Search",
+      "pattern": "Staircase search",
+      "diff": "medium",
+      "lc": "LC 240",
+      "slug": "search-a-2d-matrix-ii"
+    },
+    {
+      "id": "lc-1539",
+      "title": "Kth Missing Positive Number",
+      "topic": "binary-search",
+      "topicLabel": "Binary Search",
+      "pattern": "First True boundary",
+      "diff": "easy",
+      "lc": "LC 1539",
+      "slug": "kth-missing-positive-number"
+    },
+    {
+      "id": "lc-528",
+      "title": "Random Pick with Weight",
+      "topic": "binary-search",
+      "topicLabel": "Binary Search",
+      "pattern": "Prefix sum + lower bound",
+      "diff": "medium",
+      "lc": "LC 528",
+      "slug": "random-pick-with-weight"
+    },
+    {
+      "id": "lc-1283",
+      "title": "Find the Smallest Divisor Given a Threshold",
+      "topic": "binary-search",
+      "topicLabel": "Binary Search",
+      "pattern": "Min feasible (First True)",
+      "diff": "medium",
+      "lc": "LC 1283",
+      "slug": "find-the-smallest-divisor-given-a-threshold"
+    },
+    {
+      "id": "lc-410",
+      "title": "Split Array Largest Sum",
+      "topic": "binary-search",
+      "topicLabel": "Binary Search",
+      "pattern": "Min feasible (First True)",
+      "diff": "hard",
+      "lc": "LC 410",
+      "slug": "split-array-largest-sum"
+    },
+    {
+      "id": "lc-1482",
+      "title": "Minimum Number of Days to Make m Bouquets",
+      "topic": "binary-search",
+      "topicLabel": "Binary Search",
+      "pattern": "Min feasible (First True)",
+      "diff": "medium",
+      "lc": "LC 1482",
+      "slug": "minimum-number-of-days-to-make-m-bouquets"
+    },
+    {
+      "id": "lc-1231",
+      "title": "Divide Chocolate",
+      "topic": "binary-search",
+      "topicLabel": "Binary Search",
+      "pattern": "Max feasible (Last True)",
+      "diff": "hard",
+      "lc": "LC 1231",
+      "slug": "divide-chocolate",
+      "premium": true
+    },
+    {
+      "id": "lc-1385",
+      "title": "Find the Distance Value Between Two Arrays",
+      "topic": "binary-search",
+      "topicLabel": "Binary Search",
+      "pattern": "Binary search per element",
+      "diff": "easy",
+      "lc": "LC 1385",
+      "slug": "find-the-distance-value-between-two-arrays"
+    },
+    {
+      "id": "lc-1095",
+      "title": "Find in Mountain Array",
+      "topic": "binary-search",
+      "topicLabel": "Binary Search",
+      "pattern": "Peak + boundary search",
+      "diff": "hard",
+      "lc": "LC 1095",
+      "slug": "find-in-mountain-array",
+      "premium": true
+    },
+    {
+      "id": "lc-1150",
+      "title": "Check If a Number Is Majority Element in a Sorted Array",
+      "topic": "binary-search",
+      "topicLabel": "Binary Search",
+      "pattern": "Lower/upper bound count",
+      "diff": "easy",
+      "lc": "LC 1150",
+      "slug": "check-if-a-number-is-majority-element-in-a-sorted-array",
+      "premium": true
+    },
+    {
+      "id": "lc-1300",
+      "title": "Sum of Mutated Array Closest to Target",
+      "topic": "binary-search",
+      "topicLabel": "Binary Search",
+      "pattern": "Min feasible (First True)",
+      "diff": "medium",
+      "lc": "LC 1300",
+      "slug": "sum-of-mutated-array-closest-to-target"
+    },
+    {
+      "id": "lc-24",
+      "title": "Swap Nodes in Pairs",
+      "topic": "linked-list",
+      "topicLabel": "Linked List",
+      "pattern": "Dummy + group reversal (k=2)",
+      "diff": "medium",
+      "lc": "LC 24",
+      "slug": "swap-nodes-in-pairs"
+    },
+    {
+      "id": "lc-61",
+      "title": "Rotate List",
+      "topic": "linked-list",
+      "topicLabel": "Linked List",
+      "pattern": "Make circular, break at new tail",
+      "diff": "medium",
+      "lc": "LC 61",
+      "slug": "rotate-list"
+    },
+    {
+      "id": "lc-82",
+      "title": "Remove Duplicates from Sorted List II",
+      "topic": "linked-list",
+      "topicLabel": "Linked List",
+      "pattern": "Dummy + skip entire duplicate run",
+      "diff": "medium",
+      "lc": "LC 82",
+      "slug": "remove-duplicates-from-sorted-list-ii"
+    },
+    {
+      "id": "lc-86",
+      "title": "Partition List",
+      "topic": "linked-list",
+      "topicLabel": "Linked List",
+      "pattern": "Two dummy-headed chains",
+      "diff": "medium",
+      "lc": "LC 86",
+      "slug": "partition-list"
+    },
+    {
+      "id": "lc-92",
+      "title": "Reverse Linked List II",
+      "topic": "linked-list",
+      "topicLabel": "Linked List",
+      "pattern": "Reversal loop on a sub-window",
+      "diff": "medium",
+      "lc": "LC 92",
+      "slug": "reverse-linked-list-ii"
+    },
+    {
+      "id": "lc-148",
+      "title": "Sort List",
+      "topic": "linked-list",
+      "topicLabel": "Linked List",
+      "pattern": "Merge sort (fast/slow split + merge)",
+      "diff": "medium",
+      "lc": "LC 148",
+      "slug": "sort-list"
+    },
+    {
+      "id": "lc-203",
+      "title": "Remove Linked List Elements",
+      "topic": "linked-list",
+      "topicLabel": "Linked List",
+      "pattern": "Dummy + predecessor skip",
+      "diff": "easy",
+      "lc": "LC 203",
+      "slug": "remove-linked-list-elements"
+    },
+    {
+      "id": "lc-328",
+      "title": "Odd Even Linked List",
+      "topic": "linked-list",
+      "topicLabel": "Linked List",
+      "pattern": "Two parallel chains by parity",
+      "diff": "medium",
+      "lc": "LC 328",
+      "slug": "odd-even-linked-list"
+    },
+    {
+      "id": "lc-430",
+      "title": "Flatten a Multilevel Doubly Linked List",
+      "topic": "linked-list",
+      "topicLabel": "Linked List",
+      "pattern": "Stack of resume pointers",
+      "diff": "medium",
+      "lc": "LC 430",
+      "slug": "flatten-a-multilevel-doubly-linked-list"
+    },
+    {
+      "id": "lc-817",
+      "title": "Linked List Components",
+      "topic": "linked-list",
+      "topicLabel": "Linked List",
+      "pattern": "Traversal + set membership",
+      "diff": "medium",
+      "lc": "LC 817",
+      "slug": "linked-list-components"
+    },
+    {
+      "id": "lc-1019",
+      "title": "Next Greater Node In Linked List",
+      "topic": "linked-list",
+      "topicLabel": "Linked List",
+      "pattern": "Traversal + monotonic stack",
+      "diff": "medium",
+      "lc": "LC 1019",
+      "slug": "next-greater-node-in-linked-list"
+    },
+    {
+      "id": "lc-1290",
+      "title": "Convert Binary Number in a Linked List to Integer",
+      "topic": "linked-list",
+      "topicLabel": "Linked List",
+      "pattern": "Basic traversal",
+      "diff": "easy",
+      "lc": "LC 1290",
+      "slug": "convert-binary-number-in-a-linked-list-to-integer"
+    },
+    {
+      "id": "lc-1721",
+      "title": "Swapping Nodes in a Linked List",
+      "topic": "linked-list",
+      "topicLabel": "Linked List",
+      "pattern": "Fixed gap (kth from each end)",
+      "diff": "medium",
+      "lc": "LC 1721",
+      "slug": "swapping-nodes-in-a-linked-list"
+    },
+    {
+      "id": "lc-2130",
+      "title": "Maximum Twin Sum of a Linked List",
+      "topic": "linked-list",
+      "topicLabel": "Linked List",
+      "pattern": "Find middle + reverse second half",
+      "diff": "medium",
+      "lc": "LC 2130",
+      "slug": "maximum-twin-sum-of-a-linked-list"
+    },
+    {
+      "id": "lc-725",
+      "title": "Split Linked List in Parts",
+      "topic": "linked-list",
+      "topicLabel": "Linked List",
+      "pattern": "Length count + chunked traversal",
+      "diff": "medium",
+      "lc": "LC 725",
+      "slug": "split-linked-list-in-parts"
+    },
+    {
+      "id": "lc-2074",
+      "title": "Reverse Nodes in Even Length Groups",
+      "topic": "linked-list",
+      "topicLabel": "Linked List",
+      "pattern": "Group reversal with variable group size",
+      "diff": "medium",
+      "lc": "LC 2074",
+      "slug": "reverse-nodes-in-even-length-groups"
+    },
+    {
+      "id": "lc-1367",
+      "title": "Linked List in Binary Tree",
+      "topic": "linked-list",
+      "topicLabel": "Linked List",
+      "pattern": "Traversal + DFS matching",
+      "diff": "medium",
+      "lc": "LC 1367",
+      "slug": "linked-list-in-binary-tree"
+    },
+    {
+      "id": "lc-1171",
+      "title": "Remove Zero Sum Consecutive Nodes from Linked List",
+      "topic": "linked-list",
+      "topicLabel": "Linked List",
+      "pattern": "Dummy + prefix-sum hashmap",
+      "diff": "medium",
+      "lc": "LC 1171",
+      "slug": "remove-zero-sum-consecutive-nodes-from-linked-list"
+    },
+    {
+      "id": "lc-2181",
+      "title": "Merge Nodes in Between Zeros",
+      "topic": "linked-list",
+      "topicLabel": "Linked List",
+      "pattern": "Traversal + running sum",
+      "diff": "medium",
+      "lc": "LC 2181",
+      "slug": "merge-nodes-in-between-zeros"
+    },
+    {
+      "id": "lc-216",
+      "title": "Combination Sum III",
+      "topic": "backtracking",
+      "topicLabel": "Backtracking",
+      "pattern": "Combinations + Target",
+      "diff": "medium",
+      "lc": "LC 216",
+      "slug": "combination-sum-iii"
+    },
+    {
+      "id": "lc-52",
+      "title": "N-Queens II",
+      "topic": "backtracking",
+      "topicLabel": "Backtracking",
+      "pattern": "Constraint Backtracking",
+      "diff": "hard",
+      "lc": "LC 52",
+      "slug": "n-queens-ii"
+    },
+    {
+      "id": "lc-212",
+      "title": "Word Search II",
+      "topic": "backtracking",
+      "topicLabel": "Backtracking",
+      "pattern": "Trie + Grid DFS",
+      "diff": "hard",
+      "lc": "LC 212",
+      "slug": "word-search-ii"
+    },
+    {
+      "id": "lc-494",
+      "title": "Target Sum",
+      "topic": "backtracking",
+      "topicLabel": "Backtracking",
+      "pattern": "Binary Decision",
+      "diff": "medium",
+      "lc": "LC 494",
+      "slug": "target-sum"
+    },
+    {
+      "id": "lc-291",
+      "title": "Word Pattern II",
+      "topic": "backtracking",
+      "topicLabel": "Backtracking",
+      "pattern": "Bijective Mapping",
+      "diff": "medium",
+      "lc": "LC 291",
+      "slug": "word-pattern-ii",
+      "premium": true
+    },
+    {
+      "id": "lc-320",
+      "title": "Generalized Abbreviation",
+      "topic": "backtracking",
+      "topicLabel": "Backtracking",
+      "pattern": "Binary Decision",
+      "diff": "medium",
+      "lc": "LC 320",
+      "slug": "generalized-abbreviation",
+      "premium": true
+    },
+    {
+      "id": "lc-526",
+      "title": "Beautiful Arrangement",
+      "topic": "backtracking",
+      "topicLabel": "Backtracking",
+      "pattern": "Permutations + Constraint",
+      "diff": "medium",
+      "lc": "LC 526",
+      "slug": "beautiful-arrangement"
+    },
+    {
+      "id": "lc-140",
+      "title": "Word Break II",
+      "topic": "backtracking",
+      "topicLabel": "Backtracking",
+      "pattern": "Partition Backtracking",
+      "diff": "hard",
+      "lc": "LC 140",
+      "slug": "word-break-ii"
+    },
+    {
+      "id": "lc-1079",
+      "title": "Letter Tile Possibilities",
+      "topic": "backtracking",
+      "topicLabel": "Backtracking",
+      "pattern": "Duplicate-Aware Permutation",
+      "diff": "medium",
+      "lc": "LC 1079",
+      "slug": "letter-tile-possibilities"
+    },
+    {
+      "id": "lc-267",
+      "title": "Palindrome Permutation II",
+      "topic": "backtracking",
+      "topicLabel": "Backtracking",
+      "pattern": "Duplicate-Aware Permutation",
+      "diff": "medium",
+      "lc": "LC 267",
+      "slug": "palindrome-permutation-ii",
+      "premium": true
+    },
+    {
+      "id": "lc-401",
+      "title": "Binary Watch",
+      "topic": "backtracking",
+      "topicLabel": "Backtracking",
+      "pattern": "Combinatorial Enumeration",
+      "diff": "easy",
+      "lc": "LC 401",
+      "slug": "binary-watch"
+    },
+    {
+      "id": "lc-967",
+      "title": "Numbers With Same Consecutive Differences",
+      "topic": "backtracking",
+      "topicLabel": "Backtracking",
+      "pattern": "Digit Backtracking",
+      "diff": "medium",
+      "lc": "LC 967",
+      "slug": "numbers-with-same-consecutive-differences"
+    },
+    {
+      "id": "lc-1980",
+      "title": "Find Unique Binary String",
+      "topic": "backtracking",
+      "topicLabel": "Backtracking",
+      "pattern": "Binary Decision",
+      "diff": "medium",
+      "lc": "LC 1980",
+      "slug": "find-unique-binary-string"
+    },
+    {
+      "id": "lc-1219",
+      "title": "Path with Maximum Gold",
+      "topic": "backtracking",
+      "topicLabel": "Backtracking",
+      "pattern": "Grid Backtracking",
+      "diff": "medium",
+      "lc": "LC 1219",
+      "slug": "path-with-maximum-gold"
+    },
+    {
+      "id": "lc-1291",
+      "title": "Sequential Digits",
+      "topic": "backtracking",
+      "topicLabel": "Backtracking",
+      "pattern": "Digit Backtracking",
+      "diff": "medium",
+      "lc": "LC 1291",
+      "slug": "sequential-digits"
+    },
+    {
+      "id": "lc-473",
+      "title": "Matchsticks to Square",
+      "topic": "backtracking",
+      "topicLabel": "Backtracking",
+      "pattern": "Partition Backtracking",
+      "diff": "medium",
+      "lc": "LC 473",
+      "slug": "matchsticks-to-square"
+    },
+    {
+      "id": "lc-1863",
+      "title": "Sum of All Subset XOR Totals",
+      "topic": "backtracking",
+      "topicLabel": "Backtracking",
+      "pattern": "Binary Decision",
+      "diff": "easy",
+      "lc": "LC 1863",
+      "slug": "sum-of-all-subset-xor-totals"
+    },
+    {
+      "id": "lc-745",
+      "title": "Prefix and Suffix Search",
+      "pattern": "Combined Prefix+Suffix Trie",
+      "diff": "hard",
+      "lc": "LC 745",
+      "slug": "prefix-and-suffix-search",
+      "topic": "tries",
+      "topicLabel": "Tries"
+    },
+    {
+      "id": "lc-642",
+      "title": "Design Search Autocomplete System",
+      "pattern": "Trie + Ranking",
+      "diff": "hard",
+      "lc": "LC 642",
+      "slug": "design-search-autocomplete-system",
+      "premium": true,
+      "topic": "tries",
+      "topicLabel": "Tries"
+    },
+    {
+      "id": "lc-336",
+      "title": "Palindrome Pairs",
+      "pattern": "Trie + Palindrome Check",
+      "diff": "hard",
+      "lc": "LC 336",
+      "slug": "palindrome-pairs",
+      "topic": "tries",
+      "topicLabel": "Tries"
+    },
+    {
+      "id": "lc-1804",
+      "title": "Implement Trie II (Prefix Tree)",
+      "pattern": "Augmented Trie",
+      "diff": "medium",
+      "lc": "LC 1804",
+      "slug": "implement-trie-ii-prefix-tree",
+      "premium": true,
+      "topic": "tries",
+      "topicLabel": "Tries"
+    },
+    {
+      "id": "lc-1032",
+      "title": "Stream of Characters",
+      "pattern": "Reverse Trie",
+      "diff": "hard",
+      "lc": "LC 1032",
+      "slug": "stream-of-characters",
+      "topic": "tries",
+      "topicLabel": "Tries"
+    },
+    {
+      "id": "lc-676",
+      "title": "Implement Magic Dictionary",
+      "pattern": "Trie + One-Char-Diff DFS",
+      "diff": "medium",
+      "lc": "LC 676",
+      "slug": "implement-magic-dictionary",
+      "topic": "tries",
+      "topicLabel": "Tries"
+    },
+    {
+      "id": "lc-472",
+      "title": "Concatenated Words",
+      "pattern": "Trie + DP (Word Break variant)",
+      "diff": "hard",
+      "lc": "LC 472",
+      "slug": "concatenated-words",
+      "topic": "tries",
+      "topicLabel": "Tries"
+    },
+    {
+      "id": "lc-2707",
+      "title": "Extra Characters in a String",
+      "pattern": "Trie + DP",
+      "diff": "medium",
+      "lc": "LC 2707",
+      "slug": "extra-characters-in-a-string",
+      "topic": "tries",
+      "topicLabel": "Tries"
+    },
+    {
+      "id": "lc-1233",
+      "title": "Remove Sub-Folders from the Filesystem",
+      "pattern": "Trie / Prefix Pruning",
+      "diff": "medium",
+      "lc": "LC 1233",
+      "slug": "remove-sub-folders-from-the-filesystem",
+      "topic": "tries",
+      "topicLabel": "Tries"
+    },
+    {
+      "id": "lc-2416",
+      "title": "Sum of Prefix Scores of Strings",
+      "pattern": "Augmented Trie (prefix counts)",
+      "diff": "hard",
+      "lc": "LC 2416",
+      "slug": "sum-of-prefix-scores-of-strings",
+      "topic": "tries",
+      "topicLabel": "Tries"
+    },
+    {
+      "id": "lc-1707",
+      "title": "Maximum XOR With an Element From Array",
+      "pattern": "Binary Trie + Offline Queries",
+      "diff": "hard",
+      "lc": "LC 1707",
+      "slug": "maximum-xor-with-an-element-from-array",
+      "topic": "tries",
+      "topicLabel": "Tries"
+    },
+    {
+      "id": "lc-425",
+      "title": "Word Squares",
+      "pattern": "Trie + Backtracking",
+      "diff": "hard",
+      "lc": "LC 425",
+      "slug": "word-squares",
+      "premium": true,
+      "topic": "tries",
+      "topicLabel": "Tries"
+    },
+    {
+      "id": "lc-1948",
+      "title": "Delete Duplicate Folders in System",
+      "pattern": "Trie Serialization",
+      "diff": "hard",
+      "lc": "LC 1948",
+      "slug": "delete-duplicate-folders-in-system",
+      "topic": "tries",
+      "topicLabel": "Tries"
+    },
+    {
+      "id": "lc-588",
+      "title": "Design In-Memory File System",
+      "pattern": "Trie-based File System",
+      "diff": "hard",
+      "lc": "LC 588",
+      "slug": "design-in-memory-file-system",
+      "premium": true,
+      "topic": "tries",
+      "topicLabel": "Tries"
+    },
+    {
+      "id": "lc-1178",
+      "title": "Number of Valid Words for Each Puzzle",
+      "pattern": "Bitmask Trie",
+      "diff": "hard",
+      "lc": "LC 1178",
+      "slug": "number-of-valid-words-for-each-puzzle",
+      "topic": "tries",
+      "topicLabel": "Tries"
+    },
+    {
+      "id": "lc-3042",
+      "title": "Count Prefix and Suffix Pairs I",
+      "pattern": "Combined Prefix+Suffix Trie",
+      "diff": "easy",
+      "lc": "LC 3042",
+      "slug": "count-prefix-and-suffix-pairs-i",
+      "topic": "tries",
+      "topicLabel": "Tries"
+    },
+    {
+      "id": "lc-3043",
+      "title": "Find the Length of the Longest Common Prefix",
+      "pattern": "Trie / HashSet Prefix Matching",
+      "diff": "medium",
+      "lc": "LC 3043",
+      "slug": "find-the-length-of-the-longest-common-prefix",
+      "topic": "tries",
+      "topicLabel": "Tries"
+    },
+    {
+      "id": "lc-1938",
+      "title": "Maximum Genetic Difference Query",
+      "pattern": "Binary Trie + Offline Queries",
+      "diff": "hard",
+      "lc": "LC 1938",
+      "slug": "maximum-genetic-difference-query",
+      "topic": "tries",
+      "topicLabel": "Tries"
+    }
+  ]
 }
