@@ -18,11 +18,12 @@ const TABS = [["today", "Today"], ["plan", "Plan"], ["topics", "Topics"], ["prog
 const VIEWS = { today, plan, topics, cards, quiz, progress, materials };
 /* data lives next to the code, wherever the page that loads it sits */
 const dataUrl = f => new URL("../data/" + f, import.meta.url).href;
+const desktop = matchMedia("(min-width: 960px)");
 const isMac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
 export const modKey = isMac ? "⌘" : "Ctrl";
 
-export function route() {
-  const h = location.hash.replace(/^#\/?/, "");
+export function route(hash = location.hash) {
+  const h = hash.replace(/^#\/?/, "");
   const [path, query] = h.split("?");
   return { parts: path.split("/").filter(Boolean), q: new URLSearchParams(query || "") };
 }
@@ -68,7 +69,7 @@ function drawChrome(active, r) {
   let s = '<a class="brand" href="#/today"><span class="logo">' + icon("sparkle", 18) + '</span><span><b>Interview Prep</b><small>Study · notes · planner</small></span></a>' +
     '<button class="search" type="button" data-palette>' + icon("search", 15) + "<span>Search or jump to…</span><kbd>" + modKey + " K</kbd></button>" +
     '<nav class="snav">' + TABS.map(([k, label]) => '<a href="#/' + k + '"' + (k === active ? ' class="on" aria-current="page"' : "") + ">" + (k === active ? '<span class="snav-ind"></span>' : "") + icon(k, 18) + "<span>" + label + "</span>" + badge(k) + "</a>").join("") + "</nav>";
-  if (D.cards) {
+  if (D.cards && desktop.matches) {             // the sidebar is hidden on phones: skip its per-subject stats
     s += '<div class="side-h">Subjects</div><div class="subs">' + topics.subjects(D).map(sub => {
       const st = topics.cardStats(D, sub.id);
       const pct = st.total ? Math.round(100 * st.known / st.total) : null;
@@ -87,27 +88,37 @@ function drawChrome(active, r) {
 function refreshChrome() { const r = route(); drawChrome(tabOf(r.parts[0] || "today", VIEWS), r); }
 
 /* ------------------------------------------------------------------ rendering with page transitions */
-let lastHash = null, painted = false;
+let lastHash = null, painted = false, navToken = 0;
 export function render() {
   const first = route().parts[0];
   // the old library home used #/<Subject>/<folder> links; send those to Materials
   if (first && !VIEWS[first]) { location.replace("#/materials/" + location.hash.replace(/^#\/?/, "")); return; }
   const fresh = location.hash !== lastHash;
+  const prev = lastHash == null ? null : route(lastHash);
   lastHash = location.hash;
   const r = route();
   if (fresh && painted && document.startViewTransition && !reduced() && !document.hidden) {
+    // switching between top-level tabs slides sideways in tab order, like a native tab bar
+    const tabIdx = h => TABS.findIndex(([k]) => k === tabOf(h || "today", VIEWS));
+    const a = prev ? tabIdx(prev.parts[0]) : -1, b = tabIdx(r.parts[0]);
+    const root = document.documentElement;
+    const dir = a < 0 || a === b ? "" : b > a ? "fwd" : "back", token = ++navToken;
+    root.dataset.nav = dir;
     // a skipped transition (e.g. the tab is hidden) still runs the update; it just rejects these promises
-    const vt = document.startViewTransition(() => paint(r, true));
-    vt.ready.catch(() => {}); vt.finished.catch(() => {});
+    const vt = document.startViewTransition(() => paint(r, true, dir));
+    vt.ready.catch(() => {});
+    vt.finished.catch(() => {}).finally(() => { if (token === navToken) root.dataset.nav = ""; });
   } else paint(r, fresh);
 }
-function paint(r, fresh) {
+function paint(r, fresh, dir = "") {
   const tab = r.parts[0] || "today";
   const view = VIEWS[tab] || today;
   drawChrome(tabOf(tab, VIEWS), r);
   const main = $("#main");
   const y = window.scrollY;
-  main.innerHTML = '<div class="view" id="view"' + (fresh ? " data-enter" : "") + "></div>";
+  // a sideways tab slide is motion enough: skip the staggered entrance, keep rings/bars/count-ups
+  const enter = !fresh ? "" : dir ? ' data-enter="tab"' : ' data-enter="1"';
+  main.innerHTML = '<div class="view" id="view"' + enter + "></div>";
   const v = $("#view");
   view.render(v, r, { D, go, toast, rerender: render, counts, refreshChrome });
   document.title = "Interview Prep";
@@ -198,6 +209,7 @@ async function boot() {
   syncThemeColor();
   matchMedia("(prefers-color-scheme: dark)").addEventListener("change", syncThemeColor);
   sync.onStatus(refreshChrome);
+  desktop.addEventListener("change", refreshChrome);
   store.subscribe(why => {
     sync.scheduleSync();
     if (why === "change" || why === "silent") refreshChrome();

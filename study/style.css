@@ -148,6 +148,16 @@ kbd{display:inline-block;font:500 11px/1.4 var(--mono);padding:1px 6px;border-ra
 html.vt-theme #main,html.vt-theme .snav-ind,html.vt-theme .dock-ind,html.vt-theme .seg-ind{view-transition-name:none}
 html.vt-theme::view-transition-old(root){animation:none}
 html.vt-theme::view-transition-new(root){animation:theme-in .5s var(--ease) both}
+/* top-level tab switches slide sideways in tab order */
+::view-transition-old(root),::view-transition-new(root){animation-duration:.22s}
+html[data-nav="fwd"]::view-transition-old(main){animation:slide-out-l .2s cubic-bezier(.4,0,1,1) both}
+html[data-nav="fwd"]::view-transition-new(main){animation:slide-in-r .34s cubic-bezier(.2,.8,.2,1) both}
+html[data-nav="back"]::view-transition-old(main){animation:slide-out-r .2s cubic-bezier(.4,0,1,1) both}
+html[data-nav="back"]::view-transition-new(main){animation:slide-in-l .34s cubic-bezier(.2,.8,.2,1) both}
+@keyframes slide-out-l{to{opacity:0;transform:translateX(-36px)}}
+@keyframes slide-out-r{to{opacity:0;transform:translateX(36px)}}
+@keyframes slide-in-r{from{opacity:0;transform:translateX(44px)}}
+@keyframes slide-in-l{from{opacity:0;transform:translateX(-44px)}}
 @keyframes vt-out{to{opacity:0;transform:translateY(-6px)}}
 @keyframes vt-in{from{opacity:0;transform:translateY(12px)}}
 @keyframes theme-in{from{clip-path:circle(0 at 100% 0)}to{clip-path:circle(150% at 100% 0)}}
@@ -158,14 +168,21 @@ html.vt-theme::view-transition-new(root){animation:theme-in .5s var(--ease) both
 @keyframes grow{from{transform:scaleX(0)}}
 @keyframes ringin{from{stroke-dashoffset:var(--c)}}
 
-.view[data-enter] .rise{animation:rise .55s var(--ease) both}
-.view[data-enter] .rise.d1{animation-delay:.07s}
-.view[data-enter] .stagger>*{animation:rise .5s var(--ease) both}
+.view[data-enter="1"] .rise{animation:rise .55s var(--ease) both}
+.view[data-enter="1"] .rise.d1{animation-delay:.07s}
+.view[data-enter="1"] .stagger>*{animation:rise .5s var(--ease) both}
 .stagger>:nth-child(2){animation-delay:.04s}.stagger>:nth-child(3){animation-delay:.08s}.stagger>:nth-child(4){animation-delay:.12s}
 .stagger>:nth-child(5){animation-delay:.16s}.stagger>:nth-child(6){animation-delay:.2s}.stagger>:nth-child(7){animation-delay:.24s}
 .stagger>:nth-child(8){animation-delay:.28s}.stagger>:nth-child(9){animation-delay:.32s}.stagger>:nth-child(n+10){animation-delay:.36s}
 .view[data-enter] .bar i{animation:grow 1s var(--ease) both;transform-origin:left}
 .view[data-enter] .ring .val{animation:ringin 1.2s var(--ease) both}
+@media (max-width:700px){
+  .view[data-enter="1"] .stagger>*{animation-duration:.36s}
+  .stagger>:nth-child(n+2){animation-delay:.03s}.stagger>:nth-child(n+3){animation-delay:.06s}.stagger>:nth-child(n+4){animation-delay:.09s}.stagger>:nth-child(n+5){animation-delay:.12s}
+  .view[data-enter] .ring .val{animation-duration:.8s}
+  .view[data-enter] .bar i{animation-duration:.6s}
+}
+a,button,summary,.chip{touch-action:manipulation}
 
 /* ==========================================================================
    Page furniture

@@ -38,7 +38,16 @@ export const doneOn = (p, dateISO) => !!p && p.st !== "todo" && (p.c !== undefin
 
 /* Pool of problems per topic: curated external ones + every problem in problems.json whose topicLabel maps to the topic.
    Sorted easy -> hard, keeping the authored order inside a difficulty (so curated order is the learning order). */
+/* Pools only depend on the static data, so build them once per data set -- views ask for them a lot. */
+const poolCache = new WeakMap();
 export function buildPools(plan, pyProblems) {
+  const hit = poolCache.get(plan);
+  if (hit && hit.src === pyProblems) return hit.pools;
+  const pools = buildPoolsFresh(plan, pyProblems);
+  poolCache.set(plan, { src: pyProblems, pools });
+  return pools;
+}
+function buildPoolsFresh(plan, pyProblems) {
   const byApp = Object.fromEntries(pyProblems.map(p => [p.id, p]));
   const pools = {};
   for (const t of plan.topics) pools[t.id] = [];
