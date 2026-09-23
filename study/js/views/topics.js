@@ -2,7 +2,7 @@ import * as store from "../store.js";
 import { esc, md, plural, $, $$ } from "../util.js";
 import { cardState, dayNum } from "../srs.js";
 import * as P from "../plan.js";
-import { record, undo } from "./plan.js";
+import { record, undo, openLogModal } from "./plan.js";
 
 const inline = s => md(s).replace(/^<p>|<\/p>$/g, "");
 const todayISO = () => P.iso(new Date());
@@ -181,7 +181,12 @@ function problemsTab(el, D, sub, ctx) {
       if (P.doneOn(p, todayISO())) undo(b.dataset.tick);
       else if (confirm("Clear this problem's solved status and its re-solve schedule?")) store.commit(st => { st.probs[b.dataset.tick] = { st: "todo", n: 0, d: dayNum(), t: Date.now(), c: 0, tries: 0, note: "" }; });
       else return;
-    } else { record(b.dataset.tick, "solved"); ctx.toast("Saved."); }
+    } else {
+      record(b.dataset.tick, "solved");
+      ctx.toast("Saved.");
+      const p = pool.find(x => x.id === b.dataset.tick);
+      openLogModal(b.dataset.tick, p ? p.title : b.dataset.tick, ctx);
+    }
     ctx.rerender();
   });
 }

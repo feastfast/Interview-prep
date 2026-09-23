@@ -181,19 +181,35 @@ export function genDay({ date, topics, cfg, pools, probs, carry = [], skipped = 
 
 export const defaultPlan = (todayISO) => ({
   t: 0, start: todayISO, interview: addDays(todayISO, 90), minutes: 90, days: [1, 2, 3, 4, 5], levels: {}, seed: 1 + Math.floor(Math.random() * 100000),
+  cursor: todayISO, stash: [],
 });
+
+/* ---------------------------------------------------------------- schedule cursor (day-queue shifting) */
+/* A day's schedule is "complete" once every item in it is solved or explicitly skipped -- stashed items
+   never entered rec.items in the first place, so they don't block completion. */
+export function dayComplete(rec, probs) {
+  if (!rec) return false;
+  if (!rec.items.length) return true;
+  const skipped = new Set(rec.skipped || []);
+  return rec.items.every(i => skipped.has(i.id) || (probs[i.id] && probs[i.id].st !== "todo"));
+}
 
 /* First unsolved problem of a topic that is not already used (used for "skip / swap"). */
 export function nextFor(pools, probs, tid, excluded) {
   return (pools[tid] || []).find(p => !isSolved(probs, p.id) && !excluded.includes(p.id)) || null;
 }
 
-/* Everything the UI needs to know about the plan for a date. */
+/* Everything the UI needs to know about the plan for a date.
+   `date` is the real calendar day (drives spaced re-solves and interview countdown); the schedule itself
+   -- which topics are up, which week we're in -- follows `cfg.cursor`, a separate date that only advances
+   when a day's list is actually finished, so an unfinished day's slot persists until it's done and a
+   finished-early day pulls the next slot forward. */
 export function contextFor(D, state, date) {
   const cfg = Object.assign(defaultPlan(date), state.plan && state.plan.t ? state.plan : {});
+  const cursor = cfg.cursor || date;
   const pools = buildPools(D.plan, D.problems.problems);
   const byId = {};
   for (const tid of Object.keys(pools)) for (const p of pools[tid]) if (!byId[p.id]) byId[p.id] = Object.assign({ topic: tid }, p);
-  const monday = mondayOf(date);
-  return { plan: D.plan, cfg, pools, byId, monday, weekIdx: Math.max(0, weeksBetween(cfg.start || date, date)), review: isReviewMode(cfg, date), configured: !!(state.plan && state.plan.t) };
+  const monday = mondayOf(cursor);
+  return { plan: D.plan, cfg, pools, byId, monday, cursor, weekIdx: Math.max(0, weeksBetween(cfg.start || cursor, cursor)), review: isReviewMode(cfg, date), configured: !!(state.plan && state.plan.t) };
 }

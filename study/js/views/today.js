@@ -36,9 +36,9 @@ function planCard(D, s) {
   const date = P.iso(new Date());
   const pc = P.contextFor(D, s, date);
   if (!pc.configured) return '<h2>Weekly plan</h2><div class="card"><p class="small muted" style="margin:0 0 10px">Get a rotating LeetCode schedule built around your interview date.</p><a class="btn primary block" href="#/plan/setup">Set up my plan</a></div>';
-  const rec = s.days[date];
+  const rec = s.days[pc.cursor];
   if (!rec) return '<h2>Weekly plan</h2><div class="card"><a class="btn primary block" href="#/plan">Open today&rsquo;s plan</a></div>';
-  const done = rec.items.filter(i => P.doneOn(s.probs[i.id], date)).length;
+  const done = rec.items.filter(i => P.doneOn(s.probs[i.id], pc.cursor)).length;
   const mins = rec.items.reduce((a, b) => a + b.mins, 0);
   return '<h2>LeetCode today</h2><div class="card"><div class="row between"><div><b>' + done + " of " + rec.items.length + " problems done</b><div class=\"small muted\">about " + mins + " min &middot; " +
     rec.topics.map(t => esc((D.plan.topics.find(x => x.id === t) || { label: t }).label)).join(" + ") + '</div></div><a class="btn primary sm" href="#/plan">Open</a></div>' +

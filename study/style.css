@@ -135,6 +135,14 @@ h3{font-size:15px;margin:16px 0 6px}
 .heat i.l1{background:color-mix(in srgb,var(--accent) 30%,var(--surface))} .heat i.l2{background:color-mix(in srgb,var(--accent) 55%,var(--surface))} .heat i.l3{background:var(--accent)}
 
 .toast{position:fixed;left:50%;bottom:calc(92px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--ink);color:var(--surface);padding:9px 16px;border-radius:99px;font-size:13.5px;z-index:50;max-width:90vw}
+
+/* modal (e.g. save-your-solution popup) */
+.modal-bg{position:fixed;inset:0;background:rgba(14,21,29,.5);z-index:60;display:flex;align-items:flex-end;justify-content:center;padding:0}
+@media (min-width:600px){.modal-bg{align-items:center;padding:20px}}
+.modal{background:var(--surface);border-radius:16px 16px 0 0;padding:18px;width:100%;max-width:560px;max-height:85vh;overflow:auto;box-shadow:var(--shadow)}
+@media (min-width:600px){.modal{border-radius:16px}}
+.modal textarea{display:block;width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2);margin-top:4px;resize:vertical;font:inherit;font-size:14px}
+.modal textarea.mono{font-family:var(--mono);font-size:12.5px}
 .empty{text-align:center;padding:40px 16px;color:var(--muted)}
 .empty b{display:block;font-family:var(--display);font-size:19px;color:var(--ink);margin-bottom:6px}
 .spinner{display:inline-block;width:14px;height:14px;border:2px solid var(--line);border-top-color:var(--accent);border-radius:50%;animation:sp .8s linear infinite;vertical-align:-2px;margin-right:6px}
