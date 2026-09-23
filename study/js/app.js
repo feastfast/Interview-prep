@@ -19,6 +19,8 @@ const VIEWS = { today, plan, topics, cards, quiz, progress, materials };
 /* data lives next to the code, wherever the page that loads it sits */
 const dataUrl = f => new URL("../data/" + f, import.meta.url).href;
 const desktop = matchMedia("(min-width: 960px)");
+/* phones get a lighter motion path: CSS slides instead of full-page view-transition snapshots */
+const lite = () => !desktop.matches;
 const isMac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
 export const modKey = isMac ? "⌘" : "Ctrl";
 
@@ -83,7 +85,25 @@ function drawChrome(active, r) {
   $("#top").innerHTML = '<a class="brand sm" href="#/today"><span class="logo">' + icon("sparkle", 15) + "</span><b>Interview Prep</b></a>" +
     '<div class="row" style="gap:2px">' + syncPill(true) + '<button class="iconbtn" type="button" data-palette aria-label="Search">' + icon("search", 18) + "</button>" + themeBtn() + "</div>";
 
-  $("#nav").innerHTML = TABS.map(([k, label]) => '<a href="#/' + k + '"' + (k === active ? ' class="on" aria-current="page"' : "") + ">" + (k === active ? '<span class="dock-ind"></span>' : "") + icon(k, 20) + "<span>" + label + "</span>" + badge(k) + "</a>").join("");
+  drawDock(active, c.probsDue);
+}
+/* The dock is built once and only updated, so its pill can glide between tabs with a plain CSS transition. */
+function drawDock(active, due) {
+  const nav = $("#nav");
+  if (!nav.querySelector(".dock-pill")) {
+    nav.innerHTML = '<span class="dock-pill"></span>' + TABS.map(([k, label]) => '<a href="#/' + k + '" data-tab="' + k + '">' + icon(k, 20) + "<span>" + label + "</span><em hidden></em></a>").join("");
+    // move the pill as soon as a finger lands, not after the next page has rendered
+    nav.addEventListener("pointerdown", e => { const a = e.target.closest("a[data-tab]"); if (a) nav.style.setProperty("--i", TABS.findIndex(([k]) => k === a.dataset.tab)); });
+  }
+  nav.style.setProperty("--i", Math.max(0, TABS.findIndex(([k]) => k === active)));
+  for (const a of nav.querySelectorAll("a[data-tab]")) {
+    const on = a.dataset.tab === active;
+    a.classList.toggle("on", on);
+    if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    const em = a.querySelector("em"), show = a.dataset.tab === "plan" && due > 0;
+    em.hidden = !show;
+    if (show) em.textContent = due;
+  }
 }
 function refreshChrome() { const r = route(); drawChrome(tabOf(r.parts[0] || "today", VIEWS), r); }
 
@@ -97,12 +117,13 @@ export function render() {
   const prev = lastHash == null ? null : route(lastHash);
   lastHash = location.hash;
   const r = route();
-  if (fresh && painted && document.startViewTransition && !reduced() && !document.hidden) {
-    // switching between top-level tabs slides sideways in tab order, like a native tab bar
-    const tabIdx = h => TABS.findIndex(([k]) => k === tabOf(h || "today", VIEWS));
-    const a = prev ? tabIdx(prev.parts[0]) : -1, b = tabIdx(r.parts[0]);
-    const root = document.documentElement;
-    const dir = a < 0 || a === b ? "" : b > a ? "fwd" : "back", token = ++navToken;
+  // switching between top-level tabs slides sideways in tab order, like a native tab bar
+  const tabIdx = h => TABS.findIndex(([k]) => k === tabOf(h || "today", VIEWS));
+  const a = prev ? tabIdx(prev.parts[0]) : -1, b = tabIdx(r.parts[0]);
+  const dir = a < 0 || a === b ? "" : b > a ? "fwd" : "back";
+  if (fresh && painted && lite()) paint(r, true, dir, reduced() ? "" : dir || "up");
+  else if (fresh && painted && document.startViewTransition && !reduced() && !document.hidden) {
+    const root = document.documentElement, token = ++navToken;
     root.dataset.nav = dir;
     // a skipped transition (e.g. the tab is hidden) still runs the update; it just rejects these promises
     const vt = document.startViewTransition(() => paint(r, true, dir));
@@ -110,7 +131,7 @@ export function render() {
     vt.finished.catch(() => {}).finally(() => { if (token === navToken) root.dataset.nav = ""; });
   } else paint(r, fresh);
 }
-function paint(r, fresh, dir = "") {
+function paint(r, fresh, dir = "", anim = "") {
   const tab = r.parts[0] || "today";
   const view = VIEWS[tab] || today;
   drawChrome(tabOf(tab, VIEWS), r);
@@ -118,7 +139,7 @@ function paint(r, fresh, dir = "") {
   const y = window.scrollY;
   // a sideways tab slide is motion enough: skip the staggered entrance, keep rings/bars/count-ups
   const enter = !fresh ? "" : dir ? ' data-enter="tab"' : ' data-enter="1"';
-  main.innerHTML = '<div class="view" id="view"' + enter + "></div>";
+  main.innerHTML = '<div class="view" id="view"' + enter + (anim ? ' data-anim="' + anim + '"' : "") + "></div>";
   const v = $("#view");
   view.render(v, r, { D, go, toast, rerender: render, counts, refreshChrome });
   document.title = "Interview Prep";
