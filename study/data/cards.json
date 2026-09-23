@@ -47,6 +47,10 @@
     {
       "id": "tries",
       "label": "Tries"
+    },
+    {
+      "id": "two-pointers",
+      "label": "Two Pointers"
     }
   ],
   "cards": [
@@ -5712,6 +5716,433 @@
       "t": "Recognition & Decision Making",
       "f": "What single question captures the difference between what a HashSet and a Trie each answer?",
       "b": "HashSet asks \"does this exact word exist?\" Trie asks \"where does this prefix take me, and what can continue from here?\""
+    },
+    {
+      "id": "cs-81413be1",
+      "d": "two-pointers",
+      "t": "Fundamentals & the Elimination Proof",
+      "f": "What is the central mental model for deciding which pointer to move in an opposite-end two-pointer scan?",
+      "b": "Don't apply a memorized rule (\"sum small -> left++\"). Instead prove that the current pointer's value can never be part of the answer, and only then move it."
+    },
+    {
+      "id": "cs-b8fd4d17",
+      "d": "two-pointers",
+      "t": "Fundamentals & the Elimination Proof",
+      "f": "In Two Sum II on a sorted array, why can `nums[left]` be eliminated when `nums[left] + nums[right] < target`?",
+      "b": "`nums[right]` is already the largest available partner. If even that sum is too small, every other (smaller) partner for `nums[left]` is also too small, so `nums[left]` can never reach the target."
+    },
+    {
+      "id": "cs-9cc95787",
+      "d": "two-pointers",
+      "t": "Fundamentals & the Elimination Proof",
+      "f": "Why can `nums[right]` be eliminated when `nums[left] + nums[right] > target`?",
+      "b": "`nums[left]` is already the smallest available partner. If even that sum is too large, every other (larger) partner for `nums[right]` is also too large."
+    },
+    {
+      "id": "cs-14297d5e",
+      "d": "two-pointers",
+      "t": "Fundamentals & the Elimination Proof",
+      "f": "Why does sorting matter for opposite-end elimination proofs?",
+      "b": "Sorting creates a monotonic relationship -- moving `left` right only increases `nums[left]`, moving `right` left only decreases `nums[right]` -- which is what turns \"sum too small/large\" into a valid proof of impossibility."
+    },
+    {
+      "id": "cs-73f0b627",
+      "d": "two-pointers",
+      "t": "Fundamentals & the Elimination Proof",
+      "f": "On `[8, 1, 6, 3, 4]` (unsorted), `8 + 1 = 9 < target`. Can we safely conclude \"1 is too small, move left\"?",
+      "b": "No. Without sorted order there's no guarantee a value like 2 or 5 doesn't exist elsewhere in the array that would work with 1."
+    },
+    {
+      "id": "cs-18d7029d",
+      "d": "two-pointers",
+      "t": "Fundamentals & the Elimination Proof",
+      "f": "What is the classic self-correction: `nums=[1,2,4,7,11]`, `target=13`, `L=0,R=4`, sum=12 (too small). Why is \"move R, eliminate 11\" wrong?",
+      "b": "Eliminating 11 requires proving 11 can never be part of a valid pair, but that's false in general -- 11 could pair with something smaller than 1 elsewhere. The sum being too small only proves the LEFT value (1) is impossible."
+    },
+    {
+      "id": "cs-c342e850",
+      "d": "two-pointers",
+      "t": "Fundamentals & the Elimination Proof",
+      "f": "For `nums=[1,2,4,7,11]`, `target=13`, what is the correct first move and why?",
+      "b": "Move left (eliminate 1). 11 is already the largest possible partner, and 1+11=12 < 13, so 1 can never reach the target with any partner."
+    },
+    {
+      "id": "cs-47199e08",
+      "d": "two-pointers",
+      "t": "Fundamentals & the Elimination Proof",
+      "f": "What is the time and space complexity of the Two Sum II opposite-end scan?",
+      "b": "O(n) time (left and right together move at most n steps total) and O(1) extra space."
+    },
+    {
+      "id": "cs-a0308240",
+      "d": "two-pointers",
+      "t": "Fundamentals & the Elimination Proof",
+      "f": "What three cases does the opposite-end scan handle at each step?",
+      "b": "sum < target (move left), sum > target (move right), sum == target (found, stop)."
+    },
+    {
+      "id": "cs-51322fca",
+      "d": "two-pointers",
+      "t": "Fundamentals & the Elimination Proof",
+      "f": "Given `nums=[1,3,5,7,10]`, `target=11`, at `L=0,R=4` we get `1+10=11`. What happens next?",
+      "b": "We return immediately -- a valid pair is already found, so there's nothing left to eliminate or search for."
+    },
+    {
+      "id": "cs-196dc63c",
+      "d": "two-pointers",
+      "t": "Container With Most Water",
+      "f": "What is the area formula in Container With Most Water?",
+      "b": "`min(height[left], height[right]) * (right - left)`."
+    },
+    {
+      "id": "cs-7808631a",
+      "d": "two-pointers",
+      "t": "Container With Most Water",
+      "f": "Why is Container With Most Water's pointer-elimination proof different in kind from Two Sum II's?",
+      "b": "Two Sum eliminates a VALUE because no partner can reach the target. Container eliminates a POINTER POSITION because keeping the shorter side while shrinking the width can never produce a better area -- it's an optimization proof, not a value-impossibility proof."
+    },
+    {
+      "id": "cs-b3fc5e5f",
+      "d": "two-pointers",
+      "t": "Container With Most Water",
+      "f": "If `height[left] < height[right]`, why is moving `right` provably useless?",
+      "b": "`left` stays the limiting (shorter) height, so the new area is at most `height[left] * smaller_width`, which is strictly less than the current area."
+    },
+    {
+      "id": "cs-bce761b3",
+      "d": "two-pointers",
+      "t": "Container With Most Water",
+      "f": "If `height[left] < height[right]`, why might moving `left` help?",
+      "b": "It's the only move that could reveal a taller wall, which could raise the limiting height and increase the area."
+    },
+    {
+      "id": "cs-673dba6a",
+      "d": "two-pointers",
+      "t": "Container With Most Water",
+      "f": "When `height[left] == height[right]`, which pointer should move?",
+      "b": "Either one -- both sides are equally limiting, and the current pair's area can never be reused at a better (larger) width, so there's no reason to prefer one side."
+    },
+    {
+      "id": "cs-a9af37d4",
+      "d": "two-pointers",
+      "t": "Container With Most Water",
+      "f": "In Container With Most Water, when do we update the running best answer?",
+      "b": "Before moving either pointer, at every (left, right) pair we compute the area and update `best = max(best, area)`."
+    },
+    {
+      "id": "cs-807dece4",
+      "d": "two-pointers",
+      "t": "Palindromes & String Pointers",
+      "f": "In Valid Palindrome, why don't we need to build a cleaned copy of the string first?",
+      "b": "The two pointers can skip non-alphanumeric characters in place while scanning inward, comparing only the meaningful characters as they go."
+    },
+    {
+      "id": "cs-2c44e33d",
+      "d": "two-pointers",
+      "t": "Palindromes & String Pointers",
+      "f": "In Valid Palindrome, why can we return `False` immediately on the first mismatch?",
+      "b": "A palindrome requires every mirrored pair of characters to match; one violation is proof enough, so there's no need to inspect the rest."
+    },
+    {
+      "id": "cs-97480cd0",
+      "d": "two-pointers",
+      "t": "Palindromes & String Pointers",
+      "f": "How does Valid Palindrome II (LC 680) extend the Valid Palindrome scan?",
+      "b": "On the first mismatch, try skipping the left character OR the right character and check whether either resulting substring is a clean palindrome -- one deletion is allowed."
+    },
+    {
+      "id": "cs-7df85b34",
+      "d": "two-pointers",
+      "t": "Palindromes & String Pointers",
+      "f": "In Valid Palindrome II, why do we stop trying more deletions after the first mismatch?",
+      "b": "Only one deletion is allowed total, so once it's used (on either side), the remaining range must already be a clean, no-further-deletion palindrome."
+    },
+    {
+      "id": "cs-8ff3ffcc",
+      "d": "two-pointers",
+      "t": "Palindromes & String Pointers",
+      "f": "What pointer pattern does Reverse String (LC 344) use, and why doesn't it need an elimination proof?",
+      "b": "Opposite-end swap. Every position must be visited exactly once to reverse the array, so no value is ever \"eliminated\" -- the pointers just swap inward until they meet."
+    },
+    {
+      "id": "cs-ee2a4a19",
+      "d": "two-pointers",
+      "t": "Same-Direction Pointers on Two Sequences",
+      "f": "In Is Subsequence, what do pointers `i` and `j` each represent?",
+      "b": "`i` = the next character of `s` we still need to match. `j` = a scanner walking through `t`."
+    },
+    {
+      "id": "cs-54cfcd25",
+      "d": "two-pointers",
+      "t": "Same-Direction Pointers on Two Sequences",
+      "f": "In Is Subsequence, why can `j` always advance even on a mismatch, but `i` cannot?",
+      "b": "We're allowed to delete/skip characters from `t`, so skipping `t[j]` loses nothing. But `i` has not yet found its required match, so advancing it would lose a needed character of `s`."
+    },
+    {
+      "id": "cs-605f811f",
+      "d": "two-pointers",
+      "t": "Same-Direction Pointers on Two Sequences",
+      "f": "What is the success condition for Is Subsequence?",
+      "b": "`i == len(s)` -- once every character of `s` has been consumed in order, `s` is a subsequence of `t`."
+    },
+    {
+      "id": "cs-9c824513",
+      "d": "two-pointers",
+      "t": "Same-Direction Pointers on Two Sequences",
+      "f": "What is the time complexity of Is Subsequence's two-pointer scan?",
+      "b": "O(len(t)) -- `j` scans `t` at most once, and `i` can never advance more times than `j` does."
+    },
+    {
+      "id": "cs-6b9fa65d",
+      "d": "two-pointers",
+      "t": "Same-Direction Slow/Fast Pointers",
+      "f": "In the slow/fast \"processed region\" pattern, what do `slow` and `fast` represent in general?",
+      "b": "`slow` = the boundary of the region already correctly built. `fast` = a scanner searching the rest of the array for something that belongs in that region."
+    },
+    {
+      "id": "cs-8a5ee776",
+      "d": "two-pointers",
+      "t": "Same-Direction Slow/Fast Pointers",
+      "f": "In Remove Duplicates from Sorted Array (LC 26), why is it enough for `fast` to compare against `nums[slow - 1]` only?",
+      "b": "Because the array is sorted, duplicates are always adjacent, so the single most-recently-kept value is enough to detect a repeat."
+    },
+    {
+      "id": "cs-532e1810",
+      "d": "two-pointers",
+      "t": "Same-Direction Slow/Fast Pointers",
+      "f": "How does Remove Duplicates II (LC 80) change the comparison rule to allow each value twice?",
+      "b": "Compare `fast` against `nums[slow - 2]` instead of `nums[slow - 1]`, so a value is only rejected once it would be a third consecutive occurrence."
+    },
+    {
+      "id": "cs-0e9d8053",
+      "d": "two-pointers",
+      "t": "Same-Direction Slow/Fast Pointers",
+      "f": "In Remove Element (LC 27), what does `slow` represent, and is a swap required?",
+      "b": "`slow` is the next destination for a value we want to keep. A swap is only one implementation detail -- the core idea is compacting kept elements toward the front."
+    },
+    {
+      "id": "cs-7920ce87",
+      "d": "two-pointers",
+      "t": "Same-Direction Slow/Fast Pointers",
+      "f": "In Move Zeroes (LC 283), why don't we need a separate step to move zeroes to the end?",
+      "b": "Once every non-zero element has been placed in front (up to `slow`), nothing else is left to place, so everything from `slow` onward can simply be overwritten with 0."
+    },
+    {
+      "id": "cs-c764869b",
+      "d": "two-pointers",
+      "t": "Same-Direction Slow/Fast Pointers",
+      "f": "In Sort Colors (Dutch National Flag, LC 75), what do `low`, `mid`, and `high` track?",
+      "b": "The boundaries of four regions: `[0 region][1 region][unknown][2 region]`, with `mid` scanning the unknown region."
+    },
+    {
+      "id": "cs-c485d7b4",
+      "d": "two-pointers",
+      "t": "Same-Direction Slow/Fast Pointers",
+      "f": "In Sort Colors, why must `mid` NOT advance immediately after swapping in a value from `high` when it finds a `2`?",
+      "b": "The value just swapped in from `high` has never been examined -- it could be a 0, 1, or another 2, so it still needs to be checked."
+    },
+    {
+      "id": "cs-70b2fd96",
+      "d": "two-pointers",
+      "t": "Same-Direction Slow/Fast Pointers",
+      "f": "In Sort Colors, why IS it safe for `mid` to advance right after swapping in a value from `low` when it finds a `0`?",
+      "b": "The value swapped in from `low` is always either untouched or already known to be a `1` from earlier in the scan, so it's safe to move past it."
+    },
+    {
+      "id": "cs-4fa12c63",
+      "d": "two-pointers",
+      "t": "Same-Direction Slow/Fast Pointers",
+      "f": "How does Squares of a Sorted Array (LC 977) use two pointers, and what's different about its proof?",
+      "b": "It fills the answer array from the back, always taking whichever end (`left` or `right`) has the larger absolute value -- not an elimination proof about a target, but about where the largest remaining square must come from."
+    },
+    {
+      "id": "cs-f19f570d",
+      "d": "two-pointers",
+      "t": "Sort + Fixed Pointer(s) + Two Pointers (kSum Family)",
+      "f": "What is the general recipe for solving 3Sum with two pointers?",
+      "b": "Sort the array, fix one index `i`, then run the Two Sum II opposite-end elimination proof on the remaining subarray."
+    },
+    {
+      "id": "cs-900963d1",
+      "d": "two-pointers",
+      "t": "Sort + Fixed Pointer(s) + Two Pointers (kSum Family)",
+      "f": "In 3Sum, why do we skip duplicate values of the fixed index `i`?",
+      "b": "Starting a full search from two indices holding the same value would just rediscover the exact same triplets."
+    },
+    {
+      "id": "cs-368cc12f",
+      "d": "two-pointers",
+      "t": "Sort + Fixed Pointer(s) + Two Pointers (kSum Family)",
+      "f": "In 3Sum, is it correct to skip duplicate `L`/`R` values BEFORE any triplet has been found for the current `i`?",
+      "b": "No. A duplicate value may still be a necessary stepping stone the pointer must pass through while searching -- skipping it early could skip over a still-needed combination."
+    },
+    {
+      "id": "cs-9119a9e6",
+      "d": "two-pointers",
+      "t": "Sort + Fixed Pointer(s) + Two Pointers (kSum Family)",
+      "f": "In 3Sum, when IS it correct (and necessary) to skip duplicate `L`/`R` values?",
+      "b": "Only AFTER a triplet has been recorded -- moving to the next occurrence of the same value at that point is guaranteed to reproduce the same triplet, so skipping avoids duplicate output."
+    },
+    {
+      "id": "cs-5575e391",
+      "d": "two-pointers",
+      "t": "Sort + Fixed Pointer(s) + Two Pointers (kSum Family)",
+      "f": "What is the time complexity of 3Sum, and why?",
+      "b": "O(n^2) -- n choices for the fixed index `i`, times an O(n) opposite-end scan for each."
+    },
+    {
+      "id": "cs-bae91ede",
+      "d": "two-pointers",
+      "t": "Sort + Fixed Pointer(s) + Two Pointers (kSum Family)",
+      "f": "How does 4Sum extend the 3Sum pattern, and what's its complexity?",
+      "b": "Fix two indices `i` and `j` instead of one, then run the same L/R elimination on what's left. Complexity is O(n^3): n^2 choices for `(i,j)` times an O(n) scan."
+    },
+    {
+      "id": "cs-a3acbad4",
+      "d": "two-pointers",
+      "t": "Sort + Fixed Pointer(s) + Two Pointers (kSum Family)",
+      "f": "How does 3Sum Closest differ from 3Sum in its stopping condition?",
+      "b": "Instead of stopping at an exact match, it tracks the best `abs(sum - target)` seen so far, while still moving L/R by the same too-small/too-large direction rule."
+    },
+    {
+      "id": "cs-719ac77f",
+      "d": "two-pointers",
+      "t": "Sort + Fixed Pointer(s) + Two Pointers (kSum Family)",
+      "f": "In 3Sum Smaller, why can we count `(right - left)` triplets at once instead of one at a time?",
+      "b": "Once `nums[i]+nums[left]+nums[right] < target` is true, it stays true for `nums[left]` paired with every index between `left` and `right` (not just `right`), because the array is sorted."
+    },
+    {
+      "id": "cs-b3d7bcfd",
+      "d": "two-pointers",
+      "t": "Sort + Fixed Pointer(s) + Two Pointers (kSum Family)",
+      "f": "In Valid Triangle Number (LC 611), what does fixing `nums[k]` from the right represent, and why is only one inequality checked?",
+      "b": "`nums[k]` is fixed as the LARGEST side. Only `nums[L] + nums[R] > nums[k]` needs checking because the other two triangle inequalities hold automatically once the array is sorted and `L, R < k`."
+    },
+    {
+      "id": "cs-73fdb360",
+      "d": "two-pointers",
+      "t": "Merge-Style Pointers",
+      "f": "In merge-style two pointers (one per sorted sequence), what does each pointer represent?",
+      "b": "The smallest unprocessed candidate from its own sequence."
+    },
+    {
+      "id": "cs-30f39abb",
+      "d": "two-pointers",
+      "t": "Merge-Style Pointers",
+      "f": "Why is it always safe to consume the smaller of `A[i]` and `B[j]` in a merge-style scan?",
+      "b": "Since both sequences are sorted, every remaining element in each array is >= its own pointer's current value, so the globally smaller of the two current values must be the next element in merged order."
+    },
+    {
+      "id": "cs-edda44ea",
+      "d": "two-pointers",
+      "t": "Merge-Style Pointers",
+      "f": "What is the time complexity of merging two sorted sequences with one pointer each?",
+      "b": "O(n + m) -- each pointer only ever moves forward through its own array."
+    },
+    {
+      "id": "cs-39b47549",
+      "d": "two-pointers",
+      "t": "Merge-Style Pointers",
+      "f": "Why does Merge Sorted Array (LC 88) scan from the BACK instead of the front?",
+      "b": "`nums1` has trailing empty capacity to merge into; scanning from the front would overwrite values in `nums1` before they're read. Scanning from the back and taking the LARGEST unprocessed candidate each step avoids that."
+    },
+    {
+      "id": "cs-5faa14ce",
+      "d": "two-pointers",
+      "t": "Hard Problems Requiring Their Own Proof",
+      "f": "In Trapping Rain Water, what does the invariant `left_max <= right_max` let us conclude?",
+      "b": "The water level at `left` is fully determined by `left_max` alone -- the right side is guaranteed to have a wall at least that high somewhere, so we don't need to know exactly where."
+    },
+    {
+      "id": "cs-23c830bb",
+      "d": "two-pointers",
+      "t": "Hard Problems Requiring Their Own Proof",
+      "f": "What two running values does the two-pointer Trapping Rain Water solution maintain, and what space complexity does that achieve?",
+      "b": "`left_max` and `right_max`; this achieves O(1) extra space instead of the O(n) prefix/suffix max arrays."
+    },
+    {
+      "id": "cs-fb57d9b4",
+      "d": "two-pointers",
+      "t": "Hard Problems Requiring Their Own Proof",
+      "f": "In Boats to Save People, why must the heaviest remaining person either pair with the lightest, or go alone?",
+      "b": "The heaviest person must go on some boat. If they can't fit with the lightest remaining person, they can't fit with anyone else either, since everyone else is at least as heavy."
+    },
+    {
+      "id": "cs-709f4133",
+      "d": "two-pointers",
+      "t": "Hard Problems Requiring Their Own Proof",
+      "f": "In Bag of Tokens, when is it worth playing the most expensive remaining token face down?",
+      "b": "Only when we can't currently afford the cheapest token, we already have a score point to spend, and more than one token remains -- spending a point regains power to afford the cheap tokens."
+    },
+    {
+      "id": "cs-11b37a35",
+      "d": "two-pointers",
+      "t": "Hard Problems Requiring Their Own Proof",
+      "f": "In Meeting Scheduler, when a candidate overlap between two slots is too short, which slot's pointer advances, and why?",
+      "b": "The slot that ENDS EARLIER, because its own end is already the tightest constraint -- it can never overlap anything that comes after the other slot's start either."
+    },
+    {
+      "id": "cs-bcf58c28",
+      "d": "two-pointers",
+      "t": "Hard Problems Requiring Their Own Proof",
+      "f": "What is the overlap formula used in Meeting Scheduler for two candidate slots?",
+      "b": "`[max(start1, start2), min(end1, end2)]`."
+    },
+    {
+      "id": "cs-0fbb9c47",
+      "d": "two-pointers",
+      "t": "Recognition & Decision Making",
+      "f": "What are the three questions to ask before committing to a two-pointer approach?",
+      "b": "(1) Do I have two meaningful positions? (2) Is there some ordering/monotonic property? (3) Can moving a pointer safely eliminate possibilities?"
+    },
+    {
+      "id": "cs-1a618d7a",
+      "d": "two-pointers",
+      "t": "Recognition & Decision Making",
+      "f": "A problem is about an unsorted array and needs to return original indices for a target-sum pair. Why not sort and use opposite-end pointers?",
+      "b": "Sorting would destroy the original indices that need to be returned. Use a HashMap instead."
+    },
+    {
+      "id": "cs-2d6637cc",
+      "d": "two-pointers",
+      "t": "Recognition & Decision Making",
+      "f": "What problem signal points to Sliding Window instead of two pointers?",
+      "b": "A CONTIGUOUS subarray whose validity must be maintained as elements enter and leave a window, rather than two independent positions being narrowed toward each other."
+    },
+    {
+      "id": "cs-6ef2731c",
+      "d": "two-pointers",
+      "t": "Recognition & Decision Making",
+      "f": "What is the recognition signal for fixed-gap pointers?",
+      "b": "\"Find the element that is k positions behind/ahead of another element\" -- keep two pointers a constant distance k apart and advance them together."
+    },
+    {
+      "id": "cs-fd42a4a9",
+      "d": "two-pointers",
+      "t": "Recognition & Decision Making",
+      "f": "What is the recognition signal for fast/slow pointers, and where is that pattern's full derivation covered?",
+      "b": "Linked-list midpoint or cycle detection (fast moves 2 steps per 1 slow step); the full derivation lives in the Linked List guide, not this one."
+    },
+    {
+      "id": "cs-98dff09b",
+      "d": "two-pointers",
+      "t": "Recognition & Decision Making",
+      "f": "What is the single universal test for whether two pointers is the right tool for a new problem?",
+      "b": "Can moving this pointer be PROVEN to eliminate possibilities that cannot contain the answer? If not, two pointers is the wrong tool."
+    },
+    {
+      "id": "cs-8a1f6f75",
+      "d": "two-pointers",
+      "t": "Recognition & Decision Making",
+      "f": "What complexity results from \"sort + fixed pointer(s) + two pointers\" in general, and why?",
+      "b": "Sorting costs O(n log n); the fixed-pointer(s) + L/R scan costs O(n) per fixed index combination, multiplied by n for each extra fixed index (3Sum: O(n^2), 4Sum: O(n^3))."
+    },
+    {
+      "id": "cs-f0142e1b",
+      "d": "two-pointers",
+      "t": "Recognition & Decision Making",
+      "f": "Why does the source material discourage memorizing \"sum small -> left++\" as a template?",
+      "b": "Because templates memorized without the underlying elimination proof break the moment a problem's details shift slightly -- as both self-corrections in this guide (Two Sum II and 3Sum duplicate handling) show directly."
     }
   ]
 }

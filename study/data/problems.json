@@ -2372,6 +2372,98 @@
       "slug": "maximum-genetic-difference-query",
       "topic": "tries",
       "topicLabel": "Tries"
+    },
+    {
+      "id": "lc-27",
+      "title": "Remove Element",
+      "pattern": "Same-direction slow/fast",
+      "diff": "easy",
+      "lc": "LC 27",
+      "slug": "remove-element",
+      "topic": "two-pointers",
+      "topicLabel": "Two Pointers"
+    },
+    {
+      "id": "lc-392",
+      "title": "Is Subsequence",
+      "pattern": "Same-direction two sequences",
+      "diff": "easy",
+      "lc": "LC 392",
+      "slug": "is-subsequence",
+      "topic": "two-pointers",
+      "topicLabel": "Two Pointers"
+    },
+    {
+      "id": "lc-80",
+      "title": "Remove Duplicates from Sorted Array II",
+      "pattern": "Same-direction slow/fast",
+      "diff": "medium",
+      "lc": "LC 80",
+      "slug": "remove-duplicates-from-sorted-array-ii",
+      "topic": "two-pointers",
+      "topicLabel": "Two Pointers"
+    },
+    {
+      "id": "lc-88",
+      "title": "Merge Sorted Array",
+      "pattern": "Merge-style (back-to-front)",
+      "diff": "easy",
+      "lc": "LC 88",
+      "slug": "merge-sorted-array",
+      "topic": "two-pointers",
+      "topicLabel": "Two Pointers"
+    },
+    {
+      "id": "lc-344",
+      "title": "Reverse String",
+      "pattern": "Opposite-end swap",
+      "diff": "easy",
+      "lc": "LC 344",
+      "slug": "reverse-string",
+      "topic": "two-pointers",
+      "topicLabel": "Two Pointers"
+    },
+    {
+      "id": "lc-259",
+      "title": "3Sum Smaller",
+      "pattern": "Sort + fixed pointer + L/R count",
+      "diff": "medium",
+      "lc": "LC 259",
+      "slug": "3sum-smaller",
+      "premium": true,
+      "topic": "two-pointers",
+      "topicLabel": "Two Pointers"
+    },
+    {
+      "id": "lc-611",
+      "title": "Valid Triangle Number",
+      "pattern": "Sort + fixed largest side + L/R count",
+      "diff": "medium",
+      "lc": "LC 611",
+      "slug": "valid-triangle-number",
+      "topic": "two-pointers",
+      "topicLabel": "Two Pointers"
+    },
+    {
+      "id": "lc-948",
+      "title": "Bag of Tokens",
+      "pattern": "Sort + greedy endpoint decision",
+      "diff": "medium",
+      "lc": "LC 948",
+      "slug": "bag-of-tokens",
+      "topic": "two-pointers",
+      "topicLabel": "Two Pointers"
+    },
+    {
+      "id": "lc-1229",
+      "title": "Meeting Scheduler",
+      "pattern": "Merge-style elimination",
+      "diff": "medium",
+      "lc": "LC 1229",
+      "slug": "meeting-scheduler",
+      "premium": true,
+      "topic": "two-pointers",
+      "topicLabel": "Two Pointers"
     }
   ]
 }
