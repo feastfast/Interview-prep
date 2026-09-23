@@ -39,6 +39,10 @@
   {
    "id": "linked-list",
    "label": "Linked List"
+  },
+  {
+   "id": "backtracking",
+   "label": "Backtracking"
   }
  ],
  "questions": [
@@ -5893,6 +5897,608 @@
    ],
    "a": 0,
    "x": "Reorder List is the canonical example -- what looks new is often \"find middle + reverse + interleave,\" patterns you already have."
+  },
+  {
+   "id": "qs-96e1585e",
+   "d": "backtracking",
+   "t": "Fundamentals",
+   "q": "What is the correct order of operations in the universal backtracking loop?",
+   "o": [
+    "Choose, explore, undo",
+    "Explore, choose, undo",
+    "Undo, choose, explore",
+    "Choose, undo, explore"
+   ],
+   "a": 0,
+   "x": "You apply a choice (mutate state), recurse to explore, then restore the state (undo) before trying the next choice."
+  },
+  {
+   "id": "qs-4acce8a2",
+   "d": "backtracking",
+   "t": "Fundamentals",
+   "q": "What invariant must `path` maintain throughout a backtracking search?",
+   "o": [
+    "It represents exactly the choices made along the current recursion path",
+    "It contains every choice ever made across all branches",
+    "It is reset to empty before each recursive call",
+    "It always has the same length as `nums`"
+   ],
+   "a": 0,
+   "x": "Because `path` is shared/mutated across branches, undo is what keeps it representing only the current branch."
+  },
+  {
+   "id": "qs-fe0cc247",
+   "d": "backtracking",
+   "t": "Fundamentals",
+   "q": "Which of these is NOT true about backtracking?",
+   "o": [
+    "Every DFS traversal is a backtracking algorithm",
+    "Backtracking is DFS/recursion over a space of choices",
+    "Backtracking mutates state before recursing and restores it after",
+    "Ordinary tree traversal is DFS but not backtracking"
+   ],
+   "a": 0,
+   "x": "Plain tree traversal (visit node, visit left, visit right) is DFS without the choose/explore/undo structure, so it is not backtracking."
+  },
+  {
+   "id": "qs-0e878b03",
+   "d": "backtracking",
+   "t": "Fundamentals",
+   "q": "In `res.append(path.copy())`, what would happen if you appended `path` directly instead?",
+   "o": [
+    "Every entry in `res` would end up reflecting the same, final state of `path`",
+    "The code would raise a TypeError",
+    "Nothing different -- lists are copied automatically on append",
+    "Only the last answer would be affected"
+   ],
+   "a": 0,
+   "x": "Without `.copy()`, every stored reference points at the same mutable list object, which later `append`/`pop` calls continue to mutate."
+  },
+  {
+   "id": "qs-e9ce3874",
+   "d": "backtracking",
+   "t": "Subsets & Subsets II",
+   "q": "What is the state for the Subsets (take/skip) pattern?",
+   "o": [
+    "index + path",
+    "start + path",
+    "path + used[]",
+    "row + col + visited"
+   ],
+   "a": 0,
+   "x": "`index` tracks which element is currently being decided, and `path` tracks what's been chosen so far."
+  },
+  {
+   "id": "qs-41a16801",
+   "d": "backtracking",
+   "t": "Subsets & Subsets II",
+   "q": "How many subsets does a set of n distinct elements have?",
+   "o": [
+    "2^n",
+    "n!",
+    "n^2",
+    "2n"
+   ],
+   "a": 0,
+   "x": "Each of the n elements independently has 2 choices (take or skip), giving 2 x 2 x ... x 2 = 2^n."
+  },
+  {
+   "id": "qs-f2e02a49",
+   "d": "backtracking",
+   "t": "Subsets & Subsets II",
+   "q": "In Subsets II, when is a duplicate value's branch considered redundant?",
+   "o": [
+    "When it's an alternative choice at the same recursion level as an identical earlier value",
+    "Whenever the same value appears anywhere in the array",
+    "Only when the duplicate is the first element",
+    "Never -- Subsets II doesn't need duplicate handling"
+   ],
+   "a": 0,
+   "x": "Choosing an identical value at a deeper level (e.g. 2 then 2 again) is valid; the redundancy is specifically about alternative choices at the same level."
+  },
+  {
+   "id": "qs-eb754810",
+   "d": "backtracking",
+   "t": "Subsets & Subsets II",
+   "q": "What must you do to the input before applying Subsets II's duplicate-skip guard?",
+   "o": [
+    "Sort it",
+    "Reverse it",
+    "Deduplicate it first",
+    "Shuffle it"
+   ],
+   "a": 0,
+   "x": "Sorting makes equal values adjacent, which is required for the `nums[i] == nums[i-1]` check to catch same-value duplicates."
+  },
+  {
+   "id": "qs-bd6d0cd1",
+   "d": "backtracking",
+   "t": "Combinations, Combination Sum, Combination Sum II",
+   "q": "What question does Combinations ask that Subsets does not?",
+   "o": [
+    "Which of the remaining elements should I choose next?",
+    "Should I take this specific element or skip it?",
+    "Which unused element goes into this position?",
+    "Which neighboring cell should I move to?"
+   ],
+   "a": 0,
+   "x": "Combinations loops over a range of remaining valid choices (`start` onward) rather than making a binary take/skip decision on one element."
+  },
+  {
+   "id": "qs-ddac9433",
+   "d": "backtracking",
+   "t": "Combinations, Combination Sum, Combination Sum II",
+   "q": "What is the state for Combinations?",
+   "o": [
+    "start + path",
+    "index + path",
+    "path + used[]",
+    "open + close + path"
+   ],
+   "a": 0,
+   "x": "`start` marks the earliest position still eligible to be chosen next."
+  },
+  {
+   "id": "qs-3caa88db",
+   "d": "backtracking",
+   "t": "Combinations, Combination Sum, Combination Sum II",
+   "q": "After choosing element at index `i` in ordinary Combinations, what does the next recursive call use?",
+   "o": [
+    "i + 1",
+    "i",
+    "start",
+    "0"
+   ],
+   "a": 0,
+   "x": "Plain Combinations never reuses a position, so the next call must move strictly forward from the just-chosen index."
+  },
+  {
+   "id": "qs-a6b283f1",
+   "d": "backtracking",
+   "t": "Combinations, Combination Sum, Combination Sum II",
+   "q": "In Combination Sum, why does choosing a candidate recurse with `backtrack(i, ...)`?",
+   "o": [
+    "Because the same candidate can be reused",
+    "Because it's faster than i+1",
+    "Because candidates are always sorted",
+    "It's a typo in the reference solution -- it should be i+1"
+   ],
+   "a": 0,
+   "x": "Combination Sum explicitly allows reuse, so the chosen candidate must remain eligible on the next call."
+  },
+  {
+   "id": "qs-25ee6466",
+   "d": "backtracking",
+   "t": "Combinations, Combination Sum, Combination Sum II",
+   "q": "What pruning condition stops a dead branch in Combination Sum?",
+   "o": [
+    "remaining < 0",
+    "remaining == target",
+    "path is empty",
+    "i == 0"
+   ],
+   "a": 0,
+   "x": "Once the running sum exceeds the target, no further additions can ever bring it back down to exactly the target."
+  },
+  {
+   "id": "qs-400415bd",
+   "d": "backtracking",
+   "t": "Combinations, Combination Sum, Combination Sum II",
+   "q": "A candidate reversed the choose/skip index rule in Combination Sum: choosing a candidate advanced to i+1, and skipping kept the index at i. What's the main consequence?",
+   "o": [
+    "Answers requiring reuse of a candidate silently disappear from the results",
+    "The program crashes with an IndexError",
+    "The results contain extra invalid combinations",
+    "Nothing -- both orderings produce identical output"
+   ],
+   "a": 0,
+   "x": "Advancing on \"choose\" forbids legal reuse; the output looks plausible but is quietly incomplete (see the worked correction in the guide)."
+  },
+  {
+   "id": "qs-f40b695f",
+   "d": "backtracking",
+   "t": "Combinations, Combination Sum, Combination Sum II",
+   "q": "What three techniques does Combination Sum II combine?",
+   "o": [
+    "No-reuse advancement, duplicate-input handling, and a sum-target prune",
+    "Just duplicate-input handling",
+    "Only the sum-target prune",
+    "Binary search plus recursion"
+   ],
+   "a": 0,
+   "x": "It layers Combinations' `i+1` no-reuse rule, Subsets II's sort+same-level-dup-skip, and Combination Sum's remaining-sum tracking together."
+  },
+  {
+   "id": "qs-4158d169",
+   "d": "backtracking",
+   "t": "Combinations, Combination Sum, Combination Sum II",
+   "q": "In Combination Sum II, once the array is sorted, why can you `break` instead of `continue` when `candidates[i] > remaining`?",
+   "o": [
+    "Every candidate after i is also too large, since the array is sorted ascending",
+    "break is always faster than continue in Python",
+    "continue would cause an infinite loop",
+    "It has no effect either way"
+   ],
+   "a": 0,
+   "x": "Sorted ascending order guarantees every subsequent candidate is >= the current one, so none of them can fit either."
+  },
+  {
+   "id": "qs-b5a55f63",
+   "d": "backtracking",
+   "t": "Permutations",
+   "q": "What is the state for Permutations?",
+   "o": [
+    "path + used[]",
+    "index + path",
+    "start + path",
+    "open + close"
+   ],
+   "a": 0,
+   "x": "`used[]` tracks which values have already been placed on the current branch, since any unused element (not just a forward range) may be chosen next."
+  },
+  {
+   "id": "qs-3ca3d5d5",
+   "d": "backtracking",
+   "t": "Permutations",
+   "q": "What two things must be undone after each recursive call in Permutations?",
+   "o": [
+    "path.pop() and used[i] = False",
+    "Only path.pop()",
+    "Only used[i] = False",
+    "Nothing needs undoing in Permutations"
+   ],
+   "a": 0,
+   "x": "Both mutations (adding to path, marking used) must be reversed so sibling branches see a clean state."
+  },
+  {
+   "id": "qs-0f75e0c3",
+   "d": "backtracking",
+   "t": "Permutations",
+   "q": "In Permutations II, what guard prevents duplicate permutations from a repeated value?",
+   "o": [
+    "Skip index i if nums[i] == nums[i-1] and not used[i-1]",
+    "Skip index i if nums[i] == nums[i-1], regardless of used[i-1]",
+    "Sort descending instead of ascending",
+    "Use a set to store paths and dedupe afterward (no guard needed)"
+   ],
+   "a": 0,
+   "x": "The `not used[i-1]` condition specifically blocks placing the second copy of a value before its first copy has been used on this branch."
+  },
+  {
+   "id": "qs-22097740",
+   "d": "backtracking",
+   "t": "Permutations",
+   "q": "In Letter Tile Possibilities, why does the reference solution track counts per letter instead of a used[] array over positions?",
+   "o": [
+    "Identical letters are interchangeable, so counting by value avoids generating indistinguishable duplicate branches",
+    "Counting is required by the problem statement",
+    "It makes the algorithm run in O(n) time",
+    "used[] arrays don't work with strings"
+   ],
+   "a": 0,
+   "x": "Tracking counts collapses what would otherwise be several identical branches (one per occurrence of a repeated letter) into one."
+  },
+  {
+   "id": "qs-58e546c2",
+   "d": "backtracking",
+   "t": "Constrained Sequences: Parentheses, N-Queens, Sudoku",
+   "q": "What is the state for Generate Parentheses?",
+   "o": [
+    "open + close + path",
+    "index + path",
+    "start + path",
+    "row + col + visited"
+   ],
+   "a": 0,
+   "x": "The counts of opening and closing parentheses used so far, plus the string built so far, fully describe the search state."
+  },
+  {
+   "id": "qs-a02a79d6",
+   "d": "backtracking",
+   "t": "Constrained Sequences: Parentheses, N-Queens, Sudoku",
+   "q": "What two pruning rules govern Generate Parentheses?",
+   "o": [
+    "Add '(' only if open < n; add ')' only if close < open",
+    "Add '(' only if close < n; add ')' only if open < close",
+    "No pruning is needed -- generate all 2^(2n) strings and filter",
+    "Add '(' only if path is empty"
+   ],
+   "a": 0,
+   "x": "These two constraints ensure only valid (or validly-extendable) prefixes are ever constructed."
+  },
+  {
+   "id": "qs-477211c0",
+   "d": "backtracking",
+   "t": "Constrained Sequences: Parentheses, N-Queens, Sudoku",
+   "q": "Why can't close ever be allowed to reach or exceed open in Generate Parentheses?",
+   "o": [
+    "That would mean a ')' appears with no matching unclosed '(' -- an unrecoverable invalid prefix",
+    "It would exceed the string length limit",
+    "It would cause infinite recursion",
+    "It's just a style preference, not a correctness requirement"
+   ],
+   "a": 0,
+   "x": "Once close >= open, the prefix already contains an unmatched closing parenthesis, which no future characters can fix."
+  },
+  {
+   "id": "qs-48763ad4",
+   "d": "backtracking",
+   "t": "Constrained Sequences: Parentheses, N-Queens, Sudoku",
+   "q": "What three conflicts must be checked before placing a queen at (row, col) in N-Queens?",
+   "o": [
+    "Same column, same row-col diagonal, same row+col diagonal",
+    "Same column, same row, same box",
+    "Only same column -- diagonals aren't required for correctness",
+    "Same row and same column only"
+   ],
+   "a": 0,
+   "x": "These three sets fully capture every way two queens can attack each other given one-queen-per-row placement."
+  },
+  {
+   "id": "qs-9f6f67cf",
+   "d": "backtracking",
+   "t": "Constrained Sequences: Parentheses, N-Queens, Sudoku",
+   "q": "Why is row - col constant along one diagonal direction in N-Queens?",
+   "o": [
+    "Walking down-right along that diagonal, both row and col increase by 1 each step, so their difference stays fixed",
+    "It's an arbitrary convention with no geometric meaning",
+    "Because n is always even",
+    "row - col is actually not constant; row * col is"
+   ],
+   "a": 0,
+   "x": "Since both coordinates increase together by the same amount, their difference never changes along a \\ diagonal."
+  },
+  {
+   "id": "qs-4f3986f2",
+   "d": "backtracking",
+   "t": "Constrained Sequences: Parentheses, N-Queens, Sudoku",
+   "q": "How does N-Queens II's backtracking differ structurally from N-Queens?",
+   "o": [
+    "It doesn't -- same state and pruning, the base case just increments a counter instead of recording a board",
+    "It uses dynamic programming instead of backtracking",
+    "It skips the diagonal checks for speed",
+    "It only checks columns, not diagonals"
+   ],
+   "a": 0,
+   "x": "Counting solutions vs. collecting them is purely a difference in what happens at the base case."
+  },
+  {
+   "id": "qs-52e60e12",
+   "d": "backtracking",
+   "t": "Constrained Sequences: Parentheses, N-Queens, Sudoku",
+   "q": "What must a number satisfy to be placed at (r, c) in Sudoku?",
+   "o": [
+    "Not already present in that row, column, or 3x3 box",
+    "Not already present anywhere on the board",
+    "Be equal to the number of empty cells remaining",
+    "Be the smallest unused digit globally"
+   ],
+   "a": 0,
+   "x": "Sudoku's validity rule is local to the cell's row, column, and box -- not the whole board."
+  },
+  {
+   "id": "qs-37b85a9c",
+   "d": "backtracking",
+   "t": "Constrained Sequences: Parentheses, N-Queens, Sudoku",
+   "q": "Why does Sudoku's backtrack() function return a boolean?",
+   "o": [
+    "So the first full solution found can propagate True back up and stop the search immediately",
+    "Booleans are required by Python's type system for recursive functions",
+    "To indicate whether the board is syntactically valid",
+    "It doesn't return a boolean -- it returns the solved board"
+   ],
+   "a": 0,
+   "x": "Without that signal, the search would keep exploring alternatives even after already finding a complete solution."
+  },
+  {
+   "id": "qs-4ad1393b",
+   "d": "backtracking",
+   "t": "Grid Backtracking",
+   "q": "What kind of \"choice\" does Word Search introduce, compared to Subsets/Combinations/Permutations?",
+   "o": [
+    "A movement in 2D space (up/down/left/right)",
+    "A choice of which letter to insert",
+    "A binary take/skip decision",
+    "A choice of which subset to return"
+   ],
+   "a": 0,
+   "x": "Word Search's decision at each step is \"which neighboring cell to move to,\" not an array-index or letter choice."
+  },
+  {
+   "id": "qs-66574e30",
+   "d": "backtracking",
+   "t": "Grid Backtracking",
+   "q": "Why does Word Search's base case return True instead of appending a path to a results list?",
+   "o": [
+    "The problem only asks whether any valid path exists, not to enumerate all of them",
+    "Returning a path would use too much memory",
+    "Booleans are faster to compute in Python",
+    "It's a bug that should be fixed"
+   ],
+   "a": 0,
+   "x": "Since only a yes/no answer is needed, propagating True through the OR chain lets the search short-circuit immediately."
+  },
+  {
+   "id": "qs-0ec03449",
+   "d": "backtracking",
+   "t": "Grid Backtracking",
+   "q": "What data structure makes Word Search II efficient when searching for many words at once?",
+   "o": [
+    "A Trie built from all the target words",
+    "A hash set of all board cells",
+    "A sorted list of words",
+    "A 2D prefix-sum array"
+   ],
+   "a": 0,
+   "x": "The Trie lets one grid DFS check many words simultaneously by sharing common prefixes."
+  },
+  {
+   "id": "qs-77040508",
+   "d": "backtracking",
+   "t": "Grid Backtracking",
+   "q": "In Path with Maximum Gold, what is mutated and undone during the search?",
+   "o": [
+    "The cell's gold value (temporarily zeroed, then restored)",
+    "A global visited set that persists across all starting cells",
+    "The dimensions of the grid",
+    "Nothing is undone -- the grid is copied before each search"
+   ],
+   "a": 0,
+   "x": "Zeroing and restoring the cell's own value (rather than a persistent visited set) lets the same cell be reused as the start of a different exploration later."
+  },
+  {
+   "id": "qs-fd9744e3",
+   "d": "backtracking",
+   "t": "Partitioning",
+   "q": "What single question generalizes Palindrome Partitioning, Restore IP Addresses, and Word Break II?",
+   "o": [
+    "Where does the next piece end?",
+    "Should I take this element or skip it?",
+    "Which unused element goes here?",
+    "Which direction should I move?"
+   ],
+   "a": 0,
+   "x": "All three problems choose an end position for the next substring, differing only in what makes a substring \"valid.\""
+  },
+  {
+   "id": "qs-a4964cbd",
+   "d": "backtracking",
+   "t": "Partitioning",
+   "q": "What is the base case shared by all partition-style backtracking problems?",
+   "o": [
+    "start == len(s)",
+    "path is empty",
+    "index == 0",
+    "remaining == 0"
+   ],
+   "a": 0,
+   "x": "Once the starting pointer reaches the end of the string, every character has been assigned to some piece."
+  },
+  {
+   "id": "qs-b256e334",
+   "d": "backtracking",
+   "t": "Partitioning",
+   "q": "What extra rule does Restore IP Addresses add beyond the generic partition pattern?",
+   "o": [
+    "Exactly 4 segments, each with no leading zero (unless \"0\") and value <= 255",
+    "Segments must alternate in length",
+    "Segments must be sorted numerically",
+    "Exactly 3 segments, each exactly 3 digits long"
+   ],
+   "a": 0,
+   "x": "The base case only fires when both the segment count is exactly 4 and every character has been consumed."
+  },
+  {
+   "id": "qs-441fdd98",
+   "d": "backtracking",
+   "t": "Complexity & Recognition",
+   "q": "What is the loose worst-case time bound for a backtracking search?",
+   "o": [
+    "branching_factor ^ depth",
+    "O(n log n)",
+    "O(n^2)",
+    "O(depth^branching_factor)"
+   ],
+   "a": 0,
+   "x": "Without pruning, a tree with branching factor b and depth d has on the order of b^d nodes."
+  },
+  {
+   "id": "qs-2e000f7a",
+   "d": "backtracking",
+   "t": "Complexity & Recognition",
+   "q": "Does pruning change the theoretical worst-case bound of a backtracking algorithm?",
+   "o": [
+    "No, but it dramatically improves typical/expected performance",
+    "Yes, it always reduces the worst case to polynomial time",
+    "Yes, it always reduces the worst case to O(n)",
+    "Pruning has no effect on runtime, only on output correctness"
+   ],
+   "a": 0,
+   "x": "An adversarial input can always be constructed where nothing gets pruned, so the worst-case bound is unchanged in theory -- but real inputs benefit enormously."
+  },
+  {
+   "id": "qs-fbb3728d",
+   "d": "backtracking",
+   "t": "Complexity & Recognition",
+   "q": "Why does pruning a branch at a shallow depth save more than pruning one at a deep depth?",
+   "o": [
+    "It eliminates an entire subtree of roughly b^(depth-k) nodes at once",
+    "Shallow prunes are computationally cheaper to evaluate",
+    "It doesn't -- all prunes save the same amount",
+    "Deep prunes actually save more, not shallow ones"
+   ],
+   "a": 0,
+   "x": "The earlier a branch is rejected, the larger the remaining subtree it removes from consideration."
+  },
+  {
+   "id": "qs-5f2d344e",
+   "d": "backtracking",
+   "t": "Complexity & Recognition",
+   "q": "What usually dominates backtracking's space complexity?",
+   "o": [
+    "Recursion depth plus the mutable state threaded through the recursion",
+    "The size of the input array only",
+    "The number of leaves in the decision tree",
+    "Backtracking never uses more than O(1) space"
+   ],
+   "a": 0,
+   "x": "Stack frames and the path/visited/used-array state both scale with depth, not with the full tree size."
+  },
+  {
+   "id": "qs-f98ad765",
+   "d": "backtracking",
+   "t": "Complexity & Recognition",
+   "q": "Which of these is one of the five recurring decision-tree \"shapes\" in backtracking?",
+   "o": [
+    "Choose from remaining (with a reuse-vs-no-reuse distinction, i vs i+1)",
+    "Binary search over a sorted state space",
+    "Dynamic programming with memoized subproblems",
+    "Greedy selection by largest value first"
+   ],
+   "a": 0,
+   "x": "\"Choose from remaining\" describes Combinations, Combination Sum, and Permutations, distinguished mainly by their reuse rule."
+  },
+  {
+   "id": "qs-f463ad8f",
+   "d": "backtracking",
+   "t": "Complexity & Recognition",
+   "q": "Target Sum (assign +/- to each number to reach a target) fits which decision-tree shape?",
+   "o": [
+    "Binary decision (Pattern A) -- each number gets exactly 2 choices",
+    "Partition (Pattern E) -- choosing where pieces end",
+    "Move in state space (Pattern D) -- grid movement",
+    "Constrained sequence (Pattern C) only, with no binary-decision aspect"
+   ],
+   "a": 0,
+   "x": "Each number independently gets a + or - choice, structurally identical to Subsets' take/skip, just accumulating a sum instead of a list."
+  },
+  {
+   "id": "qs-01a9e1ba",
+   "d": "backtracking",
+   "t": "Extension Problems",
+   "q": "In Combination Sum III, what additional constraint is layered on top of the plain Combinations structure?",
+   "o": [
+    "A target-sum constraint, with candidates restricted to 1..9",
+    "Reuse of candidates is allowed",
+    "Only even-numbered candidates may be chosen",
+    "The result must contain exactly 9 numbers"
+   ],
+   "a": 0,
+   "x": "It's Combinations' fixed-count, no-reuse structure plus Combination Sum's remaining-sum tracking."
+  },
+  {
+   "id": "qs-6486c001",
+   "d": "backtracking",
+   "t": "Extension Problems",
+   "q": "What two prunes make Partition to K Equal Sum Subsets tractable?",
+   "o": [
+    "Sorting descending, and skipping a duplicate value whose identical predecessor wasn't used yet",
+    "Only checking the sum modulo k",
+    "Randomly shuffling before each attempt",
+    "Limiting recursion depth to a fixed constant"
+   ],
+   "a": 0,
+   "x": "Sorting descending fails fast on oversized elements; the duplicate-skip prevents redundant same-level branches, same idea as Subsets II."
   }
  ]
 }

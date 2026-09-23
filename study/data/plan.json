@@ -867,6 +867,9 @@
     "title": "Sudoku Solver",
     "diff": "hard",
     "slug": "sudoku-solver"
+   },
+   {
+    "app": "lc-698"
    }
   ],
   "graphs": [

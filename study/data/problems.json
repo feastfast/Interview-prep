@@ -2015,6 +2015,179 @@
    "diff": "medium",
    "lc": "LC 2181",
    "slug": "merge-nodes-in-between-zeros"
+  },
+  {
+   "id": "lc-216",
+   "title": "Combination Sum III",
+   "topic": "backtracking",
+   "topicLabel": "Backtracking",
+   "pattern": "Combinations + Target",
+   "diff": "medium",
+   "lc": "LC 216",
+   "slug": "combination-sum-iii"
+  },
+  {
+   "id": "lc-52",
+   "title": "N-Queens II",
+   "topic": "backtracking",
+   "topicLabel": "Backtracking",
+   "pattern": "Constraint Backtracking",
+   "diff": "hard",
+   "lc": "LC 52",
+   "slug": "n-queens-ii"
+  },
+  {
+   "id": "lc-212",
+   "title": "Word Search II",
+   "topic": "backtracking",
+   "topicLabel": "Backtracking",
+   "pattern": "Trie + Grid DFS",
+   "diff": "hard",
+   "lc": "LC 212",
+   "slug": "word-search-ii"
+  },
+  {
+   "id": "lc-494",
+   "title": "Target Sum",
+   "topic": "backtracking",
+   "topicLabel": "Backtracking",
+   "pattern": "Binary Decision",
+   "diff": "medium",
+   "lc": "LC 494",
+   "slug": "target-sum"
+  },
+  {
+   "id": "lc-291",
+   "title": "Word Pattern II",
+   "topic": "backtracking",
+   "topicLabel": "Backtracking",
+   "pattern": "Bijective Mapping",
+   "diff": "medium",
+   "lc": "LC 291",
+   "slug": "word-pattern-ii",
+   "premium": true
+  },
+  {
+   "id": "lc-320",
+   "title": "Generalized Abbreviation",
+   "topic": "backtracking",
+   "topicLabel": "Backtracking",
+   "pattern": "Binary Decision",
+   "diff": "medium",
+   "lc": "LC 320",
+   "slug": "generalized-abbreviation",
+   "premium": true
+  },
+  {
+   "id": "lc-526",
+   "title": "Beautiful Arrangement",
+   "topic": "backtracking",
+   "topicLabel": "Backtracking",
+   "pattern": "Permutations + Constraint",
+   "diff": "medium",
+   "lc": "LC 526",
+   "slug": "beautiful-arrangement"
+  },
+  {
+   "id": "lc-140",
+   "title": "Word Break II",
+   "topic": "backtracking",
+   "topicLabel": "Backtracking",
+   "pattern": "Partition Backtracking",
+   "diff": "hard",
+   "lc": "LC 140",
+   "slug": "word-break-ii"
+  },
+  {
+   "id": "lc-1079",
+   "title": "Letter Tile Possibilities",
+   "topic": "backtracking",
+   "topicLabel": "Backtracking",
+   "pattern": "Duplicate-Aware Permutation",
+   "diff": "medium",
+   "lc": "LC 1079",
+   "slug": "letter-tile-possibilities"
+  },
+  {
+   "id": "lc-267",
+   "title": "Palindrome Permutation II",
+   "topic": "backtracking",
+   "topicLabel": "Backtracking",
+   "pattern": "Duplicate-Aware Permutation",
+   "diff": "medium",
+   "lc": "LC 267",
+   "slug": "palindrome-permutation-ii",
+   "premium": true
+  },
+  {
+   "id": "lc-401",
+   "title": "Binary Watch",
+   "topic": "backtracking",
+   "topicLabel": "Backtracking",
+   "pattern": "Combinatorial Enumeration",
+   "diff": "easy",
+   "lc": "LC 401",
+   "slug": "binary-watch"
+  },
+  {
+   "id": "lc-967",
+   "title": "Numbers With Same Consecutive Differences",
+   "topic": "backtracking",
+   "topicLabel": "Backtracking",
+   "pattern": "Digit Backtracking",
+   "diff": "medium",
+   "lc": "LC 967",
+   "slug": "numbers-with-same-consecutive-differences"
+  },
+  {
+   "id": "lc-1980",
+   "title": "Find Unique Binary String",
+   "topic": "backtracking",
+   "topicLabel": "Backtracking",
+   "pattern": "Binary Decision",
+   "diff": "medium",
+   "lc": "LC 1980",
+   "slug": "find-unique-binary-string"
+  },
+  {
+   "id": "lc-1219",
+   "title": "Path with Maximum Gold",
+   "topic": "backtracking",
+   "topicLabel": "Backtracking",
+   "pattern": "Grid Backtracking",
+   "diff": "medium",
+   "lc": "LC 1219",
+   "slug": "path-with-maximum-gold"
+  },
+  {
+   "id": "lc-1291",
+   "title": "Sequential Digits",
+   "topic": "backtracking",
+   "topicLabel": "Backtracking",
+   "pattern": "Digit Backtracking",
+   "diff": "medium",
+   "lc": "LC 1291",
+   "slug": "sequential-digits"
+  },
+  {
+   "id": "lc-473",
+   "title": "Matchsticks to Square",
+   "topic": "backtracking",
+   "topicLabel": "Backtracking",
+   "pattern": "Partition Backtracking",
+   "diff": "medium",
+   "lc": "LC 473",
+   "slug": "matchsticks-to-square"
+  },
+  {
+   "id": "lc-1863",
+   "title": "Sum of All Subset XOR Totals",
+   "topic": "backtracking",
+   "topicLabel": "Backtracking",
+   "pattern": "Binary Decision",
+   "diff": "easy",
+   "lc": "LC 1863",
+   "slug": "sum-of-all-subset-xor-totals"
   }
  ]
 }
