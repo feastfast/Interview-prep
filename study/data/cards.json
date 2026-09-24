@@ -55,6 +55,10 @@
     {
       "id": "graphs",
       "label": "Graphs"
+    },
+    {
+      "id": "arrays",
+      "label": "Arrays & Hashing"
     }
   ],
   "cards": [
@@ -6714,6 +6718,496 @@
       "t": "Recognition and Decision Guide",
       "f": "Why is it dangerous to assume \"I'm studying DSU, so this must be DSU\"?",
       "b": "Because many problems reuse the same graph but ask different questions requiring different tools (e.g. MST vs. shortest path on the same weighted graph) -- recognition must come from the question, not the current study topic."
+    },
+    {
+      "id": "cs-25fddb98",
+      "d": "arrays",
+      "t": "Fundamentals and Recognition",
+      "f": "What is the difference between a subarray, a subsequence and a subset?",
+      "b": "Subarray = contiguous elements. Subsequence = order preserved but gaps allowed. Subset = any selection, order irrelevant. Most array patterns here (prefix sum, Kadane, sliding window, difference array) are about subarrays because contiguity allows a running summary."
+    },
+    {
+      "id": "cs-26f65834",
+      "d": "arrays",
+      "t": "Fundamentals and Recognition",
+      "f": "What is the one-question decision tree order for a new array problem?",
+      "b": "Contiguous range/subarray? -> Prefix Sum family. Need best contiguous sum -> Kadane. Range updates -> Difference Array. Info from both sides -> Prefix/Suffix. Values are indices -> Cyclic Sort. [start,end] pairs -> Sort + greedy. 2D -> Matrix. Rearrange in place -> In-place pointers. Otherwise -> Hashing fundamentals."
+    },
+    {
+      "id": "cs-8d1473bd",
+      "d": "arrays",
+      "t": "Prefix Sum",
+      "f": "What does prefix sum precompute, and what does it buy you?",
+      "b": "prefix[i] = sum of nums[0..i-1] (zero-padded). Any range sum becomes O(1): sum(l, r) = prefix[r+1] - prefix[l]. Build is O(n) time/space."
+    },
+    {
+      "id": "cs-5653bc24",
+      "d": "arrays",
+      "t": "Prefix Sum",
+      "f": "Why zero-pad the prefix array (prefix = [0, ...])?",
+      "b": "So sum(l, r) = prefix[r+1] - prefix[l] works with no special case when l == 0."
+    },
+    {
+      "id": "cs-cf690ed3",
+      "d": "arrays",
+      "t": "Prefix Sum",
+      "f": "How does prefix sum extend to a 2D matrix?",
+      "b": "P[r][c] = sum of rectangle (0,0)..(r-1,c-1). Region sum = P[r2+1][c2+1] - P[r1][c2+1] - P[r2+1][c1] + P[r1][c1] (inclusion/exclusion: the overlapping corner is subtracted twice, so add it back once). LC 304."
+    },
+    {
+      "id": "cs-0636e18a",
+      "d": "arrays",
+      "t": "Prefix Sum + HashMap",
+      "f": "How does \"count subarrays with sum K\" become a hash lookup?",
+      "b": "Subarray (i+1..j) has sum prefix[j] - prefix[i]. We want that = K, so prefix[i] = prefix[j] - K. While scanning, ask \"have I previously seen prefix - K?\" and look it up in a map in O(1)."
+    },
+    {
+      "id": "cs-c08ee0e2",
+      "d": "arrays",
+      "t": "Prefix Sum + HashMap",
+      "f": "Why must the prefix_count map start as {0: 1}?",
+      "b": "It records that a prefix sum of 0 existed before any element, so subarrays starting at index 0 can be detected. Without it, e.g. nums=[1,2], K=3 would miss [1,2]."
+    },
+    {
+      "id": "cs-7f6190a2",
+      "d": "arrays",
+      "t": "Prefix Sum + HashMap",
+      "f": "For the subarray-sum-K template, what order do the map operations go in per element?",
+      "b": "Update running prefix, look up count of (prefix - K) and add to the answer, THEN increment prefix_count[prefix]. Storing first could let a subarray of length 0 (K = 0) count itself."
+    },
+    {
+      "id": "cs-93a01bba",
+      "d": "arrays",
+      "t": "Prefix Sum + HashMap",
+      "f": "Counting subarrays vs longest subarray: what does the map store in each case?",
+      "b": "Counting: prefix -> frequency (every earlier occurrence is a different valid subarray). Longest: prefix -> EARLIEST index only (never overwrite), because the earliest start maximizes current_index - stored_index."
+    },
+    {
+      "id": "cs-1c547d6d",
+      "d": "arrays",
+      "t": "Prefix Sum + HashMap",
+      "f": "Why must you never overwrite an existing entry in the longest-subarray-with-sum-K map?",
+      "b": "A later occurrence of the same prefix would give a shorter subarray. Keep the first index; only insert when prefix not in the map."
+    },
+    {
+      "id": "cs-038692ea",
+      "d": "arrays",
+      "t": "Prefix Sum + HashMap",
+      "f": "How does LC 525 (Contiguous Array, equal 0s and 1s) reduce to prefix sums?",
+      "b": "Map 0 -> -1 and 1 -> +1. Equal counts means subarray sum == 0, i.e. a repeated prefix. Store the earliest index of each prefix with {0: -1} and maximize i - first[prefix]."
+    },
+    {
+      "id": "cs-8eeb68b0",
+      "d": "arrays",
+      "t": "Prefix Sum + HashMap",
+      "f": "What changes for LC 974 (Subarray Sums Divisible by K)?",
+      "b": "(prefix[j] - prefix[i]) % k == 0 means prefix[j] % k == prefix[i] % k. Store remainder counts instead of prefix sums, start with {0: 1}. Python's % is already non-negative for positive k."
+    },
+    {
+      "id": "cs-d33303ec",
+      "d": "arrays",
+      "t": "Prefix Sum + HashMap",
+      "f": "What is the general pattern behind equal-0s-1s, equal-0s-1s-2s and similar problems?",
+      "b": "Multiple equality conditions -> represent the running state as a difference (or tuple of differences) -> same state seen before -> the subarray between them is valid. E.g. state = (count0 - count1, count1 - count2)."
+    },
+    {
+      "id": "cs-9a5d9e7c",
+      "d": "arrays",
+      "t": "Prefix Sum + HashMap",
+      "f": "Which signal words trigger Prefix Sum + HashMap?",
+      "b": "\"subarray\" + a sum/target condition + count / existence / longest. Thought process: current prefix -> what earlier prefix would make the difference K? -> prefix - K -> have I seen it? -> hash map."
+    },
+    {
+      "id": "cs-3e28540d",
+      "d": "arrays",
+      "t": "Prefix / Suffix Techniques",
+      "f": "What problem shape suggests Prefix/Suffix preprocessing?",
+      "b": "An element needs information about everything to its left AND everything to its right. Preprocess left info in one pass and right info in another instead of rescanning for every index."
+    },
+    {
+      "id": "cs-219f55ef",
+      "d": "arrays",
+      "t": "Prefix / Suffix Techniques",
+      "f": "How do you derive Product of Array Except Self without division?",
+      "b": "answer[i] = (product of everything left of i) x (product of everything right of i). Build left[i], build right[i], multiply. Collapse to O(1) extra space by storing left products in the output, then multiplying by a running right product in a reverse pass."
+    },
+    {
+      "id": "cs-bc8c0b41",
+      "d": "arrays",
+      "t": "Prefix / Suffix Techniques",
+      "f": "Why is the division approach to Product of Array Except Self not robust?",
+      "b": "Any zero in the array breaks it: total = 0, so answer[i] = 0 / nums[i] raises ZeroDivisionError at the zero, and one-zero vs two-or-more-zeros needs hand-written special cases. Prefix/suffix products never divide, so zeroes need no special case."
+    },
+    {
+      "id": "cs-c09e617a",
+      "d": "arrays",
+      "t": "Difference Array",
+      "f": "What is the core insight of the difference array?",
+      "b": "To add v to nums[l..r], do not touch every element. Record only where the change starts and stops: diff[l] += v and diff[r+1] -= v. A final running prefix sum over diff reconstructs the real array."
+    },
+    {
+      "id": "cs-c96ca507",
+      "d": "arrays",
+      "t": "Difference Array",
+      "f": "Why does diff[r+1] -= v work?",
+      "b": "The prefix sum carries +v forward from index l onward; at index r+1 the -v cancels it exactly, so only l..r is affected."
+    },
+    {
+      "id": "cs-e0db1d65",
+      "d": "arrays",
+      "t": "Difference Array",
+      "f": "What is the relationship between prefix sum and difference array?",
+      "b": "They are inverses. Prefix Sum -> efficient range QUERIES on a static array. Difference Array -> efficient range UPDATES, with one prefix-sum pass at the end. Difference array = differences between consecutive elements."
+    },
+    {
+      "id": "cs-6eea725d",
+      "d": "arrays",
+      "t": "Kadane's Algorithm",
+      "f": "What is the Kadane recurrence and what does it mean?",
+      "b": "current = max(nums[i], current + nums[i]). current is the best sum of a subarray ENDING at i: extend the previous segment, or throw it away and restart here (when the old segment is negative). best = max(best, current)."
+    },
+    {
+      "id": "cs-4d5baa09",
+      "d": "arrays",
+      "t": "Kadane's Algorithm",
+      "f": "Why is Kadane's algorithm \"a very small DP\"?",
+      "b": "dp[i] = max(nums[i], dp[i-1] + nums[i]) only needs dp[i-1], so the state compresses to one variable: O(n) time, O(1) space."
+    },
+    {
+      "id": "cs-5466e810",
+      "d": "arrays",
+      "t": "Kadane's Algorithm",
+      "f": "Why must Kadane initialize current = best = nums[0] rather than 0?",
+      "b": "Initializing to 0 silently allows the empty subarray. On an all-negative array such as [-5,-2,-8,-1] it would report 0 instead of the correct -1."
+    },
+    {
+      "id": "cs-0f66a255",
+      "d": "arrays",
+      "t": "Kadane's Algorithm",
+      "f": "How do you solve Maximum Circular Subarray (LC 918)?",
+      "b": "Answer = max(ordinary Kadane max, total_sum - minimum_subarray_sum). The wrapped case removes the minimum subarray from the middle. Edge case: if every number is negative, total - min degenerates to the empty subarray, so return the ordinary Kadane result."
+    },
+    {
+      "id": "cs-5ea731cc",
+      "d": "arrays",
+      "t": "Kadane's Algorithm",
+      "f": "Why does Maximum Product Subarray (LC 152) track both a max and a min?",
+      "b": "A very negative running product times a negative number becomes the biggest product. Track best and worst product ending here; swap them when the current number is negative."
+    },
+    {
+      "id": "cs-e63a24db",
+      "d": "arrays",
+      "t": "Kadane's Algorithm",
+      "f": "What is the connection between Kadane and prefix sums?",
+      "b": "A subarray i..j has sum prefix[j] - prefix[i-1], so max subarray = largest difference between a current prefix and an earlier prefix. Kadane packages that as a one-pass \"best ending here\" state. Prefix Sum: exact range sums matter. Kadane: best contiguous sum matters."
+    },
+    {
+      "id": "cs-ede59a9c",
+      "d": "arrays",
+      "t": "Intervals",
+      "f": "What is the first move for almost every interval problem?",
+      "b": "Sort (by start for merging, by end for the greedy \"keep the earliest finisher\"), then do a single greedy scan. Ask: after sorting by what property does this become easy?"
+    },
+    {
+      "id": "cs-40d19b77",
+      "d": "arrays",
+      "t": "Intervals",
+      "f": "How do two intervals A and B (A.start <= B.start) overlap?",
+      "b": "They overlap iff B.start <= A.end. Otherwise there is a gap and B starts a new group."
+    },
+    {
+      "id": "cs-b805369f",
+      "d": "arrays",
+      "t": "Intervals",
+      "f": "How does Merge Intervals (LC 56) work?",
+      "b": "Sort by start. Keep a result list; if the next interval's start <= result[-1].end, extend result[-1].end = max(both ends); else append it. Invariant: only result[-1] can still overlap the current interval. O(n log n)."
+    },
+    {
+      "id": "cs-b6d95d4f",
+      "d": "arrays",
+      "t": "Intervals",
+      "f": "How does Insert Interval (LC 57) avoid sorting?",
+      "b": "Input is already sorted, so three phases: append all intervals completely before the new one (end < new.start), merge all overlapping ones into the new interval (min of starts, max of ends), append the rest. O(n)."
+    },
+    {
+      "id": "cs-de9d570d",
+      "d": "arrays",
+      "t": "Intervals",
+      "f": "How do you solve Non-overlapping Intervals (LC 435), the minimum removals problem?",
+      "b": "Greedy: sort by END. Keep an interval if start >= last kept end; otherwise it overlaps, so remove it (count += 1) and keep the one that ends earlier. Keeping the earliest finisher leaves the most room."
+    },
+    {
+      "id": "cs-98c527ec",
+      "d": "arrays",
+      "t": "Intervals",
+      "f": "What is the difference between Meeting Rooms (LC 252) and Meeting Rooms II (LC 253)?",
+      "b": "252: can one person attend all meetings? Sort by start and check any start < previous end. 253: how many rooms are needed? That is the maximum number of simultaneously active meetings, computed with separately sorted starts and ends."
+    },
+    {
+      "id": "cs-ddb5aee0",
+      "d": "arrays",
+      "t": "Intervals",
+      "f": "How does the two-sorted-lists approach for Meeting Rooms II work?",
+      "b": "Sort all starts and all ends separately. Walk starts with a second pointer on ends: if next start < earliest unfinished end, rooms += 1 (track max); otherwise a room just freed up, so rooms -= 1 and advance the end pointer."
+    },
+    {
+      "id": "cs-c458a681",
+      "d": "arrays",
+      "t": "Cyclic Sort / Index Placement",
+      "f": "What is the key signal for cyclic sort / index placement?",
+      "b": "The values themselves give you an index (values in 1..n or 0..n). The array can act as its own storage: value v belongs at index v-1 (or v)."
+    },
+    {
+      "id": "cs-65a85a5a",
+      "d": "arrays",
+      "t": "Cyclic Sort / Index Placement",
+      "f": "What is the fundamental swap operation in cyclic sort?",
+      "b": "While nums[i] is not at its correct index and the target slot doesn't already hold the same value: swap nums[i] with nums[correct]. Only advance i when nums[i] is already in place (or is a duplicate/out of range)."
+    },
+    {
+      "id": "cs-3ff442ff",
+      "d": "arrays",
+      "t": "Cyclic Sort / Index Placement",
+      "f": "Why must you NOT increment i right after a swap in cyclic sort?",
+      "b": "The value that just arrived at index i may also be misplaced and needs to be checked again immediately."
+    },
+    {
+      "id": "cs-6ef58730",
+      "d": "arrays",
+      "t": "Cyclic Sort / Index Placement",
+      "f": "Why is cyclic sort still O(n) despite the while loop inside the scan?",
+      "b": "Every swap puts at least one element permanently into its correct position, so total swaps <= n. O(n) time, O(1) extra space."
+    },
+    {
+      "id": "cs-e88222e0",
+      "d": "arrays",
+      "t": "Cyclic Sort / Index Placement",
+      "f": "How do you solve First Missing Positive (LC 41)?",
+      "b": "The answer is in 1..n+1, so ignore values outside [1, n]. Place each v in 1..n at index v-1 (guarding against duplicates). Then the first index i where nums[i] != i+1 gives answer i+1; if all match, answer is n+1."
+    },
+    {
+      "id": "cs-b2d61611",
+      "d": "arrays",
+      "t": "Cyclic Sort / Index Placement",
+      "f": "How does cyclic sort handle Missing Number (LC 268) differently from the 1..n version?",
+      "b": "Values are 0..n, so value v belongs at index v (ignore v == n since no slot exists). After placement the first index with nums[i] != i is the missing number; if none, it's n."
+    },
+    {
+      "id": "cs-5c4ede19",
+      "d": "arrays",
+      "t": "Cyclic Sort / Index Placement",
+      "f": "Why is LC 287 (Find the Duplicate Number) solved with Floyd's cycle detection instead of plain cyclic sort?",
+      "b": "LC 287 forbids modifying the array. Treating i -> nums[i] as a linked list turns the duplicate into a cycle; the cycle's entry point is the duplicate (find intersection, then restart one pointer from the start)."
+    },
+    {
+      "id": "cs-70a7c096",
+      "d": "arrays",
+      "t": "Cyclic Sort / Index Placement",
+      "f": "When should you NOT use cyclic sort?",
+      "b": "When values have no natural value-to-index mapping (e.g. [-100, 57, 923, 18]). It requires values constrained to 1..n or 0..n. HashSet costs O(n) space; index placement gets O(1) space."
+    },
+    {
+      "id": "cs-24f3e64c",
+      "d": "arrays",
+      "t": "Matrix / 2D Patterns",
+      "f": "How do you rotate an n x n matrix 90 degrees clockwise in place?",
+      "b": "Transpose (swap matrix[i][j] and matrix[j][i] for j > i), then reverse every row. Counterclockwise: transpose then reverse the columns instead."
+    },
+    {
+      "id": "cs-1461e106",
+      "d": "arrays",
+      "t": "Matrix / 2D Patterns",
+      "f": "Why does in-place transpose loop j from i+1 instead of 0?",
+      "b": "Each pair (i,j)/(j,i) must be swapped exactly once; iterating both triangles would swap twice and undo the work. Only works in place for square matrices."
+    },
+    {
+      "id": "cs-cbd53bec",
+      "d": "arrays",
+      "t": "Matrix / 2D Patterns",
+      "f": "How does Spiral Matrix (LC 54) manage traversal?",
+      "b": "Four shrinking boundaries top, bottom, left, right: go right along top, down along right, left along bottom, up along left, shrinking each boundary after its side. Guard the third and fourth sides with if top <= bottom / if left <= right so a single row or column isn't visited twice."
+    },
+    {
+      "id": "cs-3c96cd09",
+      "d": "arrays",
+      "t": "Matrix / 2D Patterns",
+      "f": "What is the O(1)-space trick for Set Matrix Zeroes (LC 73)?",
+      "b": "Use row 0 and column 0 as marker storage for \"zero this row/col\", with two booleans remembering whether row 0 and column 0 originally contained a zero. Mark first (scanning rows/cols 1..n), apply marks to the interior, and only THEN zero row 0 / col 0 using the saved flags."
+    },
+    {
+      "id": "cs-a9afc60f",
+      "d": "arrays",
+      "t": "Matrix / 2D Patterns",
+      "f": "Why must Set Matrix Zeroes apply the row-0/col-0 flags last?",
+      "b": "Row 0 and column 0 are being reused as markers, so zeroing them early would corrupt markers that haven't been read yet."
+    },
+    {
+      "id": "cs-153f54f4",
+      "d": "arrays",
+      "t": "Matrix / 2D Patterns",
+      "f": "When is a matrix problem NOT an array-manipulation problem?",
+      "b": "When cells represent connectivity (0 = empty, 1 = occupied, neighbors are edges). Then it is grid BFS/DFS (regions, paths), a different toolbox. Matrix manipulation is an array problem; matrix connectivity is a graph problem."
+    },
+    {
+      "id": "cs-cffe6ad0",
+      "d": "arrays",
+      "t": "In-Place Array Techniques",
+      "f": "What is the read/write pointer pattern for in-place array problems?",
+      "b": "slow = next write position, fast = scanner reading every element. Copy nums[fast] to nums[slow] and advance slow only when the element should be kept. After the loop nums[:slow] is the answer."
+    },
+    {
+      "id": "cs-73f311b4",
+      "d": "arrays",
+      "t": "In-Place Array Techniques",
+      "f": "How does Remove Duplicates from Sorted Array (LC 26) use the pattern?",
+      "b": "Sorted, so duplicates are adjacent. slow tracks the last unique element written; for fast from 1: if nums[fast] != nums[fast-1] then nums[slow] = nums[fast]; slow += 1. Return slow."
+    },
+    {
+      "id": "cs-e7e1af63",
+      "d": "arrays",
+      "t": "In-Place Array Techniques",
+      "f": "How does Move Zeroes (LC 283) preserve order?",
+      "b": "Write every non-zero value forward with slow, then fill nums[slow:] with zeroes. Order of non-zero elements is preserved because fast scans left to right."
+    },
+    {
+      "id": "cs-6f5fd858",
+      "d": "arrays",
+      "t": "In-Place Array Techniques",
+      "f": "What is partitioning and where else does it appear?",
+      "b": "Separating an array by a condition (negative | non-negative, < pivot | >= pivot). left scans for an element belonging right, right scans for one belonging left, swap. It is exactly the partition step of QuickSort."
+    },
+    {
+      "id": "cs-78553d81",
+      "d": "arrays",
+      "t": "In-Place Array Techniques",
+      "f": "How does the reversal algorithm rotate an array right by k in O(1) extra space (LC 189)?",
+      "b": "k %= n; reverse the whole array, then reverse the first k elements, then reverse the remaining n-k elements."
+    },
+    {
+      "id": "cs-7698a478",
+      "d": "arrays",
+      "t": "Hashing Fundamentals",
+      "f": "What is the difference between a HashSet and a HashMap in problem-solving terms?",
+      "b": "HashSet answers \"do I have this?\" (existence only). HashMap answers \"what information do I have about this?\" (count, index, group). If you only need existence, a map storing extra data is wasted work."
+    },
+    {
+      "id": "cs-25669ea7",
+      "d": "arrays",
+      "t": "Hashing Fundamentals",
+      "f": "What are the seven big hashing patterns?",
+      "b": "1 Frequency (value -> count), 2 Existence (HashSet), 3 Seen-before (value -> seen), 4 Index tracking (value -> index), 5 Complement lookup (needed value -> lookup), 6 Grouping (canonical key -> group), 7 Prefix + HashMap (prefix state -> count/index)."
+    },
+    {
+      "id": "cs-c7869a36",
+      "d": "arrays",
+      "t": "Hashing Fundamentals",
+      "f": "For index tracking, when do you store the first vs the latest index?",
+      "b": "Depends on the objective: for the LONGEST subarray you want the EARLIEST occurrence (maximizes current_index - earliest_index). Don't memorize \"always first index\"; ask what the index needs to optimize."
+    },
+    {
+      "id": "cs-4e080f0b",
+      "d": "arrays",
+      "t": "Hashing Fundamentals",
+      "f": "How does Two Sum (LC 1) use complement lookup?",
+      "b": "For each num compute needed = target - num; if needed is in seen return its index and i; otherwise store seen[num] = i. Order matters: look up the complement THEN store, so the same element isn't used twice. O(n) average."
+    },
+    {
+      "id": "cs-645bb616",
+      "d": "arrays",
+      "t": "Hashing Fundamentals",
+      "f": "How does the complement pattern generalize beyond Two Sum?",
+      "b": "Only the expression changes: target sum -> needed = target - current; target difference -> needed = current +/- target; XOR target -> needed = current XOR target. Same reasoning every time."
+    },
+    {
+      "id": "cs-00eda5d8",
+      "d": "arrays",
+      "t": "Hashing Fundamentals",
+      "f": "What is a canonical key and how does Group Anagrams (LC 49) use one?",
+      "b": "Objects in the same category must map to the same representation. For anagrams the sorted string works (\"eat\" and \"tea\" -> \"aet\"); a 26-length count tuple is a faster O(n*k) alternative. Then groups[key].append(word)."
+    },
+    {
+      "id": "cs-84b70414",
+      "d": "arrays",
+      "t": "Hashing Fundamentals",
+      "f": "How does Intersection of Two Arrays II (LC 350) handle duplicates?",
+      "b": "Count one array; walk the other, and each time an element's count is still positive, append it to the answer and decrement its count. This limits repeats to the minimum count across both arrays."
+    },
+    {
+      "id": "cs-bd2d800c",
+      "d": "arrays",
+      "t": "Hashing Fundamentals",
+      "f": "What is the trick for Encode and Decode Strings (LC 271)?",
+      "b": "Length-prefix each string: \"<len>#<string>\". The decoder always knows how many raw characters to consume next, so no delimiter escaping is needed even if a string contains '#'."
+    },
+    {
+      "id": "cs-7ee571ba",
+      "d": "arrays",
+      "t": "Hashing Fundamentals",
+      "f": "What question should you ask instead of \"use a hashmap?\" when combining arrays and hashing?",
+      "b": "\"What information would I want to remember while scanning the array?\" Two Sum -> previous value, Contains Duplicate -> seen set, Top K -> frequency, Longest Consecutive -> fast existence checks, Subarray Sum K -> previous prefix sums."
+    },
+    {
+      "id": "cs-701f9fc1",
+      "d": "arrays",
+      "t": "Hard and Combined Problems",
+      "f": "How does Longest Consecutive Sequence (LC 128) reach O(n)?",
+      "b": "Put all numbers in a set. Only start counting a sequence from a number with NO predecessor (num - 1 not in the set), then walk num+1, num+2... Every number belongs to exactly one walk, so total work is O(n)."
+    },
+    {
+      "id": "cs-6e78ece5",
+      "d": "arrays",
+      "t": "Hard and Combined Problems",
+      "f": "How do you solve Top K Frequent Elements (LC 347)?",
+      "b": "Two sub-problems: build a frequency map (Counter), then keep a min-heap of size k of (count, value): push each pair and pop the smallest when size > k. O(n log k) time. (Bucket sort by frequency gives O(n).)"
+    },
+    {
+      "id": "cs-53f77ca6",
+      "d": "arrays",
+      "t": "Hard and Combined Problems",
+      "f": "How does Boyer-Moore voting solve Majority Element (LC 169) in O(1) space?",
+      "b": "Keep a candidate and a count. If count == 0 pick the current number as candidate; matching numbers count += 1, others count -= 1. The majority (> n/2 times) outnumbers all others combined, so it always survives the cancellation."
+    },
+    {
+      "id": "cs-787e7e1c",
+      "d": "arrays",
+      "t": "Hard and Combined Problems",
+      "f": "How does Minimum Size Subarray Sum (LC 209) combine arrays with sliding window?",
+      "b": "All values are positive, so growing the right pointer only increases the sum and shrinking the left only decreases it. Expand right, while sum >= target shrink left and record the minimal length. That monotonicity makes shrink-while-valid correct."
+    },
+    {
+      "id": "cs-a86ffe33",
+      "d": "arrays",
+      "t": "Hard and Combined Problems",
+      "f": "How do you count distinct elements in every window of size k?",
+      "b": "Frequency map for a fixed window: increment on entry, decrement on exit, and DELETE the key when its count hits zero so len(freq) always equals the number of distinct values in the window."
+    },
+    {
+      "id": "cs-4267a9d1",
+      "d": "arrays",
+      "t": "Recognition and Decision Guide",
+      "f": "Signal -> pattern: \"sum of every subarray equal to k\"?",
+      "b": "Prefix Sum + HashMap."
+    },
+    {
+      "id": "cs-5418b529",
+      "d": "arrays",
+      "t": "Recognition and Decision Guide",
+      "f": "Signal -> pattern: \"add value to every element in [l, r], many updates\"?",
+      "b": "Difference Array."
+    },
+    {
+      "id": "cs-aacb1e14",
+      "d": "arrays",
+      "t": "Recognition and Decision Guide",
+      "f": "Why would the Meeting Rooms II sweep sort starts and ends into two SEPARATE arrays?",
+      "b": "The question is the maximum number of meetings active at one instant, which only needs the relative order of all starts against all ends. Sorting the (start, end) pairs together would lose that cross-interval ordering."
+    },
+    {
+      "id": "cs-cd10d536",
+      "d": "arrays",
+      "t": "Recognition and Decision Guide",
+      "f": "What is the meta-pattern behind nearly all of Arrays & Hashing?",
+      "b": "Ask what information from the past would let you solve the current position in O(1), then store exactly that (a prefix, a running max, a count, an index, a canonical key)."
     }
   ]
 }

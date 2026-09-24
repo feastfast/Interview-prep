@@ -199,6 +199,21 @@
         "title": "First Missing Positive",
         "diff": "hard",
         "slug": "first-missing-positive"
+      },
+      {
+        "app": "lc-1094"
+      },
+      {
+        "app": "lc-252"
+      },
+      {
+        "app": "lc-287"
+      },
+      {
+        "app": "lc-27"
+      },
+      {
+        "app": "lc-387"
       }
     ],
     "two-pointers": [

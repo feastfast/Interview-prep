@@ -55,6 +55,10 @@
     {
       "id": "graphs",
       "label": "Graphs"
+    },
+    {
+      "id": "arrays",
+      "label": "Arrays & Hashing"
     }
   ],
   "questions": [
@@ -8247,6 +8251,650 @@
       ],
       "a": 0,
       "x": "The source chat deliberately mixed problems without naming the technique for exactly this reason -- recognition should come from the question, not from whatever topic is currently being studied."
+    },
+    {
+      "id": "qs-7573453e",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "Given a static array and thousands of queries \"sum of nums[l..r]\", which technique gives O(1) per query after O(n) preprocessing?",
+      "o": [
+        "Prefix sum: sum(l, r) = prefix[r+1] - prefix[l]",
+        "A sliding window that moves for each query",
+        "A difference array",
+        "Sorting the array first"
+      ],
+      "a": 0,
+      "x": "Repeated range-sum queries over a static array is the textbook prefix-sum signal. The difference array is for range UPDATES, not queries."
+    },
+    {
+      "id": "qs-f6c01ae6",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "With prefix = [0, 3, 5, 10, 11, 15] built from nums = [3, 2, 5, 1, 4], what is sum(1, 3) (inclusive indices)?",
+      "o": [
+        "8",
+        "11",
+        "10",
+        "7"
+      ],
+      "a": 0,
+      "x": "prefix[4] - prefix[1] = 11 - 3 = 8, which matches nums[1] + nums[2] + nums[3] = 2 + 5 + 1."
+    },
+    {
+      "id": "qs-aaafe442",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "In the count-subarrays-with-sum-K template, why is the map initialised as {0: 1}?",
+      "o": [
+        "A prefix sum of 0 \"existed\" before any element, so subarrays starting at index 0 can be detected",
+        "To avoid a KeyError on the first lookup",
+        "Because the array might be empty",
+        "To count the empty subarray as a valid answer"
+      ],
+      "a": 0,
+      "x": "Without {0: 1}, nums = [1, 2] with K = 3 would miss the subarray [1, 2], because the needed prefix 0 would not be in the map."
+    },
+    {
+      "id": "qs-8f5f4c8a",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "While scanning for subarrays with sum K, which quantity do you look up in the map at each index?",
+      "o": [
+        "current_prefix - K",
+        "current_prefix + K",
+        "K alone",
+        "current_prefix"
+      ],
+      "a": 0,
+      "x": "A subarray (i+1..j) has sum prefix[j] - prefix[i]. Setting that equal to K gives prefix[i] = prefix[j] - K."
+    },
+    {
+      "id": "qs-4dd6ab6c",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "For the LONGEST subarray with sum K, what should the map store for each prefix sum?",
+      "o": [
+        "The earliest index at which that prefix occurred, never overwritten",
+        "The latest index at which that prefix occurred",
+        "The number of times it occurred",
+        "The running maximum length"
+      ],
+      "a": 0,
+      "x": "An earlier start maximises current_index - stored_index. Overwriting with a later index would produce a shorter subarray."
+    },
+    {
+      "id": "qs-756c8bf6",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "For COUNTING subarrays with sum K, what should the map store for each prefix sum?",
+      "o": [
+        "Its frequency",
+        "Only its first index",
+        "Only its last index",
+        "A boolean flag"
+      ],
+      "a": 0,
+      "x": "The same prefix can occur multiple times and each earlier occurrence forms a different valid subarray, so the count must accumulate."
+    },
+    {
+      "id": "qs-b40f06dc",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "LC 525 (Contiguous Array: longest subarray with equal 0s and 1s) is best solved by...",
+      "o": [
+        "Mapping 0 to -1 and finding the longest zero-sum subarray with earliest-index prefix tracking",
+        "Sorting the array and using two pointers",
+        "Kadane's algorithm on the raw 0/1 values",
+        "Counting total zeros and ones only"
+      ],
+      "a": 0,
+      "x": "Equal 0s and 1s means the +1/-1 sum is zero, i.e. the same prefix appears twice. Store the earliest index of each prefix, starting with {0: -1}."
+    },
+    {
+      "id": "qs-811d3b79",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "For LC 974 (Subarray Sums Divisible by K), what do you store in the map instead of the prefix sum itself?",
+      "o": [
+        "The remainder prefix % k, with a starting count for remainder 0",
+        "The quotient prefix // k",
+        "The prefix sum minus k",
+        "The number of distinct elements"
+      ],
+      "a": 0,
+      "x": "(prefix[j] - prefix[i]) % k == 0 exactly when prefix[j] % k == prefix[i] % k, so equal remainders mark valid subarrays."
+    },
+    {
+      "id": "qs-6aded5f6",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "What is the shared idea behind \"equal 0s and 1s\" and \"equal 0s, 1s and 2s\" subarray problems?",
+      "o": [
+        "Represent the state as a difference (or tuple of differences); if the same state was seen before, the subarray between the two positions is valid",
+        "Use a sliding window whose size is fixed",
+        "Sort the elements and compare halves",
+        "Use a heap to balance the counts"
+      ],
+      "a": 0,
+      "x": "Multiple equality conditions become a single hashable state such as (count0 - count1, count1 - count2); equal states at two positions mean equal counts in between."
+    },
+    {
+      "id": "qs-5e89da8f",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "How does Product of Array Except Self (LC 238) avoid division?",
+      "o": [
+        "answer[i] = (product of everything to the left) x (product of everything to the right), built with two passes",
+        "Multiplying all elements and dividing by nums[i] with a zero check",
+        "Sorting and using two pointers",
+        "Using a hash map of products"
+      ],
+      "a": 0,
+      "x": "Left-product and right-product passes never divide, so zeroes need no special-casing. The right pass can reuse the output array to give O(1) extra space."
+    },
+    {
+      "id": "qs-98ab4341",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "For nums = [1, 2, 0, 4], why is the \"total product / nums[i]\" idea unsafe?",
+      "o": [
+        "total = 0, so answer[2] = 0 / 0 raises ZeroDivisionError, and every other index only works by accident",
+        "The total product overflows",
+        "Division always returns a float in Python",
+        "The array has an even length"
+      ],
+      "a": 0,
+      "x": "Any zero breaks the division approach and needs hand-written cases (exactly one zero vs two or more). Prefix/suffix products handle it naturally."
+    },
+    {
+      "id": "qs-5aad10c9",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "In the O(1)-extra-space version of Product of Array Except Self, what does the first (left-to-right) pass store in the output array?",
+      "o": [
+        "The product of all elements strictly to the left of each index",
+        "The product of all elements including the current one",
+        "The prefix sums",
+        "The product of all elements to the right"
+      ],
+      "a": 0,
+      "x": "The output holds left products first; a reverse pass multiplies in a running product of everything to the right."
+    },
+    {
+      "id": "qs-293f9c45",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "You must apply \"add +5 to every element in nums[2..7]\" many times to an array. What does a difference array record for one update?",
+      "o": [
+        "diff[2] += 5 and diff[8] -= 5",
+        "diff[2] += 5 and diff[7] += 5",
+        "diff[2..7] += 5",
+        "diff[7] -= 5 only"
+      ],
+      "a": 0,
+      "x": "The +5 starts at index l and is cancelled at r+1. A running prefix sum over diff reconstructs the final array."
+    },
+    {
+      "id": "qs-f0f04b4e",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "What is the relationship between prefix sums and difference arrays?",
+      "o": [
+        "They are inverses: prefix sum answers range queries; difference array performs range updates and is reconstructed with a prefix sum",
+        "They are the same technique with different names",
+        "Difference arrays are only for 2D grids",
+        "Prefix sums update ranges; difference arrays answer queries"
+      ],
+      "a": 0,
+      "x": "Prefix Sum -> range queries. Difference Array -> range updates. Taking a prefix sum of a difference array gives back the array."
+    },
+    {
+      "id": "qs-37aaa723",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "What is Kadane's recurrence for the maximum subarray sum?",
+      "o": [
+        "current = max(nums[i], current + nums[i]); best = max(best, current)",
+        "current = current + nums[i] always",
+        "current = max(current, nums[i])",
+        "current = min(nums[i], current + nums[i])"
+      ],
+      "a": 0,
+      "x": "At each index choose between extending the previous segment and starting fresh at nums[i]. If the previous segment is negative it only hurts, so restart."
+    },
+    {
+      "id": "qs-4d0606e1",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "Why should Kadane's algorithm start with current = best = nums[0] instead of 0?",
+      "o": [
+        "Starting at 0 silently allows the empty subarray, giving 0 on an all-negative array instead of the least negative element",
+        "Because nums[0] is always part of the answer",
+        "To avoid an index error on a one-element array",
+        "Because Python integers cannot be zero"
+      ],
+      "a": 0,
+      "x": "For [-5, -2, -8, -1] the correct answer is -1. Initialising to 0 would report 0, an empty subarray which isn't valid."
+    },
+    {
+      "id": "qs-23fd9763",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "What is the maximum subarray sum of [-2, 1, -3, 4, -1, 2, 1, -5, 4]?",
+      "o": [
+        "6, from the subarray [4, -1, 2, 1]",
+        "7, from [1, -3, 4, -1, 2, 1]",
+        "5",
+        "4"
+      ],
+      "a": 0,
+      "x": "Kadane's trace ends with best = 6, achieved by [4, -1, 2, 1]."
+    },
+    {
+      "id": "qs-1c29aae1",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "How do you compute the maximum circular subarray sum (LC 918)?",
+      "o": [
+        "max(ordinary Kadane maximum, total_sum - minimum_subarray_sum), returning the ordinary result when all numbers are negative",
+        "Run Kadane twice on the concatenated array only",
+        "total_sum minus the maximum element",
+        "Sort the array and take the top half"
+      ],
+      "a": 0,
+      "x": "A wrapped subarray equals the total minus a contiguous middle segment, so remove the minimum subarray. If every value is negative, total - min degenerates to the empty subarray, which is invalid."
+    },
+    {
+      "id": "qs-93e942ef",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "Why does Maximum Product Subarray (LC 152) need to track both a running maximum and a running minimum?",
+      "o": [
+        "A negative number can turn the most negative running product into the largest positive product",
+        "Because products can overflow",
+        "Because zeros reset the array",
+        "Because the answer must be the product of two subarrays"
+      ],
+      "a": 0,
+      "x": "The worst product ending here can become the best after multiplying by a negative. Swap max and min when the current number is negative."
+    },
+    {
+      "id": "qs-9227dda8",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "Two intervals A = [1, 5] and B = [3, 7] (A.start <= B.start) overlap because...",
+      "o": [
+        "B.start <= A.end (3 <= 5)",
+        "B.end >= A.end",
+        "A.start == B.start",
+        "They have the same length"
+      ],
+      "a": 0,
+      "x": "After sorting by start, an interval overlaps the previous merged one exactly when its start is at most the previous end."
+    },
+    {
+      "id": "qs-a7c602a6",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "What is the standard first step for Merge Intervals (LC 56)?",
+      "o": [
+        "Sort intervals by start, then scan and merge into the last result interval when start <= last_end",
+        "Sort intervals by end and merge from the right",
+        "Build a hash map from start to end",
+        "Use a min-heap of lengths"
+      ],
+      "a": 0,
+      "x": "Sorting by start means only the most recently merged interval can overlap the current one (the invariant that makes the scan a single pass)."
+    },
+    {
+      "id": "qs-9425d099",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "Why can Insert Interval (LC 57) be solved in O(n) without sorting?",
+      "o": [
+        "The intervals are already sorted and non-overlapping, so three phases suffice: before, overlapping (merge), after",
+        "Because it uses a hash map",
+        "Because the new interval is always at the end",
+        "Because binary search finds the position in O(1)"
+      ],
+      "a": 0,
+      "x": "Append intervals ending before the new start, merge all overlapping ones into the new interval (min start, max end), then append the rest."
+    },
+    {
+      "id": "qs-34ff98bf",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "For Non-overlapping Intervals (LC 435, minimum removals), which greedy rule is correct?",
+      "o": [
+        "Sort by end and always keep the interval that finishes earliest",
+        "Sort by start and keep the longest interval",
+        "Sort by length and keep the shortest interval",
+        "Remove the interval with the largest start"
+      ],
+      "a": 0,
+      "x": "The earliest finisher leaves the largest remaining region for future intervals. Sort by end; if the next interval starts before the last kept end, remove it."
+    },
+    {
+      "id": "qs-aed7de2d",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "Meeting Rooms II asks for the minimum number of rooms. What does that equal?",
+      "o": [
+        "The maximum number of meetings active at the same instant",
+        "The number of meetings",
+        "The number of distinct start times",
+        "The longest meeting duration"
+      ],
+      "a": 0,
+      "x": "Rooms are only needed while meetings overlap, so the answer is the peak concurrency."
+    },
+    {
+      "id": "qs-ca47607e",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "In the two-sorted-lists solution of Meeting Rooms II, what happens when the next start is >= the earliest unfinished end?",
+      "o": [
+        "A room has just freed up, so the end pointer advances and the room count decreases",
+        "Another room must be opened",
+        "The two lists are merged",
+        "The answer is returned immediately"
+      ],
+      "a": 0,
+      "x": "If next start < earliest end, all rooms are busy and a new room opens; otherwise a meeting finished and its room is reused."
+    },
+    {
+      "id": "qs-183b3426",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "A problem says \"the array contains the numbers 1 to n with one missing\" and asks for O(1) extra space. Which technique fits best?",
+      "o": [
+        "Cyclic sort / index placement: put each value v at index v-1",
+        "A HashSet of seen numbers",
+        "Sorting with a heap",
+        "A difference array"
+      ],
+      "a": 0,
+      "x": "The values themselves give indices, so the array can act as its own storage, trading HashSet's O(n) space for O(1)."
+    },
+    {
+      "id": "qs-0712ca2e",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "In cyclic sort, why don't you increment i immediately after swapping nums[i] into its correct slot?",
+      "o": [
+        "The value that just arrived at index i may also be misplaced and must be checked again",
+        "Because swaps invalidate the array length",
+        "Because i is already in the correct place after a swap",
+        "To avoid an infinite loop on sorted input"
+      ],
+      "a": 0,
+      "x": "After the swap, nums[i] holds a different value that may itself belong elsewhere. Only advance when nums[i] is in place or is a duplicate."
+    },
+    {
+      "id": "qs-40e5eada",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "Cyclic sort has a while loop inside the scan. Why is it still O(n) overall?",
+      "o": [
+        "Every swap places at least one value permanently into its correct position, so there are at most n swaps",
+        "Because the inner loop runs a constant number of times per element",
+        "Because the array is sorted beforehand",
+        "Because swaps are free in Python"
+      ],
+      "a": 0,
+      "x": "Total swaps are bounded by n, so the work across the entire run is linear."
+    },
+    {
+      "id": "qs-decc1487",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "After cyclic placement on [3, 4, -1, 1] (First Missing Positive, LC 41), the array is [1, -1, 3, 4]. What is the answer?",
+      "o": [
+        "2",
+        "1",
+        "-1",
+        "5"
+      ],
+      "a": 0,
+      "x": "The first index i where nums[i] != i + 1 is index 1, so the missing positive is 2. If all positions matched the answer would be n + 1."
+    },
+    {
+      "id": "qs-fe64850a",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "For Missing Number (LC 268) with values 0..n, why does cyclic sort skip a value equal to n?",
+      "o": [
+        "There is no index n in an array of length n, so that value has nowhere to go",
+        "Because n is always the answer",
+        "Because n is always a duplicate",
+        "Because it would cause overflow"
+      ],
+      "a": 0,
+      "x": "Values are 0..n (one extra value compared with the 1..n case). Value v belongs at index v, but v = n has no slot."
+    },
+    {
+      "id": "qs-2608bf33",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "Why does the guide solve Find the Duplicate Number (LC 287) with Floyd's cycle detection rather than cyclic sort?",
+      "o": [
+        "LC 287 forbids modifying the input array, and treating i -> nums[i] as a linked list makes the duplicate the cycle entry",
+        "Floyd's algorithm is always faster than cyclic sort",
+        "Cyclic sort only works on sorted arrays",
+        "The array contains negative numbers"
+      ],
+      "a": 0,
+      "x": "The duplicate value is reached from two indices, creating a cycle whose entry point is the duplicate. This needs no mutation and O(1) space."
+    },
+    {
+      "id": "qs-47e83d1a",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "What is the standard in-place way to rotate an n x n matrix 90 degrees clockwise?",
+      "o": [
+        "Transpose it, then reverse every row",
+        "Reverse every row, then reverse every column",
+        "Reverse the whole matrix, then transpose",
+        "Swap the first and last rows only"
+      ],
+      "a": 0,
+      "x": "Rotate = transpose + reverse each row. For counterclockwise, reverse the columns instead."
+    },
+    {
+      "id": "qs-4fffc8c7",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "Why does the in-place transpose loop use j from i + 1 rather than from 0?",
+      "o": [
+        "Each symmetric pair must be swapped only once, or the swaps would undo each other",
+        "To skip the diagonal for speed only",
+        "Because matrices are 1-indexed",
+        "To avoid negative indices"
+      ],
+      "a": 0,
+      "x": "Iterating both triangles swaps every pair twice, leaving the matrix unchanged. In-place transpose only works for square matrices."
+    },
+    {
+      "id": "qs-fb07ed2b",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "In Spiral Matrix (LC 54), why are the \"if top <= bottom\" and \"if left <= right\" guards needed before the third and fourth sides?",
+      "o": [
+        "They stop a collapsed single row or column from being traversed twice",
+        "They speed up the loop",
+        "They handle empty matrices",
+        "They handle negative numbers"
+      ],
+      "a": 0,
+      "x": "On rectangular matrices, after the first two sides the boundaries may have crossed; without the guards a single remaining row or column gets visited again in reverse."
+    },
+    {
+      "id": "qs-7081cd8c",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "For Set Matrix Zeroes (LC 73) with O(1) extra space, which is the correct order of operations?",
+      "o": [
+        "Save whether row 0/col 0 had a zero, mark using row 0/col 0, apply marks to the interior, and only then zero row 0/col 0 if flagged",
+        "Zero row 0 and col 0 first, then process the interior",
+        "Copy the matrix and zero from the copy",
+        "Zero cells immediately as they are found"
+      ],
+      "a": 0,
+      "x": "Row 0 and column 0 are reused as marker storage, so zeroing them early would corrupt markers that haven't been read yet."
+    },
+    {
+      "id": "qs-983f20d3",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "How do you rotate an array right by k in place using O(1) extra space (LC 189)?",
+      "o": [
+        "k %= n, reverse the whole array, then reverse the first k elements and the remaining n - k elements",
+        "Shift every element by one, k times",
+        "Reverse only the first k elements",
+        "Sort the array"
+      ],
+      "a": 0,
+      "x": "Reversal algorithm: for [1..7], k = 3: reverse all -> [7,6,5,4,3,2,1], reverse first 3 -> [5,6,7,...], reverse the rest -> [5,6,7,1,2,3,4]."
+    },
+    {
+      "id": "qs-b3057a59",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "In problem-solving terms, what is the difference between a HashSet and a HashMap?",
+      "o": [
+        "A HashSet answers \"have I seen this?\"; a HashMap answers \"what do I know about this?\" (count, index, group)",
+        "A HashSet is ordered; a HashMap is not",
+        "A HashMap allows duplicates as keys",
+        "There is no practical difference in interviews"
+      ],
+      "a": 0,
+      "x": "Use a set for pure existence; use a map when you must attach information (frequency, index, group). A map used only for existence wastes work."
+    },
+    {
+      "id": "qs-f08e347a",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "In Two Sum (LC 1), why must you look up the complement BEFORE storing the current number?",
+      "o": [
+        "Otherwise the same element could pair with itself",
+        "Because dictionaries can't be modified before lookup",
+        "To keep the array sorted",
+        "To save memory"
+      ],
+      "a": 0,
+      "x": "The order is: compute needed = target - num, check seen, then seen[num] = i. This prevents using the same element twice (e.g. target 6 with a single 3)."
+    },
+    {
+      "id": "qs-0b3c5863",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "How does the guide's canonical-key approach group anagrams (LC 49)?",
+      "o": [
+        "Map each word to sorted(word) (or a 26-count tuple) and group words sharing the same key",
+        "Compare every pair of words",
+        "Sort the whole list alphabetically and group adjacent words",
+        "Use the word length as the key"
+      ],
+      "a": 0,
+      "x": "Different objects in the same category must produce the same representation. \"eat\" and \"tea\" both become \"aet\"."
+    },
+    {
+      "id": "qs-f498c7e5",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "How does Encode and Decode Strings (LC 271) avoid ambiguity when strings may contain any character?",
+      "o": [
+        "Length-prefix each string (\"<len>#<string>\") so the decoder knows exactly how many characters to consume",
+        "Join the strings with a comma",
+        "Escape every special character",
+        "Sort the strings first"
+      ],
+      "a": 0,
+      "x": "Because the decoder reads the length first and then consumes exactly that many raw characters, it never searches for a delimiter inside a string."
+    },
+    {
+      "id": "qs-e3cb2c21",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "In Longest Consecutive Sequence (LC 128), why do you only start counting from numbers whose predecessor (num - 1) is NOT in the set?",
+      "o": [
+        "Every number is then visited as part of only one sequence walk, giving O(n) total",
+        "To skip negative numbers",
+        "To sort the numbers implicitly",
+        "To avoid duplicates in the input"
+      ],
+      "a": 0,
+      "x": "Starting from every element would repeat huge walks (O(n^2)); starting only at sequence beginnings visits each number once."
+    },
+    {
+      "id": "qs-b2cacc8e",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "Which technique finds a majority element (> n/2 occurrences) in O(1) extra space?",
+      "o": [
+        "Boyer-Moore voting with a candidate and a counter",
+        "A frequency HashMap",
+        "Sorting and taking the first element",
+        "A min-heap of size k"
+      ],
+      "a": 0,
+      "x": "The majority element outnumbers all others combined, so pairwise cancellation always leaves it as the surviving candidate."
+    },
+    {
+      "id": "qs-74231823",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "How do you keep the top k most frequent elements (LC 347) in O(n log k)?",
+      "o": [
+        "Count frequencies, then keep a min-heap of size k, popping the smallest count when the heap exceeds k",
+        "Sort all elements by value",
+        "Keep a max-heap of size n",
+        "Use a HashSet of the first k elements"
+      ],
+      "a": 0,
+      "x": "A min-heap of size k always discards the smallest count so what survives are the k largest frequencies."
+    },
+    {
+      "id": "qs-df607eeb",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "When maintaining a frequency map over a sliding window to count distinct elements, why should you delete a key when its count reaches zero?",
+      "o": [
+        "So len(freq) always equals the number of distinct values currently in the window",
+        "To free memory only",
+        "Because Python forbids zero values",
+        "To keep the map sorted"
+      ],
+      "a": 0,
+      "x": "Leaving zero-count keys would inflate len(freq) and give the wrong distinct count."
+    },
+    {
+      "id": "qs-4759a82d",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "A problem asks: \"longest subarray with sum equal to k\" on an array that may contain negative numbers. Which pattern applies?",
+      "o": [
+        "Prefix sum + HashMap storing earliest index for each prefix",
+        "Sliding window with two pointers",
+        "Sorting the array",
+        "Kadane's algorithm"
+      ],
+      "a": 0,
+      "x": "With negatives the window sum is not monotonic, so sliding window fails. Prefix + earliest-index map handles any values."
+    },
+    {
+      "id": "qs-9427b66c",
+      "d": "arrays",
+      "t": "arrays",
+      "q": "What is the meta-question that unifies Arrays & Hashing patterns?",
+      "o": [
+        "What information from the past would let me solve the current position in O(1)?",
+        "Can I sort the input first?",
+        "Can I solve it recursively?",
+        "Can I reduce it to a graph?"
+      ],
+      "a": 0,
+      "x": "Prefix sums, running maxima, frequency counts, index maps and canonical keys are all different answers to that one question."
     }
   ]
 }

@@ -2670,6 +2670,210 @@
       "slug": "all-ancestors-of-a-node-in-a-directed-acyclic-graph",
       "topic": "graphs",
       "topicLabel": "Graphs"
+    },
+    {
+      "id": "lc-303",
+      "title": "Range Sum Query - Immutable",
+      "topic": "arrays",
+      "topicLabel": "Arrays & Hashing",
+      "pattern": "Prefix sum",
+      "diff": "easy",
+      "lc": "LC 303",
+      "slug": "range-sum-query-immutable"
+    },
+    {
+      "id": "lc-304",
+      "title": "Range Sum Query 2D - Immutable",
+      "topic": "arrays",
+      "topicLabel": "Arrays & Hashing",
+      "pattern": "2D prefix sum",
+      "diff": "medium",
+      "lc": "LC 304",
+      "slug": "range-sum-query-2d-immutable"
+    },
+    {
+      "id": "lc-325",
+      "title": "Maximum Size Subarray Sum Equals k",
+      "topic": "arrays",
+      "topicLabel": "Arrays & Hashing",
+      "pattern": "Prefix sum + earliest-index HashMap",
+      "diff": "medium",
+      "lc": "LC 325",
+      "slug": "maximum-size-subarray-sum-equals-k",
+      "premium": true
+    },
+    {
+      "id": "lc-974",
+      "title": "Subarray Sums Divisible by K",
+      "topic": "arrays",
+      "topicLabel": "Arrays & Hashing",
+      "pattern": "Prefix remainder + HashMap",
+      "diff": "medium",
+      "lc": "LC 974",
+      "slug": "subarray-sums-divisible-by-k"
+    },
+    {
+      "id": "lc-525",
+      "title": "Contiguous Array",
+      "topic": "arrays",
+      "topicLabel": "Arrays & Hashing",
+      "pattern": "Prefix sum (0 -> -1) + HashMap",
+      "diff": "medium",
+      "lc": "LC 525",
+      "slug": "contiguous-array"
+    },
+    {
+      "id": "lc-370",
+      "title": "Range Addition",
+      "topic": "arrays",
+      "topicLabel": "Arrays & Hashing",
+      "pattern": "Difference array",
+      "diff": "medium",
+      "lc": "LC 370",
+      "slug": "range-addition",
+      "premium": true
+    },
+    {
+      "id": "lc-1109",
+      "title": "Corporate Flight Bookings",
+      "topic": "arrays",
+      "topicLabel": "Arrays & Hashing",
+      "pattern": "Difference array",
+      "diff": "medium",
+      "lc": "LC 1109",
+      "slug": "corporate-flight-bookings"
+    },
+    {
+      "id": "lc-918",
+      "title": "Maximum Sum Circular Subarray",
+      "topic": "arrays",
+      "topicLabel": "Arrays & Hashing",
+      "pattern": "Kadane + minimum subarray",
+      "diff": "medium",
+      "lc": "LC 918",
+      "slug": "maximum-sum-circular-subarray"
+    },
+    {
+      "id": "lc-152",
+      "title": "Maximum Product Subarray",
+      "topic": "arrays",
+      "topicLabel": "Arrays & Hashing",
+      "pattern": "Kadane variant (track max and min)",
+      "diff": "medium",
+      "lc": "LC 152",
+      "slug": "maximum-product-subarray"
+    },
+    {
+      "id": "lc-56",
+      "title": "Merge Intervals",
+      "topic": "arrays",
+      "topicLabel": "Arrays & Hashing",
+      "pattern": "Intervals: sort by start, merge",
+      "diff": "medium",
+      "lc": "LC 56",
+      "slug": "merge-intervals"
+    },
+    {
+      "id": "lc-57",
+      "title": "Insert Interval",
+      "topic": "arrays",
+      "topicLabel": "Arrays & Hashing",
+      "pattern": "Intervals: three-phase insert",
+      "diff": "medium",
+      "lc": "LC 57",
+      "slug": "insert-interval"
+    },
+    {
+      "id": "lc-435",
+      "title": "Non-overlapping Intervals",
+      "topic": "arrays",
+      "topicLabel": "Arrays & Hashing",
+      "pattern": "Intervals: greedy, sort by end",
+      "diff": "medium",
+      "lc": "LC 435",
+      "slug": "non-overlapping-intervals"
+    },
+    {
+      "id": "lc-253",
+      "title": "Meeting Rooms II",
+      "topic": "arrays",
+      "topicLabel": "Arrays & Hashing",
+      "pattern": "Intervals: two sorted pointer sweep",
+      "diff": "medium",
+      "lc": "LC 253",
+      "slug": "meeting-rooms-ii",
+      "premium": true
+    },
+    {
+      "id": "lc-268",
+      "title": "Missing Number",
+      "topic": "arrays",
+      "topicLabel": "Arrays & Hashing",
+      "pattern": "Cyclic sort / index placement",
+      "diff": "easy",
+      "lc": "LC 268",
+      "slug": "missing-number"
+    },
+    {
+      "id": "lc-448",
+      "title": "Find All Numbers Disappeared in an Array",
+      "topic": "arrays",
+      "topicLabel": "Arrays & Hashing",
+      "pattern": "Cyclic sort / index placement",
+      "diff": "easy",
+      "lc": "LC 448",
+      "slug": "find-all-numbers-disappeared-in-an-array"
+    },
+    {
+      "id": "lc-383",
+      "title": "Ransom Note",
+      "topic": "arrays",
+      "topicLabel": "Arrays & Hashing",
+      "pattern": "Frequency map",
+      "diff": "easy",
+      "lc": "LC 383",
+      "slug": "ransom-note"
+    },
+    {
+      "id": "lc-350",
+      "title": "Intersection of Two Arrays II",
+      "topic": "arrays",
+      "topicLabel": "Arrays & Hashing",
+      "pattern": "Frequency map",
+      "diff": "easy",
+      "lc": "LC 350",
+      "slug": "intersection-of-two-arrays-ii"
+    },
+    {
+      "id": "lc-271",
+      "title": "Encode and Decode Strings",
+      "topic": "arrays",
+      "topicLabel": "Arrays & Hashing",
+      "pattern": "Length-prefixed encoding",
+      "diff": "medium",
+      "lc": "LC 271",
+      "slug": "encode-and-decode-strings",
+      "premium": true
+    },
+    {
+      "id": "lc-347",
+      "title": "Top K Frequent Elements",
+      "topic": "arrays",
+      "topicLabel": "Arrays & Hashing",
+      "pattern": "Frequency map + heap",
+      "diff": "medium",
+      "lc": "LC 347",
+      "slug": "top-k-frequent-elements"
+    },
+    {
+      "id": "lc-169",
+      "title": "Majority Element",
+      "topic": "arrays",
+      "topicLabel": "Arrays & Hashing",
+      "pattern": "Boyer-Moore voting",
+      "diff": "easy",
+      "lc": "LC 169",
+      "slug": "majority-element"
     }
   ]
 }
