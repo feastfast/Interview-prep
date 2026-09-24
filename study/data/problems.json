@@ -2464,6 +2464,212 @@
       "premium": true,
       "topic": "two-pointers",
       "topicLabel": "Two Pointers"
+    },
+    {
+      "id": "lc-261",
+      "title": "Graph Valid Tree",
+      "pattern": "Union-Find",
+      "diff": "medium",
+      "lc": "LC 261",
+      "slug": "graph-valid-tree",
+      "premium": true,
+      "topic": "graphs",
+      "topicLabel": "Graphs"
+    },
+    {
+      "id": "lc-323",
+      "title": "Number of Connected Components in an Undirected Graph",
+      "pattern": "Union-Find",
+      "diff": "medium",
+      "lc": "LC 323",
+      "slug": "number-of-connected-components-in-an-undirected-graph",
+      "premium": true,
+      "topic": "graphs",
+      "topicLabel": "Graphs"
+    },
+    {
+      "id": "lc-990",
+      "title": "Satisfiability of Equality Equations",
+      "pattern": "Union-Find",
+      "diff": "medium",
+      "lc": "LC 990",
+      "slug": "satisfiability-of-equality-equations",
+      "topic": "graphs",
+      "topicLabel": "Graphs"
+    },
+    {
+      "id": "lc-947",
+      "title": "Most Stones Removed with Same Row or Column",
+      "pattern": "Union-Find",
+      "diff": "medium",
+      "lc": "LC 947",
+      "slug": "most-stones-removed-with-same-row-or-column",
+      "topic": "graphs",
+      "topicLabel": "Graphs"
+    },
+    {
+      "id": "lc-305",
+      "title": "Number of Islands II",
+      "pattern": "Union-Find",
+      "diff": "hard",
+      "lc": "LC 305",
+      "slug": "number-of-islands-ii",
+      "premium": true,
+      "topic": "graphs",
+      "topicLabel": "Graphs"
+    },
+    {
+      "id": "lc-1135",
+      "title": "Connecting Cities With Minimum Cost",
+      "pattern": "MST (Kruskal)",
+      "diff": "medium",
+      "lc": "LC 1135",
+      "slug": "connecting-cities-with-minimum-cost",
+      "premium": true,
+      "topic": "graphs",
+      "topicLabel": "Graphs"
+    },
+    {
+      "id": "lc-1168",
+      "title": "Optimize Water Distribution in a Village",
+      "pattern": "MST (virtual source)",
+      "diff": "hard",
+      "lc": "LC 1168",
+      "slug": "optimize-water-distribution-in-a-village",
+      "premium": true,
+      "topic": "graphs",
+      "topicLabel": "Graphs"
+    },
+    {
+      "id": "lc-721",
+      "title": "Accounts Merge",
+      "pattern": "Union-Find",
+      "diff": "medium",
+      "lc": "LC 721",
+      "slug": "accounts-merge",
+      "topic": "graphs",
+      "topicLabel": "Graphs"
+    },
+    {
+      "id": "lc-1319",
+      "title": "Number of Operations to Make Network Connected",
+      "pattern": "Union-Find",
+      "diff": "medium",
+      "lc": "LC 1319",
+      "slug": "number-of-operations-to-make-network-connected",
+      "topic": "graphs",
+      "topicLabel": "Graphs"
+    },
+    {
+      "id": "lc-802",
+      "title": "Find Eventual Safe States",
+      "pattern": "DFS (3-color)",
+      "diff": "medium",
+      "lc": "LC 802",
+      "slug": "find-eventual-safe-states",
+      "topic": "graphs",
+      "topicLabel": "Graphs"
+    },
+    {
+      "id": "lc-1462",
+      "title": "Course Schedule IV",
+      "pattern": "Topological DP",
+      "diff": "medium",
+      "lc": "LC 1462",
+      "slug": "course-schedule-iv",
+      "topic": "graphs",
+      "topicLabel": "Graphs"
+    },
+    {
+      "id": "lc-2115",
+      "title": "Find All Possible Recipes from Given Supplies",
+      "pattern": "Topological sort",
+      "diff": "medium",
+      "lc": "LC 2115",
+      "slug": "find-all-possible-recipes-from-given-supplies",
+      "topic": "graphs",
+      "topicLabel": "Graphs"
+    },
+    {
+      "id": "lc-1466",
+      "title": "Reorder Routes to Make All Paths Lead to the City Zero",
+      "pattern": "DFS",
+      "diff": "medium",
+      "lc": "LC 1466",
+      "slug": "reorder-routes-to-make-all-paths-lead-to-the-city-zero",
+      "topic": "graphs",
+      "topicLabel": "Graphs"
+    },
+    {
+      "id": "lc-1631",
+      "title": "Path With Minimum Effort",
+      "pattern": "Dijkstra (minimax)",
+      "diff": "medium",
+      "lc": "LC 1631",
+      "slug": "path-with-minimum-effort",
+      "topic": "graphs",
+      "topicLabel": "Graphs"
+    },
+    {
+      "id": "lc-1976",
+      "title": "Number of Ways to Arrive at Destination",
+      "pattern": "Dijkstra + counting",
+      "diff": "medium",
+      "lc": "LC 1976",
+      "slug": "number-of-ways-to-arrive-at-destination",
+      "topic": "graphs",
+      "topicLabel": "Graphs"
+    },
+    {
+      "id": "lc-490",
+      "title": "The Maze",
+      "pattern": "BFS",
+      "diff": "medium",
+      "lc": "LC 490",
+      "slug": "the-maze",
+      "premium": true,
+      "topic": "graphs",
+      "topicLabel": "Graphs"
+    },
+    {
+      "id": "lc-399",
+      "title": "Evaluate Division",
+      "pattern": "DFS (weighted graph)",
+      "diff": "medium",
+      "lc": "LC 399",
+      "slug": "evaluate-division",
+      "topic": "graphs",
+      "topicLabel": "Graphs"
+    },
+    {
+      "id": "lc-1129",
+      "title": "Shortest Path with Alternating Colors",
+      "pattern": "BFS (expanded state)",
+      "diff": "medium",
+      "lc": "LC 1129",
+      "slug": "shortest-path-with-alternating-colors",
+      "topic": "graphs",
+      "topicLabel": "Graphs"
+    },
+    {
+      "id": "lc-1791",
+      "title": "Find Center of Star Graph",
+      "pattern": "Graph modeling",
+      "diff": "easy",
+      "lc": "LC 1791",
+      "slug": "find-center-of-star-graph",
+      "topic": "graphs",
+      "topicLabel": "Graphs"
+    },
+    {
+      "id": "lc-2192",
+      "title": "All Ancestors of a Node in a Directed Acyclic Graph",
+      "pattern": "Topological sort",
+      "diff": "medium",
+      "lc": "LC 2192",
+      "slug": "all-ancestors-of-a-node-in-a-directed-acyclic-graph",
+      "topic": "graphs",
+      "topicLabel": "Graphs"
     }
   ]
 }

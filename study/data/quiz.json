@@ -51,6 +51,10 @@
     {
       "id": "two-pointers",
       "label": "Two Pointers"
+    },
+    {
+      "id": "graphs",
+      "label": "Graphs"
     }
   ],
   "questions": [
@@ -7585,6 +7589,664 @@
       ],
       "a": 0,
       "x": "Both worked corrections in this guide (Two Sum II's wrong elimination, and 3Sum's duplicate-skip timing) show a memorized rule failing where the actual proof still holds."
+    },
+    {
+      "id": "qs-0b7553d7",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "What is the space complexity of an adjacency list for a graph with V vertices and E edges?",
+      "o": [
+        "O(V + E)",
+        "O(V^2)",
+        "O(E^2)",
+        "O(V * E)"
+      ],
+      "a": 0,
+      "x": "An adjacency list only stores edges that actually exist, so it costs O(V+E) regardless of how sparse the graph is."
+    },
+    {
+      "id": "qs-18fd24d0",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "Why is an adjacency matrix wasteful for a sparse graph?",
+      "o": [
+        "It stores O(V^2) entries even though most node pairs have no edge",
+        "It cannot represent directed graphs",
+        "It cannot represent weighted graphs",
+        "It is slower than an adjacency list for edge lookups"
+      ],
+      "a": 0,
+      "x": "A matrix always allocates V^2 cells regardless of how many edges actually exist, wasting space when the graph is sparse."
+    },
+    {
+      "id": "qs-39f1ff17",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "In the graph A->C, B->C, C->D, which node(s) are safe to process first in Kahn's algorithm?",
+      "o": [
+        "Both A and B",
+        "Only A",
+        "Only B",
+        "Only C"
+      ],
+      "a": 0,
+      "x": "Both A and B have indegree 0 -- this was a real correction made in the source chat, which first named only A."
+    },
+    {
+      "id": "qs-ee347f12",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "Does topological sort always produce a single unique valid ordering?",
+      "o": [
+        "No, multiple valid orderings can exist",
+        "Yes, always",
+        "Only for graphs with fewer than 10 nodes",
+        "Only if the graph is a tree"
+      ],
+      "a": 0,
+      "x": "Whenever more than one node has indegree 0 at some point, multiple valid orderings exist -- e.g. both \"A,B,C,D\" and \"B,A,C,D\" are valid for A->C, B->C, C->D."
+    },
+    {
+      "id": "qs-56e9fafa",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "How does Kahn's algorithm detect that a directed graph has a cycle?",
+      "o": [
+        "It cannot process every node -- some never reach indegree 0",
+        "It sees a repeated node in the queue",
+        "It compares node values numerically",
+        "It runs out of memory"
+      ],
+      "a": 0,
+      "x": "If nodes remain that never had all their prerequisites removed, they must be part of a cycle blocking each other."
+    },
+    {
+      "id": "qs-90327ce6",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "In three-color DFS cycle detection, what does seeing a GRAY neighbor mean?",
+      "o": [
+        "The current path has looped back onto itself -- a cycle",
+        "The neighbor was already fully processed and is safe",
+        "The neighbor has not been visited yet",
+        "The graph is undirected"
+      ],
+      "a": 0,
+      "x": "GRAY means the neighbor is currently on the recursion stack -- reaching it again means we've found a cycle."
+    },
+    {
+      "id": "qs-8cc043a6",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "In three-color DFS, is it safe to skip a BLACK neighbor?",
+      "o": [
+        "Yes, a BLACK node was already proven acyclic and can't lead back to the current stack",
+        "No, BLACK nodes must always be re-explored",
+        "Only if the graph is undirected",
+        "Only if the neighbor has no outgoing edges"
+      ],
+      "a": 0,
+      "x": "BLACK means fully processed -- that subtree was already proven not to loop back, so it's always safe to skip."
+    },
+    {
+      "id": "qs-d0edfab6",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "What does DFS-based topological sort do with a node once its DFS call finishes?",
+      "o": [
+        "Appends it to the result (postorder), then reverses the whole list at the end",
+        "Immediately places it at the front of the result",
+        "Removes it from the graph",
+        "Marks it as unsafe"
+      ],
+      "a": 0,
+      "x": "A node is appended only once every descendant has been fully explored; reversing that postorder list gives a valid topological order."
+    },
+    {
+      "id": "qs-17279788",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "Why is \"if DFS sees an already-visited node, there's a cycle\" wrong for undirected graphs?",
+      "o": [
+        "DFS always sees its own parent as visited when backtracking, which is normal",
+        "DFS never revisits nodes",
+        "Undirected graphs never have cycles",
+        "Visited nodes are removed from the graph"
+      ],
+      "a": 0,
+      "x": "A visited neighbor is only a cycle if it is NOT the parent -- otherwise it's simply the edge we just came through."
+    },
+    {
+      "id": "qs-0a34b3f4",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "What is the correct undirected cycle detection rule?",
+      "o": [
+        "A visited neighbor that is NOT the current node's parent indicates a cycle",
+        "Any visited neighbor indicates a cycle",
+        "Any unvisited neighbor indicates a cycle",
+        "A node with degree > 2 indicates a cycle"
+      ],
+      "a": 0,
+      "x": "The parent-tracking rule distinguishes \"came from here\" (normal) from \"reached via a second route\" (a cycle)."
+    },
+    {
+      "id": "qs-409e5c15",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "A graph is bipartite exactly when it contains...",
+      "o": [
+        "No odd-length cycle",
+        "No cycle at all",
+        "Only even-degree nodes",
+        "Fewer than V-1 edges"
+      ],
+      "a": 0,
+      "x": "Alternating colors around an odd cycle always produces a same-color contradiction on the closing edge; even cycles close consistently."
+    },
+    {
+      "id": "qs-2db3cb38",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "What is the bipartite-check invariant?",
+      "o": [
+        "Every edge must connect nodes of opposite colors",
+        "Every node must have the same color",
+        "Every node must have even degree",
+        "No two nodes can share an edge"
+      ],
+      "a": 0,
+      "x": "2-coloring assigns opposite colors to neighbors; any edge connecting two same-colored nodes breaks bipartiteness."
+    },
+    {
+      "id": "qs-d2cc3dcf",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "What does find(x) return in a DSU?",
+      "o": [
+        "The representative (root) of the set containing x",
+        "The parent of x",
+        "The size of x's set",
+        "True if x has been visited"
+      ],
+      "a": 0,
+      "x": "find(x) walks up parent pointers until it reaches the root, which represents the entire set."
+    },
+    {
+      "id": "qs-2ebf995c",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "Why should two nodes' group membership be checked with find(a)==find(b), not parent[a]==parent[b]?",
+      "o": [
+        "parent[] only points one step up, not necessarily to the shared root",
+        "parent[] is never initialized",
+        "find() is always faster than checking parent[]",
+        "Comparing parent values causes an infinite loop"
+      ],
+      "a": 0,
+      "x": "Two nodes in the same set can have completely different immediate parents while still sharing the same root."
+    },
+    {
+      "id": "qs-c920c95d",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "What problem does path compression solve in DSU?",
+      "o": [
+        "Tall chains making find() slow by having every node walk many hops",
+        "Union operations returning the wrong boolean",
+        "Two separate sets accidentally merging",
+        "Running out of memory"
+      ],
+      "a": 0,
+      "x": "Path compression flattens the tree during find(), so future find() calls on the same nodes become O(1)."
+    },
+    {
+      "id": "qs-da359d97",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "What is the union-by-size rule?",
+      "o": [
+        "Attach the smaller tree's root under the larger tree's root",
+        "Attach the larger tree's root under the smaller tree's root",
+        "Always attach node 0's root under the new root",
+        "Alternate which tree goes on top"
+      ],
+      "a": 0,
+      "x": "Keeping trees flat by always hanging the smaller one under the larger one prevents degenerate tall chains."
+    },
+    {
+      "id": "qs-eff7d3d9",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "What is the amortized time per DSU operation with BOTH path compression and union by size/rank?",
+      "o": [
+        "O(alpha(n)), effectively constant for practical inputs",
+        "O(log n)",
+        "O(n)",
+        "O(n log n)"
+      ],
+      "a": 0,
+      "x": "The combination of both optimizations gives the famous near-constant inverse-Ackermann bound."
+    },
+    {
+      "id": "qs-b2af2ff4",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "What is DSU fundamentally unable to answer, even after many union() calls?",
+      "o": [
+        "The shortest path or actual path between two connected nodes",
+        "Whether two nodes are in the same group",
+        "How many groups currently exist",
+        "Whether a new edge would create a cycle"
+      ],
+      "a": 0,
+      "x": "DSU only tracks group membership -- it has no notion of distance or path, only \"same set or not.\""
+    },
+    {
+      "id": "qs-303fa17c",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "In Redundant Connection, how is the redundant edge identified?",
+      "o": [
+        "It's the first edge whose union() call fails because both endpoints are already connected",
+        "It's always the last edge in the input list",
+        "It's the edge with the largest node values",
+        "It's found by sorting edges by weight"
+      ],
+      "a": 0,
+      "x": "Processing edges in order, the first union() that fails (same root already) is exactly the edge that would close a cycle."
+    },
+    {
+      "id": "qs-0d0342ab",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "What two conditions together mean a graph is a valid tree?",
+      "o": [
+        "Exactly n-1 edges AND no cycle",
+        "Exactly n edges AND no cycle",
+        "At least n-1 edges",
+        "No cycle, regardless of edge count"
+      ],
+      "a": 0,
+      "x": "A tree on n nodes always has exactly n-1 edges; combined with \"no union() ever fails,\" that guarantees connectivity too."
+    },
+    {
+      "id": "qs-31706e40",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "What is the key DSU modeling trick in Accounts Merge?",
+      "o": [
+        "Model each email as a node; shared emails across accounts get unioned together",
+        "Model each account as a node directly",
+        "Sort accounts alphabetically and merge adjacent ones",
+        "Use BFS starting from the first account"
+      ],
+      "a": 0,
+      "x": "\"Shared identifier -> same component\" -- treating emails (not accounts) as the DSU nodes is the key insight."
+    },
+    {
+      "id": "qs-6ecfba00",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "In Most Stones Removed, what are modeled as DSU nodes?",
+      "o": [
+        "Rows and columns, not the stones themselves",
+        "Each individual stone",
+        "Each grid cell in the bounding box",
+        "The number of stones per row"
+      ],
+      "a": 0,
+      "x": "A stone connects its row-node to its column-node; the answer is total stones minus number of resulting components."
+    },
+    {
+      "id": "qs-ce25e7d5",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "In Satisfiability of Equality Equations, what is the correct processing order?",
+      "o": [
+        "Process all \"==\" constraints first (union), then check all \"!=\" constraints",
+        "Process all \"!=\" constraints first, then \"==\"",
+        "Process constraints in the order given, mixing both",
+        "Process constraints in reverse order"
+      ],
+      "a": 0,
+      "x": "Unions must be fully resolved before checking inequalities, or a not-yet-discovered equality chain could be missed."
+    },
+    {
+      "id": "qs-b9605095",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "Why does BFS give the shortest path in an unweighted graph?",
+      "o": [
+        "It explores strictly by increasing distance, so the first visit to any node is via the fewest edges",
+        "It always visits nodes in numerical order",
+        "It uses a stack instead of a queue",
+        "It never revisits any node"
+      ],
+      "a": 0,
+      "x": "Because BFS processes nodes level by level, the first time it reaches a node is guaranteed optimal in an unweighted graph."
+    },
+    {
+      "id": "qs-e12690df",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "Why does Dijkstra require all edge weights to be non-negative?",
+      "o": [
+        "Its correctness relies on finalizing a popped node's distance, which is only safe if no future edge can make it cheaper",
+        "Negative weights cause an infinite loop in the heap",
+        "Negative weights are not representable in Python",
+        "Dijkstra secretly uses BFS internally"
+      ],
+      "a": 0,
+      "x": "With a negative edge, a node's distance thought to be minimal could later be beaten by a path through that negative edge -- but Dijkstra has already finalized and moved on."
+    },
+    {
+      "id": "qs-f4bc1a17",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "What does the line \"if current_dist > dist[node]: continue\" do in a Dijkstra implementation?",
+      "o": [
+        "Skips a stale heap entry that no longer reflects the best known distance",
+        "Terminates the algorithm early",
+        "Prevents negative weights from being processed",
+        "Marks the node as visited"
+      ],
+      "a": 0,
+      "x": "The heap can contain multiple entries for the same node; once a cheaper one has been processed, older worse entries are safely discarded."
+    },
+    {
+      "id": "qs-51d46cf8",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "When should 0-1 BFS be used instead of Dijkstra?",
+      "o": [
+        "When every edge weight is exactly 0 or 1",
+        "When the graph is a tree",
+        "When there are negative edges",
+        "When you need all-pairs shortest paths"
+      ],
+      "a": 0,
+      "x": "0-1 BFS exploits the restricted weight range with a simple deque (0-weight to front, 1-weight to back), avoiding the overhead of a heap."
+    },
+    {
+      "id": "qs-1dcf77e5",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "Why does Bellman-Ford need up to V-1 relaxation passes?",
+      "o": [
+        "A shortest simple path has at most V-1 edges, so info needs that many passes to fully propagate",
+        "Because there are always exactly V-1 edges in the graph",
+        "To guarantee the heap is empty",
+        "Because DSU requires V-1 unions"
+      ],
+      "a": 0,
+      "x": "Each pass lets shortest-path information travel one additional edge further; after V-1 passes, all simple-path lengths have been considered."
+    },
+    {
+      "id": "qs-1826947c",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "How does Bellman-Ford detect a negative cycle?",
+      "o": [
+        "If a distance can still be improved on a pass beyond V-1, a reachable negative cycle exists",
+        "If any edge weight is negative",
+        "If the graph has more than V-1 edges",
+        "If two nodes have the same distance"
+      ],
+      "a": 0,
+      "x": "Without a negative cycle, no shortest simple path needs more than V-1 edges -- continued improvement proves a cycle is being exploited."
+    },
+    {
+      "id": "qs-bdc063d3",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "What question does Floyd-Warshall answer that Dijkstra (run once) does not?",
+      "o": [
+        "Shortest paths between every pair of nodes, not just from one source",
+        "Shortest paths with negative weights",
+        "Shortest paths in an unweighted graph",
+        "The number of connected components"
+      ],
+      "a": 0,
+      "x": "Floyd-Warshall computes all-pairs shortest paths in one DP pass over intermediate nodes, rather than from a single source."
+    },
+    {
+      "id": "qs-18d885fa",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "What is the time complexity of Floyd-Warshall?",
+      "o": [
+        "O(V^3)",
+        "O(V^2)",
+        "O(V log V)",
+        "O(E log V)"
+      ],
+      "a": 0,
+      "x": "Three nested loops over every (k, i, j) triple give O(V^3) time and O(V^2) space."
+    },
+    {
+      "id": "qs-23285c9f",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "How does MST differ from single-source shortest path on the same weighted graph?",
+      "o": [
+        "MST connects ALL vertices at minimum total cost; shortest path cares about one source and one destination",
+        "They always produce the identical set of edges",
+        "MST only works on directed graphs",
+        "Shortest path always uses more edges than MST"
+      ],
+      "a": 0,
+      "x": "The two problems can select entirely different edge sets even on the same input graph, since they're optimizing different things."
+    },
+    {
+      "id": "qs-29c37bd5",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "What is Kruskal's core rule?",
+      "o": [
+        "Sort edges cheapest-first, add an edge only if it connects two different components",
+        "Grow one tree from a starting vertex, always adding the cheapest boundary edge",
+        "Add edges in the order they appear in the input",
+        "Always add the most expensive edge first"
+      ],
+      "a": 0,
+      "x": "Kruskal thinks globally in terms of edges, using DSU to detect whether an edge would create a cycle."
+    },
+    {
+      "id": "qs-48a36d9f",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "What is Prim's core rule?",
+      "o": [
+        "Grow a single tree from a start vertex, repeatedly adding the cheapest edge that extends it",
+        "Sort all edges globally by weight first",
+        "Use DSU to check for cycles",
+        "Process edges in reverse sorted order"
+      ],
+      "a": 0,
+      "x": "Prim thinks in terms of one growing tree and a min-heap of boundary edges, not a global edge sort."
+    },
+    {
+      "id": "qs-7e0e87e8",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "Even though Dijkstra and Prim both use a min-heap of (value, node) pairs, what's the key difference in what \"value\" means?",
+      "o": [
+        "Dijkstra's value is total path distance from the source; Prim's is just the one connecting edge's weight",
+        "Dijkstra's value is the node's degree; Prim's is the node's id",
+        "There is no real difference -- they are the same algorithm",
+        "Prim's value includes negative weights, Dijkstra's does not"
+      ],
+      "a": 0,
+      "x": "This is one of the most common interview mix-ups -- the code looks nearly identical but the heap priority means something different in each."
+    },
+    {
+      "id": "qs-ddba1a53",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "What is the \"virtual source\" trick used for in MST-modeling problems like water distribution?",
+      "o": [
+        "Turning an \"either build locally or connect to a neighbor\" choice into an ordinary MST edge",
+        "Reducing the graph to a single node",
+        "Detecting negative cycles",
+        "Speeding up DSU's find() operation"
+      ],
+      "a": 0,
+      "x": "Adding a SOURCE node with edges weighted by each location's standalone cost converts a hybrid problem into plain MST."
+    },
+    {
+      "id": "qs-02a4a4a1",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "For any \"transform state X into state Y\" problem where each transition costs the same, what's the right approach?",
+      "o": [
+        "Model states as nodes, transitions as edges, and run BFS",
+        "Always use Dijkstra regardless of cost structure",
+        "Always use DFS with backtracking",
+        "Use Floyd-Warshall on the state space"
+      ],
+      "a": 0,
+      "x": "Equal-cost transitions make it an unweighted shortest-path problem, which BFS solves directly once the state graph is identified."
+    },
+    {
+      "id": "qs-50f797b2",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "When is bidirectional BFS most useful?",
+      "o": [
+        "When both the start and target are known and the branching factor is large",
+        "When the graph has negative weights",
+        "When only the start node is known",
+        "When the graph is a tree"
+      ],
+      "a": 0,
+      "x": "Searching from both ends and expanding the smaller frontier each round can dramatically shrink the total search space versus one-directional BFS."
+    },
+    {
+      "id": "qs-f6aaf389",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "In Cheapest Flights Within K Stops, why isn't dist[node] alone enough information?",
+      "o": [
+        "A cheaper route might use too many stops to be legal, so the number of edges used must be part of the state",
+        "dist[node] can't represent flight prices",
+        "The graph might be disconnected",
+        "Dijkstra doesn't support directed graphs"
+      ],
+      "a": 0,
+      "x": "The K-stops constraint means the search needs dist[node][stops_used], not just dist[node], to correctly enforce the limit."
+    },
+    {
+      "id": "qs-cc65d6c1",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "Why must Cheapest Flights Within K Stops copy the distance array before each relaxation round?",
+      "o": [
+        "Updating in place could let one round's improvement immediately feed into another edge in the SAME round, exceeding the edge-count limit",
+        "Copying is required by Python syntax",
+        "It prevents integer overflow",
+        "It's needed to detect negative cycles"
+      ],
+      "a": 0,
+      "x": "Each round should only build on the PREVIOUS round's results, or the K+1-edges guarantee silently breaks."
+    },
+    {
+      "id": "qs-71668654",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "What is the difference between an Eulerian path and a Hamiltonian path?",
+      "o": [
+        "Eulerian uses every EDGE exactly once; Hamiltonian visits every VERTEX exactly once",
+        "They are the same concept with different names",
+        "Eulerian only applies to directed graphs",
+        "Hamiltonian only applies to weighted graphs"
+      ],
+      "a": 0,
+      "x": "\"Euler -> Edges, Hamilton -> Houses/vertices\" is the standard memory trick distinguishing the two."
+    },
+    {
+      "id": "qs-db600f46",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "In Hierholzer's algorithm for Reconstruct Itinerary, when is a node added to the result?",
+      "o": [
+        "Only after all of its outgoing edges have been used up",
+        "Immediately when the node is first visited",
+        "Only if it's the starting node",
+        "After the algorithm fully terminates, in sorted order"
+      ],
+      "a": 0,
+      "x": "The result is built in postorder and reversed at the end -- exactly why the answer builds \"backwards\" during the DFS."
+    },
+    {
+      "id": "qs-e1abc551",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "Why does Reconstruct Itinerary sort each node's destinations in REVERSE order before using pop()?",
+      "o": [
+        "So pop() removes the lexicographically smallest option in O(1) instead of needing pop(0) which is O(n)",
+        "To make the algorithm visit farther airports first",
+        "Reverse order is required by the problem statement",
+        "It has no effect on correctness or performance"
+      ],
+      "a": 0,
+      "x": "pop() removes from the end of a list in O(1); reverse-sorting puts the smallest destination at the end, so pop() naturally returns it."
+    },
+    {
+      "id": "qs-8e0c1a84",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "How is a character-ordering graph inferred in Alien Dictionary?",
+      "o": [
+        "Compare adjacent words and take the FIRST differing character as one directed edge",
+        "Compare every pair of words in the list",
+        "Sort all characters alphabetically first",
+        "Count how often each character appears"
+      ],
+      "a": 0,
+      "x": "Only the first differing character between adjacent words gives new ordering information; later characters are irrelevant to the ordering."
+    },
+    {
+      "id": "qs-e023bc43",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "In Alien Dictionary, why is [\"abc\", \"ab\"] invalid input?",
+      "o": [
+        "A longer word appearing before its own prefix contradicts normal sort order (prefixes sort first)",
+        "The words contain repeated letters",
+        "There are too few words to infer an order",
+        "The words are not the same length"
+      ],
+      "a": 0,
+      "x": "Under any valid alphabet, a strict prefix of a word must come before that word -- \"abc\" before \"ab\" is a direct contradiction."
+    },
+    {
+      "id": "qs-0d77377e",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "A problem repeatedly asks \"are entities X and Y connected?\" as new relationships arrive one at a time. What's the strongest signal for the right technique?",
+      "o": [
+        "DSU (Union-Find)",
+        "Dijkstra",
+        "Floyd-Warshall",
+        "Topological sort"
+      ],
+      "a": 0,
+      "x": "Dynamically arriving relationships plus repeated same-group queries is the textbook DSU signal, versus re-exploring a static graph each time."
+    },
+    {
+      "id": "qs-eb54aaef",
+      "d": "graphs",
+      "t": "graphs",
+      "q": "Why is assuming \"I'm studying DSU, so the answer must be DSU\" a dangerous habit?",
+      "o": [
+        "The same graph can require entirely different techniques depending on the actual question being asked",
+        "DSU can solve every graph problem given enough time",
+        "DSU is always faster than DFS/BFS",
+        "Interviewers never ask about DSU directly"
+      ],
+      "a": 0,
+      "x": "The source chat deliberately mixed problems without naming the technique for exactly this reason -- recognition should come from the question, not from whatever topic is currently being studied."
     }
   ]
 }

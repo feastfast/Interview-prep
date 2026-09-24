@@ -995,6 +995,15 @@
         "title": "Swim in Rising Water",
         "diff": "hard",
         "slug": "swim-in-rising-water"
+      },
+      {
+        "app": "lc-269"
+      },
+      {
+        "app": "lc-909"
+      },
+      {
+        "app": "lc-1926"
       }
     ],
     "dynamic-programming": [
