@@ -92,13 +92,13 @@ export function unlockedTopics(plan) {
 
 export function topicWeight(topic, cfg, stats, review) {
   const level = cfg.levels[topic.id] || 0;
-  if (stats.left === 0 && stats.due === 0 && stats.revisit === 0) return 0.05;               // nothing new to do
+  if (stats.left === 0 && (!review || (stats.due === 0 && stats.revisit === 0))) return 0.05;   // nothing new to do
   const frac = stats.total ? stats.solved / stats.total : 0;
   if (review) return 0.5 + 2 * (1 - frac) + 0.5 * Math.min(3, stats.revisit + stats.due);       // final 2 weeks: weakest first
   const base = (level === 1 ? 1.35 : level === 2 ? 0.7 : 1) * (topic.weight || 1);
   const coverage = Math.max(0.15, 1.4 - 1.5 * frac);                                     // favour breadth: well-covered topics yield time
   const enough = frac >= 0.6 && level !== 1 ? 0.2 : 1;                                    // ~60% of a topic is "good enough" for now
-  return base * coverage * enough + 0.4 * Math.min(3, stats.revisit);
+  return base * coverage * enough;
 }
 
 /* ---------------------------------------------------------------- weekly topic rotation */
@@ -135,7 +135,7 @@ export function genWeek({ weekKey, weekIdx, plan, cfg, pools, probs, today, prev
 const isSolved = (probs, id) => { const s = probs[id]; return !!s && s.st !== "todo"; };
 
 /* items: [{ id, kind: 'lc', topic, title, diff, lc, url, mins, slot: 'resolve'|'main'|'secondary'|'carry' }] */
-export function genDay({ date, topics, cfg, pools, probs, carry = [], skipped = [], excludeIds = [] }) {
+export function genDay({ date, topics, cfg, pools, probs, carry = [], skipped = [], excludeIds = [], review = false }) {
   const today = diffDays("1970-01-01", date);
   const budget = cfg.minutes || 90;
   const items = [];
@@ -149,8 +149,9 @@ export function genDay({ date, topics, cfg, pools, probs, carry = [], skipped = 
     const p = byId[id]; if (!p || isSolved(probs, id) || take.has(id) || skipped.includes(id)) continue;
     items.push(mk(p, "carry", MINUTES[p.diff])); take.add(id); spent += MINUTES[p.diff];
   }
-  // 2) spaced re-solves that are due (most overdue first), at most ~30% of the budget and 2 items
-  const dueList = Object.entries(probs).filter(([id, s]) => s.st !== "todo" && s.d <= today && byId[id] && !take.has(id))
+  // 2) spaced re-solves are optional (shown on the Today page); they only join the daily list in review mode,
+  //    the final two weeks before the interview, at most ~30% of the budget and 2 items
+  const dueList = !review ? [] : Object.entries(probs).filter(([id, s]) => s.st !== "todo" && s.d <= today && byId[id] && !take.has(id))
     .sort((a, b) => a[1].d - b[1].d).map(([id]) => byId[id]);
   let resolveSpent = 0, nRes = 0;
   for (const p of dueList) {

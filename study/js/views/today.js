@@ -21,8 +21,8 @@ export function render(el, r, ctx) {
     stat("quiz", log.quiz || 0, "quiz answers today") + stat("check", log.probs || 0, "problems today") + "</div>";
 
   const due = Object.entries(s.probs).filter(([id, p]) => D.known.has(id) && p.st !== "todo" && p.d <= dayNum()).sort((a, b) => a[1].d - b[1].d);
-  h += '<div class="sec-h"><h2>Re-solve today</h2>' + (due.length ? '<span class="tag acc">' + due.length + " due</span>" : "") + "</div>";
-  if (!due.length) h += '<div class="note">' + icon("sparkle", 16) + "<span>Nothing due for a re-solve. Problems you tick off come back after 1, 3, 7, 14, 30 and 60 days.</span></div>";
+  h += '<div class="sec-h"><h2>Optional re-solves</h2>' + (due.length ? '<span class="tag acc">' + due.length + " due</span>" : "") + "</div>";
+  if (!due.length) h += '<div class="note">' + icon("sparkle", 16) + "<span>Nothing due. Problems you solve are offered again here after 1, 3, 7, 14, 30 and 60 days &mdash; optional, and never added to your daily list.</span></div>";
   else h += '<ul class="list stagger">' + due.slice(0, 6).map(([id, p]) => {
     const m = findProblem(D, id);
     if (!m) return "";

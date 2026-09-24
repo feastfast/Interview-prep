@@ -38,7 +38,7 @@ function ensureDay(pc, week, state, force = false) {
   const wd = P.weekday(cursor);
   const topics = week.days[wd] || week.days[Math.max(...Object.keys(week.days).map(Number))] || [];
   const skipped = existing ? existing.skipped || [] : [];
-  const gen = P.genDay({ date: todayISO(), topics, cfg: pc.cfg, pools: pc.pools, probs: state.probs, skipped, excludeIds: pc.cfg.stash || [] });
+  const gen = P.genDay({ date: todayISO(), topics, cfg: pc.cfg, pools: pc.pools, probs: state.probs, skipped, excludeIds: pc.cfg.stash || [], review: pc.review });
   const rec = { t: Date.now(), topics, skipped, items: gen.items.map(i => ({ id: i.id, slot: i.slot, mins: i.mins, topic: i.topic })) };
   store.commit(s => { s.days[cursor] = rec; });
   return store.get().days[cursor];
@@ -214,7 +214,7 @@ function itemHTML(i, done, st) {
     '<a class="ptitle" href="' + esc(i.url) + '" target="_blank" rel="noopener"><b>' + esc(i.title) + '<span class="ext">' + icon("ext", 13) + '</span></b><span class="small muted">' + meta + "</span></a>" +
     '<span class="tag ' + i.diff + '">' + i.diff + "</span></div>";
   if (done) {
-    const when = st && st.st === "revisit" ? "Back tomorrow to revisit" : st && st.d ? "Comes back in " + plural(Math.max(0, st.d - dayNum()), "day") : "Done";
+    const when = st && st.st === "revisit" ? "Optional re-solve tomorrow" : st && st.d ? "Optional re-solve in " + plural(Math.max(0, st.d - dayNum()), "day") : "Done";
     h += '<div class="pdone">' + icon("check", 13) + "<span>" + when + "</span>" + (saved ? '<span class="dotsep"></span><button class="linkbtn" data-act="log">' + icon("code", 12) + "Solution saved</button>" : '<span class="dotsep"></span><button class="linkbtn" data-act="log">Add solution</button>') + "</div>";
   } else {
     h += '<div class="pact"><button class="btn sm ghost" data-act="hard">' + icon("alert", 14) + 'Struggled</button><button class="btn sm ghost" data-act="skip">' + icon("skip", 14) + 'Skip</button><button class="btn sm ghost" data-act="stash">' + icon("archive", 14) + "Stash</button></div>";
@@ -235,7 +235,7 @@ function bindItems(el, ctx, cursor, byId) {
         const r = b.getBoundingClientRect();
         confetti({ x: r.left + r.width / 2, y: r.top });
         ctx.toast("List complete — the next slot moves up.");
-      } else ctx.toast(act === "clean" ? "Marked done. It will come back for a re-solve." : "Marked to revisit tomorrow.");
+      } else ctx.toast(act === "clean" ? "Marked done." : "Marked as struggled — optional re-solve tomorrow.");
       openLogModal(id, title, ctx);
       ctx.rerender();
     }

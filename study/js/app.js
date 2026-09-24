@@ -65,7 +65,7 @@ const tabOf = (tab, views) => tab === "cards" || tab === "quiz" ? "topics" : vie
 
 function drawChrome(active, r) {
   const c = D.cards ? counts() : { probsDue: 0 };
-  const badge = k => (k === "plan" && c.probsDue > 0 ? "<em>" + c.probsDue + "</em>" : "");
+  const badge = () => "";                       // re-solves are optional, so no nagging count on the Plan tab
   const cur = r.parts[0] === "topics" ? r.parts[1] : (r.parts[0] === "cards" || r.parts[0] === "quiz") ? (r.q.get("decks") || "").split(",")[0] : null;
 
   let s = '<a class="brand" href="#/today"><span class="logo">' + icon("sparkle", 18) + '</span><span><b>Interview Prep</b><small>Study · notes · planner</small></span></a>' +
@@ -85,7 +85,7 @@ function drawChrome(active, r) {
   $("#top").innerHTML = '<a class="brand sm" href="#/today"><span class="logo">' + icon("sparkle", 15) + "</span><b>Interview Prep</b></a>" +
     '<div class="row" style="gap:2px">' + syncPill(true) + '<button class="iconbtn" type="button" data-palette aria-label="Search">' + icon("search", 18) + "</button>" + themeBtn() + "</div>";
 
-  drawDock(active, c.probsDue);
+  drawDock(active, 0);
 }
 /* The dock is built once and only updated, so its pill can glide between tabs with a plain CSS transition. */
 function drawDock(active, due) {
