@@ -137,7 +137,7 @@ function overview(el, ctx) {
   if (!pc.configured) {
     el.innerHTML = '<section class="hero rise"><div class="hero-main"><div class="eyebrow">Weekly plan</div><h1>Your LeetCode, rotated for you.</h1>' +
       '<p class="lead">Tell the planner when your interview is and how you feel about each topic. It builds a fresh schedule every week &mdash; two topics a day, plus spaced re-solves of older problems.</p>' +
-      '<ul class="checks"><li>' + icon("check", 15) + "Weekdays, ~90 minutes per day (adjustable)</li><li>" + icon("check", 15) + "Curated lists plus the problems from your study guides</li><li>" + icon("check", 15) + "Topics unlock week by week; the last two weeks switch to review mode</li></ul>" +
+      '<ul class="checks"><li>' + icon("check", 15) + "Weekdays, ~90 minutes per day (adjustable)</li><li>" + icon("check", 15) + "Curated lists plus the problems from your study guides</li><li>" + icon("check", 15) + "Every topic is available from day one; the last two weeks switch to review mode</li></ul>" +
       '<div class="row"><a class="btn primary lg" href="#/plan/setup">Set up my plan ' + icon("arrow", 16) + "</a></div></div></section>";
     return;
   }
@@ -194,10 +194,9 @@ function overview(el, ctx) {
   const now = dayNum();
   for (const t of D.plan.topics) {
     const s = P.topicStats(pc.pools[t.id], state.probs, now);
-    const locked = pc.weekIdx < t.unlock && !(cfg.levels[t.id] > 0);
     const pct = Math.round(100 * s.solved / Math.max(1, s.total));
-    h += '<a class="covi hued' + (locked ? " locked" : "") + '" href="#/topics/' + t.id + '/problems" style="--h:' + hue(t.id) + '"><div class="covi-t"><span class="tdot"></span><span>' + esc(t.label) + "</span><small>" + s.solved + "/" + s.total + "</small></div>" +
-      '<div class="bar tint"><i style="width:' + pct + '%"></i></div><div class="covi-m">' + (locked ? icon("lock", 12) + "Unlocks in week " + (t.unlock + 1) : s.due ? s.due + " due for a re-solve" : pct + "% solved") + "</div></a>";
+    h += '<a class="covi hued" href="#/topics/' + t.id + '/problems" style="--h:' + hue(t.id) + '"><div class="covi-t"><span class="tdot"></span><span>' + esc(t.label) + "</span><small>" + s.solved + "/" + s.total + "</small></div>" +
+      '<div class="bar tint"><i style="width:' + pct + '%"></i></div><div class="covi-m">' + (s.due ? s.due + " due for a re-solve" : pct + "% solved") + "</div></a>";
   }
   h += "</div>";
   el.innerHTML = h;
@@ -351,10 +350,10 @@ function setup(el, ctx) {
       '<label class="field-l" for="iv">Interview date</label><input class="input" type="date" id="iv" value="' + esc(cfg.interview || "") + '">' +
       '<label class="field-l">Time per study day: <b id="minv">' + cfg.minutes + '</b> min</label><input type="range" id="mins" min="45" max="180" step="15" value="' + cfg.minutes + '">' +
       '<label class="field-l">Study days</label><div class="chips" id="days" style="margin-top:8px">' + [1, 2, 3, 4, 5, 6, 7].map(d => '<button class="chip' + (cfg.days.includes(d) ? " on" : "") + '" data-d="' + d + '">' + DAY_NAMES[d] + "</button>").join("") + "</div></div>";
-    h += '<div class="card"><div class="card-h">' + icon("topics", 18) + '<b>How comfortable are you with each topic?</b></div><p class="small muted" style="margin:6px 0 14px">&ldquo;Learning&rdquo; unlocks a topic now and gives it extra time. &ldquo;Not started&rdquo; topics unlock week by week. &ldquo;Comfortable&rdquo; topics get less time.</p><div class="lvls">';
+    h += '<div class="card"><div class="card-h">' + icon("topics", 18) + '<b>How comfortable are you with each topic?</b></div><p class="small muted" style="margin:6px 0 14px">&ldquo;Learning&rdquo; gives a topic extra time in your schedule. &ldquo;Not started&rdquo; is the normal share. &ldquo;Comfortable&rdquo; topics get less time.</p><div class="lvls">';
     for (const t of D.plan.topics) {
       const lv = cfg.levels[t.id] || 0;
-      h += '<div class="lvl hued" style="--h:' + hue(t.id) + '"><div class="lvl-t"><span class="tdot"></span><b>' + esc(t.label) + '</b><span class="small muted">unlocks week ' + (t.unlock + 1) + '</span></div><div class="chips" data-topic="' + t.id + '">' +
+      h += '<div class="lvl hued" style="--h:' + hue(t.id) + '"><div class="lvl-t"><span class="tdot"></span><b>' + esc(t.label) + '</b></div><div class="chips" data-topic="' + t.id + '">' +
         P.LEVELS.map((l, i) => '<button class="chip' + (lv === i ? " on" : "") + '" data-l="' + i + '">' + l + "</button>").join("") + "</div></div>";
     }
     h += "</div></div>";

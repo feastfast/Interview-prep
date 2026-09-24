@@ -85,9 +85,9 @@ export function topicStats(pool, probs, today) {
 export function weeksBetween(startISO, dateISO) { return Math.floor(diffDays(mondayOf(startISO), mondayOf(dateISO)) / 7); }
 export function isReviewMode(cfg, dateISO) { return !!cfg.interview && diffDays(dateISO, cfg.interview) <= 14; }
 
-/* Topics that may appear this week: unlocked by schedule (week number) or by the learner's own level. */
-export function unlockedTopics(plan, cfg, weekIdx) {
-  return plan.topics.filter(t => (cfg.levels[t.id] || 0) > 0 || weekIdx >= t.unlock);
+/* Every topic is available from the first week; the learner's comfort level (not a schedule) sets how much time it gets. */
+export function unlockedTopics(plan) {
+  return plan.topics;
 }
 
 export function topicWeight(topic, cfg, stats, review) {
@@ -105,7 +105,7 @@ export function topicWeight(topic, cfg, stats, review) {
 /* Returns { "1": [main, secondary], ... } keyed by ISO weekday (1 = Monday) for the study days. */
 export function genWeek({ weekKey, weekIdx, plan, cfg, pools, probs, today, prevWeek, review }) {
   const rand = rng((cfg.seed || 1) + "|" + weekKey);
-  const topics = unlockedTopics(plan, cfg, weekIdx);
+  const topics = unlockedTopics(plan);
   const w = {};
   for (const t of topics) w[t.id] = topicWeight(t, cfg, topicStats(pools[t.id], probs, today), review);
   const days = (cfg.days && cfg.days.length ? cfg.days : [1, 2, 3, 4, 5]).slice().sort((a, b) => a - b);
@@ -176,7 +176,7 @@ export function genDay({ date, topics, cfg, pools, probs, carry = [], skipped = 
       if (used >= allot - 5) break;
     }
   }
-  // 4) if the topics ran dry, top up from any unlocked topic with unsolved problems
+  // 4) if the topics ran dry, top up from any topic with unsolved problems
   if (spent < budget * 0.6) {
     for (const tid of Object.keys(pools)) {
       const p = next(tid); if (!p) continue;
