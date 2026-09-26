@@ -195,19 +195,25 @@ export const defaultPlan = (todayISO) => ({
 });
 
 /* ---------------------------------------------------------------- schedule cursor (day-queue shifting) */
-/* Completions count toward a list from the earlier of its slot date and today: a catch-up list accepts work
-   done since its (past) slot, a pulled-forward list accepts work done today. Using the slot date alone would
-   ignore today's work on an ahead-of-schedule list; ignoring dates would count re-solve items (already solved
-   once) as done before they were actually re-solved. */
-export const listSince = (cursor, todayISO) => (cursor < todayISO ? cursor : todayISO);
+/* Is this item of a day's list done? A new problem is done as soon as it is solved -- it was unsolved when the list
+   was built, so any solve happened for this list, however many calendar days ago (dates must not matter: a list
+   can sit for days while you catch up, or be pulled forward). A re-solve item was already solved when the list was
+   built, so it only counts once it has been solved again after the list was created. */
+export function isItemDone(rec, item, probs) {
+  const p = probs[item.id];
+  if (!p || p.st === "todo") return false;
+  if (item.slot !== "resolve") return true;
+  const made = new Date(rec.created || rec.t || 0).setHours(0, 0, 0, 0);
+  return (p.c !== undefined ? p.c : p.t || 0) >= made;
+}
 
-/* A day's schedule is "complete" once every item in it is done since `since`, or explicitly skipped --
-   stashed items never entered rec.items in the first place, so they don't block completion. */
-export function dayComplete(rec, probs, since) {
+/* A day's schedule is "complete" once every item in it is done or explicitly skipped -- stashed items never
+   entered rec.items in the first place, so they don't block completion. */
+export function dayComplete(rec, probs) {
   if (!rec) return false;
   if (!rec.items.length) return true;
   const skipped = new Set(rec.skipped || []);
-  return rec.items.every(i => skipped.has(i.id) || doneOn(probs[i.id], since));
+  return rec.items.every(i => skipped.has(i.id) || isItemDone(rec, i, probs));
 }
 
 /* First unsolved problem of a topic that is not already used (used for "skip / swap"). */

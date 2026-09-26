@@ -39,7 +39,7 @@ function ensureDay(pc, week, state, force = false) {
   const topics = week.days[wd] || week.days[Math.max(...Object.keys(week.days).map(Number))] || [];
   const skipped = existing ? existing.skipped || [] : [];
   const gen = P.genDay({ date: todayISO(), topics, cfg: pc.cfg, pools: pc.pools, probs: state.probs, skipped, excludeIds: pc.cfg.stash || [], review: pc.review });
-  const rec = { t: Date.now(), topics, skipped, items: gen.items.map(i => ({ id: i.id, slot: i.slot, mins: i.mins, topic: i.topic })) };
+  const rec = { t: Date.now(), created: Date.now(), topics, skipped, items: gen.items.map(i => ({ id: i.id, slot: i.slot, mins: i.mins, topic: i.topic })) };
   store.commit(s => { s.days[cursor] = rec; });
   return store.get().days[cursor];
 }
@@ -49,18 +49,15 @@ function ensureDay(pc, week, state, force = false) {
    in the same sitting, steps it forward again -- the "shift in reverse" is just this loop running twice. */
 function advanceCursor(pc, state) {
   let cursor = pc.cursor, moved = false;
-  const today = todayISO();
   for (let guard = 0; guard < 60; guard++) {
     if (!(pc.cfg.days || []).includes(P.weekday(cursor))) { cursor = P.addDays(cursor, 1); moved = true; continue; }
     const rec = state.days[cursor];
-    if (rec && P.dayComplete(rec, state.probs, P.listSince(cursor, today))) { cursor = P.addDays(cursor, 1); moved = true; continue; }
+    if (rec && P.dayComplete(rec, state.probs)) { cursor = P.addDays(cursor, 1); moved = true; continue; }
     break;
   }
   if (moved) store.commit(s => { s.plan.cursor = cursor; s.plan.t = Date.now(); });
   return cursor;
 }
-
-const isDone = (state, id, date) => P.doneOn(state.probs[id], date);
 
 /* Mark a problem solved / struggled. The previous record is kept so that "Undo" can restore it exactly. */
 export function record(id, outcome) {
@@ -148,7 +145,6 @@ function overview(el, ctx) {
   pc = P.contextFor(D, state, date);
   const week = ensureWeek(pc, state);
   const cursor = pc.cursor;
-  const since = P.listSince(cursor, date);
   const cfg = pc.cfg;
   const daysLeft = cfg.interview ? P.diffDays(date, cfg.interview) : null;
   const totalWeeks = cfg.interview ? Math.max(1, Math.ceil(P.diffDays(cfg.start, cfg.interview) / 7)) : null;
@@ -165,14 +161,14 @@ function overview(el, ctx) {
   state = store.get();
   if (rec) {
     const items = rec.items.map(i => Object.assign({}, pc.byId[i.id] || { id: i.id, title: i.id, diff: "medium", kind: "lc", url: "https://leetcode.com/problemset/?search=" + encodeURIComponent(i.id) }, { slot: i.slot, mins: i.mins }));
-    const doneCount = items.filter(i => isDone(state, i.id, since)).length;
+    const doneCount = items.filter(i => P.isItemDone(rec, i, state.probs)).length;
     const totalMin = items.reduce((a, b) => a + b.mins, 0);
     h += '<section class="today-card rise d1"><div class="today-h">' + ring(items.length ? doneCount / items.length : 0, { size: 68, stroke: 7, label: doneCount + "/" + items.length }) +
       '<div class="today-t"><div class="eyebrow">' + DAY_NAMES[P.weekday(cursor)] + " · " + cursor.slice(5).replace("-", "/") + "</div><h2>Today’s list</h2>" +
       '<div class="row" style="gap:6px;margin-top:6px">' + rec.topics.map(t => tchip(D, t)).join("") + '<span class="small muted">· about ' + totalMin + " min</span></div></div></div>";
     if (behind > 0) h += '<div class="banner warn">' + icon("sync", 15) + "<span>Catching up &mdash; this list was scheduled " + plural(behind, "day") + " ago. Finish it and the rest of the queue moves up.</span></div>";
     else if (behind < 0) h += '<div class="banner good">' + icon("bolt", 15) + "<span>You’re " + plural(-behind, "day") + " ahead of schedule. Nice.</span></div>";
-    h += '<div class="plist">' + (items.length ? items.map(i => itemHTML(i, isDone(state, i.id, since), state.probs[i.id])).join("") : '<div class="empty">' + icon("trophy", 28) + "<b>Nothing left to schedule</b>Every problem in these topics is solved.</div>") + "</div>";
+    h += '<div class="plist">' + (items.length ? items.map(i => itemHTML(i, P.isItemDone(rec, i, state.probs), state.probs[i.id])).join("") : '<div class="empty">' + icon("trophy", 28) + "<b>Nothing left to schedule</b>Every problem in these topics is solved.</div>") + "</div>";
     h += '<div class="today-f"><button class="btn sm ghost" id="regen">' + icon("sync", 14) + 'Rebuild list</button><span class="small muted">Finish every item and the next slot moves up automatically.</span></div></section>';
   }
 
@@ -231,7 +227,7 @@ function bindItems(el, ctx, cursor, byId) {
       record(id, act === "clean" ? "solved" : "struggled");
       justTicked = id;
       const st = store.get(), rec = st.days[cursor];
-      if (rec && P.dayComplete(rec, st.probs, P.listSince(cursor, todayISO()))) {
+      if (rec && P.dayComplete(rec, st.probs)) {
         const r = b.getBoundingClientRect();
         confetti({ x: r.left + r.width / 2, y: r.top });
         ctx.toast("List complete — the next slot moves up.");

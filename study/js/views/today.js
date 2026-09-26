@@ -51,8 +51,7 @@ function planInfo(D, s) {
   if (!pc.configured) return { pct: 0, label: "—", sub: "no plan yet", lead: "Build a rotating LeetCode schedule around your interview date, then work through it one day at a time.", cta: '<a class="btn primary lg" href="#/plan/setup">Set up my plan ' + icon("arrow", 16) + "</a>" + second };
   const rec = s.days[pc.cursor];
   if (!rec) return { pct: 0, label: "0", sub: "done", lead: "Today’s LeetCode list is ready to be built.", cta: '<a class="btn primary lg" href="#/plan">Open today’s plan ' + icon("arrow", 16) + "</a>" + second };
-  const since = P.listSince(pc.cursor, date);
-  const n = rec.items.length, done = rec.items.filter(i => P.doneOn(s.probs[i.id], since)).length, left = n - done;
+  const n = rec.items.length, done = rec.items.filter(i => P.isItemDone(rec, i, s.probs)).length, left = n - done;
   const labels = rec.topics.map(t => esc((D.plan.topics.find(x => x.id === t) || { label: t }).label)).join(" + ");
   return {
     topics: rec.topics, pct: n ? done / n : 0, label: done + "/" + n, sub: "problems",
