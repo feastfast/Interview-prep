@@ -22,9 +22,10 @@ function toRanges(pages) {
 }
 const pdfHref = (guide, page) => guide.pdf.split("/").map(encodeURIComponent).join("/") + "#page=" + page;
 
-function warmHref(kind, topic, groups, n, ret) {
+function warmHref(kind, topic, pick, n, ret) {
   const base = kind === "cards" ? "#/cards/session?mode=all" : "#/quiz/session?r=" + Date.now();
-  return base + "&decks=" + encodeURIComponent(topic) + "&topics=" + encodeURIComponent(groups.join("|")) + "&n=" + n + "&ret=" + encodeURIComponent(ret);
+  const sel = pick.ids ? "&ids=" + pick.ids.join(",") : "&topics=" + encodeURIComponent(pick.groups.join("|"));
+  return base + "&decks=" + encodeURIComponent(topic) + sel + "&n=" + n + "&ret=" + encodeURIComponent(ret);
 }
 
 /* HTML for one problem, or "" when the guide has nothing mapped for it. */
@@ -36,7 +37,8 @@ export function prepStrip(D, topic, id, ret = "#/plan") {
   const all = pagesOf(m.p), todo = all.filter(p => !isRead(reads, topic, p));
   const seen = all.length - todo.length;
   const nCards = Math.min(WARM_CARDS, D.cards.cards.filter(c => c.d === topic && m.c.includes(c.t)).length);
-  const nQuiz = Math.min(WARM_QUIZ, D.quiz.questions.filter(q => q.d === topic && m.q.includes(q.t)).length);
+  // some decks keep all their questions in one group, so those entries list question ids instead of group names
+  const nQuiz = Math.min(WARM_QUIZ, m.qi ? m.qi.length : D.quiz.questions.filter(q => q.d === topic && m.q.includes(q.t)).length);
 
   const links = ranges => ranges.map(r => '<a class="pp" href="' + esc(pdfHref(guide, r[0])) + '" target="_blank" rel="noopener">' + label(r) + "</a>").join(", ");
   const pp = n => (n === 1 ? "p. " : "pp. ");
@@ -48,8 +50,8 @@ export function prepStrip(D, topic, id, ret = "#/plan") {
   let h = '<div class="prep" data-topic="' + esc(topic) + '" data-id="' + esc(id) + '"><div class="prep-r"><span class="prep-l">Read</span><div class="prep-c">' + read + "</div></div>";
   if (nCards || nQuiz) {
     h += '<div class="prep-r"><span class="prep-l">Warm up</span><div class="prep-c">' +
-      (nCards ? '<a class="btn sm" href="' + esc(warmHref("cards", topic, m.c, nCards, ret)) + '">' + icon("cards", 14) + plural(nCards, "card") + "</a>" : "") +
-      (nQuiz ? '<a class="btn sm" href="' + esc(warmHref("quiz", topic, m.q, nQuiz, ret)) + '">' + icon("quiz", 14) + plural(nQuiz, "question") + "</a>" : "") + "</div></div>";
+      (nCards ? '<a class="btn sm" href="' + esc(warmHref("cards", topic, { groups: m.c }, nCards, ret)) + '">' + icon("cards", 14) + plural(nCards, "card") + "</a>" : "") +
+      (nQuiz ? '<a class="btn sm" href="' + esc(warmHref("quiz", topic, m.qi ? { ids: m.qi } : { groups: m.q }, nQuiz, ret)) + '">' + icon("quiz", 14) + plural(nQuiz, "question") + "</a>" : "") + "</div></div>";
   }
   if (m.n) h += '<div class="prep-n">' + esc(m.n) + "</div>";
   return h + "</div>";

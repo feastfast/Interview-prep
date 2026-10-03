@@ -161,7 +161,7 @@ function overview(el, ctx) {
   const rec = ensureDay(pc, week, state);
   state = store.get();
   if (rec) {
-    const items = rec.items.map(i => Object.assign({}, pc.byId[i.id] || { id: i.id, title: i.id, diff: "medium", kind: "lc", url: "https://leetcode.com/problemset/?search=" + encodeURIComponent(i.id) }, { slot: i.slot, mins: i.mins }));
+    const items = rec.items.map(i => Object.assign({}, pc.byId[i.id] || { id: i.id, title: i.id, diff: "medium", kind: "lc", url: "https://leetcode.com/problemset/?search=" + encodeURIComponent(i.id) }, { slot: i.slot, mins: i.mins }, i.topic ? { topic: i.topic } : {}));   // a problem can sit in several topics: use the one this list assigned
     const doneCount = items.filter(i => P.isItemDone(rec, i, state.probs)).length;
     const totalMin = items.reduce((a, b) => a + b.mins, 0);
     h += '<section class="today-card rise d1"><div class="today-h">' + ring(items.length ? doneCount / items.length : 0, { size: 68, stroke: 7, label: doneCount + "/" + items.length }) +

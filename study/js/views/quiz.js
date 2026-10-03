@@ -17,7 +17,8 @@ function pick(D, r) {
   const mode = r.q.get("mode");
   const decksParam = r.q.get("decks");
   const decks = !decksParam || decksParam === "all" ? null : decksParam.split(",");
-  let pool = D.quiz.questions.filter(q => (!decks || decks.includes(q.d)) && (!topics.length || topics.includes(q.t)));
+  const ids = (r.q.get("ids") || "").split(",").filter(Boolean);       // an explicit question list (warm-ups on decks without pattern groups)
+  let pool = D.quiz.questions.filter(q => ids.length ? ids.includes(q.id) : (!decks || decks.includes(q.d)) && (!topics.length || topics.includes(q.t)));
   if (mode === "mistakes") pool = pool.filter(q => s.quiz[q.id] && s.quiz[q.id].last === 0);
   // priority: wrong last time > never seen > oldest attempt, then interleave decks
   const score = q => { const x = s.quiz[q.id]; return !x ? 1.5 : x.last === 0 ? 2 : 0.5 + Math.min(0.9, (Date.now() - x.t) / (30 * 864e5)); };
