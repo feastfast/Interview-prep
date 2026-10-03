@@ -1,0 +1,45 @@
+{
+  "topic": "queue",
+  "label": "Queue guide",
+  "pdf": "LeetCode/Queue/Queue_Study_Guide.pdf",
+  "ignore": ["0.", "1.", "12.", "13."],
+  "patterns": {
+    "basics":   { "essence": [],         "cards": ["Queue basics"],              "quiz": ["Queue basics"] },
+    "fifo":     { "essence": [],         "cards": ["FIFO simulation"],           "quiz": ["FIFO simulation"] },
+    "bfs":      { "essence": [[28, 28]], "cards": ["BFS"],                       "quiz": ["BFS"] },
+    "msbfs":    { "essence": [[41, 41]], "cards": ["Multi-source BFS"],          "quiz": ["Multi-source BFS"] },
+    "bfsstate": { "essence": [[46, 47]], "cards": ["BFS + state"],               "quiz": ["BFS + state"] },
+    "grid":     { "essence": [[52, 53]], "cards": ["Grid BFS"],                  "quiz": ["Grid BFS"] },
+    "mdeque":   { "essence": [[59, 60]], "cards": ["Monotonic deque"],           "quiz": ["Monotonic deque"] },
+    "qhash":    { "essence": [[66, 67]], "cards": ["Queue + hash map"],          "quiz": ["Queue + hash map"] },
+    "topo":     { "essence": [[72, 73]], "cards": ["Topological sort (Kahn)"],   "quiz": ["Topological sort (Kahn)"] },
+    "zob":      { "essence": [[78, 79]], "cards": ["0-1 BFS"],                   "quiz": ["0-1 BFS"] }
+  },
+  "labels": {
+    "FIFO simulation": ["fifo"],
+    "BFS": ["bfs"],
+    "Multi-source BFS": ["msbfs"],
+    "BFS + state": ["bfsstate"],
+    "Grid BFS": ["grid"],
+    "Monotonic deque": ["mdeque"],
+    "Queue + hash map": ["qhash"],
+    "Topological sort": ["topo"],
+    "0-1 BFS": ["zob"]
+  },
+  "assign": {
+    "lc-933": { "patterns": ["fifo"] },
+    "lc-225": { "patterns": ["fifo"] },
+    "lc-1700": { "patterns": ["fifo"] },
+    "lc-649": { "patterns": ["fifo"], "ignore": ["9.2"] },
+    "lc-2073": { "ignore": ["9.2"] },
+    "lc-102": { "patterns": ["bfs"] },
+    "lc-994": { "patterns": ["msbfs"], "ignore": ["1.9"] },
+    "lc-622": { "patterns": ["basics"], "pages": [[10, 12]] },
+    "lc-641": { "patterns": ["basics"], "pages": [[10, 12]], "note": "Not worked in the guide. Same ring buffer as Design Circular Queue, with operations at both ends." },
+    "queue-two-stacks": { "patterns": ["basics"], "pages": [[12, 13]] },
+    "lc-103": { "pages": [[31, 33]] },
+    "lc-199": { "pages": [[31, 33]] },
+    "lc-637": { "pages": [[31, 33]] },
+    "lc-111": { "pages": [[31, 33]] }
+  }
+}

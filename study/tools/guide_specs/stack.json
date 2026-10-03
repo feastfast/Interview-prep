@@ -1,0 +1,36 @@
+{
+  "topic": "stack",
+  "label": "Stack guide",
+  "pdf": "LeetCode/Stack/Stack_Study_Guide.pdf",
+  "patterns": {
+    "match":  { "essence": [[13, 14]],           "cards": ["Matching and cancelling"],       "quiz": ["Matching and cancelling"] },
+    "cancel": { "essence": [[19, 19]],           "cards": ["Matching and cancelling"],       "quiz": ["Matching and cancelling"] },
+    "expr":   { "essence": [[22, 22]],           "cards": ["Expressions and parsing"],       "quiz": ["Expressions"] },
+    "design": { "essence": [[28, 28]],           "cards": ["Design problems"],               "quiz": ["Design"] },
+    "mono":   { "essence": [[36, 37], [39, 39]], "cards": ["Monotonic stack — core"],        "quiz": ["Monotonic stack"] },
+    "monolex":{ "essence": [[39, 39], [48, 48]], "cards": ["Monotonic stack — core"],        "quiz": ["Monotonic stack"] },
+    "areas":  { "essence": [[51, 51]],           "cards": ["Areas and contributions"],       "quiz": ["Areas and contributions"] },
+    "groups": { "essence": [],                   "cards": ["Stack of groups, DFS, deque"],   "quiz": ["Groups, DFS, deque"] }
+  },
+  "labels": {
+    "Matching": ["match"],
+    "Cancelling": ["cancel"],
+    "Expressions": ["expr"],
+    "Design": ["design"],
+    "Design / simulation": ["design"],
+    "Monotonic stack": ["mono"],
+    "Monotonic stack (greedy)": ["monolex"],
+    "Monotonic stack (areas)": ["areas"],
+    "Monotonic stack (contribution)": ["areas"],
+    "Stack of groups": ["groups"],
+    "Monotonic deque": ["groups"]
+  },
+  "assign": {
+    "lc-496": { "patterns": ["mono"] },
+    "lc-682": { "patterns": ["design"] },
+    "lc-1249": { "patterns": ["match"] },
+    "next-greater-circular": { "pages": [[45, 45]] },
+    "remove-duplicate-letters": { "pages": [[49, 50]] },
+    "previous-smaller": { "patterns": [], "warm": ["mono"], "pages": [[39, 39], [41, 42]] }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "topic": "sliding-window",
+  "label": "Sliding Window guide",
+  "pdf": "LeetCode/Sliding Window/Sliding_Window_Study_Guide.pdf",
+  "patterns": {
+    "fixed":    { "essence": [[6, 6]],   "cards": ["Fixed-size window"],                  "quiz": ["Fixed-size window"] },
+    "longest":  { "essence": [[8, 9]],   "cards": ["Longest valid window"],               "quiz": ["Longest valid window"] },
+    "shortest": { "essence": [[14, 15]], "cards": ["Shortest valid window"],              "quiz": ["Shortest valid window"] },
+    "freqmap":  { "essence": [[18, 19]], "cards": ["Frequency-map window (fixed size)"],  "quiz": ["Frequency-map window (fixed size)"] },
+    "atmostk":  { "essence": [[22, 22]], "cards": ["At-most K to exactly K"],             "quiz": ["At-most K to exactly K"] },
+    "deque":    { "essence": [[25, 25]], "cards": ["Monotonic deque"],                    "quiz": ["Monotonic deque"] },
+    "basics":   { "essence": [[3, 3]],   "cards": ["Sliding window basics"],              "quiz": ["Sliding window basics"] }
+  },
+  "labels": {
+    "Fixed-size window": ["fixed"],
+    "Longest valid window": ["longest"],
+    "At-most K to exactly K": ["atmostk"],
+    "Monotonic deque": ["deque"]
+  },
+  "assign": {
+    "lc-643": { "patterns": ["fixed"] },
+    "lc-3": { "patterns": ["longest"] },
+    "lc-424": { "patterns": ["longest"] },
+    "lc-1004": { "patterns": ["longest"] },
+    "lc-904": { "patterns": ["longest"], "pages": [[9, 11]] },
+    "lc-209": { "patterns": ["shortest"] },
+    "lc-76": { "patterns": ["shortest"] },
+    "lc-567": { "patterns": ["freqmap"], "pages": [[17, 17]] },
+    "lc-438": { "patterns": ["freqmap"] },
+    "lc-2461": { "pages": [[7, 7]] },
+    "lc-121": { "patterns": ["basics"], "note": "Not worked in the guide. One pass keeping the lowest price so far; no window needed." },
+    "lc-1052": { "patterns": ["fixed"], "note": "Not worked in the guide. Slide a fixed window over the customers you could save." },
+    "lc-1423": { "patterns": ["fixed"], "note": "Not worked in the guide. The cards you keep are everything except one fixed window of size n-k." },
+    "lc-1838": { "patterns": ["longest"], "note": "Not worked in the guide. Sort first, then keep the longest window whose cost to raise everything to its right end is at most k." },
+    "lc-1493": { "patterns": ["longest"], "pages": [[12, 13]], "note": "Not worked in the guide. Same as Max Consecutive Ones III with k = 1, minus the one deleted element." },
+    "lc-2024": { "patterns": ["longest"], "pages": [[12, 13]], "note": "Not worked in the guide. Longest window with at most k flips, run once per letter." }
+  }
+}

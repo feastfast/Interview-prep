@@ -1,0 +1,49 @@
+{
+  "topic": "binary-search",
+  "label": "Binary Search guide",
+  "pdf": "LeetCode/Binary Search/Binary_Search_Study_Guide.pdf",
+  "patterns": {
+    "exact":   { "essence": [[4, 6]],           "cards": ["Fundamentals"],                                   "quiz": ["Fundamentals"] },
+    "bound":   { "essence": [[8, 9], [11, 11]], "cards": ["Boundaries and templates"],                       "quiz": ["Boundaries and templates"] },
+    "minfeas": { "essence": [[14, 15]],         "cards": ["Binary search on the answer", "Minimum feasible answer problems"], "quiz": ["Binary search on the answer", "Minimum and maximum feasible answer problems"] },
+    "maxfeas": { "essence": [[14, 15]],         "cards": ["Binary search on the answer", "Maximum feasible answer problems"], "quiz": ["Binary search on the answer", "Minimum and maximum feasible answer problems"] },
+    "sqrt":    { "essence": [],                 "cards": ["Square roots"],                                   "quiz": ["Square roots"] },
+    "rot":     { "essence": [[25, 26]],         "cards": ["Rotated sorted arrays"],                          "quiz": ["Rotated sorted arrays"] },
+    "peak":    { "essence": [[30, 31]],         "cards": ["Peak and mountain arrays"],                       "quiz": ["Peak and mountain arrays"] },
+    "matrix":  { "essence": [],                 "cards": ["Matrix search"],                                  "quiz": ["Matrix search"] },
+    "extra":   { "essence": [],                 "cards": ["Extra boundary problems"],                        "quiz": ["Extra boundary problems"] },
+    "median":  { "essence": [],                 "cards": ["Median of two sorted arrays and recognition"],    "quiz": ["Median of two arrays and recognition"] }
+  },
+  "labels": {
+    "K-way merge": ["matrix"],
+    "First True boundary": ["bound"],
+    "Upper bound": ["bound"],
+    "Lower/upper bound count": ["bound"],
+    "Parity boundary search": ["extra"],
+    "Binary search on value range": ["extra"],
+    "Binary search per element": ["extra"],
+    "Prefix sum + lower bound": ["extra"],
+    "Max feasible (Last True)": ["maxfeas"],
+    "Min feasible (First True)": ["minfeas"],
+    "Rotated array with duplicates": ["rot"],
+    "Peak / local structure": ["peak"],
+    "Peak + boundary search": ["peak"],
+    "Staircase search": ["matrix"]
+  },
+  "assign": {
+    "lc-704": { "patterns": ["exact"], "ignore": [""], "pages": [[8, 8]] },
+    "lc-35": { "patterns": ["bound"] },
+    "lc-34": { "patterns": ["bound"] },
+    "lc-69": { "patterns": ["sqrt"] },
+    "lc-74": { "patterns": ["matrix"] },
+    "lc-875": { "patterns": ["minfeas"] },
+    "lc-1011": { "patterns": ["minfeas"] },
+    "lc-153": { "patterns": ["rot"] },
+    "lc-33": { "patterns": ["rot"] },
+    "lc-162": { "patterns": ["peak"] },
+    "lc-981": { "patterns": ["extra"] },
+    "lc-4": { "patterns": ["median"], "pages": [[44, 45]] },
+    "kth-smallest-matrix": { "pages": [[36, 37]] },
+    "lc-1231": { "pages": [[20, 21]], "note": "Not worked in the guide. Same skeleton as Magnetic Force Between Two Balls: binary search the largest minimum gap." }
+  }
+}

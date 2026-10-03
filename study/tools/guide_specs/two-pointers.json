@@ -1,0 +1,256 @@
+{
+  "topic": "two-pointers",
+  "label": "Two Pointers guide",
+  "pdf": "LeetCode/Two Pointers/Two_Pointers_Study_Guide.pdf",
+  "patterns": {
+    "opp": {
+      "essence": [
+        [
+          3,
+          4
+        ]
+      ],
+      "cards": [
+        "Fundamentals & the Elimination Proof"
+      ],
+      "quiz_match": [
+        "L=0,R=",
+        "sorting is essential",
+        "UNSORTED",
+        "self-correction"
+      ]
+    },
+    "container": {
+      "essence": [
+        [
+          3,
+          4
+        ],
+        [
+          8,
+          10
+        ]
+      ],
+      "cards": [
+        "Container With Most Water"
+      ],
+      "quiz_match": [
+        "Container"
+      ]
+    },
+    "palin": {
+      "essence": [],
+      "cards": [
+        "Palindromes & String Pointers"
+      ],
+      "quiz_match": [
+        "Palindrome",
+        "Reverse String"
+      ]
+    },
+    "subseq": {
+      "essence": [],
+      "cards": [
+        "Same-Direction Pointers on Two Sequences"
+      ],
+      "quiz_match": [
+        "Subsequence"
+      ]
+    },
+    "slowfast": {
+      "essence": [
+        [
+          16,
+          16
+        ]
+      ],
+      "cards": [
+        "Same-Direction Slow/Fast Pointers"
+      ],
+      "quiz_match": [
+        "Remove Duplicates",
+        "Move Zeroes",
+        "Sort Colors",
+        "processed region",
+        "Squares of a Sorted"
+      ]
+    },
+    "ksum": {
+      "essence": [
+        [
+          24,
+          25
+        ]
+      ],
+      "cards": [
+        "Sort + Fixed Pointer(s) + Two Pointers (kSum Family)"
+      ],
+      "quiz_match": [
+        "3Sum",
+        "4Sum",
+        "Triangle"
+      ]
+    },
+    "merge": {
+      "essence": [
+        [
+          32,
+          33
+        ]
+      ],
+      "cards": [
+        "Merge-Style Pointers"
+      ],
+      "quiz_match": [
+        "merge-style",
+        "Merge Sorted",
+        "Meeting Scheduler"
+      ]
+    },
+    "hard": {
+      "essence": [],
+      "cards": [
+        "Hard Problems Requiring Their Own Proof"
+      ],
+      "quiz_match": [
+        "Trapping",
+        "Boats",
+        "Bag of Tokens"
+      ]
+    },
+    "squares": {
+      "essence": [],
+      "cards": [
+        "Same-Direction Slow/Fast Pointers"
+      ],
+      "quiz_match": [
+        "Squares of a Sorted"
+      ]
+    }
+  },
+  "labels": {
+    "Monotonic stack (areas)": [
+      "hard"
+    ],
+    "Two-pointer greedy": [
+      "hard"
+    ],
+    "Sort + greedy endpoint decision": [
+      "hard"
+    ],
+    "Same-direction slow/fast": [
+      "slowfast"
+    ],
+    "Same-direction two sequences": [
+      "subseq"
+    ],
+    "Merge-style (back-to-front)": [
+      "merge"
+    ],
+    "Merge-style elimination": [
+      "merge"
+    ],
+    "Opposite-end swap": [
+      "palin"
+    ],
+    "Sort + fixed pointer + L/R count": [
+      "ksum"
+    ],
+    "Sort + fixed largest side + L/R count": [
+      "ksum"
+    ]
+  },
+  "assign": {
+    "lc-167": {
+      "patterns": [
+        "opp"
+      ]
+    },
+    "lc-11": {
+      "patterns": [
+        "container"
+      ]
+    },
+    "lc-125": {
+      "patterns": [
+        "palin"
+      ]
+    },
+    "lc-680": {
+      "patterns": [
+        "palin"
+      ]
+    },
+    "lc-26": {
+      "patterns": [
+        "slowfast"
+      ]
+    },
+    "lc-283": {
+      "patterns": [
+        "slowfast"
+      ],
+      "ignore": [
+        "8.3"
+      ]
+    },
+    "lc-75": {
+      "patterns": [
+        "slowfast"
+      ],
+      "ignore": [
+        "8.3"
+      ]
+    },
+    "lc-977": {
+      "patterns": [
+        "squares"
+      ]
+    },
+    "lc-15": {
+      "patterns": [
+        "ksum"
+      ],
+      "pages": [
+        [
+          26,
+          27
+        ]
+      ]
+    },
+    "lc-16": {
+      "patterns": [
+        "ksum"
+      ]
+    },
+    "lc-18": {
+      "patterns": [
+        "ksum"
+      ]
+    },
+    "lc-881": {
+      "pages": [
+        [
+          36,
+          37
+        ]
+      ]
+    },
+    "lc-948": {
+      "pages": [
+        [
+          37,
+          38
+        ]
+      ]
+    },
+    "lc-1229": {
+      "pages": [
+        [
+          38,
+          39
+        ]
+      ]
+    }
+  }
+}
