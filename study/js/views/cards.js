@@ -20,6 +20,11 @@ function buildQueue(D, r) {
   const topics = (r.q.get("topics") || "").split("|").filter(Boolean);
   let pool = D.cards.cards.filter(c => (!decks.length || decks.includes(c.d)) && (!topics.length || topics.includes(c.t)));
   if (mode === "todo") pool = pool.filter(c => cardState(s.cards[c.id]) !== "known");
+  const n = +r.q.get("n") || 0;
+  if (n) {                                           // a short warm-up: cards you don't know yet come first
+    const unknown = c => (cardState(s.cards[c.id]) === "known" ? 0 : 1);
+    return shuffle(shuffle(pool).sort((a, b) => unknown(b) - unknown(a)).slice(0, n));
+  }
   return shuffle(pool);
 }
 
@@ -27,10 +32,11 @@ function session(el, r, ctx) {
   const { D } = ctx;
   const decks = (r.q.get("decks") || "").split(",").filter(Boolean);
   const home = decks.length === 1 ? "#/topics/" + decks[0] : "#/topics";
-  sess = { queue: buildQueue(D, r), done: 0, total: 0, missed: new Set(), shown: false, back: home + "/cards", home, el, ctx, prev: 0, enter: false, busy: false };
+  const ret = r.q.get("ret") || "";                  // set when a session was opened from the plan: close returns there
+  sess = { queue: buildQueue(D, r), done: 0, total: 0, missed: new Set(), shown: false, back: ret || home + "/cards", ret, home, el, ctx, prev: 0, enter: false, busy: false };
   sess.total = sess.queue.length;
   if (!sess.total) {
-    el.innerHTML = '<div class="empty">' + icon("trophy", 30) + '<b>Nothing to study here</b>Every card in this selection is already marked as known.<p style="margin-top:16px"><a class="btn" href="' + sess.back + '">Back to topic</a></p></div>';
+    el.innerHTML = '<div class="empty">' + icon("trophy", 30) + '<b>Nothing to study here</b>Every card in this selection is already marked as known.<p style="margin-top:16px"><a class="btn" href="' + esc(sess.back) + '">' + (sess.ret ? "Back to your list" : "Back to topic") + "</a></p></div>";
     return;
   }
   draw();
@@ -49,7 +55,7 @@ function session(el, r, ctx) {
 function cleanup() { if (offKey) { offKey(); offKey = null; } }
 
 function head(back, from, to, label) {
-  return '<div class="sess-h"><a class="iconbtn" href="' + back + '" aria-label="Exit session">' + icon("close", 18) + '</a><div class="bar"><i style="width:' + from + '%" data-to="' + to + '%"></i></div><span class="sess-n">' + label + "</span></div>";
+  return '<div class="sess-h"><a class="iconbtn" href="' + esc(back) + '" aria-label="Exit session">' + icon("close", 18) + '</a><div class="bar"><i style="width:' + from + '%" data-to="' + to + '%"></i></div><span class="sess-n">' + label + "</span></div>";
 }
 
 function actions() {
@@ -158,7 +164,7 @@ function finish() {
   el.innerHTML = '<div class="result">' + ring(first / sess.total, { size: 132, stroke: 12, label: Math.round(100 * first / sess.total) + "%", sub: "first try" }) +
     "<h1>Session complete</h1><p class=\"muted\">" + plural(sess.total, "card") + " reviewed</p>" +
     '<div class="stats three">' + tile("cards", sess.total, "cards") + tile("check", first, "knew first time") + tile("sync", missed, "needed another go") + "</div>" +
-    '<div class="row" style="justify-content:center"><a class="btn primary lg" href="' + sess.back + '">Back to topic</a>' + (sess.home !== "#/topics" ? '<a class="btn lg" href="' + sess.home + '/quiz">Take its quiz ' + icon("arrow", 16) + "</a>" : "") + "</div></div>";
+    '<div class="row" style="justify-content:center"><a class="btn primary lg" href="' + esc(sess.back) + '">' + (sess.ret ? "Back to your list" : "Back to topic") + "</a>" + (!sess.ret && sess.home !== "#/topics" ? '<a class="btn lg" href="' + sess.home + '/quiz">Take its quiz ' + icon("arrow", 16) + "</a>" : "") + "</div></div>";
   if (first / sess.total >= 0.6) confetti();
   sess = null;
 }

@@ -29,12 +29,14 @@ function session(el, r, ctx) {
   const { D } = ctx;
   const decks = (r.q.get("decks") || "").split(",").filter(Boolean);
   const home = decks.length === 1 ? "#/topics/" + decks[0] : "#/topics";
+  const ret = r.q.get("ret") || "";                  // set when a session was opened from the plan: close returns there
+  const back = ret || home + "/quiz";
   const qs = pick(D, r).map(q => {
     const order = shuffle(q.o.map((_, i) => i));
     return { q, order, correct: order.indexOf(q.a) };
   });
-  if (!qs.length) { el.innerHTML = '<div class="empty">' + icon("quiz", 28) + '<b>No questions to show</b>Nothing matches this selection yet.<p style="margin-top:16px"><a class="btn" href="' + home + '/quiz">Back</a></p></div>'; return; }
-  sess = { home, decksParam: r.q.get("decks") || "", list: qs, i: 0, right: 0, wrong: [], answered: -1, t0: Date.now(), prev: 0 };
+  if (!qs.length) { el.innerHTML = '<div class="empty">' + icon("quiz", 28) + '<b>No questions to show</b>Nothing matches this selection yet.<p style="margin-top:16px"><a class="btn" href="' + esc(back) + '">Back</a></p></div>'; return; }
+  sess = { home, back, ret, decksParam: r.q.get("decks") || "", list: qs, i: 0, right: 0, wrong: [], answered: -1, t0: Date.now(), prev: 0 };
   draw(el, ctx);
   const onKey = e => {
     if (!sess || !document.getElementById("qz") || e.metaKey || e.ctrlKey) return;
@@ -53,7 +55,7 @@ function draw(el, ctx) {
   const cur = sess.list[sess.i];
   const q = cur.q;
   const pct = Math.round(100 * sess.i / sess.list.length);
-  let h = '<div class="sess-h"><a class="iconbtn" href="' + sess.home + '/quiz" aria-label="Exit quiz">' + icon("close", 18) + '</a><div class="bar"><i style="width:' + sess.prev + '%" data-to="' + pct + '%"></i></div><span class="sess-n">' + (sess.i + 1) + " / " + sess.list.length + "</span></div>";
+  let h = '<div class="sess-h"><a class="iconbtn" href="' + esc(sess.back) + '" aria-label="Exit quiz">' + icon("close", 18) + '</a><div class="bar"><i style="width:' + sess.prev + '%" data-to="' + pct + '%"></i></div><span class="sess-n">' + (sess.i + 1) + " / " + sess.list.length + "</span></div>";
   sess.prev = pct;
   h += '<div class="qz" id="qz"' + (sess.answered < 0 ? ' data-new="1"' : "") + '><div class="row"><span class="tag acc">' + esc(q.t) + '</span><span class="small muted">Question ' + (sess.i + 1) + '</span></div><div class="qz-q">' + md(q.q) + "</div>";
   cur.order.forEach((oi, k) => {
@@ -95,8 +97,8 @@ function finish(el) {
   const verdict = pct >= 80 ? "Excellent work" : pct >= 50 ? "Solid progress" : "Good practice";
   let h = '<div class="result">' + ring(sess.right / n, { size: 132, stroke: 12, label: pct + "%", sub: sess.right + " of " + n }) +
     "<h1>" + verdict + '</h1><p class="muted">' + plural(n, "question") + " · " + Math.floor(secs / 60) + "m " + (secs % 60) + "s</p>" +
-    '<div class="row" style="justify-content:center;margin-top:18px"><a class="btn primary lg" href="#/quiz/session?n=' + (sess.wrong.length ? "all&mode=mistakes" : "10") + "&decks=" + encodeURIComponent(sess.decksParam) + "&r=" + Date.now() + '">' +
-    icon(sess.wrong.length ? "sync" : "bolt", 16) + (sess.wrong.length ? "Retry mistakes" : "Another quiz") + '</a><a class="btn lg" href="' + sess.home + '/quiz">Back to topic</a></div></div>';
+    '<div class="row" style="justify-content:center;margin-top:18px"><a class="btn primary lg" href="#/quiz/session?n=' + (sess.wrong.length ? "all&mode=mistakes" : "10") + "&decks=" + encodeURIComponent(sess.decksParam) + (sess.ret ? "&ret=" + encodeURIComponent(sess.ret) : "") + "&r=" + Date.now() + '">' +
+    icon(sess.wrong.length ? "sync" : "bolt", 16) + (sess.wrong.length ? "Retry mistakes" : "Another quiz") + '</a><a class="btn lg" href="' + esc(sess.back) + '">' + (sess.ret ? "Back to your list" : "Back to topic") + "</a></div></div>";
   if (sess.wrong.length) {
     h += '<div class="sec-h"><h2>Review what you missed</h2><span class="tag bad">' + sess.wrong.length + "</span></div>";
     for (const q of sess.wrong) {
