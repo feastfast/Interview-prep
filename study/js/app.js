@@ -12,7 +12,7 @@ import * as materials from "./views/materials.js";
 import * as P from "./plan.js";
 import { icon, hue, getTheme, setTheme, cycleTheme, syncThemeColor, countUps, reduced } from "./ui.js";
 
-export const D = { cards: null, quiz: null, problems: null, plan: null, known: new Set() };
+export const D = { cards: null, quiz: null, problems: null, plan: null, guides: null, known: new Set() };
 
 const TABS = [["today", "Today"], ["plan", "Plan"], ["topics", "Topics"], ["progress", "Progress"], ["materials", "Materials"]];
 const VIEWS = { today, plan, topics, cards, quiz, progress, materials };
@@ -251,9 +251,10 @@ async function boot() {
   $("#main").innerHTML = '<div class="view"><div class="loading"><span class="spinner"></span>Loading your decks…</div></div>';
   drawChrome("today", route());
   try {
-    const [c, q, pr, pl] = await Promise.all([
-      fetchJSON(dataUrl("cards.json")), fetchJSON(dataUrl("quiz.json")), fetchJSON(dataUrl("problems.json")), fetchJSON(dataUrl("plan.json"))]);
-    D.cards = c; D.quiz = q; D.problems = pr; D.plan = pl;
+    const [c, q, pr, pl, gu] = await Promise.all([
+      fetchJSON(dataUrl("cards.json")), fetchJSON(dataUrl("quiz.json")), fetchJSON(dataUrl("problems.json")), fetchJSON(dataUrl("plan.json")),
+      fetchJSON(dataUrl("guides.json")).catch(() => ({ topics: {} }))]);      // reading hints are optional: the app works without them
+    D.cards = c; D.quiz = q; D.problems = pr; D.plan = pl; D.guides = gu;
     for (const pool of Object.values(P.buildPools(pl, pr.problems))) for (const x of pool) D.known.add(x.id);
   } catch (e) {
     $("#main").innerHTML = '<div class="view"><div class="empty">' + icon("alert", 28) + "<b>Could not load the study data</b>" + esc(e.message) + "</div></div>";

@@ -3,6 +3,7 @@ import { esc, plural, $, $$ } from "../util.js";
 import { nextProblem, dayNum } from "../srs.js";
 import * as P from "../plan.js";
 import { icon, ring, hue, confetti } from "../ui.js";
+import { prepStrip, bindPrep } from "./prep.js";
 
 const DAY_NAMES = ["", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const SLOT_LABEL = { resolve: "Re-solve", main: "Main topic", secondary: "Second topic", carry: "Carried over" };
@@ -168,7 +169,7 @@ function overview(el, ctx) {
       '<div class="row" style="gap:6px;margin-top:6px">' + rec.topics.map(t => tchip(D, t)).join("") + '<span class="small muted">· about ' + totalMin + " min</span></div></div></div>";
     if (behind > 0) h += '<div class="banner warn">' + icon("sync", 15) + "<span>Catching up &mdash; this list was scheduled " + plural(behind, "day") + " ago. Finish it and the rest of the queue moves up.</span></div>";
     else if (behind < 0) h += '<div class="banner good">' + icon("bolt", 15) + "<span>You’re " + plural(-behind, "day") + " ahead of schedule. Nice.</span></div>";
-    h += '<div class="plist">' + (items.length ? items.map(i => itemHTML(i, P.isItemDone(rec, i, state.probs), state.probs[i.id])).join("") : '<div class="empty">' + icon("trophy", 28) + "<b>Nothing left to schedule</b>Every problem in these topics is solved.</div>") + "</div>";
+    h += '<div class="plist">' + (items.length ? items.map(i => itemHTML(i, P.isItemDone(rec, i, state.probs), state.probs[i.id], D)).join("") : '<div class="empty">' + icon("trophy", 28) + "<b>Nothing left to schedule</b>Every problem in these topics is solved.</div>") + "</div>";
     h += '<div class="today-f"><button class="btn sm ghost" id="regen">' + icon("sync", 14) + 'Rebuild list</button><span class="small muted">Finish every item and the next slot moves up automatically.</span></div></section>';
   }
 
@@ -198,11 +199,12 @@ function overview(el, ctx) {
   el.innerHTML = h;
   justTicked = null;
   bindItems(el, ctx, cursor, pc.byId);
+  bindPrep(el, ctx);
   const regen = $("#regen", el);
   if (regen) regen.onclick = () => { if (confirm("Rebuild this list? Items you already finished stay done.")) { ensureDay(pc, week, store.get(), true); ctx.rerender(); } };
 }
 
-function itemHTML(i, done, st) {
+function itemHTML(i, done, st, D) {
   const meta = [i.lc ? esc(i.lc) : "", esc(SLOT_LABEL[i.slot] || ""), "~" + i.mins + " min", i.premium ? "Premium" : ""].filter(Boolean).join(" · ");
   const saved = st && ((st.code || "").trim() || (st.notes || "").trim());
   let h = '<div class="pitem' + (done ? " done" : "") + '" data-id="' + esc(i.id) + '"><div class="prow">' +
@@ -213,6 +215,7 @@ function itemHTML(i, done, st) {
     const when = st && st.st === "revisit" ? "Optional re-solve tomorrow" : st && st.d ? "Optional re-solve in " + plural(Math.max(0, st.d - dayNum()), "day") : "Done";
     h += '<div class="pdone">' + icon("check", 13) + "<span>" + when + "</span>" + (saved ? '<span class="dotsep"></span><button class="linkbtn" data-act="log">' + icon("code", 12) + "Solution saved</button>" : '<span class="dotsep"></span><button class="linkbtn" data-act="log">Add solution</button>') + "</div>";
   } else {
+    h += prepStrip(D, i.topic, i.id, "#/plan");
     h += '<div class="pact"><button class="btn sm ghost" data-act="hard">' + icon("alert", 14) + 'Struggled</button><button class="btn sm ghost" data-act="skip">' + icon("skip", 14) + 'Skip</button><button class="btn sm ghost" data-act="stash">' + icon("archive", 14) + "Stash</button></div>";
   }
   return h + "</div>";
