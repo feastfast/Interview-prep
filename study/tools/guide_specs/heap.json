@@ -1,0 +1,35 @@
+{
+  "topic": "heap",
+  "label": "Heap guide",
+  "pdf": "LeetCode/Heap/Heap_Priority_Queue_Study_Guide.pdf",
+  "patterns": {
+    "topk":       { "essence": [[9, 11]],  "cards": ["Pattern 1 — Top K"],                   "quiz": ["Top K"] },
+    "twoheaps":   { "essence": [[19, 22]], "cards": ["Pattern 2 — Two heaps"],               "quiz": ["Two heaps"] },
+    "repeat":     { "essence": [[27, 28]], "cards": ["Pattern 3 — Repeatedly process min/max"], "quiz": ["Repeatedly process min/max"] },
+    "kway":       { "essence": [[36, 38]], "cards": ["Pattern 4 — K-way merge"],             "quiz": ["K-way merge"] },
+    "sortheap":   { "essence": [[42, 43]], "cards": ["Pattern 5 — Sort + heap"],              "quiz": ["Sort + heap"] },
+    "heapgreedy": { "essence": [[47, 48]], "cards": ["Pattern 6 — Heap + greedy"],            "quiz": ["Heap + greedy"] },
+    "lazy":       { "essence": [[53, 54]], "cards": ["Pattern 7 — Lazy deletion"],           "quiz": ["Lazy deletion and patterns"] },
+    "hashheap":   { "essence": [[57, 57]], "cards": ["Pattern 8 — Hash map + heap"],          "quiz": ["Lazy deletion and patterns"] }
+  },
+  "labels": {
+    "Top K": ["topk"],
+    "Hash map + Heap": ["hashheap"],
+    "Two heaps": ["twoheaps"],
+    "Repeatedly process min": ["repeat"],
+    "Repeatedly process max": ["repeat"],
+    "Repeatedly process (greedy)": ["repeat"],
+    "K-way merge": ["kway"],
+    "K-way merge + Top K": { "read": ["kway"], "warm": ["kway", "topk"] },
+    "Sort + Heap": ["sortheap"],
+    "Heap + Greedy": ["heapgreedy"]
+  },
+  "assign": {
+    "merge-k-sorted": { "ignore": ["4B."] },
+    "lc-703": { "patterns": ["topk"] },
+    "lc-692": { "patterns": ["hashheap"], "pages": [[14, 15]], "note": "Same as Top K Frequent Elements; ties are broken alphabetically, which the guide does not cover." },
+    "lc-767": { "patterns": ["hashheap"] },
+    "lc-264": { "patterns": ["repeat"], "note": "Not worked in the guide. Same idea: repeatedly take the smallest and push its multiples." },
+    "lc-355": { "patterns": ["kway"], "note": "Not worked in the guide. Merging each followee's tweets, newest first, is a K-way merge." }
+  }
+}
