@@ -23,7 +23,7 @@ STUDY = os.path.dirname(HERE)
 ROOT = os.path.dirname(STUDY)
 DATA = os.path.join(STUDY, "data")
 ALIASES = {"arrays-hashing": "arrays", "arrays": "arrays", "heap-priority-queue": "heap", "priority-queue": "heap", "dp": "dynamic-programming"}
-HEAD = re.compile(r"^(Part \d+\b|\d+\.\d+\s|\d+[A-Z]\.\s)")
+HEAD = re.compile(r"^(Part \d+\b|\d+\.\d+\s|\d+[A-Z]\.\s|[A-Z][A-Za-z0-9'’,\- /]+ \((?:LeetCode|LC) \d+[^)]*\)\s*$)")
 
 
 def load(name):
@@ -82,6 +82,15 @@ def sections(pages, head=HEAD):
     return out
 
 
+def heading_matches(text, pr):
+    """A heading that cites LeetCode numbers matches only on its number (so "3Sum" does not match "3Sum Closest (LC 16)");
+    a heading without one falls back to the problem title."""
+    nums = [int(n) for n in re.findall(r"(?:LeetCode|LC)\s*#?(\d+)", text)]
+    if nums:
+        return pr["lc"] in nums
+    return pr["title"].lower() in text.lower()
+
+
 def ranges(pages):
     pages = sorted(set(pages))
     out = []
@@ -99,7 +108,8 @@ def build(spec_path, plan, problems, cards, quiz):
     doc = fitz.open(os.path.join(ROOT, spec["pdf"]))
     pages = [p.get_text() for p in doc]
     head = re.compile(spec["heading"]) if spec.get("heading") else HEAD
-    secs = sections(pages, head)
+    skip = set(spec.get("skip_pages", []))             # e.g. a table of contents that looks like headings
+    secs = [s for s in sections(pages, head) if s[0] not in skip]
     card_groups = {(c["d"], c["t"]) for c in cards["cards"]}
     quiz_groups = {(q["d"], q["t"]) for q in quiz["questions"]}
     problems_out, problems_report, errors = {}, [], []
@@ -111,13 +121,16 @@ def build(spec_path, plan, problems, cards, quiz):
         for c in pat["cards"]:
             if (topic, c) not in card_groups:
                 errors.append("pattern %s: no card group %r in deck %s" % (key, c, topic))
-        for q in pat["quiz"]:
+        for q in pat.get("quiz", []):
             if (topic, q) not in quiz_groups:
                 errors.append("pattern %s: no quiz group %r in deck %s" % (key, q, topic))
+        pat["_qi"] = [x["id"] for x in quiz["questions"] if x["d"] == topic and any(re.search(r, x["q"], re.I) for r in pat.get("quiz_match", []))]
+        if not pat.get("quiz") and not pat["_qi"]:
+            errors.append("pattern %s: no quiz groups and quiz_match found no questions" % key)
 
     for pr in pool_for(topic, plan, problems):
         manual = spec.get("assign", {}).get(pr["id"], {})
-        if manual.get("patterns"):
+        if "patterns" in manual:
             read_keys = warm_keys = manual["patterns"]
         elif pr["label"] in spec["labels"]:
             m = spec["labels"][pr["label"]]
@@ -125,20 +138,25 @@ def build(spec_path, plan, problems, cards, quiz):
         else:
             errors.append("%s (%s): pattern label %r has no mapping" % (pr["id"], pr["title"], pr["label"]))
             continue
+        warm_keys = manual.get("warm", warm_keys)
         pg = set()
         for k in read_keys:
             for a, b in spec["patterns"][k]["essence"]:
                 pg.update(range(a, b + 1))
-        home = [s for s in secs if (pr["lc"] and re.search(r"(LeetCode|LC)\s*#?%d\b" % pr["lc"], s[2])) or pr["title"].lower() in s[2].lower()]
-        home = [s for s in home if not any(s[2].startswith(x) for x in manual.get("ignore", []))]
+        home = [s for s in secs if heading_matches(s[2], pr)]
+        drop = spec.get("ignore", []) + manual.get("ignore", [])      # sections that only list or compare problems
+        home = [s for s in home if not any(s[2].startswith(x) for x in drop)]
         for a, b, _ in home:
             pg.update(range(a, b + 1))
         for a, b in manual.get("pages", []):
             pg.update(range(a, b + 1))
         entry = {"p": ranges(pg)}
         cg = [c for k in warm_keys for c in spec["patterns"][k]["cards"]]
-        qg = [q for k in warm_keys for q in spec["patterns"][k]["quiz"]]
+        qg = [q for k in warm_keys for q in spec["patterns"][k].get("quiz", [])]
+        qi = [i for k in warm_keys for i in spec["patterns"][k]["_qi"]]
         entry["c"], entry["q"] = list(dict.fromkeys(cg)), list(dict.fromkeys(qg))
+        if qi:
+            entry["qi"] = list(dict.fromkeys(qi))
         if manual.get("note"):
             entry["n"] = manual["note"]
         if not home and not manual.get("pages") and not manual.get("note") and pr["id"] not in spec.get("assign", {}):
