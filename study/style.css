@@ -566,6 +566,16 @@ a.tchip:hover{filter:brightness(.96)}
 .input{display:block;width:100%;padding:11px 13px;border:1px solid var(--line-2);border-radius:12px;background:var(--surface-2);margin-top:8px;outline:none;transition:border-color .2s,box-shadow .2s,background .2s}
 .input:focus{border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-wash);background:var(--surface)}
 .field-l{display:block;font-size:13px;font-weight:500;color:var(--ink-2);margin-top:16px}
+/* saved solution versions: tabs in the solutions box, time/space row, entries on the review page */
+.vtabs{margin:4px 0 2px;flex-wrap:wrap}
+.vrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.linkbtn.danger{color:var(--bad)}
+.ver{padding:12px 0;border-top:1px solid var(--line)}
+.ver:first-child{border-top:0;padding-top:0}
+.ver-h{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.ver-h .linkbtn{margin-left:auto;font-size:12.5px}
+.ver .explain{margin:0 0 10px}
+.ver pre{margin:0}
 .field-l:first-of-type{margin-top:14px}
 input[type=range]{width:100%;margin-top:12px;accent-color:var(--accent)}
 .sticky-actions{position:sticky;bottom:calc(96px + env(safe-area-inset-bottom));z-index:5;padding:12px;margin:0 -12px;border-radius:18px;background:var(--glass);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}

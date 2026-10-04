@@ -4,6 +4,9 @@ import { nextProblem, dayNum } from "../srs.js";
 import * as P from "../plan.js";
 import { icon, ring, hue, confetti } from "../ui.js";
 import { prepStrip, bindPrep } from "./prep.js";
+import { openLogModal } from "./solutions.js";
+import { liveVersions } from "../solutions.js";
+import { rawVersions } from "../merge.js";
 
 const DAY_NAMES = ["", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const SLOT_LABEL = { resolve: "Re-solve", main: "Main topic", secondary: "Second topic", carry: "Carried over" };
@@ -71,44 +74,18 @@ export function record(id, outcome) {
   store.bump("probs");
 }
 
-/* Popup shown right after marking a problem done/struggled: paste the LeetCode solution and jot notes
-   (what clicked, what tripped you up) for a quick revision pass before the interview. Both are optional. */
-export function openLogModal(id, title, ctx) {
-  const p = store.get().probs[id] || {};
-  const bg = document.createElement("div");
-  bg.className = "modal-bg";
-  bg.innerHTML = '<div class="modal" role="dialog" aria-label="Save your solution"><div class="modal-h"><span class="modal-ic">' + icon("code", 18) + '</span><div><h3>Save your solution</h3><p class="small muted">' + esc(title || id) + '</p></div><button class="iconbtn" id="logx" aria-label="Close">' + icon("close", 18) + "</button></div>" +
-    '<label class="field-l" for="logcode">Code</label><textarea id="logcode" class="mono" rows="9" spellcheck="false" placeholder="Paste your solution from LeetCode…">' + esc(p.code || "") + "</textarea>" +
-    '<label class="field-l" for="lognotes">Notes &mdash; understanding, mistakes made</label>' +
-    '<textarea id="lognotes" rows="4" placeholder="What was the key insight? What tripped you up?">' + esc(p.notes || "") + "</textarea>" +
-    '<div class="modal-f"><span class="small muted">Optional &mdash; you can add it later.</span><div class="row"><button class="btn ghost" id="logskip">Add later</button><button class="btn primary" id="logsave">' + icon("check", 16) + "Save</button></div></div></div>";
-  document.body.appendChild(bg);
-  const onKey = e => {
-    if (e.key === "Escape") { e.preventDefault(); close(); }
-    else if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) { e.preventDefault(); save(); }
-  };
-  const close = () => { document.removeEventListener("keydown", onKey); bg.classList.add("out"); setTimeout(() => bg.remove(), 200); };
-  const save = () => {
-    const code = $("#logcode", bg).value, notes = $("#lognotes", bg).value;
-    store.commit(s => { if (s.probs[id]) Object.assign(s.probs[id], { code, notes, t: Date.now() }); });
-    close();
-    ctx.toast("Solution saved.");
-    ctx.rerender();
-  };
-  document.addEventListener("keydown", onKey);
-  bg.addEventListener("mousedown", e => { if (e.target === bg) close(); });
-  $("#logskip", bg).onclick = close;
-  $("#logx", bg).onclick = close;
-  $("#logsave", bg).onclick = save;
-  setTimeout(() => { const t = $("#logcode", bg); if (t && matchMedia("(pointer: fine)").matches) t.focus(); }, 60);
-}
+/* The solutions box lives in solutions.js; it opens by itself only the first time a problem is solved (see isFirstSolve),
+   so a redo never asks for code again. */
+export { openLogModal };
+export const isFirstSolve = id => { const p = store.get().probs[id]; return !p || p.st === "todo"; };
+
 export function undo(id) {
   store.commit(s => {
     const p = s.probs[id];
     if (!p) return;
-    const now = Date.now(), back = p.prev;
-    // a fresh t (not an older one) so the undo also wins when devices sync
-    s.probs[id] = back ? Object.assign({}, back, { t: now, c: back.c !== undefined ? back.c : back.t || 0 }) : { st: "todo", n: 0, d: dayNum(), t: now, c: 0, tries: 0, note: "" };
+    const now = Date.now(), back = p.prev, versions = rawVersions(p);
+    // a fresh t (not an older one) so the undo also wins when devices sync; saved solutions are kept
+    s.probs[id] = Object.assign(back ? Object.assign({}, back, { t: now, c: back.c !== undefined ? back.c : back.t || 0 }) : { st: "todo", n: 0, d: dayNum(), t: now, c: 0, tries: 0, note: "" }, versions.length ? { versions } : {});
   });
   store.bump("probs", -1);
 }
@@ -206,14 +183,14 @@ function overview(el, ctx) {
 
 function itemHTML(i, done, st, D) {
   const meta = [i.lc ? esc(i.lc) : "", esc(SLOT_LABEL[i.slot] || ""), "~" + i.mins + " min", i.premium ? "Premium" : ""].filter(Boolean).join(" · ");
-  const saved = st && ((st.code || "").trim() || (st.notes || "").trim());
+  const nv = st ? liveVersions(st).length : 0;
   let h = '<div class="pitem' + (done ? " done" : "") + '" data-id="' + esc(i.id) + '"><div class="prow">' +
     '<button class="tick' + (done ? " on" : "") + (i.id === justTicked ? " pop" : "") + '" data-act="' + (done ? "undo" : "clean") + '" aria-label="' + (done ? "Mark as not done" : "Mark as done") + '" title="' + (done ? "Undo" : "Mark done") + '">' + icon("check", 15) + "</button>" +
     '<a class="ptitle" href="' + esc(i.url) + '" target="_blank" rel="noopener"><b>' + esc(i.title) + '<span class="ext">' + icon("ext", 13) + '</span></b><span class="small muted">' + meta + "</span></a>" +
     '<span class="tag ' + i.diff + '">' + i.diff + "</span></div>";
   if (done) {
     const when = st && st.st === "revisit" ? "Optional re-solve tomorrow" : st && st.d ? "Optional re-solve in " + plural(Math.max(0, st.d - dayNum()), "day") : "Done";
-    h += '<div class="pdone">' + icon("check", 13) + "<span>" + when + "</span>" + (saved ? '<span class="dotsep"></span><button class="linkbtn" data-act="log">' + icon("code", 12) + "Solution saved</button>" : '<span class="dotsep"></span><button class="linkbtn" data-act="log">Add solution</button>') + "</div>";
+    h += '<div class="pdone">' + icon("check", 13) + "<span>" + when + "</span>" + '<span class="dotsep"></span><button class="linkbtn" data-act="log">' + (nv ? icon("code", 12) + (nv === 1 ? "1 solution" : nv + " solutions") : "Add solution") + "</button></div>";
   } else {
     h += prepStrip(D, i.topic, i.id, "#/plan");
     h += '<div class="pact"><button class="btn sm ghost" data-act="hard">' + icon("alert", 14) + 'Struggled</button><button class="btn sm ghost" data-act="skip">' + icon("skip", 14) + 'Skip</button><button class="btn sm ghost" data-act="stash">' + icon("archive", 14) + "Stash</button></div>";
@@ -227,6 +204,7 @@ function bindItems(el, ctx, cursor, byId) {
     const box = b.closest(".pitem"), id = box.dataset.id, act = b.dataset.act;
     const title = (byId[id] || {}).title || id;
     if (act === "clean" || act === "hard") {
+      const first = isFirstSolve(id);                 // a redo never asks for code again
       record(id, act === "clean" ? "solved" : "struggled");
       justTicked = id;
       const st = store.get(), rec = st.days[cursor];
@@ -235,7 +213,7 @@ function bindItems(el, ctx, cursor, byId) {
         confetti({ x: r.left + r.width / 2, y: r.top });
         ctx.toast("List complete — the next slot moves up.");
       } else ctx.toast(act === "clean" ? "Marked done." : "Marked as struggled — optional re-solve tomorrow.");
-      openLogModal(id, title, ctx);
+      if (first) openLogModal(id, title, ctx);
       ctx.rerender();
     }
     else if (act === "log") openLogModal(id, title, ctx);
@@ -286,11 +264,11 @@ function stashView(el, ctx) {
   }).join("") + "</ul>";
   el.innerHTML = h;
   $$("[data-done]", el).forEach(b => b.onclick = () => {
-    const id = b.dataset.done, p = pc.byId[id];
+    const id = b.dataset.done, p = pc.byId[id], first = isFirstSolve(id);
     record(id, "solved");
     store.commit(s => { s.plan.stash = (s.plan.stash || []).filter(x => x !== id); s.plan.t = Date.now(); });
     ctx.toast("Nice — marked done.");
-    openLogModal(id, p ? p.title : id, ctx);
+    if (first) openLogModal(id, p ? p.title : id, ctx);
     ctx.rerender();
   });
   $$("[data-return]", el).forEach(b => b.onclick = () => {
@@ -311,7 +289,8 @@ function reviewView(el, ctx) {
   for (const tid of Object.keys(pc.pools)) for (const p of pc.pools[tid]) {
     const pr = state.probs[p.id];
     if (seen.has(p.id)) continue;
-    if (pr && pr.st !== "todo" && ((pr.code || "").trim() || (pr.notes || "").trim())) { seen.add(p.id); rows.push({ p, pr, tid }); }
+    const vs = pr ? liveVersions(pr) : [];
+    if (pr && pr.st !== "todo" && vs.length) { seen.add(p.id); rows.push({ p, pr, tid, vs }); }
   }
   if (!rows.length) { h += '<div class="empty">' + icon("code", 28) + "<b>Nothing saved yet</b>When you tick a problem off, paste your code and jot notes &mdash; they’ll collect here.</div>"; el.innerHTML = h; return; }
   h += '<label class="findw">' + icon("search", 16) + '<input type="search" class="find" id="find" placeholder="Search your solutions" autocomplete="off"></label>';
@@ -319,11 +298,15 @@ function reviewView(el, ctx) {
   for (const r of rows) { if (!byTopic.has(r.tid)) byTopic.set(r.tid, []); byTopic.get(r.tid).push(r); }
   for (const [tid, list] of byTopic) {
     h += '<div class="igroup hued" style="--h:' + hue(tid) + '"><div class="ghead"><b><span class="tdot"></span>' + esc(topicLabel(D, tid)) + '</b><span class="tag">' + list.length + "</span></div>";
-    for (const { p, pr } of list) {
-      h += '<details class="irow"><summary><span class="stext">' + esc(p.title) + '</span><span class="tag ' + p.diff + '">' + p.diff + "</span></summary><div class=\"ibody\">" +
-        (pr.notes && pr.notes.trim() ? '<div class="explain">' + icon("sparkle", 16) + "<div>" + esc(pr.notes).replace(/\n/g, "<br>") + "</div></div>" : "") +
-        (pr.code && pr.code.trim() ? "<pre><code>" + esc(pr.code) + "</code></pre>" : '<p class="muted small">No code saved.</p>') +
-        '<div class="row"><a class="link small" href="' + esc(p.url) + '" target="_blank" rel="noopener">Open on LeetCode ' + icon("ext", 13) + '</a><button class="linkbtn" data-edit="' + esc(p.id) + '">Edit</button></div></div></details>';
+    for (const { p, vs } of list) {
+      const verHTML = (v, i) => '<div class="ver"><div class="ver-h"><b>' + esc(v.label || "Version " + (vs.length - i)) + "</b>" +
+        (v.time ? '<span class="tag">time ' + esc(v.time) + "</span>" : "") + (v.space ? '<span class="tag">space ' + esc(v.space) + "</span>" : "") +
+        '<button class="linkbtn" data-edit="' + esc(p.id) + '" data-v="' + esc(v.id) + '">Edit</button></div>' +
+        (v.notes && v.notes.trim() ? '<div class="explain">' + icon("sparkle", 16) + "<div>" + esc(v.notes).replace(/\n/g, "<br>") + "</div></div>" : "") +
+        (v.code && v.code.trim() ? "<pre><code>" + esc(v.code) + "</code></pre>" : "") + "</div>";
+      h += '<details class="irow"><summary><span class="stext">' + esc(p.title) + '</span>' + (vs.length > 1 ? '<span class="tag">' + vs.length + " versions</span>" : "") + '<span class="tag ' + p.diff + '">' + p.diff + "</span></summary><div class=\"ibody\">" +
+        vs.map(verHTML).join("") +
+        '<div class="row"><a class="link small" href="' + esc(p.url) + '" target="_blank" rel="noopener">Open on LeetCode ' + icon("ext", 13) + '</a><button class="linkbtn" data-edit="' + esc(p.id) + '" data-v="new">Add a version</button></div></div></details>';
     }
     h += "</div>";
   }
@@ -334,7 +317,7 @@ function reviewView(el, ctx) {
     $$(".irow", el).forEach(r => { r.hidden = !!term && !r.textContent.toLowerCase().includes(term); });
     $$(".igroup", el).forEach(g => { g.hidden = !$$(".irow", g).some(r => !r.hidden); });
   };
-  $$("[data-edit]", el).forEach(b => b.onclick = () => { const p = pc.byId[b.dataset.edit]; openLogModal(b.dataset.edit, p ? p.title : b.dataset.edit, ctx); });
+  $$("[data-edit]", el).forEach(b => b.onclick = () => { const p = pc.byId[b.dataset.edit]; openLogModal(b.dataset.edit, p ? p.title : b.dataset.edit, ctx, { select: b.dataset.v }); });
 }
 
 /* ------------------------------------------------------------------ setup */
