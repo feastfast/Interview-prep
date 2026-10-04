@@ -14,6 +14,28 @@ function mergeTimed(a = {}, b = {}) {
   return out;
 }
 
+/* Saved solutions: a problem record carries `versions`, each { id, c: created, t: last edit, label, time, space, code, notes,
+   del? }. Records from before versions existed hold a single code/notes pair, which counts as version "v0". */
+export function rawVersions(p) {
+  if (!p) return [];
+  if (Array.isArray(p.versions)) return p.versions;
+  return (p.code || p.notes) ? [{ id: "v0", c: p.t || 0, t: p.t || 0, label: "", time: "", space: "", code: p.code || "", notes: p.notes || "" }] : [];
+}
+function unionVersions(a, b) {
+  const byId = new Map();
+  for (const v of [...a, ...b]) { const o = byId.get(v.id); if (!o || (v.t || 0) > (o.t || 0)) byId.set(v.id, v); }
+  return [...byId.values()];
+}
+/* The newer problem record wins as before, but solution versions from both devices are kept (a deletion is a version with del). */
+function mergeProbs(a = {}, b = {}) {
+  const out = mergeTimed(a, b);
+  for (const k of Object.keys(out)) {
+    const va = rawVersions(a[k]), vb = rawVersions(b[k]);
+    if (va.length || vb.length) out[k] = Object.assign({}, out[k], { versions: unionVersions(va, vb) });
+  }
+  return out;
+}
+
 export function mergeStates(a, b) {
   a = a || emptyState(); b = b || emptyState();
   const log = {};
@@ -29,7 +51,7 @@ export function mergeStates(a, b) {
     v: 1,
     cards: mergeTimed(a.cards, b.cards),
     quiz: mergeTimed(a.quiz, b.quiz),
-    probs: mergeTimed(a.probs, b.probs),
+    probs: mergeProbs(a.probs, b.probs),
     reads: mergeTimed(a.reads, b.reads),
     log,
     settings: (sb.t || 0) > (sa.t || 0) ? sb : sa,
