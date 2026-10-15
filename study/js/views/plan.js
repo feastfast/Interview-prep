@@ -17,6 +17,7 @@ export function render(el, r, ctx) {
   if (r.parts[1] === "setup") return setup(el, ctx);
   if (r.parts[1] === "stash") return stashView(el, ctx);
   if (r.parts[1] === "review") return reviewView(el, ctx);
+  if (r.parts[1] === "history") return historyView(el, ctx);
   if (r.parts[1] === "topic") { location.replace("#/topics/" + r.parts[2] + "/problems"); return; }
   return overview(el, ctx);
 }
@@ -132,7 +133,7 @@ function overview(el, ctx) {
   let h = '<header class="page-h rise"><div><div class="eyebrow">Week ' + (pc.weekIdx + 1) + (totalWeeks ? " of " + totalWeeks : "") + (pc.review ? " · review mode" : "") + "</div><h1>Plan</h1>" +
     '<p class="muted" style="margin:6px 0 0">' + (daysLeft != null ? (daysLeft >= 0 ? "<b class=\"ink\">" + plural(daysLeft, "day") + "</b> to your interview" : "Your interview date has passed") : "No interview date set") + "</p></div>" +
     '<div class="row" style="gap:6px"><a class="btn sm" href="#/plan/stash">' + icon("archive", 15) + "Stash" + (stashN ? '<span class="count">' + stashN + "</span>" : "") + "</a>" +
-    '<a class="btn sm" href="#/plan/review">' + icon("code", 15) + 'Review</a><a class="btn sm" href="#/plan/setup" aria-label="Plan settings" title="Plan settings">' + icon("gear", 15) + "</a></div></header>";
+    '<a class="btn sm" href="#/plan/history">' + icon("sync", 15) + 'Past lists</a><a class="btn sm" href="#/plan/review">' + icon("code", 15) + 'Review</a><a class="btn sm" href="#/plan/setup" aria-label="Plan settings" title="Plan settings">' + icon("gear", 15) + "</a></div></header>";
 
   /* ---- today (the cursor's slot, whichever real day it's shown on) */
   const rec = ensureDay(pc, week, state);
@@ -246,6 +247,46 @@ function bindItems(el, ctx, cursor, byId) {
       ctx.rerender();
     }
   });
+}
+
+/* ------------------------------------------------------------------ past lists */
+/* Every earlier day's list stays saved, so a problem you ticked off after finding the algorithm can still get its
+   solution added later. Newest first; "Needs a solution" narrows it to ticked problems with nothing saved yet. */
+let historyOnlyMissing = false;
+function historyView(el, ctx) {
+  const { D } = ctx;
+  const state = store.get();
+  const pc = P.contextFor(D, state, todayISO());
+  const cursor = pc.cursor;
+  const dates = Object.keys(state.days || {}).filter(d => d !== cursor && state.days[d] && (state.days[d].items || []).length).sort().reverse();
+  const doneIn = (rec, i) => P.isItemDone(rec, i, state.probs);
+  const missing = (rec, i) => doneIn(rec, i) && !liveVersions(state.probs[i.id] || {}).length;
+  const nMissing = dates.reduce((n, d) => n + state.days[d].items.filter(i => missing(state.days[d], i)).length, 0);
+  let h = '<a class="backlink" href="#/plan">' + icon("back", 16) + 'Plan</a><header class="page-h"><div><h1>Past lists</h1><p class="lead" style="margin-bottom:0">Every earlier day’s list, newest first. Add or edit a solution for any problem here, even after the day has moved on.</p></div></header>';
+  if (!dates.length) { h += '<div class="empty">' + icon("archive", 28) + "<b>No earlier lists yet</b>Finish a day’s list and it will be kept here.</div>"; el.innerHTML = h; return; }
+  h += '<div class="row" style="gap:8px;margin:0 0 12px"><button class="chip' + (historyOnlyMissing ? " on" : "") + '" id="hmiss">Needs a solution' + (nMissing ? " (" + nMissing + ")" : "") + "</button></div>";
+  let shown = 0;
+  for (const d of dates) {
+    const rec = state.days[d];
+    const items = rec.items.filter(i => !historyOnlyMissing || missing(rec, i));
+    if (!items.length) continue;
+    shown++;
+    const dt = new Date(d + "T00:00:00");
+    const done = rec.items.filter(i => doneIn(rec, i)).length;
+    h += '<section class="igroup"><div class="ghead"><b>' + DAY_NAMES[P.weekday(d)] + " · " + d.slice(5).replace("-", "/") + '</b><span class="tag">' + done + "/" + rec.items.length + " done</span></div><ul class=\"list\">";
+    for (const i of items) {
+      const p = pc.byId[i.id] || { id: i.id, title: i.id, diff: "medium", url: "https://leetcode.com/problemset/?search=" + encodeURIComponent(i.id) };
+      const isDone = doneIn(rec, i), nv = liveVersions(state.probs[i.id] || {}).length;
+      h += '<li class="trow wrap" data-id="' + esc(i.id) + '"><span class="tick' + (isDone ? " on" : "") + '" aria-hidden="true">' + icon("check", 15) + '</span>' +
+        '<a class="ptitle" href="' + esc(p.url) + '" target="_blank" rel="noopener"><b>' + esc(p.title) + '<span class="ext">' + icon("ext", 13) + '</span></b><span class="small muted">' + esc(isDone ? "Done" : "Not done") + "</span></a>" +
+        '<span class="tag ' + p.diff + '">' + p.diff + '</span><button class="linkbtn" data-hlog="' + esc(i.id) + '">' + (nv ? icon("code", 12) + (nv === 1 ? "1 solution" : nv + " solutions") : "Add solution") + "</button></li>";
+    }
+    h += "</ul></section>";
+  }
+  if (!shown) h += '<div class="empty">' + icon("check", 28) + "<b>All caught up</b>Every ticked problem has a solution saved.</div>";
+  el.innerHTML = h;
+  $("#hmiss", el).onclick = () => { historyOnlyMissing = !historyOnlyMissing; ctx.rerender(); };
+  $$("[data-hlog]", el).forEach(b => b.onclick = () => { const p = pc.byId[b.dataset.hlog]; openLogModal(b.dataset.hlog, p ? p.title : b.dataset.hlog, ctx); });
 }
 
 /* ------------------------------------------------------------------ stash */
