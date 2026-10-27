@@ -129,9 +129,13 @@ function overview(el, ctx) {
   const totalWeeks = cfg.interview ? Math.max(1, Math.ceil(P.diffDays(cfg.start, cfg.interview) / 7)) : null;
   const behind = P.diffDays(cursor, date);                     // >0: catching up, <0: ahead of schedule
   const stashN = (cfg.stash || []).length;
+  const uniq = new Map();                                       // every scheduled problem once (a problem can sit in two topics)
+  for (const tid of Object.keys(pc.pools)) for (const p of pc.pools[tid]) uniq.set(p.id, p);
+  const solvedN = [...uniq.keys()].filter(id => state.probs[id] && state.probs[id].st !== "todo").length, leftN = uniq.size - solvedN;
+  const studyDaysLeft = daysLeft != null && daysLeft > 0 ? Array.from({ length: daysLeft }, (_, i) => P.weekday(P.addDays(date, i))).filter(d => (cfg.days || []).includes(d)).length : 0;
 
   let h = '<header class="page-h rise"><div><div class="eyebrow">Week ' + (pc.weekIdx + 1) + (totalWeeks ? " of " + totalWeeks : "") + (pc.review ? " · review mode" : "") + "</div><h1>Plan</h1>" +
-    '<p class="muted" style="margin:6px 0 0">' + (daysLeft != null ? (daysLeft >= 0 ? "<b class=\"ink\">" + plural(daysLeft, "day") + "</b> to your interview" : "Your interview date has passed") : "No interview date set") + "</p></div>" +
+    '<p class="muted" style="margin:6px 0 0">' + (daysLeft != null ? (daysLeft >= 0 ? "<b class=\"ink\">" + plural(daysLeft, "day") + "</b> to your interview" : "Your interview date has passed") : "No interview date set") + " &middot; " + (cfg.core ? "core lists" : "all problems") + ": <b class=\"ink\">" + solvedN + "/" + uniq.size + "</b> solved" + (studyDaysLeft && leftN ? ", about " + Math.ceil(leftN / studyDaysLeft) + " a day to finish" : "") + "</p></div>" +
     '<div class="row" style="gap:6px"><a class="btn sm" href="#/plan/stash">' + icon("archive", 15) + "Stash" + (stashN ? '<span class="count">' + stashN + "</span>" : "") + "</a>" +
     '<a class="btn sm" href="#/plan/history">' + icon("sync", 15) + 'Past lists</a><a class="btn sm" href="#/plan/review">' + icon("code", 15) + 'Review</a><a class="btn sm" href="#/plan/setup" aria-label="Plan settings" title="Plan settings">' + icon("gear", 15) + "</a></div></header>";
 
@@ -372,6 +376,7 @@ function setup(el, ctx) {
     h += '<div class="card"><div class="card-h">' + icon("target", 18) + '<b>Schedule</b></div>' +
       '<label class="field-l" for="iv">Interview date</label><input class="input" type="date" id="iv" value="' + esc(cfg.interview || "") + '">' +
       '<label class="field-l">Time per study day: <b id="minv">' + cfg.minutes + '</b> min</label><input type="range" id="mins" min="45" max="180" step="15" value="' + cfg.minutes + '">' +
+      '<label class="field-l">Problems</label><div class="chips" id="core" style="margin-top:8px"><button class="chip' + (cfg.core ? " on" : "") + '" data-core="1">Core lists only</button><button class="chip' + (cfg.core ? "" : " on") + '" data-core="0">Core + study-guide extras</button></div>' +
       '<label class="field-l">Study days</label><div class="chips" id="days" style="margin-top:8px">' + [1, 2, 3, 4, 5, 6, 7].map(d => '<button class="chip' + (cfg.days.includes(d) ? " on" : "") + '" data-d="' + d + '">' + DAY_NAMES[d] + "</button>").join("") + "</div></div>";
     h += '<div class="card"><div class="card-h">' + icon("topics", 18) + '<b>How comfortable are you with each topic?</b></div><p class="small muted" style="margin:6px 0 14px">&ldquo;Learning&rdquo; gives a topic extra time in your schedule. &ldquo;Not started&rdquo; is the normal share. &ldquo;Comfortable&rdquo; topics get less time.</p><div class="lvls">';
     for (const t of D.plan.topics) {
@@ -385,6 +390,7 @@ function setup(el, ctx) {
     el.innerHTML = h;
     $("#iv", el).onchange = e => { cfg.interview = e.target.value; };
     $("#mins", el).oninput = e => { cfg.minutes = +e.target.value; $("#minv", el).textContent = cfg.minutes; };
+    $$("#core .chip", el).forEach(c => c.onclick = () => { cfg.core = c.dataset.core === "1"; $$("#core .chip", el).forEach(x => x.classList.toggle("on", x === c)); });
     $$("#days .chip", el).forEach(c => c.onclick = () => { const d = +c.dataset.d; cfg.days = cfg.days.includes(d) ? cfg.days.filter(x => x !== d) : cfg.days.concat(d).sort(); c.classList.toggle("on"); });
     $$("[data-topic] .chip", el).forEach(c => c.onclick = () => {
       cfg.levels[c.parentElement.dataset.topic] = +c.dataset.l;
