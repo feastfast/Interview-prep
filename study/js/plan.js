@@ -60,13 +60,15 @@ function buildPoolsFresh(plan, pyProblems) {
   };
   const own = p => ({ id: p.id, kind: "lc", title: p.title, diff: p.diff, lc: p.lc || "", url: lcUrl(p), premium: !!p.premium });
   for (const t of plan.topics) for (const e of plan.lists[t.id] || []) {
-    if (e.app) { if (byApp[e.app]) add(t.id, own(byApp[e.app])); }
-    else add(t.id, { id: "lc-" + e.lc, kind: "lc", title: e.title, diff: e.diff, lc: "LC " + e.lc, url: lcUrl(e) });
+    if (e.app) { if (byApp[e.app]) add(t.id, Object.assign(own(byApp[e.app]), { core: true })); }
+    else add(t.id, { id: "lc-" + e.lc, kind: "lc", title: e.title, diff: e.diff, lc: "LC " + e.lc, url: lcUrl(e), core: true });
   }
   for (const p of pyProblems) add(topicIdFor(p.topicLabel || p.topic), own(p));
   for (const tid of Object.keys(pools)) {                 // the same LeetCode number listed twice in one topic: keep the own entry
     const nums = new Set(pools[tid].filter(x => !x.id.startsWith("lc-")).map(x => lcNum(x.lc)).filter(Boolean));
+    const coreNums = new Set(pools[tid].filter(x => x.id.startsWith("lc-") && x.core && nums.has(lcNum(x.lc))).map(x => lcNum(x.lc)));
     pools[tid] = pools[tid].filter(x => !(x.id.startsWith("lc-") && nums.has(lcNum(x.lc))));
+    for (const x of pools[tid]) if (!x.core && coreNums.has(lcNum(x.lc))) x.core = true;   // the curated entry it replaced was core
   }
   for (const tid of Object.keys(pools)) pools[tid].sort((a, b) => (DIFF_RANK[a.diff] - DIFF_RANK[b.diff]) || (a.idx - b.idx));
   return pools;
@@ -229,9 +231,11 @@ export function nextFor(pools, probs, tid, excluded) {
 export function contextFor(D, state, date) {
   const cfg = Object.assign(defaultPlan(date), state.plan && state.plan.t ? state.plan : {});
   const cursor = cfg.cursor || date;
-  const pools = buildPools(D.plan, D.problems.problems);
+  const all = buildPools(D.plan, D.problems.problems);
   const byId = {};
-  for (const tid of Object.keys(pools)) for (const p of pools[tid]) if (!byId[p.id]) byId[p.id] = Object.assign({ topic: tid }, p);
+  for (const tid of Object.keys(all)) for (const p of all[tid]) if (!byId[p.id]) byId[p.id] = Object.assign({ topic: tid }, p);
+  // "Core list only": schedule and count just the curated lists; the extra study-guide problems stay findable by id
+  const pools = cfg.core ? Object.fromEntries(Object.keys(all).map(tid => [tid, all[tid].filter(p => p.core)])) : all;
   const monday = mondayOf(cursor);
   return { plan: D.plan, cfg, pools, byId, monday, cursor, weekIdx: Math.max(0, weeksBetween(cfg.start || cursor, cursor)), review: isReviewMode(cfg, date), configured: !!(state.plan && state.plan.t) };
 }
