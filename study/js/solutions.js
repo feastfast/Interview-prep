@@ -11,8 +11,11 @@ export function saveVersion(id, draft, vid = null) {
   const now = Date.now();
   let saved = null;
   store.commit(s => {
-    const p = s.probs[id];
-    if (!p) return;
+    let p = s.probs[id];
+    if (!p) {
+      p = { st: "todo", n: 0, d: 0, t: now, c: 0, tries: 0, note: "", versions: [] };
+      s.probs[id] = p;
+    }
     const list = rawVersions(p).map(v => Object.assign({}, v));
     const fields = { label: (draft.label || "").trim(), time: (draft.time || "").trim(), space: (draft.space || "").trim(), code: draft.code || "", notes: draft.notes || "" };
     const cur = vid ? list.find(v => v.id === vid) : null;

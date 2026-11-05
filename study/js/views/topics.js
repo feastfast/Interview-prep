@@ -3,6 +3,8 @@ import { esc, md, plural, $, $$ } from "../util.js";
 import { cardState, dayNum } from "../srs.js";
 import * as P from "../plan.js";
 import { record, undo, openLogModal } from "./plan.js";
+import { liveVersions } from "../solutions.js";
+import { rawVersions } from "../merge.js";
 import { icon, ring, hue } from "../ui.js";
 
 const inline = s => md(s).replace(/^<p>|<\/p>$/g, "");
@@ -182,9 +184,12 @@ function problemsTab(el, D, sub, ctx) {
   for (const p of pool) {
     const st = state.probs[p.id];
     const solved = st && st.st !== "todo";
-    h += '<li class="trow"><button class="tick' + (solved ? " on" : "") + (p.id === justTicked ? " pop" : "") + '" data-tick="' + esc(p.id) + '" data-solved="' + (solved ? 1 : 0) + '" aria-label="' + (solved ? "Mark as not solved" : "Mark as solved") + '">' + icon("check", 15) + "</button>" +
+    const nv = st ? liveVersions(st).length : 0;
+    h += '<li class="trow wrap"><button class="tick' + (solved ? " on" : "") + (p.id === justTicked ? " pop" : "") + '" data-tick="' + esc(p.id) + '" data-solved="' + (solved ? 1 : 0) + '" aria-label="' + (solved ? "Mark as not solved" : "Mark as solved") + '">' + icon("check", 15) + "</button>" +
       '<a class="ptitle" href="' + esc(p.url) + '" target="_blank" rel="noopener"><b>' + esc(p.title) + '<span class="ext">' + icon("ext", 13) + '</span></b><span class="small muted">' + (p.lc ? esc(p.lc) : "") +
-      (solved ? (p.lc ? " · " : "") + (st.st === "revisit" ? "revisit" : "solved " + st.n + "×") : "") + (p.premium ? " · Premium" : "") + '</span></a><span class="tag ' + p.diff + '">' + p.diff + "</span></li>";
+      (solved ? (p.lc ? " · " : "") + (st.st === "revisit" ? "revisit" : "solved " + st.n + "×") : "") + (p.premium ? " · Premium" : "") + '</span></a>' +
+      '<span class="tag ' + p.diff + '">' + p.diff + '</span>' +
+      '<button class="linkbtn" data-sol="' + esc(p.id) + '">' + (nv ? icon("code", 12) + (nv === 1 ? "1 solution" : nv + " solutions") : icon("code", 12) + "Add solution") + '</button></li>';
   }
   el.innerHTML = h + "</ul>";
   justTicked = null;
@@ -194,7 +199,11 @@ function problemsTab(el, D, sub, ctx) {
       // only a completion recorded today can be undone quietly; an older one would lose its history, so ask first
       const p = store.get().probs[id];
       if (P.doneOn(p, todayISO())) undo(id);
-      else if (confirm("Clear this problem's solved status and its re-solve schedule?")) store.commit(st => { st.probs[id] = { st: "todo", n: 0, d: dayNum(), t: Date.now(), c: 0, tries: 0, note: "" }; });
+      else if (confirm("Clear this problem's solved status and its re-solve schedule?")) store.commit(st => {
+        const cur = st.probs[id];
+        const vers = rawVersions(cur);
+        st.probs[id] = Object.assign({ st: "todo", n: 0, d: dayNum(), t: Date.now(), c: 0, tries: 0, note: "" }, vers.length ? { versions: vers } : {});
+      });
       else return;
     } else {
       record(id, "solved");
@@ -204,5 +213,11 @@ function problemsTab(el, D, sub, ctx) {
       openLogModal(id, p ? p.title : id, ctx);
     }
     ctx.rerender();
+  });
+  $$("[data-sol]", el).forEach(b => b.onclick = e => {
+    e.preventDefault();
+    const id = b.dataset.sol;
+    const p = pool.find(x => x.id === id);
+    openLogModal(id, p ? p.title : id, ctx);
   });
 }
